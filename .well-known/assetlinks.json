@@ -1,0 +1,8 @@
+[{
+      "relation": ["delegate_permission/common.handle_all_urls"],
+      "target": {
+        "namespace": "android_app",
+        "package_name": "io.github.vyroxxit.twa",
+        "sha256_cert_fingerprints": ["F8:32:8E:04:06:77:68:65:64:1C:92:89:66:D6:91:30:07:F3:6F:C4:B7:3D:5B:BD:CC:24:3D:DB:01:DF:B3:AF"]
+      }
+    }]
