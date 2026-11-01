@@ -387,6 +387,11 @@ html[dir=rtl] .rv-stars{justify-content:flex-end}
 .plist{display:grid!important;grid-auto-flow:row!important;grid-template-columns:1fr!important;padding:0 20px!important}
 @media (min-width:900px){.plist{grid-template-columns:1fr 1fr!important;padding:10px 44px!important}}
 .plist .prow{min-width:0}
+.hp{position:absolute;inset-inline-start:-9999px;width:1px;height:1px;opacity:0;pointer-events:none}
+.appbox{display:grid;gap:16px;background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:24px}
+.appbox h3{margin:0 0 6px}
+.appbox p{margin:0}
+.ap-actions{display:flex;flex-wrap:wrap;gap:12px}
 </style>
 </head>
 <body>
@@ -585,6 +590,7 @@ html[dir=rtl] .rv-stars{justify-content:flex-end}
           <select id="service"></select>
           <label for="msg" data-i="l4">Problem description</label>
           <textarea id="msg" placeholder="مثال: الحاسوب بطيء جدًا ويظهر خطأ عند تشغيل اللعبة…"></textarea>
+          <input class="hp" id="hpWeb" name="website" type="text" tabindex="-1" autocomplete="off" aria-hidden="true">
           <p class="note" id="offerNote"></p>
           <p class="err" id="err" role="alert"></p>
           <p class="okmsg" id="okMsg" role="status"></p>
@@ -592,8 +598,19 @@ html[dir=rtl] .rv-stars{justify-content:flex-end}
             <button class="btn" type="button" id="save" data-i="sv_btn">Submit request</button>
             <button class="btn alt" type="button" id="wa" data-i="wa">Send via WhatsApp</button>
             <button class="btn alt" type="button" id="mail" data-i="mail">Send by email</button>
+            <button class="btn alt" type="button" id="pdfBtn" data-i="pdf_btn" hidden>Download PDF</button>
           </div>
         </div>
+      </div>
+    </section>
+    <section class="tight" id="app">
+      <div class="appbox">
+        <div><h3 data-i="ap_h">Get the VYROXX IT app</h3><p data-i="ap_p">Install our app on your phone or computer for quick access to our services, request tracking and support.</p></div>
+        <div class="ap-actions">
+          <a class="btn" href="VYROXX-IT.apk" download data-i="ap_and">Download for Android</a>
+          <a class="btn alt" href="VYROXX-IT-Windows.zip" download data-i="ap_win">Download for Windows</a>
+        </div>
+        <p class="note" data-i="ap_note">Android: if asked, allow installing from your browser. Windows: unzip the file and run install.ps1 (Windows 10 or later).</p>
       </div>
     </section>
     <section class="tight" id="support" hidden>
@@ -704,15 +721,15 @@ function setLang(l){
   document.getElementById("err").textContent="";
   store("vx-lang",l);
 }
-Object.assign(T.ar,{l2:"رقم الهاتف / WhatsApp",l_em:"البريد الإلكتروني (لمتابعة طلبك)",sv_btn:"إرسال الطلب",sv_bad:"اكتب بريدًا إلكترونيًا صحيحًا.",sv_ing:"جارٍ الإرسال…",sv_ok:"✔ وصل طلبك. رقم التتبّع: ",sv_fail:"تعذّر الإرسال، حاول مرة أخرى. ",
+Object.assign(T.ar,{l2:"رقم الهاتف / WhatsApp",l_em:"البريد الإلكتروني (لمتابعة طلبك)",sv_btn:"إرسال الطلب",sv_bad:"اكتب بريدًا إلكترونيًا صحيحًا.",sv_ing:"جارٍ الإرسال…",sv_wait:"يرجى الانتظار قليلًا قبل إرسال طلب آخر.",ap_h:"حمّل تطبيق VYROXX IT",ap_p:"ثبّت تطبيقنا على هاتفك أو حاسوبك للوصول السريع إلى خدماتنا وتتبّع طلبك والدعم.",ap_and:"تحميل لأندرويد",ap_win:"تحميل لويندوز",ap_note:"أندرويد: إن طُلب منك، اسمح بالتثبيت من المتصفح. ويندوز: فكّ الضغط ثم شغّل الملف install.ps1 (ويندوز 10 أو أحدث).",pdf_btn:"تحميل PDF",pdf_wait:"جارٍ التحضير…",pdf_fail:"تعذّر إنشاء ملف PDF. تحقق من الاتصال وحاول مجددًا.",sv_ok:"✔ وصل طلبك. رقم التتبّع: ",sv_fail:"تعذّر الإرسال، حاول مرة أخرى. ",
  off_g:"أنت تطلب دون تسجيل: الطلب عادي بدون عروض. المسجّلون يحصلون على الطلب الأول بسعر رمزي وخدمة مجانية بعد كل 5 طلبات مكتملة.",
  off_u:"أنت مسجّل الدخول: طلبك الأول بسعر رمزي وكل 5 طلبات مكتملة = خدمة مجانية.",
  lo_p:"سجّل الدخول بحساب Google من صفحة «حسابي» لتحصل على الطلب الأول بسعر رمزي، وتابع حالة طلباتك واجمع نقاط الولاء تلقائيًا. الطلب دون تسجيل متاح دائمًا لكن بدون هذه العروض."});
-Object.assign(T.en,{l2:"Phone / WhatsApp number",l_em:"Email (to follow your request)",sv_btn:"Submit request",sv_bad:"Enter a valid email address.",sv_ing:"Sending…",sv_ok:"✔ Your request was received. Tracking number: ",sv_fail:"Could not send, please try again. ",
+Object.assign(T.en,{l2:"Phone / WhatsApp number",l_em:"Email (to follow your request)",sv_btn:"Submit request",sv_bad:"Enter a valid email address.",sv_ing:"Sending…",sv_wait:"Please wait a moment before sending another request.",ap_h:"Get the VYROXX IT app",ap_p:"Install our app on your phone or computer for quick access to our services, request tracking and support.",ap_and:"Download for Android",ap_win:"Download for Windows",ap_note:"Android: if asked, allow installing from your browser. Windows: unzip the file and run install.ps1 (Windows 10 or later).",pdf_btn:"Download PDF",pdf_wait:"Preparing…",pdf_fail:"Could not create the PDF. Check your connection and try again.",sv_ok:"✔ Your request was received. Tracking number: ",sv_fail:"Could not send, please try again. ",
  off_g:"You are ordering without an account: a standard order with no offers. Registered customers get their first order at a symbolic price and a free service after every 5 completed orders.",
  off_u:"You are signed in: your first order is at a symbolic price and every 5 completed orders = a free service.",
  lo_p:"Sign in with Google from “My account” to get your first order at a symbolic price, follow your requests and earn loyalty points automatically. Ordering without an account is always possible, but without these offers."});
-Object.assign(T.fr,{l2:"Numéro de téléphone / WhatsApp",l_em:"E-mail (pour suivre votre demande)",sv_btn:"Envoyer la demande",sv_bad:"Saisissez une adresse e-mail valide.",sv_ing:"Envoi…",sv_ok:"✔ Demande reçue. Numéro de suivi : ",sv_fail:"Envoi impossible, réessayez. ",
+Object.assign(T.fr,{l2:"Numéro de téléphone / WhatsApp",l_em:"E-mail (pour suivre votre demande)",sv_btn:"Envoyer la demande",sv_bad:"Saisissez une adresse e-mail valide.",sv_ing:"Envoi…",sv_wait:"Veuillez patienter un instant avant d’envoyer une autre demande.",ap_h:"Téléchargez l’application VYROXX IT",ap_p:"Installez notre application sur votre téléphone ou ordinateur pour accéder rapidement à nos services, au suivi de demande et au support.",ap_and:"Télécharger pour Android",ap_win:"Télécharger pour Windows",ap_note:"Android : si demandé, autorisez l’installation depuis votre navigateur. Windows : décompressez et lancez install.ps1 (Windows 10 ou plus).",pdf_btn:"Télécharger le PDF",pdf_wait:"Préparation…",pdf_fail:"Impossible de créer le PDF. Vérifiez la connexion et réessayez.",sv_ok:"✔ Demande reçue. Numéro de suivi : ",sv_fail:"Envoi impossible, réessayez. ",
  off_g:"Vous commandez sans compte : commande standard, sans offres. Les clients inscrits ont leur première commande à prix symbolique et un service gratuit toutes les 5 commandes terminées.",
  off_u:"Vous êtes connecté : première commande à prix symbolique et 5 commandes terminées = un service gratuit.",
  lo_p:"Connectez-vous avec Google depuis « Mon compte » pour obtenir votre première commande à prix symbolique, suivre vos demandes et cumuler des points. Commander sans compte reste possible, mais sans ces offres."});
@@ -824,12 +841,12 @@ var _setLang=setLang;setLang=function(l){_setLang(l);refreshOffer();renderBiz(l)
 Object.assign(T.ar,{tk_h:"🔎 تتبّع طلبك",tk_sub:"اكتب رقم التتبّع الذي ظهر لك بعد إرسال الطلب لمعرفة حالته.",tk_btn:"تتبّع",tk_bad:"اكتب رقم تتبّع صحيحًا يبدأ بـ VX-",tk_ing:"جارٍ البحث…",tk_nf:"لم نجد طلبًا بهذا الرقم، تأكد من كتابته.",tk_fail:"تعذّر البحث، حاول مرة أخرى. ",tk_srv:"الخدمة",tk_st:"حالة الطلب",tk_pay:"الدفع",tk_dt:"تاريخ الطلب",tk_progress:"قيد المعالجة",tk_done:"تم الحل",tk_paid:"تم الدفع",tk_unpaid:"لم يتم الدفع"});
 Object.assign(T.en,{tk_h:"🔎 Track your request",tk_sub:"Enter the tracking number you received after sending your request to see its status.",tk_btn:"Track",tk_bad:"Enter a valid tracking number starting with VX-",tk_ing:"Searching…",tk_nf:"No request found with this number, please check it.",tk_fail:"Could not search, please try again. ",tk_srv:"Service",tk_st:"Request status",tk_pay:"Payment",tk_dt:"Request date",tk_progress:"In progress",tk_done:"Solved",tk_paid:"Paid",tk_unpaid:"Not paid"});
 Object.assign(T.fr,{tk_h:"🔎 Suivre votre demande",tk_sub:"Saisissez le numéro de suivi reçu après l’envoi de votre demande pour voir son état.",tk_btn:"Suivre",tk_bad:"Saisissez un numéro de suivi valide commençant par VX-",tk_ing:"Recherche…",tk_nf:"Aucune demande trouvée avec ce numéro, vérifiez-le.",tk_fail:"Recherche impossible, réessayez. ",tk_srv:"Service",tk_st:"État de la demande",tk_pay:"Paiement",tk_dt:"Date de la demande",tk_progress:"En cours",tk_done:"Résolue",tk_paid:"Payé",tk_unpaid:"Non payé"});
-Object.assign(T.es,{l2:"Número de teléfono / WhatsApp",l_em:"Correo electrónico (para seguir tu solicitud)",sv_btn:"Enviar solicitud",sv_bad:"Introduce un correo electrónico válido.",sv_ing:"Enviando…",sv_ok:"✔ Tu solicitud ha llegado. Número de seguimiento: ",sv_fail:"No se pudo enviar, inténtalo de nuevo. ",
+Object.assign(T.es,{l2:"Número de teléfono / WhatsApp",l_em:"Correo electrónico (para seguir tu solicitud)",sv_btn:"Enviar solicitud",sv_bad:"Introduce un correo electrónico válido.",sv_ing:"Enviando…",sv_wait:"Espera un momento antes de enviar otra solicitud.",ap_h:"Descarga la app VYROXX IT",ap_p:"Instala nuestra app en tu móvil u ordenador para acceder rápido a nuestros servicios, al seguimiento de solicitudes y al soporte.",ap_and:"Descargar para Android",ap_win:"Descargar para Windows",ap_note:"Android: si se solicita, permite instalar desde tu navegador. Windows: descomprime y ejecuta install.ps1 (Windows 10 o superior).",pdf_btn:"Descargar PDF",pdf_wait:"Preparando…",pdf_fail:"No se pudo crear el PDF. Comprueba la conexión e inténtalo de nuevo.",sv_ok:"✔ Tu solicitud ha llegado. Número de seguimiento: ",sv_fail:"No se pudo enviar, inténtalo de nuevo. ",
  off_g:"Estás pidiendo sin registrarte: pedido normal, sin ofertas. Los clientes registrados obtienen su primer pedido a precio simbólico y un servicio gratis tras cada 5 pedidos completados.",
  off_u:"Has iniciado sesión: tu primer pedido es a precio simbólico y cada 5 pedidos completados = un servicio gratis.",
  lo_p:"Inicia sesión con Google desde «Mi cuenta» para obtener tu primer pedido a precio simbólico, seguir tus solicitudes y acumular puntos de fidelidad automáticamente. Pedir sin cuenta siempre es posible, pero sin estas ofertas."});
 Object.assign(T.es,{tk_h:"🔎 Sigue tu solicitud",tk_sub:"Introduce el número de seguimiento que recibiste al enviar tu solicitud para ver su estado.",tk_btn:"Seguir",tk_bad:"Introduce un número de seguimiento válido que empiece por VX-",tk_ing:"Buscando…",tk_nf:"No encontramos ninguna solicitud con este número, revísalo.",tk_fail:"No se pudo buscar, inténtalo de nuevo. ",tk_srv:"Servicio",tk_st:"Estado de la solicitud",tk_pay:"Pago",tk_dt:"Fecha de la solicitud",tk_progress:"En curso",tk_done:"Resuelta",tk_paid:"Pagado",tk_unpaid:"Sin pagar"});
-var tkLast=null,TKLOC={ar:"ar-MA",en:"en-GB",fr:"fr-FR",es:"es-ES"};
+var tkCode="",tkLast=null,TKLOC={ar:"ar-MA",en:"en-GB",fr:"fr-FR",es:"es-ES"};
 function renderTrack(){
   var box=document.getElementById("tkRes");box.innerHTML="";
   if(!tkLast)return;
@@ -841,11 +858,12 @@ function renderTrack(){
     if(cls){v=document.createElement("span");v.className="tkb "+cls}else{v=document.createTextNode("")}
     v.textContent=val;d.appendChild(v);box.appendChild(d);
   }
-  row(t.tk_srv,i<0?(r.service===T.ar.b_opt?t.b_opt:(r.service||"-")):SV[lang][i][0]);
+  var sn=i<0?(r.service===T.ar.b_opt?t.b_opt:(r.service||"-")):SV[lang][i][0];row(t.tk_srv,sn);
   var done=r.status==="done";
   row(t.tk_st,done?t.tk_done:t.tk_progress,done?"ok":"");
   row(t.tk_pay,r.paid?t.tk_paid:t.tk_unpaid,r.paid?"ok":"no");
   if(r.time)row(t.tk_dt,new Date(r.time).toLocaleDateString(TKLOC[lang]));
+  if(tkCode){var pb=document.createElement("button");pb.type="button";pb.className="btn alt";pb.textContent=t.pdf_btn;pb.onclick=function(){pdfRun(pb,{code:tkCode,service:sn,createdAt:r.time,status:r.status,paid:r.paid,full:false})};box.appendChild(pb)}
 }
 var _setLang2=setLang;setLang=function(l){_setLang2(l);renderTrack()};
 document.getElementById("tkBtn").onclick=async function(){
@@ -856,23 +874,30 @@ document.getElementById("tkBtn").onclick=async function(){
   b.disabled=true;e.textContent=t.tk_ing;
   try{
     var r=await window.vxTrack(c);
-    e.textContent=r?"":t.tk_nf;tkLast=r;renderTrack();
+    e.textContent=r?"":t.tk_nf;tkLast=r;tkCode=c;renderTrack();
   }catch(x){e.textContent=t.tk_fail+"("+(x.code||"error")+")"}
   b.disabled=false;
 };
 document.getElementById("tkCode").onkeydown=function(ev){if(ev.key==="Enter"){ev.preventDefault();document.getElementById("tkBtn").click()}};
+var VX_T0=Date.now();
+function pdfRun(btn,d){var t=T[lang],lab=btn.textContent;btn.disabled=true;btn.textContent=t.pdf_wait;Promise.resolve().then(function(){return window.vxPdf(d,lang)}).catch(function(){alert(t.pdf_fail)}).then(function(){btn.disabled=false;btn.textContent=lab})}
+document.getElementById("pdfBtn").onclick=function(){if(window.vxLast)pdfRun(this,window.vxLast)};
 document.getElementById("save").onclick=async function(){
   var t=T[lang],e=document.getElementById("err"),ok=document.getElementById("okMsg"),b=this;
   ok.textContent="";
+  if(document.getElementById("hpWeb").value){e.textContent="";ok.textContent=t.sv_ok+"VX-"+Math.random().toString(36).slice(2,8).toUpperCase();return}
+  var now=Date.now(),hist=[];
+  try{hist=JSON.parse(localStorage.getItem("vx-sent")||"[]").filter(function(z){return now-z<3600000})}catch(er){}
+  if(now-VX_T0<5000||(hist.length&&now-hist[hist.length-1]<60000)||hist.length>=5){e.textContent=t.sv_wait;return}
   var m=document.getElementById("msg").value.trim();
   if(!m){e.textContent=t.err;return}
   var em=document.getElementById("guestEmail").value.trim();
   if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em)){e.textContent=t.sv_bad;return}
   if(!window.vxSave){e.textContent=t.sv_fail;return}
-  e.textContent="";b.disabled=true;ok.textContent=t.sv_ing;
+  e.textContent="";b.disabled=true;ok.textContent=t.sv_ing;document.getElementById("pdfBtn").hidden=true;
   try{
     var code=await window.vxSave({name:document.getElementById("name").value.trim(),phone:document.getElementById("contactInfo").value.trim(),email:em,service:(SV.ar[Math.max(sel.selectedIndex,0)]?SV.ar[Math.max(sel.selectedIndex,0)][0]:T.ar.b_opt),message:m});
-    ok.textContent=t.sv_ok+code;document.getElementById("msg").value="";
+    ok.textContent=t.sv_ok+code;window.vxLast={code:code,service:sel.options[Math.max(sel.selectedIndex,0)].text,name:document.getElementById("name").value.trim(),phone:document.getElementById("contactInfo").value.trim(),email:em,message:m,createdAt:Date.now(),status:"progress",paid:false,full:true};document.getElementById("pdfBtn").hidden=false;document.getElementById("msg").value="";try{hist.push(Date.now());localStorage.setItem("vx-sent",JSON.stringify(hist))}catch(er){}
   }catch(x){ok.textContent="";e.textContent=t.sv_fail+"("+(x.code||"error")+")"}
   b.disabled=false;
 };
@@ -1200,12 +1225,14 @@ import {getAuth,onAuthStateChanged,signOut} from "https://www.gstatic.com/fireba
 import {getFirestore,doc,getDoc,setDoc,collection,addDoc,getDocs,query,where,serverTimestamp} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 /* حظر المستخدمين: إن كان الحساب المسجَّل محظورًا تُغطّى الصفحة برسالة المنع */
 const ADMIN="vyroxxvx@gmail.com";
+const RC_KEY=""; /* reCAPTCHA v3 site key for Firebase App Check (see setup steps) */
 const M={ar:["تم حظر حسابك","تم منعك من استخدام هذا الموقع. إن كنت تعتقد أن هذا خطأ فتواصل معنا.","تسجيل الخروج"],
 en:["Your account has been banned","You are not allowed to use this site. If you think this is a mistake, please contact us.","Sign out"],
 fr:["Votre compte a été banni","Vous n’êtes pas autorisé à utiliser ce site. Si vous pensez que c’est une erreur, contactez-nous.","Se déconnecter"],
 es:["Tu cuenta ha sido bloqueada","No tienes permiso para usar este sitio. Si crees que es un error, contáctanos.","Cerrar sesión"]};
 try{
   const app=initializeApp({apiKey:"AIzaSyDcRn9c0mtFmGt_fKZh5KKEM6_kbZq6_e0",authDomain:"vyroxx-it.firebaseapp.com",projectId:"vyroxx-it",appId:"1:546399615544:web:5da34c579291fdc0c6c4cd"});
+  if(RC_KEY){try{const ac=await import("https://www.gstatic.com/firebasejs/10.12.2/firebase-app-check.js");ac.initializeAppCheck(app,{provider:new ac.ReCaptchaV3Provider(RC_KEY),isTokenAutoRefreshEnabled:true})}catch(e){}}
   const auth=getAuth(app),db=getFirestore(app);
   const EVERY=5;
   onAuthStateChanged(auth,u=>{window.vxUser=u||null;if(window.vxOnAuth)window.vxOnAuth()});
@@ -1248,6 +1275,7 @@ try{
   });
 }catch(e){}
 </script>
+<script src="vx-doc.js" defer></script>
 <script>if("serviceWorker"in navigator)addEventListener("load",function(){navigator.serviceWorker.register("/sw.js").catch(function(){})})</script>
 </body>
 </html>
