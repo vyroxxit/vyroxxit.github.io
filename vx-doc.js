@@ -13,20 +13,21 @@ function load(u){return new Promise(function(ok,no){var s=document.createElement
 var libs=null;
 function ensure(){if(window.html2canvas&&window.jspdf)return Promise.resolve();if(!libs)libs=Promise.all(LIB.map(load)).catch(function(e){libs=null;throw e});return libs}
 var LOGO='<svg width="46" height="60" viewBox="135 96 130 204" xmlns="http://www.w3.org/2000/svg"><path d="M200 135 L255 155 V215 C255 250 230 275 200 292 C170 275 145 250 145 215 V155 Z" fill="#fff" stroke="#12263A" stroke-width="6" stroke-linejoin="round"/><path d="M172 182 L200 240 L228 182" fill="none" stroke="#0F8B8D" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/><circle cx="200" cy="166" r="6" fill="#D9482B"/><path d="M168 128 L178 104 L200 120 L222 104 L232 128 Z" fill="#0F8B8D" stroke="#12263A" stroke-width="4" stroke-linejoin="round"/></svg>';
-function fmt(ms,l,withTime){if(!ms)return"";var o=withTime?{dateStyle:"medium",timeStyle:"short"}:{dateStyle:"medium"};try{return new Date(ms).toLocaleString(LOC[l],o)}catch(e){return new Date(ms).toISOString()}}
+function p2(n){return n<10?"0"+n:""+n}
+function fmt(ms,l,withTime){if(!ms)return"";var x=new Date(ms),r=p2(x.getDate())+"/"+p2(x.getMonth()+1)+"/"+x.getFullYear();return withTime?r+"  "+p2(x.getHours())+":"+p2(x.getMinutes()):r}
 function build(d,l){
   var t=D[l]||D.en,rtl=l==="ar",done=d.status==="done",paid=d.paid===true;
   var st=paid&&done?"D":(paid?"C":(done?"B":"A")),col=st==="D"?"#1E9E6A":(st==="A"?"#0F8B8D":"#D98A00");
-  var money=(typeof d.payAmount==="number")?d.payAmount.toLocaleString(LOC[l])+" "+esc(d.payCur||"MAD"):"";
+  var money=(typeof d.payAmount==="number")?d.payAmount.toLocaleString("en-GB")+" "+esc(d.payCur||"MAD"):"";
   var mname={bank:t.mb,paypal:t.mp,cash:t.mc,other:t.mo}[d.payMethod]||"";
-  function row(k,v,ltr){return v?'<tr><td style="width:34%;padding:9px 0;color:#52667A;font-size:14px;vertical-align:top">'+esc(k)+'</td><td style="padding:9px 0;font-weight:500;font-size:15px;'+(ltr?'direction:ltr;unicode-bidi:embed;text-align:'+(rtl?'right':'left')+';':'')+'white-space:pre-wrap;word-break:break-word">'+v+'</td></tr>':''}
-  function step(n,lab,on,date){return '<div style="display:flex;align-items:center;gap:12px;padding:10px 0"><div style="flex:none;width:26px;height:26px;border-radius:50%;'+(on?'background:#0F8B8D;color:#fff':'border:2px solid #C5D2D2;color:#9FB0B0')+';display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700">'+(on?'✓':n)+'</div><div style="flex:1;font-size:15px;font-weight:'+(on?'700':'400')+';color:'+(on?'#12263A':'#7A8B8B')+'">'+esc(lab)+'</div><div style="font-size:13px;color:#52667A;direction:ltr;unicode-bidi:embed">'+esc(date||"")+'</div></div>'}
+  function row(k,v,ltr){return v?'<tr><td style="width:34%;padding:9px 0;color:#52667A;font-size:14px;vertical-align:top">'+esc(k)+'</td><td style="padding:9px 0;font-weight:500;font-size:15px;'+(ltr?'direction:ltr;unicode-bidi:isolate;text-align:'+(rtl?'right':'left')+';':'')+'white-space:pre-wrap;word-break:break-word">'+v+'</td></tr>':''}
+  function step(n,lab,on,date){return '<div style="display:flex;align-items:center;gap:12px;padding:10px 0"><div style="flex:none;width:26px;height:26px;border-radius:50%;'+(on?'background:#0F8B8D;color:#fff':'border:2px solid #C5D2D2;color:#9FB0B0')+';display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700">'+(on?'✓':n)+'</div><div style="flex:1;font-size:15px;font-weight:'+(on?'700':'400')+';color:'+(on?'#12263A':'#7A8B8B')+'">'+esc(lab)+'</div><div style="font-size:13px;color:#52667A;direction:ltr;unicode-bidi:isolate">'+esc(date||"")+'</div></div>'}
   var h='<div style="width:794px;min-height:1123px;box-sizing:border-box;background:#fff;color:#12263A;font-family:\'IBM Plex Sans Arabic\',\'Segoe UI\',Tahoma,Arial,sans-serif;direction:'+(rtl?'rtl':'ltr')+';display:flex;flex-direction:column">'
   +'<div style="background:linear-gradient(135deg,#DDEFEE,#FFFFFF);padding:34px 44px 26px;border-bottom:5px solid #0F8B8D;display:flex;align-items:center;gap:18px">'+LOGO
   +'<div style="flex:1"><div style="font-size:28px;font-weight:700;'+(rtl?'':'letter-spacing:3px;')+'">VYROXX <span style="color:#0F8B8D;font-size:16px;font-weight:500;'+(rtl?'':'letter-spacing:4px;')+'">IT SERVICES</span></div><div style="font-size:13px;color:#52667A;margin-top:4px">'+esc(t.tag)+'</div></div>'
   +'<div style="text-align:'+(rtl?'left':'right')+'"><div style="font-size:12px;color:#52667A">'+esc(t.t)+'</div></div></div>'
   +'<div style="padding:30px 44px 0;flex:1">'
-  +'<div style="display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap"><div><div style="font-size:13px;color:#52667A">'+esc(t.num)+'</div><div style="font-size:34px;font-weight:700;direction:ltr;unicode-bidi:embed;text-align:'+(rtl?'right':'left')+'">'+esc(d.code)+'</div></div>'
+  +'<div style="display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap"><div><div style="font-size:13px;color:#52667A">'+esc(t.num)+'</div><div style="font-size:34px;font-weight:700;direction:ltr;unicode-bidi:isolate;text-align:'+(rtl?'right':'left')+'">'+esc(d.code)+'</div></div>'
   +'<div style="padding:9px 18px;border-radius:999px;background:'+col+';color:#fff;font-size:14px;font-weight:700">'+esc(t["s"+st])+'</div></div>'
   +'<div style="margin-top:22px;border:1px solid #D3DDDD;border-radius:12px;padding:8px 22px"><table style="width:100%;border-collapse:collapse">'
   +row(t.dt,esc(fmt(d.createdAt,l,true)),true)+row(t.sv,esc(d.service))
@@ -36,7 +37,7 @@ function build(d,l){
   +step(1,t.p1,true,fmt(d.createdAt,l,true))+step(2,t.p2,true,"")+step(3,t.p3,done,done?fmt(d.doneAt,l,true):"")+step(4,t.p4,paid,paid?fmt(d.paidAt,l,true):"")+'</div>'
   +(paid&&(mname||money||d.payRef)?'<div style="margin-top:22px;border:1px solid #D3DDDD;border-radius:12px;padding:8px 22px"><div style="font-size:16px;font-weight:700;padding-top:8px">'+esc(t.py)+'</div><table style="width:100%;border-collapse:collapse">'+row(t.me,esc(mname))+row(t.am,money,true)+row(t.rf,esc(d.payRef||""))+'</table></div>':'')
   +'</div>'
-  +'<div style="padding:22px 44px 30px;margin-top:26px;border-top:1px solid #D3DDDD;background:#F4F8F8;font-size:12.5px;line-height:1.7;color:#52667A"><div>'+esc(t.vf)+'</div><div>'+esc(t.nt)+'</div><div style="margin-top:6px;direction:ltr;unicode-bidi:embed;text-align:'+(rtl?'right':'left')+'">vyroxxit.github.io · vyroxxvx@gmail.com · '+esc(t.gn)+' '+esc(fmt(Date.now(),l,true))+'</div></div></div>';
+  +'<div style="padding:22px 44px 30px;margin-top:26px;border-top:1px solid #D3DDDD;background:#F4F8F8;font-size:12.5px;line-height:1.7;color:#52667A"><div>'+esc(t.vf)+'</div><div>'+esc(t.nt)+'</div><div style="margin-top:6px;direction:ltr;unicode-bidi:isolate;text-align:'+(rtl?'right':'left')+'">vyroxxit.github.io · vyroxxvx@gmail.com · '+esc(t.gn)+' '+esc(fmt(Date.now(),l,true))+'</div></div></div>';
   return {html:h,state:{A:"in-progress",B:"resolved",C:"paid",D:"completed"}[st]};
 }
 function toPdf(el,name){
