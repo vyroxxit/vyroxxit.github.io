@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="en" dir="ltr">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex">
 <script src="legal.js"></script>
-<title>حسابي | Vyroxx IT Services</title>
+<title>My account | Vyroxx IT Services</title>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;700&display=swap" rel="stylesheet">
 <script>try{var t=localStorage.getItem("vx-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
 <style>
@@ -177,11 +177,11 @@ const EVERY=5;                       // كل كم طلب مكتمل يُمنح �
 
 const $=id=>document.getElementById(id);
 const esc=s=>String(s==null?"":s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
-const AR=["خدمات الحاسوب","خدمات الهواتف","خدمات الألعاب","الشبكات","الأمن السيبراني","الإنترنت العميق والمظلم","خدمات لينكس","المساعدة عن بعد","استعادة البيانات","الخدمات السحابية","التفعيل","خدمات الشركات والمؤسسات"];
+const AR=["خدمات الحاسوب","خدمات الهواتف","خدمات الألعاب","الشبكات","الأمن السيبراني","الإنترنت العميق والمظلم","خدمات لينكس","المساعدة عن بعد","استعادة البيانات","الخدمات السحابية","التفعيل","الطابعات والملحقات","فحص العتاد والترقية","الاستشارات والتدريب التقني","اختبار الاختراق","فحص الثغرات والتدقيق الأمني","الاستجابة للاختراق وإزالة البرمجيات الخبيثة","الخصوصية والتشفير","خدمات الشركات والمؤسسات"];
 const SVN={ar:AR,
-en:["Computer Services","Mobile Services","Gaming Services","Networking","Cybersecurity","Deep & Dark Web","Linux Services","Remote Support","Data Recovery","Cloud Services","Software Activation","Business & Enterprise Services"],
-fr:["Services informatiques","Services mobiles","Jeux vidéo","Réseaux","Cybersécurité","Deep Web et Dark Web","Services Linux","Assistance à distance","Récupération de données","Services cloud","Activation de logiciels","Services pour entreprises et organisations"],
-es:["Servicios informáticos","Servicios móviles","Videojuegos","Redes","Ciberseguridad","Deep Web y Dark Web","Servicios Linux","Asistencia remota","Recuperación de datos","Servicios en la nube","Activación de software","Servicios para empresas y organizaciones"]};
+en:["Computer Services","Mobile Services","Gaming Services","Networking","Cybersecurity","Deep & Dark Web","Linux Services","Remote Support","Data Recovery","Cloud Services","Software Activation","Printers & Peripherals","Hardware Diagnostics & Upgrades","IT Consulting & Training","Penetration Testing","Vulnerability Assessment & Security Audit","Incident Response & Malware Cleanup","Privacy & Encryption Setup","Business & Enterprise Services"],
+fr:["Services informatiques","Services mobiles","Jeux vidéo","Réseaux","Cybersécurité","Deep Web et Dark Web","Services Linux","Assistance à distance","Récupération de données","Services cloud","Activation de logiciels","Imprimantes et périphériques","Diagnostic matériel et mises à niveau","Conseil et formation informatique","Tests d’intrusion","Analyse de vulnérabilités et audit de sécurité","Réponse aux incidents et nettoyage de malwares","Confidentialité et chiffrement","Services pour entreprises et organisations"],
+es:["Servicios informáticos","Servicios móviles","Videojuegos","Redes","Ciberseguridad","Deep Web y Dark Web","Servicios Linux","Asistencia remota","Recuperación de datos","Servicios en la nube","Activación de software","Impresoras y periféricos","Diagnóstico y mejora de hardware","Consultoría y formación técnica","Pruebas de penetración","Análisis de vulnerabilidades y auditoría de seguridad","Respuesta a incidentes y limpieza de malware","Privacidad y cifrado","Servicios para empresas y organizaciones"]};
 const LOC={ar:"ar-MA",en:"en-GB",fr:"fr-FR",es:"es-ES"};
 const T={
 ar:{t:"حسابي | Vyroxx IT Services",home:"الرئيسية",login:"تسجيل الدخول بحساب Google",logout:"تسجيل الخروج",warn:"لم تُضف إعدادات Firebase بعد. افتح الملف وعوّض القيم التي تبدأ بـ PASTE داخل cfg قرب نهاية الملف.",g_h:"حسابي",g_p1:"سجّل الدخول لتحفظ معلوماتك، وتتابع حالة طلباتك، وتجمع نقاطًا تمنحك خدمة مجانية بعد كل 5 طلبات مكتملة.",g_p2:"نستخدم حساب Google فقط، فلا نحفظ كلمة مرور لك أبدًا.",hi:"مرحبًا،",loy_h:"🎁 نقاط الولاء",me_h:"معلوماتي",l_name:"الاسم",l_phone:"رقم الهاتف / WhatsApp",new_h:"طلب جديد",l_srv:"نوع الخدمة",l_msg:"وصف المشكلة",send:"إرسال الطلب",mine_h:"طلباتي السابقة",adm_h:"لوحة الإدارة",loading:"جارٍ التحميل…",none:"لا توجد طلبات بعد.",trk:"رقم التتبّع:",done_n:"طلبات مكتملة:",left_a:"بقي ",left_b:" طلبات مكتملة لتحصل على خدمة مجانية.",earn_a:"🎉 حصلت سابقًا على ",earn_b:" خدمة مجانية، أخبرنا بذلك عند طلبك التالي.",e_empty:"اكتب وصف المشكلة أولًا.",sending:"جارٍ الإرسال…",sent:"✔ وصل طلبك. رقم التتبّع: ",fail:"تعذّر الإرسال، حاول مرة أخرى. ",e_login:"تعذّر تسجيل الدخول: ",e_upd:"تعذّر التحديث: ",newc:"قيد المعالجة",none_adm:"لا توجد طلبات.",tab_req:"الطلبات",tab_users:"العملاء",tab_staff:"الموظفون",role_owner:"المدير الرئيسي",role_staff:"موظف",u_search:"ابحث بالاسم أو البريد…",u_none:"لا يوجد عملاء.",last:"آخر دخول:",banned_t:"تم حظر حسابك",banned_p:"تم منعك من استخدام هذا الموقع. إن كنت تعتقد أن هذا خطأ فتواصل معنا.",ban:"حظر",unban:"رفع الحظر",is_banned:"محظور",ban_q:"هل تريد حظر هذا المستخدم ومنعه من الموقع؟",unban_q:"هل تريد رفع الحظر عن هذا المستخدم؟",st_add_h:"إضافة موظف",st_email:"بريد Gmail للموظف",st_hint:"اختر صلاحيات الموظف:",st_add:"إضافة الموظف",st_list:"الموظفون الحاليون",st_none:"لا يوجد موظفون بعد.",st_remove:"إزالة الموظف",st_rm_q:"هل تريد إزالة هذا الموظف نهائيًا؟",st_bad:"أدخل بريد Gmail صحيحًا.",st_self:"هذا بريد المدير الرئيسي وله كل الصلاحيات أصلًا.",st_noperm:"اختر صلاحية واحدة على الأقل.",st_done:"✔ تمت إضافة الموظف. ستظهر له لوحة الإدارة عند دخوله بحسابه.",p_all:"كل الصلاحيات",p_viewRequests:"عرض الطلبات وتتبعها",p_editRequests:"تغيير حالة الطلبات",p_viewUsers:"عرض العملاء",p_banUsers:"حظر العملاء ورفع الحظر",st:{new:"جديد",progress:"قيد المعالجة",done:"تم الحل"}},
@@ -212,7 +212,7 @@ Object.assign(T.es,{b_first:"Primer pedido (precio simbólico)",b_free:"Servicio
  off_first:"🎉 Oferta de bienvenida: tu primer pedido a precio simbólico.",off_free:"🎁 Tienes un servicio gratis listo: tu próxima solicitud se registrará gratis."});
 
 const root=document.documentElement,tb=$("theme");
-let lang="ar",user=null,mine=null,adm=null,usr=null,stf=null,rev=null,perms={},isOwner=false,tab="req",rsub="reg",usub="reg";
+let lang="en",user=null,mine=null,adm=null,usr=null,stf=null,rev=null,perms={},isOwner=false,tab="req",rsub="reg",usub="reg";
 const openK=new Set();
 const isGuest=r=>!r.uid||r.guest===true;
 const tt=()=>T[lang];
@@ -528,7 +528,7 @@ if(cfg.apiKey.startsWith("PASTE")){
 
 let sl=null;try{sl=localStorage.getItem("vx-lang")}catch(e){}
 const nl=(navigator.language||"ar").slice(0,2);
-setLang(sl&&T[sl]?sl:(T[nl]?nl:"ar"));
+setLang(sl&&T[sl]?sl:"en");
 </script>
 </body>
 </html>
