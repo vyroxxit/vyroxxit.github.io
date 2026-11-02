@@ -634,13 +634,14 @@ html[dir=rtl] .rv-stars{justify-content:flex-end}
 
 <script>
 var SEC=[4,5,14,15,16,17];
+var LEGACY={"الأمن السيبراني":"حماية الحسابات والأجهزة"};
 var IC=["🖥️","📱","🎮","🌐","🔐","🌑","🐧","💻","🗂️","☁️","🔑","🖨️","🔧","🎓","🧪","🔍","🚨","🔏"];
 var SV={
 ar:[["خدمات الحاسوب",["تثبيت وإصلاح Windows","تثبيت البرامج والتعريفات","حل مشاكل النظام وتسريع الحاسوب","دعم فني لأنظمة Windows"]],
 ["خدمات الهواتف",["إصلاح مشاكل النظام (Software)","تحديث النظام","إزالة الفيروسات والمشاكل البرمجية"]],
 ["خدمات الألعاب",["تثبيت الألعاب على الحاسوب والأجهزة المحمولة مهما كان حجمها","حل مشاكل التشغيل والأخطاء (Errors)","تحسين الأداء وزيادة الـ FPS قدر الإمكان","تثبيت التحديثات والإضافات (DLCs)","ضبط إعدادات الألعاب لأفضل أداء","حل مشاكل Steam وEpic Games Launcher وEA app وغيرها","ربط الألعاب بالمنصات الرسمية عند الحاجة"]],
 ["الشبكات",["إعداد الراوتر","تأمين الشبكات المنزلية والمكتبية","حل مشاكل الإنترنت","استشارات الشبكات المنزلية"]],
-["الأمن السيبراني",["تأمين الحسابات","حماية الأجهزة من الفيروسات","استشارات أمنية","المساعدة في استرجاع حساباتك الخاصة إذا فقدت الوصول إليها","التوعية بالممارسات الأمنية"]],
+["حماية الحسابات والأجهزة",["تأمين الحسابات","حماية الأجهزة من الفيروسات","استشارات أمنية","المساعدة في استرجاع حساباتك الخاصة إذا فقدت الوصول إليها","التوعية بالممارسات الأمنية"]],
 ["الإنترنت العميق والمظلم",["التحقق من ظهور بياناتك أو بريدك في تسريبات معروفة","تقييم المخاطر الناتجة عن التسريب","إرشادات لتأمين الحسابات بعد التسريب","المساعدة في تغيير كلمات المرور","استشارات حماية الهوية الرقمية والخصوصية"]],
 ["خدمات لينكس",["تثبيت وتكوين توزيعات لينكس","المساعدة في Kali Linux وUbuntu وغيرها","حل مشاكل لينكس","تثبيت الأدوات والبرامج","شرح أساسيات الاستخدام","إعداد بيئة عمل للمطورين والمهتمين بالأمن السيبراني"]],
 ["المساعدة عن بعد",["إصلاح المشاكل عبر AnyDesk أو TeamViewer","دعم فني سريع دون الحاجة للحضور"]],
@@ -652,7 +653,7 @@ en:[["Computer Services",["Windows installation and repair","Software and driver
 ["Mobile Services",["Software troubleshooting and repair","System updates","Virus and malware removal"]],
 ["Gaming Services",["Install games on PC and mobile, whatever their size","Fix launch problems and errors","Optimize performance and boost FPS where possible","Install updates and DLCs","Configure game settings for best performance","Fix Steam, Epic Games Launcher, EA app and other platform issues","Link games to official platforms when needed"]],
 ["Networking",["Router setup","Home and office network security","Internet troubleshooting","Home network consulting"]],
-["Cybersecurity",["Account security","Device protection against viruses and malware","Security consulting","Help recovering your own accounts if you lost access","Security awareness and best practices"]],
+["Account & Device Security",["Account security","Device protection against viruses and malware","Security consulting","Help recovering your own accounts if you lost access","Security awareness and best practices"]],
 ["Deep & Dark Web",["Check whether your data or email appeared in known leaks","Assess the risks of a data leak","Guidance to secure accounts after a leak","Help changing passwords","Digital identity and privacy consulting"]],
 ["Linux Services",["Install and configure Linux distributions","Help with Kali Linux, Ubuntu and others","Linux troubleshooting","Tools and software installation","Linux basics and guidance","Set up environments for developers and cybersecurity learners"]],
 ["Remote Support",["Fix problems online with AnyDesk or TeamViewer","Fast support, no visit needed"]],
@@ -664,7 +665,7 @@ fr:[["Services informatiques",["Installation et réparation de Windows","Install
 ["Services mobiles",["Dépannage logiciel","Mises à jour du système","Suppression des virus et logiciels malveillants"]],
 ["Jeux vidéo",["Installation de jeux sur PC et mobile, quelle que soit leur taille","Résolution des problèmes de lancement et des erreurs","Optimisation des performances et hausse des FPS","Installation des mises à jour et DLC","Réglage des paramètres pour de meilleures performances","Problèmes Steam, Epic Games Launcher, EA app, etc.","Liaison des jeux aux plateformes officielles si nécessaire"]],
 ["Réseaux",["Configuration du routeur","Sécurisation des réseaux domestiques et professionnels","Dépannage Internet","Conseils sur les réseaux domestiques"]],
-["Cybersécurité",["Sécurisation des comptes","Protection des appareils contre les virus","Conseils en sécurité","Aide à récupérer vos propres comptes en cas de perte d’accès","Sensibilisation aux bonnes pratiques"]],
+["Sécurité des comptes et des appareils",["Sécurisation des comptes","Protection des appareils contre les virus","Conseils en sécurité","Aide à récupérer vos propres comptes en cas de perte d’accès","Sensibilisation aux bonnes pratiques"]],
 ["Deep Web et Dark Web",["Vérifier si vos données ou votre e-mail figurent dans des fuites connues","Évaluer les risques d’une fuite de données","Conseils pour sécuriser vos comptes après une fuite","Aide au changement des mots de passe","Conseils sur l’identité numérique et la vie privée"]],
 ["Services Linux",["Installation et configuration de distributions Linux","Aide sur Kali Linux, Ubuntu et autres","Dépannage Linux","Installation d’outils et de logiciels","Bases de Linux et accompagnement","Environnement pour développeurs et passionnés de cybersécurité"]],
 ["Assistance à distance",["Dépannage en ligne avec AnyDesk ou TeamViewer","Assistance rapide sans déplacement"]],
@@ -676,7 +677,7 @@ es:[["Servicios informáticos",["Instalación y reparación de Windows","Instala
 ["Servicios móviles",["Solución y reparación de problemas de software","Actualizaciones del sistema","Eliminación de virus y malware"]],
 ["Videojuegos",["Instalar juegos en PC y móvil, sin importar su tamaño","Solucionar problemas de inicio y errores","Optimizar el rendimiento y mejorar los FPS cuando sea posible","Instalar actualizaciones y DLC","Configurar los ajustes de los juegos para el mejor rendimiento","Solucionar problemas de Steam, Epic Games Launcher, EA app y otras plataformas","Vincular juegos a plataformas oficiales cuando sea necesario"]],
 ["Redes",["Configuración del router","Seguridad de redes domésticas y de oficina","Solución de problemas de internet","Asesoría sobre redes domésticas"]],
-["Ciberseguridad",["Seguridad de cuentas","Protección del dispositivo contra virus y malware","Asesoría de seguridad","Ayuda para recuperar tus propias cuentas si perdiste el acceso","Concienciación y buenas prácticas de seguridad"]],
+["Seguridad de cuentas y dispositivos",["Seguridad de cuentas","Protección del dispositivo contra virus y malware","Asesoría de seguridad","Ayuda para recuperar tus propias cuentas si perdiste el acceso","Concienciación y buenas prácticas de seguridad"]],
 ["Deep Web y Dark Web",["Comprobar si tus datos o tu correo aparecieron en filtraciones conocidas","Evaluar los riesgos de una filtración de datos","Orientación para proteger tus cuentas tras una filtración","Ayuda para cambiar contraseñas","Asesoría sobre identidad digital y privacidad"]],
 ["Servicios Linux",["Instalar y configurar distribuciones de Linux","Ayuda con Kali Linux, Ubuntu y otras","Solución de problemas en Linux","Instalación de herramientas y programas","Conceptos básicos y orientación sobre Linux","Preparar entornos para desarrolladores y estudiantes de ciberseguridad"]],
 ["Asistencia remota",["Resolver problemas en línea con AnyDesk o TeamViewer","Soporte rápido, sin necesidad de visita"]],
@@ -796,7 +797,7 @@ function renderReviews(){
   RV.forEach(function(r){
     var c=rvEl("article","rv-card"),nm=(r.showName&&r.name)?String(r.name):t.rv_anon,si=-1;
     c.appendChild(rvEl("div","rv-st",rvStars(r.rating)));c.appendChild(rvEl("p","rv-tx",r.text));
-    SV.ar.forEach(function(s,k){if(s[0]===r.service)si=k});
+    SV.ar.forEach(function(s,k){if(s[0]===(LEGACY[r.service]||r.service))si=k});
     var sv=si>=0?SV[lang][si][0]:(r.service===T.ar.b_opt?t.b_opt:"");
     var f=rvEl("div","rv-ft"),m=rvEl("div","rv-mt");
     f.appendChild(rvEl("span","rv-av",nm.charAt(0).toUpperCase()));
@@ -851,7 +852,7 @@ function renderTrack(){
   var box=document.getElementById("tkRes");box.innerHTML="";
   if(!tkLast)return;
   var t=T[lang],r=tkLast,i=-1;
-  SV.ar.forEach(function(s,k){if(s[0]===r.service)i=k});
+  SV.ar.forEach(function(s,k){if(s[0]===(LEGACY[r.service]||r.service))i=k});
   function row(label,val,cls){
     var d=document.createElement("div"),b=document.createElement("b"),v;
     b.textContent=label+": ";d.appendChild(b);
@@ -1275,7 +1276,7 @@ try{
   });
 }catch(e){}
 </script>
-<script src="vx-doc.js" defer></script>
+<script src="vx-doc.js?v=3" defer></script>
 <script>if("serviceWorker"in navigator)addEventListener("load",function(){navigator.serviceWorker.register("/sw.js").catch(function(){})})</script>
 </body>
 </html>

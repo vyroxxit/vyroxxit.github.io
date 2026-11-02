@@ -1,4 +1,4 @@
-const V = "vx-v3";
+const V = "vx-v4";
 const ASSETS = ["/", "/index.html", "/legal.html", "/legal.js", "/vx-doc.js", "/manifest.json", "/favicon-192.png", "/favicon-512.png"];
 
 self.addEventListener("install", (e) => {
@@ -19,13 +19,13 @@ self.addEventListener("fetch", (e) => {
   const r = e.request;
   if (r.method !== "GET" || new URL(r.url).origin !== location.origin) return;
   if (/\.(apk|zip|msix|msixbundle|appxbundle)$/i.test(new URL(r.url).pathname)) return;
-  if (r.mode === "navigate") {
+  if (r.mode === "navigate" || /\.(js|json)$/i.test(new URL(r.url).pathname)) {
     e.respondWith(
       fetch(r).then((res) => {
         const copy = res.clone();
         caches.open(V).then((c) => c.put(r, copy));
         return res;
-      }).catch(() => caches.match(r).then((m) => m || caches.match("/index.html")))
+      }).catch(() => caches.match(r).then((m) => m || (r.mode === "navigate" ? caches.match("/index.html") : undefined)))
     );
     return;
   }
