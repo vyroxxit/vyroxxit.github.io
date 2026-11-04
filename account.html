@@ -69,6 +69,8 @@ textarea{min-height:110px;resize:vertical}
 .tabs{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 14px}
 .tabbtn{font:inherit;font-size:15px;border:1.5px solid var(--line);background:transparent;color:var(--ink);padding:6px 14px;border-radius:8px;cursor:pointer}
 .tabbtn[aria-pressed="true"]{background:var(--accent);color:var(--on-accent);border-color:var(--accent)}
+.badge.urg{background:var(--hot,#D9482B);color:#fff;border-color:transparent}
+[data-rpnote]{width:100%;margin-top:8px}
 .btn.sm{padding:4px 14px;font-size:14px;margin-top:8px}
 .perms{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:6px 14px;margin:10px 0}
 .chk{display:flex;align-items:center;gap:8px;font-weight:400;margin:0}
@@ -146,6 +148,7 @@ dialog::backdrop{background:rgba(0,0,0,.55)}
         <div id="usersList"></div>
       </div>
       <div id="tab_reviews" hidden><div id="revList"></div></div>
+      <div id="tab_reports" hidden><div class="tabs" id="rpTabs"></div><div id="repList"></div></div>
       <div id="tab_pay" hidden><div id="payList"></div></div>
       <div id="tab_staff" hidden>
         <h3 class="sub" data-i="st_add_h">إضافة موظف</h3>
@@ -205,6 +208,15 @@ fr:{tab_pay:"Paiements",pay_total:"Total encaissé",pay_n:"paiements",pay_by:"en
 es:{tab_pay:"Pagos",pay_total:"Total cobrado",pay_n:"pagos",pay_by:"registrado por",pay_none:"Aún no hay pagos registrados.",pm_bank:"Transferencia bancaria",pm_paypal:"PayPal",pm_cash:"Efectivo",pm_other:"Otro",pay_h:"Registrar pago",pay_m:"Método de pago",pay_amt:"Importe",pay_ref:"Referencia (opcional)",pay_save:"Guardar pago",pay_cancel:"Cancelar",pay_bad:"Introduce un importe válido.",pay_rules:"Pago guardado, pero no se almacenaron el método ni el importe. Actualiza primero las reglas de Firestore.",pdf_btn:"Descargar PDF",pdf_wait:"Preparando…",pdf_fail:"No se pudo crear el PDF. Comprueba la conexión e inténtalo de nuevo.",t:"Mi cuenta | Vyroxx IT Services",home:"Inicio",login:"Iniciar sesión con Google",logout:"Cerrar sesión",warn:"Aún no se han añadido los ajustes de Firebase. Abre el archivo y sustituye los valores que empiezan por PASTE dentro de cfg, cerca del final del archivo.",g_h:"Mi cuenta",g_p1:"Inicia sesión para guardar tus datos, seguir el estado de tus solicitudes y acumular puntos que te dan un servicio gratis tras cada 5 solicitudes completadas.",g_p2:"Solo usamos tu cuenta de Google, así que nunca guardamos una contraseña tuya.",hi:"Bienvenido,",loy_h:"🎁 Puntos de fidelidad",me_h:"Mis datos",l_name:"Nombre",l_phone:"Teléfono / WhatsApp",new_h:"Nueva solicitud",l_srv:"Tipo de servicio",l_msg:"Descripción del problema",send:"Enviar solicitud",mine_h:"Mis solicitudes anteriores",adm_h:"Panel de administración",loading:"Cargando…",none:"Aún no hay solicitudes.",trk:"Número de seguimiento:",done_n:"Solicitudes completadas:",left_a:"Faltan ",left_b:" solicitudes completadas para obtener un servicio gratis.",earn_a:"🎉 Has ganado ",earn_b:" servicio(s) gratis, díselo a nuestro equipo en tu próxima solicitud.",e_empty:"Describe primero tu problema.",sending:"Enviando…",sent:"✔ Tu solicitud ha llegado. Número de seguimiento: ",fail:"No se pudo enviar, inténtalo de nuevo. ",e_login:"Error al iniciar sesión: ",e_upd:"Error al actualizar: ",newc:"en curso",none_adm:"No hay solicitudes.",tab_req:"Solicitudes",tab_users:"Clientes",tab_staff:"Personal",role_owner:"Propietario",role_staff:"Empleado",u_search:"Buscar por nombre o correo…",u_none:"No hay clientes.",last:"Último acceso:",banned_t:"Tu cuenta ha sido bloqueada",banned_p:"No tienes permiso para usar este sitio. Si crees que es un error, contáctanos.",ban:"Bloquear",unban:"Desbloquear",is_banned:"Bloqueado",ban_q:"¿Bloquear a este usuario y prohibirle el acceso al sitio?",unban_q:"¿Quitar el bloqueo a este usuario?",st_add_h:"Añadir empleado",st_email:"Gmail del empleado",st_hint:"Elige los permisos del empleado:",st_add:"Añadir empleado",st_list:"Empleados actuales",st_none:"Aún no hay empleados.",st_remove:"Quitar empleado",st_rm_q:"¿Quitar definitivamente a este empleado?",st_bad:"Introduce un Gmail válido.",st_self:"Este es el correo del propietario y ya tiene todos los permisos.",st_noperm:"Elige al menos un permiso.",st_done:"✔ Empleado añadido. Verá el panel de administración cuando inicie sesión con su cuenta.",p_all:"Todos los permisos",p_viewRequests:"Ver y seguir solicitudes",p_editRequests:"Cambiar el estado de las solicitudes",p_viewUsers:"Ver clientes",p_banUsers:"Bloquear y desbloquear clientes",st:{new:"Nueva",progress:"En curso",done:"Resuelta"}}
 };
 
+Object.assign(T.ar,{"rp_info": "نحتاج معلومات", "rp_trk_fail": "حُفظ البلاغ لكن تعذّر تحديث صفحة التتبّع للمبلِّغ. "});
+Object.assign(T.en,{"rp_info": "Needs more info", "rp_trk_fail": "The report was saved but the reporter’s tracking page could not be updated. "});
+Object.assign(T.fr,{"rp_info": "Informations requises", "rp_trk_fail": "Le signalement a été enregistré, mais la page de suivi de l’auteur n’a pas pu être mise à jour. "});
+Object.assign(T.es,{"rp_info": "Se necesita información", "rp_trk_fail": "La denuncia se guardó, pero no se pudo actualizar la página de seguimiento del denunciante. "});
+const RPL={"ar": {"c": {"terrorism": "الإرهاب والتطرف العنيف", "child": "العنف والاستغلال الجنسي للأطفال", "violence": "العنف والتهديد بالقتل", "state": "المساس بأمن الدولة والمقدسات والثوابت الوطنية", "hate": "خطاب الكراهية والتحريض", "trafficking": "الاتجار بالبشر والهجرة غير الشرعية", "drugs": "المخدرات والأسلحة والمتفجرات", "fraud": "الابتزاز والاحتيال الإلكتروني", "cyber": "الهجمات الإلكترونية وتسريب البيانات", "selfharm": "التحريض على الانتحار وإيذاء النفس", "other": "محتوى خطير آخر"}, "p": {"facebook": "Facebook", "instagram": "Instagram", "tiktok": "TikTok", "youtube": "YouTube", "x": "X (Twitter)", "telegram": "Telegram", "whatsapp": "WhatsApp", "snapchat": "Snapchat", "website": "موقع إلكتروني", "other": "أخرى"}}, "en": {"c": {"terrorism": "Terrorism & violent extremism", "child": "Violence & sexual exploitation of children", "violence": "Violence & threats", "state": "Threats to state security & national sanctities", "hate": "Hate speech & incitement", "trafficking": "Human trafficking & illegal migration", "drugs": "Drugs, weapons & explosives", "fraud": "Blackmail & online fraud", "cyber": "Cyberattacks & data leaks", "selfharm": "Incitement to suicide & self-harm", "other": "Other serious content"}, "p": {"facebook": "Facebook", "instagram": "Instagram", "tiktok": "TikTok", "youtube": "YouTube", "x": "X (Twitter)", "telegram": "Telegram", "whatsapp": "WhatsApp", "snapchat": "Snapchat", "website": "Website", "other": "Other"}}, "fr": {"c": {"terrorism": "Terrorisme et extrémisme violent", "child": "Violence et exploitation sexuelle des enfants", "violence": "Violence et menaces", "state": "Atteinte à la sûreté de l’État et aux sacralités nationales", "hate": "Discours de haine et incitation", "trafficking": "Traite des êtres humains et migration clandestine", "drugs": "Drogues, armes et explosifs", "fraud": "Chantage et escroquerie en ligne", "cyber": "Cyberattaques et fuites de données", "selfharm": "Incitation au suicide et à l’automutilation", "other": "Autre contenu grave"}, "p": {"facebook": "Facebook", "instagram": "Instagram", "tiktok": "TikTok", "youtube": "YouTube", "x": "X (Twitter)", "telegram": "Telegram", "whatsapp": "WhatsApp", "snapchat": "Snapchat", "website": "Site web", "other": "Autre"}}, "es": {"c": {"terrorism": "Terrorismo y extremismo violento", "child": "Violencia y explotación sexual de menores", "violence": "Violencia y amenazas", "state": "Amenazas a la seguridad del Estado y a los símbolos sagrados nacionales", "hate": "Discurso de odio e incitación", "trafficking": "Trata de personas y migración ilegal", "drugs": "Drogas, armas y explosivos", "fraud": "Chantaje y estafas en línea", "cyber": "Ciberataques y filtraciones de datos", "selfharm": "Incitación al suicidio y a las autolesiones", "other": "Otro contenido grave"}, "p": {"facebook": "Facebook", "instagram": "Instagram", "tiktok": "TikTok", "youtube": "YouTube", "x": "X (Twitter)", "telegram": "Telegram", "whatsapp": "WhatsApp", "snapchat": "Snapchat", "website": "Sitio web", "other": "Otro"}}};
+Object.assign(T.ar,{"tab_reports": "البلاغات", "p_viewReports": "عرض بلاغات المحتوى الخطير", "p_editReports": "معالجة البلاغات (الحالة والملاحظات)", "rp_new": "جديد", "rp_reviewing": "قيد المراجعة", "rp_referred": "أُحيل للجهات المختصة", "rp_closed": "مغلق", "rp_all": "الكل", "rp_urgent": "عاجل", "rp_seen": "شوهد في", "rp_links": "الروابط", "rp_acct": "الحساب أو الصفحة", "rp_desc": "الوصف", "rp_by": "المبلِّغ", "rp_anon": "يطلب عدم كشف هويته", "rp_handled": "آخر معالجة", "rp_note": "ملاحظة داخلية (لا تظهر للمبلِّغ)", "rp_save": "حفظ", "rp_del": "حذف", "rp_del_q": "حذف هذا البلاغ نهائيًا؟", "rp_none": "لا توجد بلاغات.", "rp_warn": "⚠ افتح الروابط بحذر، ولا تحمّل أو تحفظ أو تعيد إرسال أي محتوى يخص الأطفال؛ أبلغ عنه فقط عبر القنوات الرسمية.", "rp_r_witness": "شاهد", "rp_r_victim": "ضحية أو مستهدف", "rp_r_other": "صفة أخرى"});
+Object.assign(T.en,{"tab_reports": "Reports", "p_viewReports": "View serious-content reports", "p_editReports": "Handle reports (status and notes)", "rp_new": "New", "rp_reviewing": "Reviewing", "rp_referred": "Referred to authorities", "rp_closed": "Closed", "rp_all": "All", "rp_urgent": "URGENT", "rp_seen": "seen on", "rp_links": "Links", "rp_acct": "Account or page", "rp_desc": "Description", "rp_by": "Reporter", "rp_anon": "asks not to disclose identity", "rp_handled": "Last handled by", "rp_note": "Internal note (not shown to the reporter)", "rp_save": "Save", "rp_del": "Delete", "rp_del_q": "Delete this report permanently?", "rp_none": "No reports.", "rp_warn": "⚠ Open links with care. Never download, save or forward content involving children; report it through official channels only.", "rp_r_witness": "Witness", "rp_r_victim": "Victim or targeted", "rp_r_other": "Other"});
+Object.assign(T.fr,{"tab_reports": "Signalements", "p_viewReports": "Voir les signalements de contenus graves", "p_editReports": "Traiter les signalements (statut et notes)", "rp_new": "Nouveau", "rp_reviewing": "En examen", "rp_referred": "Transmis aux autorités", "rp_closed": "Clôturé", "rp_all": "Tous", "rp_urgent": "URGENT", "rp_seen": "vu le", "rp_links": "Liens", "rp_acct": "Compte ou page", "rp_desc": "Description", "rp_by": "Auteur du signalement", "rp_anon": "demande de ne pas révéler son identité", "rp_handled": "Dernier traitement par", "rp_note": "Note interne (non visible par l’auteur)", "rp_save": "Enregistrer", "rp_del": "Supprimer", "rp_del_q": "Supprimer définitivement ce signalement ?", "rp_none": "Aucun signalement.", "rp_warn": "⚠ Ouvrez les liens avec prudence. Ne téléchargez, n’enregistrez ni ne transférez jamais un contenu impliquant des enfants ; signalez-le uniquement par les canaux officiels.", "rp_r_witness": "Témoin", "rp_r_victim": "Victime ou visé", "rp_r_other": "Autre"});
+Object.assign(T.es,{"tab_reports": "Denuncias", "p_viewReports": "Ver denuncias de contenido grave", "p_editReports": "Gestionar denuncias (estado y notas)", "rp_new": "Nueva", "rp_reviewing": "En revisión", "rp_referred": "Remitida a las autoridades", "rp_closed": "Cerrada", "rp_all": "Todas", "rp_urgent": "URGENTE", "rp_seen": "visto el", "rp_links": "Enlaces", "rp_acct": "Cuenta o página", "rp_desc": "Descripción", "rp_by": "Denunciante", "rp_anon": "pide no revelar su identidad", "rp_handled": "Última gestión de", "rp_note": "Nota interna (no visible para el denunciante)", "rp_save": "Guardar", "rp_del": "Eliminar", "rp_del_q": "¿Eliminar esta denuncia definitivamente?", "rp_none": "No hay denuncias.", "rp_warn": "⚠ Abre los enlaces con cuidado. Nunca descargues, guardes ni reenvíes contenido que involucre a menores; denúncialo solo por los cauces oficiales.", "rp_r_witness": "Testigo", "rp_r_victim": "Víctima o afectado", "rp_r_other": "Otro"});
 Object.assign(T.ar,{"tab_reviews": "الآراء", "rv_pub": "منشور", "rv_pend": "بانتظار المراجعة", "rv_none": "لا توجد آراء.", "rv_remote": "عن بُعد", "rv_fes": "المغرب", "rv_hidden": "الاسم غير منشور", "rv_unpub": "إلغاء النشر", "rv_approve": "قبول ونشر", "rv_del": "حذف", "rv_del_q": "حذف هذا الرأي نهائياً؟", "p_moderateReviews": "مراجعة آراء العملاء ونشرها"});
 Object.assign(T.en,{"tab_reviews": "Reviews", "rv_pub": "Published", "rv_pend": "Pending review", "rv_none": "No reviews.", "rv_remote": "Remote", "rv_fes": "Morocco", "rv_hidden": "name not published", "rv_unpub": "Unpublish", "rv_approve": "Approve & publish", "rv_del": "Delete", "rv_del_q": "Delete this review permanently?", "p_moderateReviews": "Moderate customer reviews"});
 Object.assign(T.fr,{"tab_reviews": "Avis", "rv_pub": "Publié", "rv_pend": "En attente", "rv_none": "Aucun avis.", "rv_remote": "À distance", "rv_fes": "Maroc", "rv_hidden": "prénom non publié", "rv_unpub": "Dépublier", "rv_approve": "Approuver et publier", "rv_del": "Supprimer", "rv_del_q": "Supprimer définitivement cet avis ?", "p_moderateReviews": "Modérer les avis des clients"});
@@ -227,7 +239,7 @@ Object.assign(T.es,{b_first:"Primer pedido (precio simbólico)",b_free:"Servicio
  off_first:"🎉 Oferta de bienvenida: tu primer pedido a precio simbólico.",off_free:"🎁 Tienes un servicio gratis listo: tu próxima solicitud se registrará gratis."});
 
 const root=document.documentElement,tb=$("theme");
-let lang="en",user=null,mine=null,adm=null,usr=null,stf=null,rev=null,perms={},isOwner=false,tab="req",rsub="reg",usub="reg";
+let lang="en",user=null,mine=null,adm=null,usr=null,stf=null,rev=null,rep=null,rpsub="new",perms={},isOwner=false,tab="req",rsub="reg",usub="reg";
 const openK=new Set();
 const isGuest=r=>!r.uid||r.guest===true;
 const tt=()=>T[lang];
@@ -281,7 +293,7 @@ function renderMine(){
     +'<br><small>'+t.trk+' <span dir="ltr">'+esc(r.code)+'</span> · '+esc(when(r))+'</small><p>'+esc(r.message)+'</p><button type="button" class="btn alt sm" data-pdf="'+esc(r.id)+'">'+esc(t.pdf_btn)+'</button></div>').join("")
     :'<p class="muted">'+t.none+'</p>';
 }
-const PK=["all","viewRequests","editRequests","editPayment","viewUsers","banUsers","moderateReviews"];
+const PK=["all","viewRequests","editRequests","editPayment","viewUsers","banUsers","moderateReviews","viewReports","editReports"];
 const can=p=>isOwner||perms.all===true||perms[p]===true;
 const seen=r=>r&&r.seconds?r.toDate().toLocaleDateString(LOC[lang]):"";
 function permsHtml(p,attr){
@@ -321,11 +333,12 @@ function renderTabs(){
   if(can("viewRequests"))list.push(["req",t.tab_req]);
   if(can("viewUsers")||can("banUsers"))list.push(["users",t.tab_users]);
   if(can("moderateReviews")){const pn=(rev||[]).filter(x=>x.approved!==true).length;list.push(["reviews",t.tab_reviews+(pn?" ("+pn+")":"")])}
+  if(can("viewReports")){const rn=(rep||[]).filter(x=>(x.status||"new")==="new").length;list.push(["reports",t.tab_reports+(rn?" ("+rn+")":"")])}
   if(can("viewRequests")&&(isOwner||can("editPayment")))list.push(["pay",t.tab_pay]);
   if(isOwner)list.push(["staff",t.tab_staff]);
   if(!list.some(x=>x[0]===tab))tab=list.length?list[0][0]:"";
   $("tabs").innerHTML=list.map(x=>'<button type="button" class="tabbtn" data-tab="'+x[0]+'" aria-pressed="'+(x[0]===tab)+'">'+esc(x[1])+'</button>').join("");
-  ["req","users","reviews","pay","staff"].forEach(k=>{$("tab_"+k).hidden=k!==tab});
+  ["req","users","reviews","reports","pay","staff"].forEach(k=>{$("tab_"+k).hidden=k!==tab});
 }
 function renderRev(){
   const box=$("revList");if(!box)return;const t=tt();
@@ -336,6 +349,31 @@ function renderRev(){
     +'<button type="button" class="btn alt sm" data-rv="del" data-id="'+esc(r.id)+'">'+esc(t.rv_del)+'</button></div>';
   const pend=list.filter(r=>r.approved!==true),pub=list.filter(r=>r.approved===true),none='<p class="muted">'+esc(t.rv_none)+'</p>';
   box.innerHTML='<h3 class="sub">'+esc(t.rv_pend)+' ('+pend.length+')</h3>'+(pend.map(card).join("")||none)+'<h3 class="sub">'+esc(t.rv_pub)+' ('+pub.length+')</h3>'+(pub.map(card).join("")||none);
+}
+function renderRep(){
+  const box=$("repList"),tb=$("rpTabs");if(!box)return;const t=tt();
+  if(!can("viewReports")){box.innerHTML="";if(tb)tb.innerHTML="";return}
+  if(!rep){box.innerHTML='<p class="muted">'+esc(t.loading)+'</p>';return}
+  const L=RPL[lang]||RPL.en,ST=["new","reviewing","info","referred","closed"],cnt=s=>rep.filter(r=>(r.status||"new")===s).length;
+  tb.innerHTML=subBtns("rpTabs","rpsub",rpsub,ST.map(s=>[s,t["rp_"+s]+" ("+cnt(s)+")"]).concat([["all",t.rp_all+" ("+rep.length+")"]]));
+  const list=(rpsub==="all"?rep:rep.filter(r=>(r.status||"new")===rpsub)).slice().sort((x,y)=>(y.urgent===true)-(x.urgent===true));
+  const lk=u=>/^https?:\/\//i.test(u)?'<a href="'+esc(u)+'" target="_blank" rel="noopener noreferrer nofollow" dir="ltr">'+esc(u)+'</a>':esc(u);
+  const card=r=>{
+    const st=r.status||"new",links=String(r.links||"").split("\n").filter(Boolean);
+    let h='<div class="req"><b>'+esc(L.c[r.category]||r.category)+'</b> · <span dir="ltr">'+esc(r.id)+'</span> <span class="badge '+(st==="closed"||st==="referred"?"done":"new")+'">'+esc(t["rp_"+st])+'</span>';
+    if(r.urgent===true)h+=' <span class="badge urg">'+esc(t.rp_urgent)+'</span>';
+    h+='<br><small>'+esc(L.p[r.platform]||r.platform)+' · '+esc(when(r))+(r.seenAt?' · '+esc(t.rp_seen)+' '+esc(r.seenAt):'')+' · '+esc(t["rp_r_"+r.role]||r.role)+' · '+esc(String(r.lang||"").toUpperCase())+'</small>';
+    h+='<p class="muted" style="margin:8px 0 2px">'+esc(t.rp_warn)+'</p>';
+    h+='<p><b>'+esc(t.rp_links)+':</b><br>'+links.map(lk).join("<br>")+'</p>';
+    if(r.account)h+='<p><b>'+esc(t.rp_acct)+':</b> <span dir="auto">'+esc(r.account)+'</span></p>';
+    h+='<p><b>'+esc(t.rp_desc)+':</b><br><span style="white-space:pre-wrap">'+esc(r.description)+'</span></p>';
+    h+='<p><b>'+esc(t.rp_by)+':</b> '+esc(r.name)+(r.email?' · <span dir="ltr">'+esc(r.email)+'</span>':'')+(r.phone?' · <span dir="ltr">'+esc(r.phone)+'</span>':'')+(r.country?' · '+esc(r.country):'')+(r.anonymous===true?' <span class="badge">'+esc(t.rp_anon)+'</span>':'')+'</p>';
+    if(r.handledBy)h+='<p class="muted">'+esc(t.rp_handled)+': '+esc(r.handledBy)+(r.handledAt&&r.handledAt.toDate?' · '+esc(r.handledAt.toDate().toLocaleString(LOC[lang])):'')+'</p>';
+    if(can("editReports"))h+='<div class="ctl"><select data-rpst>'+ST.map(s=>'<option value="'+s+'"'+(s===st?" selected":"")+'>'+esc(t["rp_"+s])+'</option>').join("")+'</select></div><textarea data-rpnote rows="2" maxlength="2000" placeholder="'+esc(t.rp_note)+'">'+esc(r.note||"")+'</textarea><button type="button" class="btn sm" data-rpsave="'+esc(r.id)+'">'+esc(t.rp_save)+'</button> ';
+    if(isOwner)h+='<button type="button" class="btn alt sm danger" data-rpdel="'+esc(r.id)+'">'+esc(t.rp_del)+'</button>';
+    return h+'</div>';
+  };
+  box.innerHTML=list.map(card).join("")||'<p class="muted">'+esc(t.rp_none)+'</p>';
 }
 function reqCard(r,who,bm){
   const t=tt(),g=isGuest(r);
@@ -359,7 +397,7 @@ const subBtns=(id,key,cur,items)=>items.map(x=>'<button type="button" class="tab
 function renderAdmin(){
   if(!user||$("adminBox").hidden)return;
   const t=tt();
-  renderTabs();renderRev();renderPay();
+  renderTabs();renderRev();renderRep();renderPay();
   $("roleBadge").textContent=isOwner?t.role_owner:t.role_staff;
   $("uSearch").placeholder=t.u_search;
   const bm={};(usr||[]).forEach(u=>{bm[u.id]=u.banned===true});
@@ -433,7 +471,7 @@ if(cfg.apiKey.startsWith("PASTE")){
   };
 
   onAuthStateChanged(auth,async u=>{
-    user=u;mine=null;adm=null;usr=null;stf=null;rev=null;perms={};isOwner=false;
+    user=u;mine=null;adm=null;usr=null;stf=null;rev=null;rep=null;perms={};isOwner=false;
     $("auth").textContent=u?tt().logout:tt().login;
     $("banned").hidden=true;$("adminBox").hidden=true;
     $("guest").hidden=!!u;$("app").hidden=!u;
@@ -494,6 +532,7 @@ if(cfg.apiKey.startsWith("PASTE")){
     const jobs=[];
     if(can("viewRequests"))jobs.push(getDocs(collection(db,"requests")).then(q=>{adm=q.docs.map(d=>({id:d.id,...d.data()})).sort(byDate)}).catch(()=>{adm=[]}));
     if(can("viewUsers")||can("banUsers"))jobs.push(getDocs(collection(db,"users")).then(q=>{usr=q.docs.map(d=>({id:d.id,...d.data()})).sort((a,b)=>((b.lastLogin&&b.lastLogin.seconds)||0)-((a.lastLogin&&a.lastLogin.seconds)||0))}).catch(()=>{usr=[]}));
+    if(can("viewReports"))jobs.push(getDocs(collection(db,"reports")).then(q=>{rep=q.docs.map(d=>({id:d.id,...d.data()})).sort(byDate)}).catch(()=>{rep=[]}));
     if(can("moderateReviews"))jobs.push(getDocs(collection(db,"reviews")).then(q=>{rev=q.docs.map(d=>({id:d.id,...d.data()})).sort(byDate)}).catch(()=>{rev=[]}));
     if(isOwner)jobs.push(loadStaff(true));
     await Promise.all(jobs);renderAdmin();
@@ -578,6 +617,33 @@ if(cfg.apiKey.startsWith("PASTE")){
     if(b.dataset.tab){tab=b.dataset.tab;renderAdmin();return}
     if(b.dataset.rsub){rsub=b.dataset.rsub;renderAdmin();return}
     if(b.dataset.usub){usub=b.dataset.usub;renderAdmin();return}
+    if(b.dataset.rpsub){rpsub=b.dataset.rpsub;renderAdmin();return}
+    if(b.dataset.rpsave){
+      if(!can("editReports"))return;
+      const c=b.closest(".req"),id=b.dataset.rpsave,st=c.querySelector("[data-rpst]").value,note=c.querySelector("[data-rpnote]").value.trim().slice(0,2000);
+      b.disabled=true;
+      try{
+        await updateDoc(doc(db,"reports",id),{status:st,note:note,handledBy:user.email,handledAt:serverTimestamp()});
+        try{
+          const f={status:st,updatedAt:serverTimestamp()};if(st!=="new")f[st+"At"]=serverTimestamp();
+          try{await updateDoc(doc(db,"reportTracking",id),f)}
+          catch(e1){
+            if(e1.code!=="not-found")throw e1;
+            const r0=(rep||[]).find(x=>x.id===id)||{};
+            await setDoc(doc(db,"reportTracking",id),Object.assign({status:st,category:r0.category,createdAt:r0.createdAt||serverTimestamp(),updatedAt:serverTimestamp()},st!=="new"?{[st+"At"]:serverTimestamp()}:{}));
+          }
+        }catch(e2){alert(t.rp_trk_fail+(e2.code||""))}
+        const r=(rep||[]).find(x=>x.id===id);if(r){r.status=st;r.note=note;r.handledBy=user.email;r.handledAt={toDate:()=>new Date()}}
+        renderAdmin();
+      }catch(err){alert(t.e_upd+(err.code||""));b.disabled=false}
+      return;
+    }
+    if(b.dataset.rpdel){
+      if(!isOwner||!confirm(t.rp_del_q))return;
+      try{await deleteDoc(doc(db,"reports",b.dataset.rpdel));try{await deleteDoc(doc(db,"reportTracking",b.dataset.rpdel))}catch(e3){}rep=(rep||[]).filter(r=>r.id!==b.dataset.rpdel);renderAdmin()}
+      catch(err){alert(t.e_upd+(err.code||""))}
+      return;
+    }
     if(b.dataset.del){
       if(!isOwner||!confirm(t.del_q))return;
       try{await deleteDoc(doc(db,"requests",b.dataset.del));adm=(adm||[]).filter(r=>r.id!==b.dataset.del);renderAdmin()}

@@ -392,13 +392,25 @@ html[dir=rtl] .rv-stars{justify-content:flex-end}
 .appbox h3{margin:0 0 6px}
 .appbox p{margin:0}
 .ap-actions{display:flex;flex-wrap:wrap;gap:12px}
+.rpt-box{background:var(--surface);border:1px solid var(--line);border-inline-start:4px solid var(--hot,#D9482B);border-radius:14px;padding:26px 28px}
+.rpt-chips{display:flex;flex-wrap:wrap;gap:10px;margin:0 0 22px;padding:0;list-style:none}
+.rpt-chips li{border:1px solid color-mix(in srgb,var(--hot,#D9482B) 35%,var(--line));background:color-mix(in srgb,var(--hot,#D9482B) 8%,transparent);border-radius:999px;padding:6px 16px;font-size:15px}
+.rpt-act{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:6px}
+.rpt-box .note{margin-top:16px}
+@media (max-width:560px){.rpt-box{padding:20px 18px}.rpt-act .btn{width:100%;text-align:center}}
+.tkd{margin:10px 0 4px;color:var(--ink);line-height:1.8}
+.tkd a{color:var(--accent);font-weight:600}
+.tkst{list-style:none;margin:10px 0 14px;padding:0}
+.tkst li{display:flex;gap:8px;align-items:baseline;padding:5px 0;color:var(--muted)}
+.tkst li.on{color:var(--ink);font-weight:600}
+.tkst li i{font-style:normal;color:var(--accent)}
 </style>
 </head>
 <body>
 <div class="wrap">
   <header>
     <a class="logo" href="#top">VYROXX <b>IT</b></a>
-    <nav><a href="#services" data-i="nav1">Services</a><a href="#business" data-i="nav7">Business</a><a href="#reviews" data-i="nav8">Reviews</a><a href="#prices-s" data-i="nav6">Pricing</a><a href="#about" data-i="nav5">About us</a><a href="#contact" data-i="nav3">Contact</a></nav>
+    <nav><a href="#services" data-i="nav1">Services</a><a href="#business" data-i="nav7">Business</a><a href="#reviews" data-i="nav8">Reviews</a><a href="#report" data-i="nav9">Report</a><a href="#prices-s" data-i="nav6">Pricing</a><a href="#about" data-i="nav5">About us</a><a href="#contact" data-i="nav3">Contact</a></nav>
     <div class="tools"><a class="acc" href="account.html" data-i="nav4">My account</a><div class="seg" role="group" aria-label="Language"><button type="button" data-lang="ar">ع</button><button type="button" data-lang="en">EN</button><button type="button" data-lang="fr">FR</button><button type="button" data-lang="es">ES</button></div><button class="theme" id="theme" type="button" aria-label="Theme"></button></div>
     <a class="btn hcta" href="#request" data-i="nav2">Send your problem</a>
   </header>
@@ -491,6 +503,27 @@ html[dir=rtl] .rv-stars{justify-content:flex-end}
       <div class="biz-cta"><a class="btn" href="#request" data-i="b_cta">Request a quote for your company</a><p class="note" data-i="b_note">Prices are set after agreeing on the scope and amount of work.</p></div>
     </section>
 
+    <section id="report" class="rpt">
+      <span class="tp-eyebrow" data-i="rpt_eb">SECURE REPORTING</span>
+      <h2 data-i="rpt_h">Report serious online content</h2>
+      <p class="sub" data-i="rpt_sub">Seen something that threatens people’s safety or public security? Send us the link and your details. We review every report seriously and confidentially, and refer serious cases through official channels to the competent authorities.</p>
+      <div class="rpt-box">
+        <ul class="rpt-chips">
+          <li data-i="rpt_c1">Terrorism &amp; violent extremism</li>
+          <li data-i="rpt_c2">Child exploitation &amp; violence against children</li>
+          <li data-i="rpt_c3">Violence &amp; death threats</li>
+          <li data-i="rpt_c4">Threats to state security &amp; national sanctities</li>
+          <li data-i="rpt_c5">Blackmail &amp; fraud</li>
+          <li data-i="rpt_c6">Hate speech &amp; incitement</li>
+        </ul>
+        <div class="rpt-act">
+          <a class="btn" href="report.html" data-i="rpt_btn">Report now</a>
+          <a class="btn alt" href="https://www.e-blagh.ma" target="_blank" rel="noopener noreferrer" data-i="rpt_eb2">Official E-Blagh (DGSN)</a>
+        </div>
+        <p class="note" data-i="rpt_note">In immediate danger, call the Police (19) or the Royal Gendarmerie (177) right away. VYROXX IT is a private company, not a government body.</p>
+      </div>
+    </section>
+
     <section id="reviews" class="rv">
       <span class="tp-eyebrow" data-i="rv_eb">CLIENT REVIEWS</span>
       <h2 data-i="rv_h">Customer reviews</h2>
@@ -569,10 +602,10 @@ html[dir=rtl] .rv-stars{justify-content:flex-end}
 
     <section class="tight" id="track">
       <div class="track">
-        <h2 data-i="tk_h">🔎 Track your request</h2>
-        <p class="sub" data-i="tk_sub">Enter the tracking number you received after sending your request to see its status.</p>
+        <h2 data-i="tk_h">🔎 Track your request or report</h2>
+        <p class="sub" data-i="tk_sub">Enter your tracking number (VX- for requests, RP- for reports) to see its status.</p>
         <div class="trow">
-          <input id="tkCode" dir="ltr" placeholder="VX-XXXXXX" autocomplete="off" autocapitalize="characters" spellcheck="false" aria-label="VX code">
+          <input id="tkCode" dir="ltr" placeholder="VX-XXXXXX / RP-XXXXXXXX" autocomplete="off" autocapitalize="characters" spellcheck="false" aria-label="VX / RP code">
           <button class="btn" type="button" id="tkBtn" data-i="tk_btn">Track</button>
         </div>
         <p class="err" id="tkErr" role="alert"></p>
@@ -634,6 +667,7 @@ html[dir=rtl] .rv-stars{justify-content:flex-end}
   <footer>
     <span dir="ltr">VYROXX IT SERVICES · Your Technology, Our Responsibility</span>
     <span data-i="city">Fez, Morocco</span>
+    <a href="report.html" data-i="rp_link" style="text-decoration:underline">Report serious online content</a>
     <span class="flinks" aria-label="Social"><a href="https://wa.me/212646126501" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" title="WhatsApp" style="--c:#1F9D55"><svg class="i" aria-hidden="true"><use href="#i-wa"/></svg></a><a href="https://www.instagram.com/vyroxx_it/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" title="Instagram" style="--c:#C13584"><svg class="i" aria-hidden="true"><use href="#i-ig"/></svg></a><a href="https://www.facebook.com/profile.php?id=61576004765268" target="_blank" rel="noopener noreferrer" aria-label="Facebook" title="Facebook" style="--c:#1877F2"><svg class="i" aria-hidden="true"><use href="#i-fb"/></svg></a><a class="gm" href="mailto:vyroxxvx@gmail.com" aria-label="Gmail" title="Gmail" style="--c:#D9482B"><svg class="i" aria-hidden="true"><use href="#i-ml"/></svg></a></span>
   </footer>
 </div>
@@ -787,6 +821,19 @@ Object.assign(T.ar,{"g3": "تطوير المواقع والتطبيقات", "g3d
 Object.assign(T.en,{"g3": "Web & App Development", "g3d": "We design and build professional websites, web apps and mobile apps for you or your business, or improve what you already have, from idea to launch.", "g3n": "Describe your idea or project in the request form and we’ll reply with a clear plan and quote before we start. Prices start from the amounts shown and depend on the scope of work."});
 Object.assign(T.fr,{"g3": "Développement web et applications", "g3d": "Nous concevons et développons des sites web, applications web et mobiles professionnels pour vous ou votre activité, ou améliorons l’existant, de l’idée au lancement.", "g3n": "Décrivez votre idée ou votre projet dans le formulaire : nous répondons avec un plan et un devis clairs avant de commencer. Les tarifs sont des prix de départ et dépendent du périmètre."});
 Object.assign(T.es,{"g3": "Desarrollo web y de apps", "g3d": "Diseñamos y desarrollamos sitios web, aplicaciones web y móviles profesionales para ti o tu negocio, o mejoramos lo que ya tienes, de la idea al lanzamiento.", "g3n": "Describe tu idea o proyecto en el formulario y te responderemos con un plan y un presupuesto claros antes de empezar. Los precios son desde y dependen del alcance."});
+Object.assign(T.ar,{"rp_link": "الإبلاغ عن محتوى خطير"});
+Object.assign(T.en,{"rp_link": "Report serious online content"});
+Object.assign(T.fr,{"rp_link": "Signaler un contenu grave"});
+Object.assign(T.es,{"rp_link": "Denunciar contenido grave"});
+Object.assign(T.ar,{"nav9": "الإبلاغ", "rpt_eb": "الإبلاغ الآمن", "rpt_h": "الإبلاغ عن محتوى خطير على الإنترنت", "rpt_sub": "شاهدت ما يهدد سلامة الناس أو الأمن العام؟ أرسل لنا الرابط وبياناتك، وسنراجع بلاغك بجدية وسرية ونحيل الحالات الخطيرة عبر القنوات الرسمية إلى الجهات المختصة.", "rpt_c1": "الإرهاب والتطرف العنيف", "rpt_c2": "استغلال الأطفال والعنف ضدهم", "rpt_c3": "العنف والتهديد بالقتل", "rpt_c4": "تهديد أمن الدولة والمقدسات", "rpt_c5": "الابتزاز والاحتيال", "rpt_c6": "خطاب الكراهية والتحريض", "rpt_btn": "أبلِغ الآن", "rpt_eb2": "منصة «إبلاغ» الرسمية (DGSN)", "rpt_note": "في حالة الخطر الداهم اتصل فورًا بالشرطة 19 أو الدرك الملكي 177. VYROXX IT شركة خاصة وليست جهة حكومية."});
+Object.assign(T.en,{"nav9": "Report", "rpt_eb": "SECURE REPORTING", "rpt_h": "Report serious online content", "rpt_sub": "Seen something that threatens people’s safety or public security? Send us the link and your details. We review every report seriously and confidentially, and refer serious cases through official channels to the competent authorities.", "rpt_c1": "Terrorism & violent extremism", "rpt_c2": "Child exploitation & violence against children", "rpt_c3": "Violence & death threats", "rpt_c4": "Threats to state security & national sanctities", "rpt_c5": "Blackmail & fraud", "rpt_c6": "Hate speech & incitement", "rpt_btn": "Report now", "rpt_eb2": "Official E-Blagh (DGSN)", "rpt_note": "In immediate danger, call the Police (19) or the Royal Gendarmerie (177) right away. VYROXX IT is a private company, not a government body."});
+Object.assign(T.fr,{"nav9": "Signaler", "rpt_eb": "SIGNALEMENT SÉCURISÉ", "rpt_h": "Signaler un contenu grave en ligne", "rpt_sub": "Vous avez vu un contenu qui menace la sécurité des personnes ou la sécurité publique ? Envoyez-nous le lien et vos coordonnées. Nous examinons chaque signalement avec sérieux et confidentialité, et transmettons les cas graves, par les canaux officiels, aux autorités compétentes.", "rpt_c1": "Terrorisme et extrémisme violent", "rpt_c2": "Exploitation des enfants et violences contre eux", "rpt_c3": "Violence et menaces de mort", "rpt_c4": "Atteintes à la sécurité de l’État et aux sacralités nationales", "rpt_c5": "Chantage et escroquerie", "rpt_c6": "Discours de haine et incitation", "rpt_btn": "Signaler maintenant", "rpt_eb2": "E-Blagh officiel (DGSN)", "rpt_note": "En cas de danger immédiat, appelez tout de suite la Police (19) ou la Gendarmerie royale (177). VYROXX IT est une entreprise privée, pas un organisme public."});
+Object.assign(T.es,{"nav9": "Denunciar", "rpt_eb": "DENUNCIA SEGURA", "rpt_h": "Denunciar contenido grave en línea", "rpt_sub": "¿Has visto algo que amenaza la seguridad de las personas o la seguridad pública? Envíanos el enlace y tus datos. Revisamos cada denuncia con seriedad y confidencialidad y remitimos los casos graves, por los cauces oficiales, a las autoridades competentes.", "rpt_c1": "Terrorismo y extremismo violento", "rpt_c2": "Explotación infantil y violencia contra menores", "rpt_c3": "Violencia y amenazas de muerte", "rpt_c4": "Amenazas a la seguridad del Estado y a los símbolos nacionales", "rpt_c5": "Chantaje y estafa", "rpt_c6": "Discurso de odio e incitación", "rpt_btn": "Denunciar ahora", "rpt_eb2": "E-Blagh oficial (DGSN)", "rpt_note": "Ante un peligro inmediato, llama enseguida a la Policía (19) o a la Gendarmería Real (177). VYROXX IT es una empresa privada, no un organismo público."});
+var RPG={"ar": {"terrorism": "الأمن والإرهاب", "child": "حماية الطفل", "violence": "العنف والتهديد", "state": "أمن الدولة", "hate": "الكراهية والتحريض", "trafficking": "الاتجار بالبشر", "drugs": "جرائم خطيرة", "fraud": "الابتزاز والاحتيال", "cyber": "الجرائم الإلكترونية", "selfharm": "حالة خطر على شخص", "other": "محتوى خطير آخر"}, "en": {"terrorism": "Security & terrorism", "child": "Child protection", "violence": "Violence & threats", "state": "State security", "hate": "Hate & incitement", "trafficking": "Human trafficking", "drugs": "Serious crime", "fraud": "Blackmail & fraud", "cyber": "Cybercrime", "selfharm": "Person at risk", "other": "Other serious content"}, "fr": {"terrorism": "Sécurité et terrorisme", "child": "Protection de l’enfance", "violence": "Violence et menaces", "state": "Sécurité de l’État", "hate": "Haine et incitation", "trafficking": "Traite des êtres humains", "drugs": "Criminalité grave", "fraud": "Chantage et fraude", "cyber": "Cybercriminalité", "selfharm": "Personne en danger", "other": "Autre contenu grave"}, "es": {"terrorism": "Seguridad y terrorismo", "child": "Protección de la infancia", "violence": "Violencia y amenazas", "state": "Seguridad del Estado", "hate": "Odio e incitación", "trafficking": "Trata de personas", "drugs": "Delitos graves", "fraud": "Chantaje y fraude", "cyber": "Ciberdelincuencia", "selfharm": "Persona en riesgo", "other": "Otro contenido grave"}};
+Object.assign(T.ar,{"tkr_cat": "نوع البلاغ", "tkr_st": "حالة البلاغ", "tkr_dt": "تاريخ البلاغ", "tkr_upd": "آخر تحديث", "tkr_new": "تم استلام بلاغك", "tkr_new_d": "سيُراجَع بلاغك بأسرع وقت، والبلاغات العاجلة تُراجَع أولًا.", "tkr_reviewing": "قيد المراجعة", "tkr_reviewing_d": "يفحص فريقنا بلاغك والروابط المرفقة.", "tkr_info": "نحتاج معلومات إضافية", "tkr_info_d": "يرجى التواصل معنا مع ذكر رقم البلاغ لإكمال المراجعة.", "tkr_contact": "تواصل معنا", "tkr_referred": "أُحيل عبر القنوات الرسمية", "tkr_referred_d": "أُحيل بلاغك عبر القنوات الرسمية. لا تتوفر لدينا معلومات عن سير أي إجراء رسمي بعد ذلك.", "tkr_closed": "أُغلق من جهتنا", "tkr_closed_d": "شكرًا لمساهمتك. الإغلاق من جهتنا لا يعني حذف المحتوى أو فتح إجراء رسمي. إن توفرت لديك معلومات جديدة فتواصل معنا مع ذكر رقم البلاغ.", "tkr_p1": "استلام البلاغ", "tkr_p2": "المراجعة", "tkr_p3": "الإحالة عبر القنوات الرسمية", "tkr_p4": "الإغلاق"});
+Object.assign(T.en,{"tkr_cat": "Report type", "tkr_st": "Report status", "tkr_dt": "Report date", "tkr_upd": "Last update", "tkr_new": "Report received", "tkr_new_d": "Your report will be reviewed as soon as possible. Urgent reports are reviewed first.", "tkr_reviewing": "Under review", "tkr_reviewing_d": "Our team is examining your report and the links you provided.", "tkr_info": "Additional information needed", "tkr_info_d": "Please contact us and quote your report number so we can complete the review.", "tkr_contact": "Contact us", "tkr_referred": "Referred through official channels", "tkr_referred_d": "Your report was referred through official channels. We have no information on the progress of any official procedure after that.", "tkr_closed": "Closed on our side", "tkr_closed_d": "Thank you for your contribution. Closure on our side does not mean the content was removed or that an official procedure was opened. If you have new information, contact us and quote your report number.", "tkr_p1": "Report received", "tkr_p2": "Under review", "tkr_p3": "Referred through official channels", "tkr_p4": "Closed"});
+Object.assign(T.fr,{"tkr_cat": "Type de signalement", "tkr_st": "Statut du signalement", "tkr_dt": "Date du signalement", "tkr_upd": "Dernière mise à jour", "tkr_new": "Signalement reçu", "tkr_new_d": "Votre signalement sera examiné dès que possible. Les signalements urgents sont examinés en priorité.", "tkr_reviewing": "En cours d’examen", "tkr_reviewing_d": "Notre équipe examine votre signalement et les liens fournis.", "tkr_info": "Informations complémentaires requises", "tkr_info_d": "Veuillez nous contacter en indiquant votre numéro de signalement afin de finaliser l’examen.", "tkr_contact": "Nous contacter", "tkr_referred": "Transmis par les canaux officiels", "tkr_referred_d": "Votre signalement a été transmis par les canaux officiels. Nous n’avons aucune information sur le déroulement d’une éventuelle procédure officielle par la suite.", "tkr_closed": "Clôturé de notre côté", "tkr_closed_d": "Merci pour votre contribution. La clôture de notre côté ne signifie pas que le contenu a été retiré ni qu’une procédure officielle a été ouverte. Si vous avez de nouvelles informations, contactez-nous en indiquant votre numéro de signalement.", "tkr_p1": "Signalement reçu", "tkr_p2": "Examen", "tkr_p3": "Transmission par les canaux officiels", "tkr_p4": "Clôture"});
+Object.assign(T.es,{"tkr_cat": "Tipo de denuncia", "tkr_st": "Estado de la denuncia", "tkr_dt": "Fecha de la denuncia", "tkr_upd": "Última actualización", "tkr_new": "Denuncia recibida", "tkr_new_d": "Tu denuncia se revisará lo antes posible. Las denuncias urgentes se revisan primero.", "tkr_reviewing": "En revisión", "tkr_reviewing_d": "Nuestro equipo está examinando tu denuncia y los enlaces aportados.", "tkr_info": "Se necesita información adicional", "tkr_info_d": "Contáctanos indicando tu número de denuncia para poder completar la revisión.", "tkr_contact": "Contáctanos", "tkr_referred": "Remitida por los cauces oficiales", "tkr_referred_d": "Tu denuncia fue remitida por los cauces oficiales. No tenemos información sobre el avance de ningún procedimiento oficial posterior.", "tkr_closed": "Cerrada por nuestra parte", "tkr_closed_d": "Gracias por tu contribución. El cierre por nuestra parte no significa que el contenido se haya retirado ni que se haya abierto un procedimiento oficial. Si tienes nueva información, contáctanos indicando tu número de denuncia.", "tkr_p1": "Denuncia recibida", "tkr_p2": "Revisión", "tkr_p3": "Remisión por los cauces oficiales", "tkr_p4": "Cierre"});
 function setLang(l){
   lang=l;var t=T[l];
   root.lang=l;root.dir=l==="ar"?"rtl":"ltr";
@@ -936,14 +983,14 @@ function refreshOffer(){
 }
 window.vxOnAuth=refreshOffer;
 var _setLang=setLang;setLang=function(l){_setLang(l);refreshOffer();renderBiz(l);renderReviews()};
-Object.assign(T.ar,{tk_h:"🔎 تتبّع طلبك",tk_sub:"اكتب رقم التتبّع الذي ظهر لك بعد إرسال الطلب لمعرفة حالته.",tk_btn:"تتبّع",tk_bad:"اكتب رقم تتبّع صحيحًا يبدأ بـ VX-",tk_ing:"جارٍ البحث…",tk_nf:"لم نجد طلبًا بهذا الرقم، تأكد من كتابته.",tk_fail:"تعذّر البحث، حاول مرة أخرى. ",tk_srv:"الخدمة",tk_st:"حالة الطلب",tk_pay:"الدفع",tk_dt:"تاريخ الطلب",tk_progress:"قيد المعالجة",tk_done:"تم الحل",tk_paid:"تم الدفع",tk_unpaid:"لم يتم الدفع"});
-Object.assign(T.en,{tk_h:"🔎 Track your request",tk_sub:"Enter the tracking number you received after sending your request to see its status.",tk_btn:"Track",tk_bad:"Enter a valid tracking number starting with VX-",tk_ing:"Searching…",tk_nf:"No request found with this number, please check it.",tk_fail:"Could not search, please try again. ",tk_srv:"Service",tk_st:"Request status",tk_pay:"Payment",tk_dt:"Request date",tk_progress:"In progress",tk_done:"Solved",tk_paid:"Paid",tk_unpaid:"Not paid"});
-Object.assign(T.fr,{tk_h:"🔎 Suivre votre demande",tk_sub:"Saisissez le numéro de suivi reçu après l’envoi de votre demande pour voir son état.",tk_btn:"Suivre",tk_bad:"Saisissez un numéro de suivi valide commençant par VX-",tk_ing:"Recherche…",tk_nf:"Aucune demande trouvée avec ce numéro, vérifiez-le.",tk_fail:"Recherche impossible, réessayez. ",tk_srv:"Service",tk_st:"État de la demande",tk_pay:"Paiement",tk_dt:"Date de la demande",tk_progress:"En cours",tk_done:"Résolue",tk_paid:"Payé",tk_unpaid:"Non payé"});
+Object.assign(T.ar,{tk_h:"🔎 تتبّع طلبك أو بلاغك",tk_sub:"اكتب رقم التتبّع (VX- للطلبات أو RP- للبلاغات) لمعرفة حالته.",tk_btn:"تتبّع",tk_bad:"اكتب رقم تتبّع صحيحًا يبدأ بـ VX- (للطلبات) أو RP- (للبلاغات)",tk_ing:"جارٍ البحث…",tk_nf:"لم نجد طلبًا أو بلاغًا بهذا الرقم، تأكد من كتابته.",tk_fail:"تعذّر البحث، حاول مرة أخرى. ",tk_srv:"الخدمة",tk_st:"حالة الطلب",tk_pay:"الدفع",tk_dt:"تاريخ الطلب",tk_progress:"قيد المعالجة",tk_done:"تم الحل",tk_paid:"تم الدفع",tk_unpaid:"لم يتم الدفع"});
+Object.assign(T.en,{tk_h:"🔎 Track your request or report",tk_sub:"Enter your tracking number (VX- for requests, RP- for reports) to see its status.",tk_btn:"Track",tk_bad:"Enter a valid tracking number starting with VX- (requests) or RP- (reports)",tk_ing:"Searching…",tk_nf:"No request or report found with this number, please check it.",tk_fail:"Could not search, please try again. ",tk_srv:"Service",tk_st:"Request status",tk_pay:"Payment",tk_dt:"Request date",tk_progress:"In progress",tk_done:"Solved",tk_paid:"Paid",tk_unpaid:"Not paid"});
+Object.assign(T.fr,{tk_h:"🔎 Suivre votre demande ou signalement",tk_sub:"Saisissez votre numéro de suivi (VX- pour les demandes, RP- pour les signalements) pour voir son statut.",tk_btn:"Suivre",tk_bad:"Saisissez un numéro de suivi valide commençant par VX- (demandes) ou RP- (signalements)",tk_ing:"Recherche…",tk_nf:"Aucune demande ni aucun signalement trouvé avec ce numéro, vérifiez-le.",tk_fail:"Recherche impossible, réessayez. ",tk_srv:"Service",tk_st:"État de la demande",tk_pay:"Paiement",tk_dt:"Date de la demande",tk_progress:"En cours",tk_done:"Résolue",tk_paid:"Payé",tk_unpaid:"Non payé"});
 Object.assign(T.es,{l2:"Número de teléfono / WhatsApp",l_em:"Correo electrónico (para seguir tu solicitud)",sv_btn:"Enviar solicitud",sv_bad:"Introduce un correo electrónico válido.",sv_ing:"Enviando…",sv_wait:"Espera un momento antes de enviar otra solicitud.",ap_h:"Descarga la app VYROXX IT",ap_p:"Instala nuestra app en tu móvil u ordenador para acceder rápido a nuestros servicios, al seguimiento de solicitudes y al soporte.",ap_and:"Descargar para Android",ap_win:"Descargar para Windows",ap_note:"Android: si se solicita, permite instalar desde tu navegador. Windows: descomprime y ejecuta install.ps1 (Windows 10 o superior).",pdf_btn:"Descargar PDF",pdf_wait:"Preparando…",pdf_fail:"No se pudo crear el PDF. Comprueba la conexión e inténtalo de nuevo.",sv_ok:"✔ Tu solicitud ha llegado. Número de seguimiento: ",sv_fail:"No se pudo enviar, inténtalo de nuevo. ",
  off_g:"Estás pidiendo sin registrarte: pedido normal, sin ofertas. Los clientes registrados obtienen su primer pedido a precio simbólico y un servicio gratis tras cada 5 pedidos completados.",
  off_u:"Has iniciado sesión: tu primer pedido es a precio simbólico y cada 5 pedidos completados = un servicio gratis.",
  lo_p:"Inicia sesión con Google desde «Mi cuenta» para obtener tu primer pedido a precio simbólico, seguir tus solicitudes y acumular puntos de fidelidad automáticamente. Pedir sin cuenta siempre es posible, pero sin estas ofertas."});
-Object.assign(T.es,{tk_h:"🔎 Sigue tu solicitud",tk_sub:"Introduce el número de seguimiento que recibiste al enviar tu solicitud para ver su estado.",tk_btn:"Seguir",tk_bad:"Introduce un número de seguimiento válido que empiece por VX-",tk_ing:"Buscando…",tk_nf:"No encontramos ninguna solicitud con este número, revísalo.",tk_fail:"No se pudo buscar, inténtalo de nuevo. ",tk_srv:"Servicio",tk_st:"Estado de la solicitud",tk_pay:"Pago",tk_dt:"Fecha de la solicitud",tk_progress:"En curso",tk_done:"Resuelta",tk_paid:"Pagado",tk_unpaid:"Sin pagar"});
+Object.assign(T.es,{tk_h:"🔎 Sigue tu solicitud o denuncia",tk_sub:"Introduce tu número de seguimiento (VX- para solicitudes, RP- para denuncias) para ver su estado.",tk_btn:"Seguir",tk_bad:"Introduce un número de seguimiento válido que empiece por VX- (solicitudes) o RP- (denuncias)",tk_ing:"Buscando…",tk_nf:"No encontramos ninguna solicitud ni denuncia con este número, revísalo.",tk_fail:"No se pudo buscar, inténtalo de nuevo. ",tk_srv:"Servicio",tk_st:"Estado de la solicitud",tk_pay:"Pago",tk_dt:"Fecha de la solicitud",tk_progress:"En curso",tk_done:"Resuelta",tk_paid:"Pagado",tk_unpaid:"Sin pagar"});
 var tkCode="",tkLast=null,TKLOC={ar:"ar-MA",en:"en-GB",fr:"fr-FR",es:"es-ES"};
 function renderTrack(){
   var box=document.getElementById("tkRes");box.innerHTML="";
@@ -956,6 +1003,20 @@ function renderTrack(){
     if(cls){v=document.createElement("span");v.className="tkb "+cls}else{v=document.createTextNode("")}
     v.textContent=val;d.appendChild(v);box.appendChild(d);
   }
+  if(r.kind==="report"){
+    var st=r.status,fd=function(ms){return ms?new Date(ms).toLocaleDateString(TKLOC[lang]):""};
+    row(t.tkr_cat,(RPG[lang]&&RPG[lang][r.category])||"-");
+    row(t.tkr_st,t["tkr_"+st]||st,st==="closed"?"ok":"");
+    var p=document.createElement("p");p.className="tkd";p.textContent=t["tkr_"+st+"_d"]||"";
+    if(st==="info"){var ca=document.createElement("a");ca.href="#contact";ca.textContent=" "+t.tkr_contact;p.appendChild(ca)}
+    box.appendChild(p);
+    var steps=[[t.tkr_p1,true,r.created],[t.tkr_p2,st!=="new",r.reviewing],[t.tkr_p3,st==="referred"||(st==="closed"&&!!r.referred),r.referred],[t.tkr_p4,st==="closed",r.closed]],ul=document.createElement("ul");ul.className="tkst";
+    steps.forEach(function(s){var li=document.createElement("li"),ic=document.createElement("i");ic.textContent=s[1]?"✔":"○";li.className=s[1]?"on":"";li.appendChild(ic);li.appendChild(document.createTextNode(" "+s[0]+(s[1]&&s[2]?" · "+fd(s[2]):"")));ul.appendChild(li)});
+    box.appendChild(ul);
+    if(r.created)row(t.tkr_dt,fd(r.created));
+    if(r.updated)row(t.tkr_upd,fd(r.updated));
+    return;
+  }
   var sn=i<0?(r.service===T.ar.b_opt?t.b_opt:(r.service||"-")):SV[lang][i][0];row(t.tk_srv,sn);
   var done=r.status==="done";
   row(t.tk_st,done?t.tk_done:t.tk_progress,done?"ok":"");
@@ -967,12 +1028,13 @@ var _setLang2=setLang;setLang=function(l){_setLang2(l);renderTrack()};
 document.getElementById("tkBtn").onclick=async function(){
   var t=T[lang],e=document.getElementById("tkErr"),b=this,c=document.getElementById("tkCode").value.trim().toUpperCase();
   tkLast=null;renderTrack();e.textContent="";
-  if(!/^VX-[A-Z0-9]{3,10}$/.test(c)){e.textContent=t.tk_bad;return}
-  if(!window.vxTrack){e.textContent=t.tk_fail;return}
+  var isRp=/^RP-[A-Z0-9]{6,12}$/.test(c);
+  if(!isRp&&!/^VX-[A-Z0-9]{3,10}$/.test(c)){e.textContent=t.tk_bad;return}
+  if(!(isRp?window.vxTrackReport:window.vxTrack)){e.textContent=t.tk_fail;return}
   b.disabled=true;e.textContent=t.tk_ing;
   try{
-    var r=await window.vxTrack(c);
-    e.textContent=r?"":t.tk_nf;tkLast=r;tkCode=c;renderTrack();
+    var r=await (isRp?window.vxTrackReport(c):window.vxTrack(c));
+    e.textContent=r?"":t.tk_nf;tkLast=r;tkCode=isRp?"":c;renderTrack();
   }catch(x){e.textContent=t.tk_fail+"("+(x.code||"error")+")"}
   b.disabled=false;
 };
@@ -1323,6 +1385,12 @@ try{
     if(!s.exists())return null;
     const d=s.data();
     return {service:d.service,status:d.status,paid:d.paid===true,time:(d.createdAt&&d.createdAt.toDate)?d.createdAt.toDate().getTime():null};
+  };
+  window.vxTrackReport=async c=>{
+    const s=await getDoc(doc(db,"reportTracking",c));
+    if(!s.exists())return null;
+    const d=s.data(),ts=v=>(v&&v.toDate)?v.toDate().getTime():null;
+    return {kind:"report",status:d.status,category:d.category,created:ts(d.createdAt),updated:ts(d.updatedAt),reviewing:ts(d.reviewingAt),info:ts(d.infoAt),referred:ts(d.referredAt),closed:ts(d.closedAt)};
   };
   window.vxRevList=async()=>{const q=await getDocs(query(collection(db,"reviews"),where("approved","==",true)));return q.docs.map(x=>x.data())};
   window.vxRevSend=async d=>{const tr=await getDoc(doc(db,"tracking",d.code));if(!tr.exists()||tr.data().status!=="done")throw {code:"not-done"};await setDoc(doc(db,"reviews",d.code),{rating:d.rating,text:d.text,name:(d.showName?d.name:""),showName:d.showName,place:d.place,service:tr.data().service,lang:d.lang,approved:false,createdAt:serverTimestamp()})};
