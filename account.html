@@ -70,6 +70,11 @@ textarea{min-height:110px;resize:vertical}
 .tabbtn{font:inherit;font-size:15px;border:1.5px solid var(--line);background:transparent;color:var(--ink);padding:6px 14px;border-radius:8px;cursor:pointer}
 .tabbtn[aria-pressed="true"]{background:var(--accent);color:var(--on-accent);border-color:var(--accent)}
 .badge.urg{background:var(--hot,#D9482B);color:#fff;border-color:transparent}
+.rpf{display:grid;grid-template-columns:11em 1fr;gap:8px;padding:6px 0;border-bottom:1px dashed var(--line);align-items:start}
+.rpl{color:var(--muted);font-weight:600}
+.rpv{word-break:break-word}
+.rps{margin:16px 0 4px;font-weight:700;color:var(--accent);font-size:13.5px;letter-spacing:.04em}
+@media (max-width:560px){.rpf{grid-template-columns:1fr;gap:2px}}
 [data-rpnote]{width:100%;margin-top:8px}
 .btn.sm{padding:4px 14px;font-size:14px;margin-top:8px}
 .perms{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:6px 14px;margin:10px 0}
@@ -175,6 +180,7 @@ dialog::backdrop{background:rgba(0,0,0,.55)}
   <p id="pdE" role="alert" style="color:var(--hot);margin:8px 0 0"></p>
   <div class="ctl" style="margin-top:12px"><button type="button" class="btn" id="pdS" data-i="pay_save">Save payment</button><button type="button" class="btn alt" id="pdX" data-i="pay_cancel">Cancel</button></div>
 </dialog>
+<script src="vx-rp-doc.js?v=1" defer></script>
 <script src="vx-doc.js?v=3" defer></script>
 <script type="module">
 import {initializeApp} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
@@ -212,6 +218,10 @@ Object.assign(T.ar,{"rp_info": "نحتاج معلومات", "rp_trk_fail": "حُ
 Object.assign(T.en,{"rp_info": "Needs more info", "rp_trk_fail": "The report was saved but the reporter’s tracking page could not be updated. "});
 Object.assign(T.fr,{"rp_info": "Informations requises", "rp_trk_fail": "Le signalement a été enregistré, mais la page de suivi de l’auteur n’a pas pu être mise à jour. "});
 Object.assign(T.es,{"rp_info": "Se necesita información", "rp_trk_fail": "La denuncia se guardó, pero no se pudo actualizar la página de seguimiento del denunciante. "});
+Object.assign(T.ar,{"rp_s_det": "تفاصيل البلاغ", "rp_s_by": "المُبلِّغ", "rp_s_hnd": "المعالجة", "rp_l_ref": "رقم البلاغ", "rp_l_type": "النوع", "rp_l_plat": "المنصة", "rp_l_date": "تاريخ البلاغ", "rp_l_seen": "تاريخ المشاهدة", "rp_l_role": "الصلة بالمحتوى", "rp_l_urg": "عاجل", "rp_l_links": "الروابط", "rp_l_acct": "الحساب أو الصفحة", "rp_l_desc": "الوصف", "rp_l_name": "الاسم", "rp_l_email": "البريد الإلكتروني", "rp_l_phone": "الهاتف / واتساب", "rp_l_ctry": "البلد / المدينة", "rp_l_anon": "طلب عدم الكشف عن هويته", "rp_l_lang": "لغة المبلِّغ", "rp_l_st": "الحالة", "rp_l_by": "آخر معالجة بواسطة", "rp_l_when": "تاريخ آخر معالجة", "rp_no": "لا", "rp_pdf": "تحميل PDF", "rp_pdf_wait": "جارٍ التحضير…", "rp_pdf_fail": "تعذّر إنشاء الملف."});
+Object.assign(T.en,{"rp_s_det": "Report details", "rp_s_by": "Reporter", "rp_s_hnd": "Handling", "rp_l_ref": "Reference", "rp_l_type": "Type", "rp_l_plat": "Platform", "rp_l_date": "Date reported", "rp_l_seen": "Date seen", "rp_l_role": "Connection to the content", "rp_l_urg": "Urgent", "rp_l_links": "Links", "rp_l_acct": "Account or page", "rp_l_desc": "Description", "rp_l_name": "Name", "rp_l_email": "Email", "rp_l_phone": "Phone / WhatsApp", "rp_l_ctry": "Country / city", "rp_l_anon": "Asked not to be disclosed", "rp_l_lang": "Reporter’s language", "rp_l_st": "Status", "rp_l_by": "Last handled by", "rp_l_when": "Last handled on", "rp_no": "No", "rp_pdf": "Download PDF", "rp_pdf_wait": "Preparing…", "rp_pdf_fail": "Couldn’t create the file."});
+Object.assign(T.fr,{"rp_s_det": "Détails du signalement", "rp_s_by": "Auteur du signalement", "rp_s_hnd": "Traitement", "rp_l_ref": "Référence", "rp_l_type": "Type", "rp_l_plat": "Plateforme", "rp_l_date": "Date du signalement", "rp_l_seen": "Date de constatation", "rp_l_role": "Lien avec le contenu", "rp_l_urg": "Urgent", "rp_l_links": "Liens", "rp_l_acct": "Compte ou page", "rp_l_desc": "Description", "rp_l_name": "Nom", "rp_l_email": "E-mail", "rp_l_phone": "Téléphone / WhatsApp", "rp_l_ctry": "Pays / ville", "rp_l_anon": "A demandé à ne pas être révélé", "rp_l_lang": "Langue de l’auteur", "rp_l_st": "Statut", "rp_l_by": "Dernier traitement par", "rp_l_when": "Dernier traitement le", "rp_no": "Non", "rp_pdf": "Télécharger le PDF", "rp_pdf_wait": "Préparation…", "rp_pdf_fail": "Impossible de créer le fichier."});
+Object.assign(T.es,{"rp_s_det": "Detalles de la denuncia", "rp_s_by": "Denunciante", "rp_s_hnd": "Gestión", "rp_l_ref": "Referencia", "rp_l_type": "Tipo", "rp_l_plat": "Plataforma", "rp_l_date": "Fecha de la denuncia", "rp_l_seen": "Fecha en que lo vio", "rp_l_role": "Relación con el contenido", "rp_l_urg": "Urgente", "rp_l_links": "Enlaces", "rp_l_acct": "Cuenta o página", "rp_l_desc": "Descripción", "rp_l_name": "Nombre", "rp_l_email": "Correo electrónico", "rp_l_phone": "Teléfono / WhatsApp", "rp_l_ctry": "País / ciudad", "rp_l_anon": "Pidió no ser revelado", "rp_l_lang": "Idioma del denunciante", "rp_l_st": "Estado", "rp_l_by": "Última gestión de", "rp_l_when": "Última gestión el", "rp_no": "No", "rp_pdf": "Descargar PDF", "rp_pdf_wait": "Preparando…", "rp_pdf_fail": "No se pudo crear el archivo."});
 const RPL={"ar": {"c": {"terrorism": "الإرهاب والتطرف العنيف", "child": "العنف والاستغلال الجنسي للأطفال", "violence": "العنف والتهديد بالقتل", "state": "المساس بأمن الدولة والمقدسات والثوابت الوطنية", "hate": "خطاب الكراهية والتحريض", "trafficking": "الاتجار بالبشر والهجرة غير الشرعية", "drugs": "المخدرات والأسلحة والمتفجرات", "fraud": "الابتزاز والاحتيال الإلكتروني", "cyber": "الهجمات الإلكترونية وتسريب البيانات", "selfharm": "التحريض على الانتحار وإيذاء النفس", "other": "محتوى خطير آخر"}, "p": {"facebook": "Facebook", "instagram": "Instagram", "tiktok": "TikTok", "youtube": "YouTube", "x": "X (Twitter)", "telegram": "Telegram", "whatsapp": "WhatsApp", "snapchat": "Snapchat", "website": "موقع إلكتروني", "other": "أخرى"}}, "en": {"c": {"terrorism": "Terrorism & violent extremism", "child": "Violence & sexual exploitation of children", "violence": "Violence & threats", "state": "Threats to state security & national sanctities", "hate": "Hate speech & incitement", "trafficking": "Human trafficking & illegal migration", "drugs": "Drugs, weapons & explosives", "fraud": "Blackmail & online fraud", "cyber": "Cyberattacks & data leaks", "selfharm": "Incitement to suicide & self-harm", "other": "Other serious content"}, "p": {"facebook": "Facebook", "instagram": "Instagram", "tiktok": "TikTok", "youtube": "YouTube", "x": "X (Twitter)", "telegram": "Telegram", "whatsapp": "WhatsApp", "snapchat": "Snapchat", "website": "Website", "other": "Other"}}, "fr": {"c": {"terrorism": "Terrorisme et extrémisme violent", "child": "Violence et exploitation sexuelle des enfants", "violence": "Violence et menaces", "state": "Atteinte à la sûreté de l’État et aux sacralités nationales", "hate": "Discours de haine et incitation", "trafficking": "Traite des êtres humains et migration clandestine", "drugs": "Drogues, armes et explosifs", "fraud": "Chantage et escroquerie en ligne", "cyber": "Cyberattaques et fuites de données", "selfharm": "Incitation au suicide et à l’automutilation", "other": "Autre contenu grave"}, "p": {"facebook": "Facebook", "instagram": "Instagram", "tiktok": "TikTok", "youtube": "YouTube", "x": "X (Twitter)", "telegram": "Telegram", "whatsapp": "WhatsApp", "snapchat": "Snapchat", "website": "Site web", "other": "Autre"}}, "es": {"c": {"terrorism": "Terrorismo y extremismo violento", "child": "Violencia y explotación sexual de menores", "violence": "Violencia y amenazas", "state": "Amenazas a la seguridad del Estado y a los símbolos sagrados nacionales", "hate": "Discurso de odio e incitación", "trafficking": "Trata de personas y migración ilegal", "drugs": "Drogas, armas y explosivos", "fraud": "Chantaje y estafas en línea", "cyber": "Ciberataques y filtraciones de datos", "selfharm": "Incitación al suicidio y a las autolesiones", "other": "Otro contenido grave"}, "p": {"facebook": "Facebook", "instagram": "Instagram", "tiktok": "TikTok", "youtube": "YouTube", "x": "X (Twitter)", "telegram": "Telegram", "whatsapp": "WhatsApp", "snapchat": "Snapchat", "website": "Sitio web", "other": "Otro"}}};
 Object.assign(T.ar,{"tab_reports": "البلاغات", "p_viewReports": "عرض بلاغات المحتوى الخطير", "p_editReports": "معالجة البلاغات (الحالة والملاحظات)", "rp_new": "جديد", "rp_reviewing": "قيد المراجعة", "rp_referred": "أُحيل للجهات المختصة", "rp_closed": "مغلق", "rp_all": "الكل", "rp_urgent": "عاجل", "rp_seen": "شوهد في", "rp_links": "الروابط", "rp_acct": "الحساب أو الصفحة", "rp_desc": "الوصف", "rp_by": "المبلِّغ", "rp_anon": "يطلب عدم كشف هويته", "rp_handled": "آخر معالجة", "rp_note": "ملاحظة داخلية (لا تظهر للمبلِّغ)", "rp_save": "حفظ", "rp_del": "حذف", "rp_del_q": "حذف هذا البلاغ نهائيًا؟", "rp_none": "لا توجد بلاغات.", "rp_warn": "⚠ افتح الروابط بحذر، ولا تحمّل أو تحفظ أو تعيد إرسال أي محتوى يخص الأطفال؛ أبلغ عنه فقط عبر القنوات الرسمية.", "rp_r_witness": "شاهد", "rp_r_victim": "ضحية أو مستهدف", "rp_r_other": "صفة أخرى"});
 Object.assign(T.en,{"tab_reports": "Reports", "p_viewReports": "View serious-content reports", "p_editReports": "Handle reports (status and notes)", "rp_new": "New", "rp_reviewing": "Reviewing", "rp_referred": "Referred to authorities", "rp_closed": "Closed", "rp_all": "All", "rp_urgent": "URGENT", "rp_seen": "seen on", "rp_links": "Links", "rp_acct": "Account or page", "rp_desc": "Description", "rp_by": "Reporter", "rp_anon": "asks not to disclose identity", "rp_handled": "Last handled by", "rp_note": "Internal note (not shown to the reporter)", "rp_save": "Save", "rp_del": "Delete", "rp_del_q": "Delete this report permanently?", "rp_none": "No reports.", "rp_warn": "⚠ Open links with care. Never download, save or forward content involving children; report it through official channels only.", "rp_r_witness": "Witness", "rp_r_victim": "Victim or targeted", "rp_r_other": "Other"});
@@ -358,18 +368,40 @@ function renderRep(){
   tb.innerHTML=subBtns("rpTabs","rpsub",rpsub,ST.map(s=>[s,t["rp_"+s]+" ("+cnt(s)+")"]).concat([["all",t.rp_all+" ("+rep.length+")"]]));
   const list=(rpsub==="all"?rep:rep.filter(r=>(r.status||"new")===rpsub)).slice().sort((x,y)=>(y.urgent===true)-(x.urgent===true));
   const lk=u=>/^https?:\/\//i.test(u)?'<a href="'+esc(u)+'" target="_blank" rel="noopener noreferrer nofollow" dir="ltr">'+esc(u)+'</a>':esc(u);
-  const card=r=>{
+    const card=r=>{
     const st=r.status||"new",links=String(r.links||"").split("\n").filter(Boolean);
+    const F=(k,v)=>'<div class="rpf"><span class="rpl">'+esc(k)+':</span><span class="rpv">'+v+'</span></div>';
+    const S=x=>'<div class="rps">'+esc(x)+'</div>';
+    const dash='—',ltr=x=>x?'<span dir="ltr">'+esc(x)+'</span>':dash;
+    const dt=v=>v&&v.toDate?esc(v.toDate().toLocaleString(LOC[lang])):dash;
     let h='<div class="req"><b>'+esc(L.c[r.category]||r.category)+'</b> · <span dir="ltr">'+esc(r.id)+'</span> <span class="badge '+(st==="closed"||st==="referred"?"done":"new")+'">'+esc(t["rp_"+st])+'</span>';
     if(r.urgent===true)h+=' <span class="badge urg">'+esc(t.rp_urgent)+'</span>';
-    h+='<br><small>'+esc(L.p[r.platform]||r.platform)+' · '+esc(when(r))+(r.seenAt?' · '+esc(t.rp_seen)+' '+esc(r.seenAt):'')+' · '+esc(t["rp_r_"+r.role]||r.role)+' · '+esc(String(r.lang||"").toUpperCase())+'</small>';
-    h+='<p class="muted" style="margin:8px 0 2px">'+esc(t.rp_warn)+'</p>';
-    h+='<p><b>'+esc(t.rp_links)+':</b><br>'+links.map(lk).join("<br>")+'</p>';
-    if(r.account)h+='<p><b>'+esc(t.rp_acct)+':</b> <span dir="auto">'+esc(r.account)+'</span></p>';
-    h+='<p><b>'+esc(t.rp_desc)+':</b><br><span style="white-space:pre-wrap">'+esc(r.description)+'</span></p>';
-    h+='<p><b>'+esc(t.rp_by)+':</b> '+esc(r.name)+(r.email?' · <span dir="ltr">'+esc(r.email)+'</span>':'')+(r.phone?' · <span dir="ltr">'+esc(r.phone)+'</span>':'')+(r.country?' · '+esc(r.country):'')+(r.anonymous===true?' <span class="badge">'+esc(t.rp_anon)+'</span>':'')+'</p>';
-    if(r.handledBy)h+='<p class="muted">'+esc(t.rp_handled)+': '+esc(r.handledBy)+(r.handledAt&&r.handledAt.toDate?' · '+esc(r.handledAt.toDate().toLocaleString(LOC[lang])):'')+'</p>';
-    if(can("editReports"))h+='<div class="ctl"><select data-rpst>'+ST.map(s=>'<option value="'+s+'"'+(s===st?" selected":"")+'>'+esc(t["rp_"+s])+'</option>').join("")+'</select></div><textarea data-rpnote rows="2" maxlength="2000" placeholder="'+esc(t.rp_note)+'">'+esc(r.note||"")+'</textarea><button type="button" class="btn sm" data-rpsave="'+esc(r.id)+'">'+esc(t.rp_save)+'</button> ';
+    h+=S(t.rp_s_det);
+    h+=F(t.rp_l_ref,ltr(r.id));
+    h+=F(t.rp_l_type,esc(L.c[r.category]||r.category));
+    h+=F(t.rp_l_plat,esc(L.p[r.platform]||r.platform));
+    h+=F(t.rp_l_date,dt(r.createdAt));
+    h+=F(t.rp_l_seen,ltr(r.seenAt));
+    h+=F(t.rp_l_role,esc(t["rp_r_"+r.role]||r.role));
+    h+=F(t.rp_l_urg,r.urgent===true?'<span class="badge urg">'+esc(t.rp_urgent)+'</span>':esc(t.rp_no));
+    h+=F(t.rp_l_links,links.map(lk).join("<br>")||dash);
+    h+=F(t.rp_l_acct,r.account?'<span dir="auto">'+esc(r.account)+'</span>':dash);
+    h+=F(t.rp_l_desc,'<span style="white-space:pre-wrap">'+esc(r.description)+'</span>');
+    h+='<p class="muted" style="margin:6px 0 0">'+esc(t.rp_warn)+'</p>';
+    h+=S(t.rp_s_by);
+    h+=F(t.rp_l_name,esc(r.name));
+    h+=F(t.rp_l_email,ltr(r.email));
+    h+=F(t.rp_l_phone,ltr(r.phone));
+    h+=F(t.rp_l_ctry,r.country?esc(r.country):dash);
+    h+=F(t.rp_l_anon,r.anonymous===true?esc(t.rp_anon):esc(t.rp_no));
+    h+=F(t.rp_l_lang,esc(String(r.lang||"").toUpperCase()));
+    h+=S(t.rp_s_hnd);
+    h+=F(t.rp_l_st,'<span class="badge '+(st==="closed"||st==="referred"?"done":"new")+'">'+esc(t["rp_"+st])+'</span>');
+    h+=F(t.rp_l_by,ltr(r.handledBy));
+    h+=F(t.rp_l_when,dt(r.handledAt));
+    if(can("editReports"))h+='<div class="ctl" style="margin-top:10px"><select data-rpst>'+ST.map(s=>'<option value="'+s+'"'+(s===st?" selected":"")+'>'+esc(t["rp_"+s])+'</option>').join("")+'</select></div><textarea data-rpnote rows="2" maxlength="2000" placeholder="'+esc(t.rp_note)+'">'+esc(r.note||"")+'</textarea><button type="button" class="btn sm" data-rpsave="'+esc(r.id)+'">'+esc(t.rp_save)+'</button> ';
+    else if(r.note)h+=F(t.rp_note,'<span style="white-space:pre-wrap">'+esc(r.note)+'</span>');
+    h+='<button type="button" class="btn alt sm" data-rppdf="'+esc(r.id)+'">'+esc(t.rp_pdf)+'</button> ';
     if(isOwner)h+='<button type="button" class="btn alt sm danger" data-rpdel="'+esc(r.id)+'">'+esc(t.rp_del)+'</button>';
     return h+'</div>';
   };
@@ -637,6 +669,16 @@ if(cfg.apiKey.startsWith("PASTE")){
         renderAdmin();
       }catch(err){alert(t.e_upd+(err.code||""));b.disabled=false}
       return;
+    }
+    if(b.dataset.rppdf){
+      const r=(rep||[]).find(x=>x.id===b.dataset.rppdf);if(!r)return;
+      if(!window.vxRpPdf){alert(t.rp_pdf_fail);return}
+      const L=RPL[lang]||RPL.en,ms=v=>v&&v.toDate?v.toDate().getTime():null;
+      const d={code:r.id,status:r.status||"new",urgent:r.urgent===true,catL:L.c[r.category]||r.category,platL:L.p[r.platform]||r.platform,roleL:t["rp_r_"+r.role]||"",links:r.links,account:r.account,seenAt:r.seenAt,description:r.description,name:r.name,email:r.email,phone:r.phone,country:r.country,anonymous:r.anonymous===true,lang:r.lang,note:r.note,handledBy:r.handledBy,handledAt:ms(r.handledAt),createdAt:ms(r.createdAt)};
+      const lab=b.textContent;b.disabled=true;b.textContent=t.rp_pdf_wait;
+      try{const ts=await getDoc(doc(db,"reportTracking",r.id));if(ts.exists()){const q=ts.data();d.reviewingAt=ms(q.reviewingAt);d.referredAt=ms(q.referredAt);d.closedAt=ms(q.closedAt)}}catch(e0){}
+      try{await window.vxRpPdf(d,lang,"staff")}catch(e1){alert(t.rp_pdf_fail)}
+      b.disabled=false;b.textContent=lab;return;
     }
     if(b.dataset.rpdel){
       if(!isOwner||!confirm(t.rp_del_q))return;

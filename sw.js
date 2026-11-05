@@ -1,5 +1,5 @@
-const V = "vx-v5";
-const ASSETS = ["/", "/index.html", "/legal.html", "/legal.js", "/report.html", "/vx-doc.js", "/manifest.json", "/favicon-192.png", "/favicon-512.png"];
+const V = "vx-v6";
+const ASSETS = ["/", "/index.html", "/legal.html", "/legal.js", "/report.html", "/vx-doc.js", "/vx-rp-doc.js", "/manifest.json", "/favicon-192.png", "/favicon-512.png"];
 
 self.addEventListener("install", (e) => {
   e.waitUntil(
