@@ -58,14 +58,14 @@ function fmtIso(s){var m=/^(\d{4})-(\d{2})-(\d{2})$/.exec(s||"");return m?sp(m[3
 function build(d,l,mode){
   var t=D[l]||D.en,rtl=l==="ar",st=d.status||"new",col=st==="closed"?"#1E9E6A":(st==="info"?"#D98A00":(st==="referred"?"#2B6CB0":"#0F8B8D")),pub=mode==="status",staff=mode==="staff";
   function row(k,v,ltr,pre){return v?'<tr><td style="width:32%;padding:8px 0;color:#52667A;font-size:14px;vertical-align:top">'+esc(k)+'</td><td style="padding:8px 0;font-weight:500;font-size:15px;'+(ltr?'direction:ltr;unicode-bidi:isolate;text-align:'+(rtl?'right':'left')+';':'')+(pre?'white-space:pre-wrap;':'')+'word-break:break-word">'+v+'</td></tr>':''}
-  function box(title,inner){return '<div style="margin-top:20px;border:1px solid #D3DDDD;border-radius:12px;padding:8px 22px 10px"><div style="font-size:16px;font-weight:700;padding:8px 0 2px">'+esc(title)+'</div>'+inner+'</div>'}
-  function step(n,lab,on,date){return '<div style="display:flex;align-items:center;gap:12px;padding:8px 0"><div style="flex:none;width:26px;height:26px;border-radius:50%;'+(on?'background:#0F8B8D;color:#fff':'border:2px solid #C5D2D2;color:#9FB0B0')+';display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700">'+(on?'✓':n)+'</div><div style="flex:1;font-size:15px;font-weight:'+(on?'700':'400')+';color:'+(on?'#12263A':'#7A8B8B')+'">'+esc(lab)+'</div><div style="font-size:13px;color:#52667A;direction:ltr;unicode-bidi:isolate">'+(date||"")+'</div></div>'}
+  function box(title,inner){return '<div data-pb="1" style="margin-top:20px;border:1px solid #D3DDDD;border-radius:12px;padding:8px 22px 10px"><div style="font-size:16px;font-weight:700;padding:8px 0 2px">'+esc(title)+'</div>'+inner+'</div>'}
+  function step(n,lab,on,date){return '<div data-row="1" style="display:flex;align-items:center;gap:12px;padding:8px 0"><div style="flex:none;width:26px;height:26px;border-radius:50%;'+(on?'background:#0F8B8D;color:#fff':'border:2px solid #C5D2D2;color:#9FB0B0')+';display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700">'+(on?'✓':n)+'</div><div style="flex:1;font-size:15px;font-weight:'+(on?'700':'400')+';color:'+(on?'#12263A':'#7A8B8B')+'">'+esc(lab)+'</div><div style="font-size:13px;color:#52667A;direction:ltr;unicode-bidi:isolate">'+(date||"")+'</div></div>'}
   var links=String(d.links||"").split("\n").filter(Boolean).map(function(u){return '<div dir="ltr" style="direction:ltr;unicode-bidi:isolate;text-align:'+(rtl?'right':'left')+'">'+esc(u)+'</div>'}).join("");
   var h='<div style="width:794px;min-height:1123px;box-sizing:border-box;background:#fff;color:#12263A;font-family:\'IBM Plex Sans Arabic\',\'Segoe UI\',Tahoma,Arial,sans-serif;direction:'+(rtl?'rtl':'ltr')+';display:flex;flex-direction:column">'
   +'<div style="background:linear-gradient(135deg,#DDEFEE,#FFFFFF);padding:34px 44px 24px;border-bottom:5px solid #0F8B8D;display:flex;align-items:center;gap:18px">'+LOGO
   +'<div style="flex:1"><div style="font-size:28px;font-weight:700;'+(rtl?'':'letter-spacing:3px;')+'">VYROXX <span style="color:#0F8B8D;font-size:16px;font-weight:500;'+(rtl?'':'letter-spacing:4px;')+'">IT SERVICES</span></div><div style="font-size:13px;color:#52667A;margin-top:4px">'+esc(t.tag)+'</div></div>'
   +'<div style="text-align:'+(rtl?'left':'right')+'"><div style="font-size:13px;color:#52667A">'+esc(staff?t.ts:(pub?t.tt:t.tr))+'</div></div></div>'
-  +(staff?'<div style="background:#FDECEA;color:#9B2C1C;font-size:12.5px;font-weight:700;letter-spacing:.5px;padding:9px 44px;text-align:center">'+esc(t.conf)+'</div>':'')
+  +(staff?'<div style="background:#FDECEA;color:#9B2C1C;font-size:13px;font-weight:700;'+(rtl?'letter-spacing:0;':'letter-spacing:.5px;')+'padding:9px 44px;text-align:center;direction:'+(rtl?'rtl':'ltr')+';unicode-bidi:isolate">'+esc(t.conf)+'</div>':'')
   +'<div style="padding:26px 44px 0;flex:1">'
   +'<div style="display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap"><div><div style="font-size:13px;color:#52667A">'+esc(t.ref)+'</div><div style="font-size:34px;font-weight:700;direction:ltr;unicode-bidi:isolate;text-align:'+(rtl?'right':'left')+'">'+esc(d.code)+'</div></div>'
   +'<div style="text-align:'+(rtl?'left':'right')+'"><div style="display:inline-block;padding:9px 18px;border-radius:999px;background:'+col+';color:#fff;font-size:14px;font-weight:700">'+esc(t.st[st]||st)+'</div>'+(d.urgent&&!pub?'<div style="margin-top:6px;color:#B4341F;font-weight:700;font-size:13px">'+esc(t.urg)+'</div>':'')+'</div></div>';
@@ -83,19 +83,42 @@ function build(d,l,mode){
   if(mode==="reporter"){
     h+=box(t.nxt,'<div style="font-size:14.5px;line-height:1.85;padding:6px 0 4px"><div>• '+esc(t.n1)+'</div><div>• '+esc(t.n2)+'</div><div>• '+esc(t.n3)+'</div></div>');
   }
-  h+='</div><div style="padding:20px 44px 28px;margin-top:24px;border-top:1px solid #D3DDDD;background:#F4F8F8;font-size:12.5px;line-height:1.7;color:#52667A"><div>'+esc(t.vf)+'</div><div style="margin-top:4px">'+esc(t.disc)+'</div><div style="margin-top:6px;direction:ltr;unicode-bidi:isolate;text-align:'+(rtl?'right':'left')+'">vyroxxit.github.io · vyroxxvx@gmail.com · '+esc(t.gn)+' '+fmt(Date.now(),true)+'</div></div></div>';
+  h+='</div><div data-pb="1" style="padding:20px 44px 28px;margin-top:24px;border-top:1px solid #D3DDDD;background:#F4F8F8;font-size:12.5px;line-height:1.7;color:#52667A"><div>'+esc(t.vf)+'</div><div style="margin-top:4px">'+esc(t.disc)+'</div><div style="margin-top:6px;direction:ltr;unicode-bidi:isolate;text-align:'+(rtl?'right':'left')+'">vyroxxit.github.io · vyroxxvx@gmail.com · '+esc(t.gn)+' '+fmt(Date.now(),true)+'</div></div></div>';
   return h;
 }
-function toPdf(el,name){
-  return window.html2canvas(el,{scale:2,backgroundColor:"#ffffff",useCORS:true,logging:false}).then(function(cv){
-    var J=window.jspdf.jsPDF,pdf=new J({unit:"mm",format:"a4",orientation:"p"}),W=210,H=297,pw=cv.width,ph=Math.floor(pw*H/W),y=0,first=true;
-    while(y<cv.height){
-      var h=Math.min(ph,cv.height-y),c=document.createElement("canvas"),x;
-      c.width=pw;c.height=h;x=c.getContext("2d");x.fillStyle="#fff";x.fillRect(0,0,pw,h);x.drawImage(cv,0,y,pw,h,0,0,pw,h);
-      if(!first)pdf.addPage();
-      pdf.addImage(c.toDataURL("image/jpeg",0.92),"JPEG",0,0,W,h*W/pw);
-      first=false;y+=h;
+/* Page planning: never cut through a block; a block that fits on one page moves whole to the next page. */
+function planPages(total,blocks,rows,ph,pad,gap){
+  var pages=[],y=0,first=true;
+  while(y<total-1){
+    var cap=first?ph:ph-pad,end=Math.min(y+cap,total);
+    if(end<total){
+      var cut=null,i;
+      for(i=0;i<blocks.length;i++){var bl=blocks[i];if(bl[0]>y+gap&&bl[0]<end&&bl[1]>end&&(bl[1]-bl[0])<=ph-pad){cut=bl[0];break}}
+      if(cut===null){
+        for(i=0;i<blocks.length;i++){var bt=blocks[i];if(bt[0]<end&&bt[1]>end){
+          var best=null;rows.forEach(function(r){if(r>y+gap&&r<=end&&(best===null||r>best))best=r});
+          if(best!==null)cut=best;break}}
+      }
+      if(cut!==null)end=cut;
     }
+    pages.push([y,end,first?0:pad]);first=false;y=end;
+  }
+  return pages;
+}
+window.__rpPlan=planPages;
+function toPdf(el,name){
+  var sc=2,base=el.getBoundingClientRect().top;
+  var blocks=[].slice.call(el.querySelectorAll("[data-pb]")).map(function(n){var r=n.getBoundingClientRect();return [(r.top-base)*sc,(r.bottom-base)*sc]});
+  var rows=[].slice.call(el.querySelectorAll("tr,[data-row]")).map(function(n){return (n.getBoundingClientRect().top-base)*sc});
+  return window.html2canvas(el,{scale:sc,backgroundColor:"#ffffff",useCORS:true,logging:false}).then(function(cv){
+    var J=window.jspdf.jsPDF,pdf=new J({unit:"mm",format:"a4",orientation:"p"}),W=210,H=297,pw=cv.width,ph=Math.floor(pw*H/W),pad=40*sc;
+    var pages=planPages(cv.height,blocks,rows,ph,pad,60*sc);
+    pages.forEach(function(pg,i){
+      var h=pg[1]-pg[0],c=document.createElement("canvas"),x;
+      c.width=pw;c.height=h+pg[2];x=c.getContext("2d");x.fillStyle="#fff";x.fillRect(0,0,pw,c.height);x.drawImage(cv,0,pg[0],pw,h,0,pg[2],pw,h);
+      if(i)pdf.addPage();
+      pdf.addImage(c.toDataURL("image/jpeg",0.92),"JPEG",0,0,W,c.height*W/pw);
+    });
     pdf.save(name);
   });
 }
