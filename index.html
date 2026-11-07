@@ -878,6 +878,10 @@ Object.assign(T.ar,{"rpt_t1": "سرية تامة", "rpt_t1d": "بياناتك ل
 Object.assign(T.en,{"rpt_t1": "Strictly confidential", "rpt_t1d": "Only authorized staff see your details, and you can ask not to be disclosed to the reported party.", "rpt_t2": "Reference number and tracking", "rpt_t2d": "You get a tracking number and a PDF copy, and can follow your report’s stages at any time.", "rpt_t3": "Referral through official channels", "rpt_t3d": "Serious cases within the authorities’ remit are referred through official channels.", "rpt_em": "In immediate danger?", "rpt_p19": "Police 19", "rpt_p177": "Gendarmerie 177", "rpt_p2511": "Child protection 2511", "tkr_wa": "Hello VYROXX IT, I’m contacting you about my report number ", "tkr_wa2": ". You asked for additional information."});
 Object.assign(T.fr,{"rpt_t1": "Confidentialité stricte", "rpt_t1d": "Seul le personnel autorisé voit vos données, et vous pouvez demander à ne pas être révélé à la partie signalée.", "rpt_t2": "Numéro de référence et suivi", "rpt_t2d": "Vous recevez un numéro de suivi et une copie PDF, et suivez les étapes de votre signalement à tout moment.", "rpt_t3": "Transmission par les canaux officiels", "rpt_t3d": "Les cas graves relevant des autorités sont transmis par les canaux officiels.", "rpt_em": "En danger immédiat ?", "rpt_p19": "Police 19", "rpt_p177": "Gendarmerie 177", "rpt_p2511": "Protection de l’enfance 2511", "tkr_wa": "Bonjour VYROXX IT, je vous contacte au sujet de mon signalement n° ", "tkr_wa2": ". Vous avez demandé des informations complémentaires."});
 Object.assign(T.es,{"rpt_t1": "Confidencialidad estricta", "rpt_t1d": "Solo el personal autorizado ve tus datos y puedes pedir que no se revele tu identidad a la parte denunciada.", "rpt_t2": "Número de referencia y seguimiento", "rpt_t2d": "Recibes un número de seguimiento y una copia en PDF, y puedes seguir las etapas de tu denuncia en cualquier momento.", "rpt_t3": "Remisión por los cauces oficiales", "rpt_t3d": "Los casos graves que competen a las autoridades se remiten por los cauces oficiales.", "rpt_em": "¿Peligro inmediato?", "rpt_p19": "Policía 19", "rpt_p177": "Gendarmería 177", "rpt_p2511": "Protección infantil 2511", "tkr_wa": "Hola VYROXX IT, me pongo en contacto por mi denuncia n.º ", "tkr_wa2": ". Habéis pedido información adicional."});
+Object.assign(T.ar,{"tkr_pdf": "تحميل ملخص الحالة (PDF)"});
+Object.assign(T.en,{"tkr_pdf": "Download status summary (PDF)"});
+Object.assign(T.fr,{"tkr_pdf": "Télécharger le résumé du statut (PDF)"});
+Object.assign(T.es,{"tkr_pdf": "Descargar resumen del estado (PDF)"});
 function setLang(l){
   lang=l;var t=T[l];
   root.lang=l;root.dir=l==="ar"?"rtl":"ltr";
@@ -1059,7 +1063,7 @@ function renderTrack(){
     box.appendChild(ul);
     if(r.created)row(t.tkr_dt,fd(r.created));
     if(r.updated)row(t.tkr_upd,fd(r.updated));
-    var rb=document.createElement("button");rb.type="button";rb.className="btn alt";rb.textContent=t.pdf_btn;
+    var rb=document.createElement("button");rb.type="button";rb.className="btn alt";rb.textContent=t.tkr_pdf;
     rb.onclick=function(){var lab=rb.textContent;rb.disabled=true;rb.textContent=t.pdf_wait;Promise.resolve().then(function(){if(!window.vxRpPdf)throw 0;return window.vxRpPdf({code:r.code,status:st,catL:(RPG[lang]&&RPG[lang][r.category])||"",createdAt:r.created,updated:r.updated,reviewingAt:r.reviewing,referredAt:r.referred,closedAt:r.closed},lang,"status")}).catch(function(){alert(t.pdf_fail)}).then(function(){rb.disabled=false;rb.textContent=lab})};
     box.appendChild(rb);
     return;

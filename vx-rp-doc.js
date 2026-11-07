@@ -4,7 +4,7 @@
 (function(){
 var LIB=["https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js","https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"];
 var D={
-en:{tr:"Report confirmation",ts:"Report file · staff copy",tt:"Report status",tag:"Your Technology, Our Responsibility",conf:"CONFIDENTIAL · FOR AUTHORIZED STAFF ONLY",ref:"Reference number",dt:"Date reported",
+en:{tr:"Report confirmation",ts:"Report file · staff copy",tt:"Report status summary",tag:"Your Technology, Our Responsibility",conf:"CONFIDENTIAL · FOR AUTHORIZED STAFF ONLY",ref:"Reference number",dt:"Date reported",
  st:{new:"RECEIVED",reviewing:"UNDER REVIEW",info:"INFORMATION NEEDED",referred:"REFERRED",closed:"CLOSED"},
  det:"Report details",type:"Type",plat:"Platform",seen:"Date seen",role:"Connection to the content",urg:"Urgent",yes:"Yes — immediate danger reported",links:"Link(s)",acct:"Account or page",desc:"Description",
  by:"Reporter",name:"Full name",email:"Email",phone:"Phone / WhatsApp",ctry:"Country / city",anon:"Identity",anonv:"Asked not to be disclosed to the reported party",lng:"Language",
@@ -13,8 +13,8 @@ en:{tr:"Report confirmation",ts:"Report file · staff copy",tt:"Report status",t
  nxt:"What happens next",n1:"We review your report and the links provided, seriously and confidentially. Urgent reports are reviewed first.",n2:"We may contact you if we need more details.",n3:"If the report is serious and within the authorities’ remit, we refer it through official channels. We receive no information on the progress of any official procedure.",
  vf:"You can follow this report at any time at vyroxxit.github.io, in the “Track your request or report” box, using the reference number above.",
  disc:"VYROXX IT is a private company and not a government or security body. This document confirms that the report was received by us; it is not an official complaint and does not replace reporting to the authorities. In immediate danger call the Police (19) or the Royal Gendarmerie (177), or report on the official platform e-blagh.ma.",
- pubn:"This version contains no personal data or report content.",gn:"Generated on",gen:"General type"},
-ar:{tr:"تأكيد استلام بلاغ",ts:"ملف البلاغ · نسخة الإدارة",tt:"حالة البلاغ",tag:"تقنيتك، مسؤوليتنا",conf:"سري · للموظفين المخوَّلين فقط",ref:"الرقم المرجعي",dt:"تاريخ البلاغ",
+ pubn:"This is the public status summary: it contains no personal data or report content. The full copy with everything you entered is available only right after you submit the report, to protect your privacy; we cannot regenerate it later.",gn:"Generated on",gen:"General type"},
+ar:{tr:"تأكيد استلام بلاغ",ts:"ملف البلاغ · نسخة الإدارة",tt:"ملخص حالة البلاغ",tag:"تقنيتك، مسؤوليتنا",conf:"سري · للموظفين المخوَّلين فقط",ref:"الرقم المرجعي",dt:"تاريخ البلاغ",
  st:{new:"تم الاستلام",reviewing:"قيد المراجعة",info:"نحتاج معلومات إضافية",referred:"أُحيل",closed:"مغلق"},
  det:"تفاصيل البلاغ",type:"النوع",plat:"المنصة",seen:"تاريخ المشاهدة",role:"الصلة بالمحتوى",urg:"عاجل",yes:"نعم — أُبلغ عن خطر داهم",links:"الروابط",acct:"الحساب أو الصفحة",desc:"الوصف",
  by:"المبلِّغ",name:"الاسم الكامل",email:"البريد الإلكتروني",phone:"الهاتف / واتساب",ctry:"البلد / المدينة",anon:"الهوية",anonv:"طلب عدم الكشف عنها للطرف المُبلَّغ عنه",lng:"اللغة",
@@ -23,8 +23,8 @@ ar:{tr:"تأكيد استلام بلاغ",ts:"ملف البلاغ · نسخة ا
  nxt:"ماذا يحدث بعد ذلك",n1:"نراجع بلاغك والروابط المرفقة بجدية وسرية. والبلاغات العاجلة تُراجَع أولًا.",n2:"قد نتواصل معك إن احتجنا إلى تفاصيل إضافية.",n3:"إذا كان البلاغ جدّيًا ويدخل في اختصاص السلطات، نحيله عبر القنوات الرسمية. ولا تتوفر لدينا معلومات عن سير أي إجراء رسمي.",
  vf:"يمكنك متابعة هذا البلاغ في أي وقت عبر vyroxxit.github.io من خانة «تتبّع طلبك أو بلاغك» باستخدام الرقم المرجعي أعلاه.",
  disc:"VYROXX IT شركة خاصة وليست جهة حكومية أو أمنية. تؤكد هذه الوثيقة أن البلاغ وصلنا؛ وهي ليست شكاية رسمية ولا تغني عن التبليغ لدى السلطات. وعند الخطر الداهم اتصل بالشرطة (19) أو الدرك الملكي (177)، أو أبلغ عبر المنصة الرسمية e-blagh.ma.",
- pubn:"لا تتضمن هذه النسخة بيانات شخصية ولا محتوى البلاغ.",gn:"أُنشئت في",gen:"النوع العام"},
-fr:{tr:"Confirmation de signalement",ts:"Dossier de signalement · copie interne",tt:"Statut du signalement",tag:"Votre technologie, notre responsabilité",conf:"CONFIDENTIEL · RÉSERVÉ AU PERSONNEL AUTORISÉ",ref:"Numéro de référence",dt:"Date du signalement",
+ pubn:"هذا ملخص عام لحالة البلاغ، ولا يتضمن بيانات شخصية ولا محتوى البلاغ. أما النسخة الكاملة بكل ما أدخلته فتُتاح مباشرة بعد إرسال البلاغ فقط حمايةً لخصوصيتك، ولا نستطيع إعادة إنشائها لاحقًا.",gn:"أُنشئت في",gen:"النوع العام"},
+fr:{tr:"Confirmation de signalement",ts:"Dossier de signalement · copie interne",tt:"Résumé du statut du signalement",tag:"Votre technologie, notre responsabilité",conf:"CONFIDENTIEL · RÉSERVÉ AU PERSONNEL AUTORISÉ",ref:"Numéro de référence",dt:"Date du signalement",
  st:{new:"REÇU",reviewing:"EN EXAMEN",info:"INFORMATIONS REQUISES",referred:"TRANSMIS",closed:"CLÔTURÉ"},
  det:"Détails du signalement",type:"Type",plat:"Plateforme",seen:"Date de constatation",role:"Lien avec le contenu",urg:"Urgent",yes:"Oui — danger immédiat signalé",links:"Lien(s)",acct:"Compte ou page",desc:"Description",
  by:"Auteur du signalement",name:"Nom complet",email:"E-mail",phone:"Téléphone / WhatsApp",ctry:"Pays / ville",anon:"Identité",anonv:"A demandé à ne pas être révélée à la partie signalée",lng:"Langue",
@@ -33,8 +33,8 @@ fr:{tr:"Confirmation de signalement",ts:"Dossier de signalement · copie interne
  nxt:"Et ensuite ?",n1:"Nous examinons votre signalement et les liens fournis avec sérieux et confidentialité. Les signalements urgents sont examinés en priorité.",n2:"Nous pouvons vous contacter si nous avons besoin de précisions.",n3:"Si le signalement est grave et relève des autorités, nous le transmettons par les canaux officiels. Nous ne recevons aucune information sur le déroulement d’une procédure officielle.",
  vf:"Vous pouvez suivre ce signalement à tout moment sur vyroxxit.github.io, dans la zone « Suivre votre demande ou signalement », avec le numéro de référence ci-dessus.",
  disc:"VYROXX IT est une entreprise privée, et non un organisme public ou de sécurité. Ce document confirme que nous avons reçu le signalement ; ce n’est pas une plainte officielle et il ne remplace pas un signalement aux autorités. En cas de danger immédiat, appelez la Police (19) ou la Gendarmerie royale (177), ou signalez sur la plateforme officielle e-blagh.ma.",
- pubn:"Cette version ne contient ni données personnelles ni contenu du signalement.",gn:"Généré le",gen:"Type général"},
-es:{tr:"Confirmación de denuncia",ts:"Expediente de denuncia · copia interna",tt:"Estado de la denuncia",tag:"Tu tecnología, nuestra responsabilidad",conf:"CONFIDENCIAL · SOLO PERSONAL AUTORIZADO",ref:"Número de referencia",dt:"Fecha de la denuncia",
+ pubn:"Ceci est le résumé public du statut : il ne contient ni données personnelles ni contenu du signalement. La copie complète avec tout ce que vous avez saisi n’est disponible que juste après l’envoi, pour protéger votre vie privée ; nous ne pouvons pas la régénérer plus tard.",gn:"Généré le",gen:"Type général"},
+es:{tr:"Confirmación de denuncia",ts:"Expediente de denuncia · copia interna",tt:"Resumen del estado de la denuncia",tag:"Tu tecnología, nuestra responsabilidad",conf:"CONFIDENCIAL · SOLO PERSONAL AUTORIZADO",ref:"Número de referencia",dt:"Fecha de la denuncia",
  st:{new:"RECIBIDA",reviewing:"EN REVISIÓN",info:"SE NECESITA INFORMACIÓN",referred:"REMITIDA",closed:"CERRADA"},
  det:"Detalles de la denuncia",type:"Tipo",plat:"Plataforma",seen:"Fecha en que lo viste",role:"Relación con el contenido",urg:"Urgente",yes:"Sí — se indicó peligro inmediato",links:"Enlace(s)",acct:"Cuenta o página",desc:"Descripción",
  by:"Denunciante",name:"Nombre completo",email:"Correo electrónico",phone:"Teléfono / WhatsApp",ctry:"País / ciudad",anon:"Identidad",anonv:"Pidió no ser revelada a la parte denunciada",lng:"Idioma",
@@ -43,7 +43,7 @@ es:{tr:"Confirmación de denuncia",ts:"Expediente de denuncia · copia interna",
  nxt:"Qué ocurre después",n1:"Revisamos tu denuncia y los enlaces aportados con seriedad y confidencialidad. Las denuncias urgentes se revisan primero.",n2:"Podemos contactarte si necesitamos más detalles.",n3:"Si la denuncia es grave y compete a las autoridades, la remitimos por los cauces oficiales. No recibimos información sobre el avance de ningún procedimiento oficial.",
  vf:"Puedes seguir esta denuncia en cualquier momento en vyroxxit.github.io, en el cuadro «Sigue tu solicitud o denuncia», con el número de referencia de arriba.",
  disc:"VYROXX IT es una empresa privada y no un organismo público ni de seguridad. Este documento confirma que recibimos la denuncia; no es una denuncia oficial ni sustituye la denuncia ante las autoridades. Ante un peligro inmediato llama a la Policía (19) o a la Gendarmería Real (177), o denuncia en la plataforma oficial e-blagh.ma.",
- pubn:"Esta versión no contiene datos personales ni el contenido de la denuncia.",gn:"Generado el",gen:"Tipo general"}
+ pubn:"Este es el resumen público del estado: no contiene datos personales ni el contenido de la denuncia. La copia completa con todo lo que introdujiste solo está disponible justo después de enviar la denuncia, para proteger tu privacidad; no podemos regenerarla después.",gn:"Generado el",gen:"Tipo general"}
 };
 var LOC={ar:"ar-MA",en:"en-GB",fr:"fr-FR",es:"es-ES"};
 function esc(s){return String(s==null?"":s).replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]})}
