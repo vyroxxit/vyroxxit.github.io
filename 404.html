@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#0C1519">
+<title>Page not found | VYROXX IT</title>
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" href="/favicon.png" sizes="48x48" type="image/png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F1F4F3;--surface:#FFFFFF;--ink:#12263A;--muted:#52667A;--line:#D3DDDD;--accent:#0F8B8D;--on-accent:#FFFFFF;--hot:#D9482B}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0C1519;--surface:#142228;--ink:#E6EFEF;--muted:#9BB1B5;--line:#24383E;--accent:#3CC4C4;--on-accent:#0C1519;--hot:#FF7A59;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0C1519;--surface:#142228;--ink:#E6EFEF;--muted:#9BB1B5;--line:#24383E;--accent:#3CC4C4;--on-accent:#0C1519;--hot:#FF7A59;color-scheme:dark}
+:root[data-theme="legend"]{--bg:#0B0716;--surface:#150E26;--ink:#F3E9D2;--muted:#BBAAD8;--line:#3A2A5E;--accent:#F5B83D;--on-accent:#1A1024;--hot:#FF6B94;color-scheme:dark}
+:root[data-theme="legend"] body{background:radial-gradient(1100px 560px at 88% -8%,rgba(245,184,61,.15),transparent 60%),radial-gradient(900px 600px at 0% 25%,rgba(124,77,255,.24),transparent 60%),var(--bg);background-attachment:fixed}
+:root[data-theme="legend"] .code{background:linear-gradient(90deg,#FFE29A,#F5B83D 45%,#E58BFF);-webkit-background-clip:text;background-clip:text;color:transparent}
+:root[data-theme="hacker"]{--bg:#000;--surface:#04100A;--ink:#B8FFC8;--muted:#4FC26E;--line:#0F5A24;--accent:#00FF41;--on-accent:#00170A;--hot:#FF2E63;color-scheme:dark}
+:root[data-theme="hacker"] body{background:repeating-linear-gradient(0deg,rgba(0,255,65,.05) 0 1px,transparent 1px 3px),radial-gradient(900px 500px at 50% -10%,rgba(0,255,65,.12),transparent 65%),#000;background-attachment:fixed}
+:root[data-theme="hacker"] .code{color:var(--accent);background:none;-webkit-text-fill-color:currentColor;text-shadow:0 0 14px rgba(0,255,65,.6)}
+:root[data-theme="hacker"] .btn,:root[data-theme="hacker"] .lc{border-radius:4px}
+:root[data-theme="hacker"] .btn.alt{border-color:var(--accent);color:var(--accent)}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;min-height:100vh;display:flex;flex-direction:column;background:var(--bg);color:var(--ink);font-family:"IBM Plex Sans Arabic","Segoe UI",Tahoma,Arial,sans-serif;line-height:1.8;font-size:17px;padding:env(safe-area-inset-top,0) env(safe-area-inset-right,0) env(safe-area-inset-bottom,0) env(safe-area-inset-left,0)}
+body{background-image:radial-gradient(900px 480px at 85% -10%,color-mix(in srgb,var(--accent) 14%,transparent),transparent 62%)}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px;border-radius:6px}
+.top{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;width:min(1100px,92%);margin:0 auto;padding:22px 0}
+.logo{display:inline-flex;align-items:center;gap:10px;text-decoration:none;font-weight:700;letter-spacing:.14em;font-size:19px;direction:ltr}
+.logo b{color:var(--accent)}
+.logo svg{width:30px;height:38px}
+.seg{display:flex;border:1.5px solid var(--line);border-radius:10px;overflow:hidden}
+.seg button{font:inherit;font-size:14px;border:0;background:transparent;color:var(--muted);padding:6px 12px;cursor:pointer}
+.seg button[aria-pressed="true"]{background:var(--accent);color:var(--on-accent);font-weight:700}
+main{flex:1;width:min(760px,92%);margin:0 auto;padding:clamp(24px,6vh,64px) 0 40px;text-align:center}
+.code{font-size:clamp(96px,22vw,190px);line-height:1;font-weight:700;letter-spacing:.04em;direction:ltr;background:linear-gradient(135deg,var(--accent),color-mix(in srgb,var(--accent) 40%,var(--ink)));-webkit-background-clip:text;background-clip:text;color:transparent;margin:0}
+h1{font-size:clamp(26px,5vw,40px);margin:8px 0 10px;line-height:1.3}
+p{margin:0 auto 14px;color:var(--muted);max-width:34em}
+.path{font-size:14px}
+.path code{direction:ltr;unicode-bidi:isolate;display:inline-block;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;vertical-align:bottom;padding:1px 10px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink);font-family:ui-monospace,Menlo,Consolas,monospace}
+.act{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin:22px 0 34px}
+.btn{display:inline-block;padding:12px 24px;border-radius:12px;background:var(--accent);color:var(--on-accent);font-weight:700;text-decoration:none;border:1.5px solid var(--accent);transition:transform .2s,box-shadow .2s}
+.btn.alt{background:transparent;color:var(--ink);border-color:var(--line)}
+.btn:hover{transform:translateY(-2px);box-shadow:0 12px 26px -14px var(--accent)}
+.links{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;text-align:start}
+.lc{display:block;text-decoration:none;border:1px solid var(--line);background:var(--surface);border-radius:16px;padding:16px 18px;transition:transform .2s,border-color .2s}
+.lc:hover{transform:translateY(-3px);border-color:var(--accent)}
+.lc b{display:block;margin-bottom:2px}
+.lc span{display:block;color:var(--muted);font-size:14.5px;line-height:1.7}
+footer{width:min(1100px,92%);margin:0 auto;padding:18px 0 26px;border-top:1px solid var(--line);color:var(--muted);font-size:14px;text-align:center}
+@media (max-width:720px){.links{grid-template-columns:1fr}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<header class="top">
+  <a class="logo" href="/" aria-label="VYROXX IT">
+    <svg viewBox="135 96 130 204" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M200 135 L255 155 V215 C255 250 230 275 200 292 C170 275 145 250 145 215 V155 Z" fill="var(--surface)" stroke="var(--ink)" stroke-width="8" stroke-linejoin="round"/><path d="M172 182 L200 240 L228 182" fill="none" stroke="var(--accent)" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/><circle cx="200" cy="166" r="7" fill="var(--hot)"/><path d="M168 128 L178 104 L200 120 L222 104 L232 128 Z" fill="var(--accent)" stroke="var(--ink)" stroke-width="5" stroke-linejoin="round"/></svg>
+    <span>VYROXX <b>IT</b></span>
+  </a>
+  <div class="seg" id="seg" role="group" aria-label="Language">
+    <button type="button" data-l="ar">ع</button><button type="button" data-l="en">EN</button><button type="button" data-l="fr">FR</button><button type="button" data-l="es">ES</button>
+  </div>
+</header>
+
+<main>
+  <div class="code" aria-hidden="true">404</div>
+  <h1 id="h">Page not found</h1>
+  <p id="p">The page you’re looking for doesn’t exist, was moved, or the address was mistyped. Let’s get you back on track.</p>
+  <p class="path"><span id="pl">Requested address</span>: <code id="path"></code></p>
+  <div class="act">
+    <a class="btn" href="/" id="b1">Back to home</a>
+    <a class="btn alt" href="/#services" id="b2">Browse services</a>
+  </div>
+  <div class="links">
+    <a class="lc" href="/report.html"><b id="c1t">Report serious content</b><span id="c1d">Send a link and your details securely.</span></a>
+    <a class="lc" href="/#track"><b id="c2t">Track your request or report</b><span id="c2d">Enter your VX- or RP- number.</span></a>
+    <a class="lc" href="/#request"><b id="c3t">Send your problem</b><span id="c3d">Tell us what you need; we reply within 6 hours.</span></a>
+  </div>
+</main>
+
+<footer><span id="ft">VYROXX IT SERVICES · Your Technology, Our Responsibility</span></footer>
+
+<script>
+(function(){
+var T={
+ar:{title:"الصفحة غير موجودة",h:"الصفحة غير موجودة",p:"الصفحة التي تبحث عنها غير موجودة، أو نُقلت، أو أن العنوان به خطأ. دعنا نعدك إلى المسار الصحيح.",pl:"العنوان المطلوب",b1:"العودة إلى الرئيسية",b2:"تصفّح الخدمات",c1t:"الإبلاغ عن محتوى خطير",c1d:"أرسل الرابط وبياناتك بأمان.",c2t:"تتبّع طلبك أو بلاغك",c2d:"اكتب رقمك الذي يبدأ بـ VX- أو RP-.",c3t:"أرسل مشكلتك",c3d:"اشرح ما تحتاجه وسنرد خلال 6 ساعات.",ft:"VYROXX IT SERVICES · تقنيتك، مسؤوليتنا"},
+en:{title:"Page not found",h:"Page not found",p:"The page you’re looking for doesn’t exist, was moved, or the address was mistyped. Let’s get you back on track.",pl:"Requested address",b1:"Back to home",b2:"Browse services",c1t:"Report serious content",c1d:"Send a link and your details securely.",c2t:"Track your request or report",c2d:"Enter your VX- or RP- number.",c3t:"Send your problem",c3d:"Tell us what you need; we reply within 6 hours.",ft:"VYROXX IT SERVICES · Your Technology, Our Responsibility"},
+fr:{title:"Page introuvable",h:"Page introuvable",p:"La page que vous cherchez n’existe pas, a été déplacée ou l’adresse contient une faute de frappe. Revenons sur la bonne voie.",pl:"Adresse demandée",b1:"Retour à l’accueil",b2:"Parcourir les services",c1t:"Signaler un contenu grave",c1d:"Envoyez un lien et vos coordonnées en toute sécurité.",c2t:"Suivre votre demande ou signalement",c2d:"Saisissez votre numéro VX- ou RP-.",c3t:"Envoyer votre problème",c3d:"Dites-nous ce qu’il vous faut ; réponse sous 6 heures.",ft:"VYROXX IT SERVICES · Votre technologie, notre responsabilité"},
+es:{title:"Página no encontrada",h:"Página no encontrada",p:"La página que buscas no existe, se movió o la dirección tiene un error. Volvamos al buen camino.",pl:"Dirección solicitada",b1:"Volver al inicio",b2:"Ver servicios",c1t:"Denunciar contenido grave",c1d:"Envía un enlace y tus datos de forma segura.",c2t:"Sigue tu solicitud o denuncia",c2d:"Introduce tu número VX- o RP-.",c3t:"Envía tu problema",c3d:"Cuéntanos qué necesitas; respondemos en menos de 6 horas.",ft:"VYROXX IT SERVICES · Tu tecnología, nuestra responsabilidad"}
+};
+function get(k){try{return localStorage.getItem(k)}catch(e){return null}}
+function put(k,v){try{localStorage.setItem(k,v)}catch(e){}}
+var th=get("vx-theme");if(th&&/^(light|dark|legend|hacker)$/.test(th))document.documentElement.setAttribute("data-theme",th);
+var lang=get("vx-lang");
+if(!T[lang]){var n=String(navigator.language||"en").slice(0,2).toLowerCase();lang=T[n]?n:"en"}
+function $(i){return document.getElementById(i)}
+function set(l,save){
+  lang=l;var t=T[l],d=document.documentElement;
+  d.lang=l;d.dir=l==="ar"?"rtl":"ltr";document.title=t.title+" | VYROXX IT";
+  ["h","p","pl","b1","b2","c1t","c1d","c2t","c2d","c3t","c3d","ft"].forEach(function(k){$(k).textContent=t[k]});
+  [].forEach.call(document.querySelectorAll("#seg button"),function(b){b.setAttribute("aria-pressed",String(b.getAttribute("data-l")===l))});
+  if(save)put("vx-lang",l);
+}
+[].forEach.call(document.querySelectorAll("#seg button"),function(b){b.onclick=function(){set(b.getAttribute("data-l"),true)}});
+var path=location.pathname+location.search;
+$("path").textContent=path.length>80?path.slice(0,77)+"…":path;
+$("path").title=path;
+set(lang,false);
+})();
+</script>
+</body>
+</html>
