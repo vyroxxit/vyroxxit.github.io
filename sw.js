@@ -1,5 +1,5 @@
-const V = "vx-v6";
-const ASSETS = ["/", "/index.html", "/legal.html", "/legal.js", "/report.html", "/vx-doc.js", "/vx-rp-doc.js", "/manifest.json", "/favicon-192.png", "/favicon-512.png"];
+const V = "vx-v7";
+const ASSETS = ["/", "/index.html", "/legal.html", "/legal.js", "/report.html", "/vx-doc.js", "/vx-rp-doc.js", "/vx-site.js", "/manifest.json", "/favicon-192.png", "/favicon-512.png"];
 
 self.addEventListener("install", (e) => {
   e.waitUntil(
@@ -18,6 +18,7 @@ self.addEventListener("activate", (e) => {
 self.addEventListener("fetch", (e) => {
   const r = e.request;
   if (r.method !== "GET" || new URL(r.url).origin !== location.origin) return;
+  if (/vx-control/i.test(new URL(r.url).pathname)) return;
   if (/\.(apk|zip|msix|msixbundle|appxbundle)$/i.test(new URL(r.url).pathname)) return;
   if (r.mode === "navigate" || /\.(js|json)$/i.test(new URL(r.url).pathname)) {
     e.respondWith(
