@@ -30,7 +30,7 @@ th:"Consejos rápidos de seguridad",ts:"Pasos simples que evitan la mayoría de 
 tl:[["🔑","Una contraseña por cuenta","Usa contraseñas largas y únicas con un gestor de confianza."],["🛡️","Activa la verificación en dos pasos","Te protege aunque se filtre la contraseña."],["🎣","Cuidado con el phishing","No pulses enlaces desconocidos; verifica al remitente."],["🔄","Mantén todo actualizado","Instala las actualizaciones del sistema, móvil y navegador al salir."],["💾","Copias de seguridad","Guarda una copia fuera del dispositivo antes de cualquier reparación."],["🚫","Evita software pirata","Descarga solo de fuentes oficiales; los cracks suelen traer malware."]],
 fl:["Privacidad y condiciones","Ajustes de consentimiento"]}
 };
-function L(){var l=R.lang;if(!S[l]){try{l=localStorage.getItem("vx-lang")}catch(e){}}if(!S[l])l=(navigator.language||"en").slice(0,2);return S[l]?l:"en"}
+function L(){var l=R.lang;if(!S[l]){try{l=localStorage.getItem("vx-lang")}catch(e){}}if(!S[l])l="en";return l}
 function getC(){var c=null;try{c=JSON.parse(localStorage.getItem(K))}catch(e){}c=c||mem;return c&&c.v===V?c:null}
 function saveC(c){mem=c;try{localStorage.setItem(K,JSON.stringify(c))}catch(e){}}
 function ga(){if(window.__vxA)return;window.__vxA=1;

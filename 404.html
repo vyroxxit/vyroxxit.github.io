@@ -64,7 +64,7 @@ footer{width:min(1100px,92%);margin:0 auto;padding:18px 0 26px;border-top:1px so
     <span>VYROXX <b>IT</b></span>
   </a>
   <div class="seg" id="seg" role="group" aria-label="Language">
-    <button type="button" data-l="ar">ع</button><button type="button" data-l="en">EN</button><button type="button" data-l="fr">FR</button><button type="button" data-l="es">ES</button>
+    <button type="button" data-l="en">EN</button><button type="button" data-l="ar">ع</button><button type="button" data-l="fr">FR</button><button type="button" data-l="es">ES</button>
   </div>
 </header>
 
@@ -98,7 +98,7 @@ function get(k){try{return localStorage.getItem(k)}catch(e){return null}}
 function put(k,v){try{localStorage.setItem(k,v)}catch(e){}}
 var th=get("vx-theme");if(th&&/^(light|dark|legend|hacker)$/.test(th))document.documentElement.setAttribute("data-theme",th);
 var lang=get("vx-lang");
-if(!T[lang]){var n=String(navigator.language||"en").slice(0,2).toLowerCase();lang=T[n]?n:"en"}
+if(!T[lang])lang="en"
 function $(i){return document.getElementById(i)}
 function set(l,save){
   lang=l;var t=T[l],d=document.documentElement;

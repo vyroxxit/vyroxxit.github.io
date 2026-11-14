@@ -449,7 +449,7 @@ html[dir="rtl"] .rp-eyebrow{letter-spacing:0}
 <div class="wrap">
   <header>
     <a class="logo" href="index.html">VYROXX <b>IT</b></a>
-    <div class="tools"><a class="acc" href="index.html" data-i="back">Home</a><div class="seg" role="group" aria-label="Language"><button type="button" data-lang="ar">ع</button><button type="button" data-lang="en">EN</button><button type="button" data-lang="fr">FR</button><button type="button" data-lang="es">ES</button></div><button class="theme" id="theme" type="button" aria-label="Theme"></button></div>
+    <div class="tools"><a class="acc" href="index.html" data-i="back">Home</a><div class="seg" role="group" aria-label="Language"><button type="button" data-lang="en">EN</button><button type="button" data-lang="ar">ع</button><button type="button" data-lang="fr">FR</button><button type="button" data-lang="es">ES</button></div><button class="theme" id="theme" type="button" aria-label="Theme"></button></div>
   </header>
 
   <main id="top">
@@ -613,7 +613,7 @@ function setLang(l){
 }
 document.querySelectorAll("[data-lang]").forEach(function(b){b.onclick=function(){setLang(b.getAttribute("data-lang"))}});
 var nav=(navigator.language||"en").slice(0,2),sl=load("vx-lang");
-setLang(T[sl]?sl:(T[nav]?nav:"en"));
+setLang(T[sl]?sl:"en");
 
 function normLinks(raw){
   var out=[],seen={};
