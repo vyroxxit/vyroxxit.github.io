@@ -10,16 +10,20 @@
 <link rel="icon" href="/favicon.png" type="image/png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;700&display=swap" rel="stylesheet">
-<script>try{var th=localStorage.getItem("vx-theme");if(th&&/^(light|dark|legend|hacker)$/.test(th))document.documentElement.setAttribute("data-theme",th)}catch(e){}</script>
+<script>try{var th=localStorage.getItem("vx-theme");if(th&&/^(light|dark|legend|hacker)$/.test(th))document.documentElement.setAttribute("data-theme",th);var lg=localStorage.getItem("vx-lang");if(lg&&/^(ar|en|fr|es)$/.test(lg)){document.documentElement.lang=lg;document.documentElement.dir=lg==="ar"?"rtl":"ltr"}}catch(e){}</script>
 <style>
 :root{--bg:#F1F4F3;--surface:#FFFFFF;--ink:#12263A;--muted:#52667A;--line:#D3DDDD;--accent:#0F8B8D;--on-accent:#FFFFFF;--hot:#D9482B;--ok:#1E9E6A;--warn:#B07400}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0C1519;--surface:#142228;--ink:#E6EFEF;--muted:#9BB1B5;--line:#24383E;--accent:#3CC4C4;--on-accent:#0C1519;--hot:#FF7A59;--ok:#3DDC84;--warn:#F5B83D;color-scheme:dark}}
+:root[data-theme="light"]{color-scheme:light}
 :root[data-theme="dark"]{--bg:#0C1519;--surface:#142228;--ink:#E6EFEF;--muted:#9BB1B5;--line:#24383E;--accent:#3CC4C4;--on-accent:#0C1519;--hot:#FF7A59;--ok:#3DDC84;--warn:#F5B83D;color-scheme:dark}
 :root[data-theme="legend"]{--bg:#0B0716;--surface:#150E26;--ink:#F3E9D2;--muted:#BBAAD8;--line:#3A2A5E;--accent:#F5B83D;--on-accent:#1A1024;--hot:#FF6B94;--ok:#6FE3A5;--warn:#F5B83D;color-scheme:dark}
 :root[data-theme="hacker"]{--bg:#000;--surface:#04100A;--ink:#B8FFC8;--muted:#4FC26E;--line:#0F5A24;--accent:#00FF41;--on-accent:#00170A;--hot:#FF2E63;--ok:#00FF41;--warn:#FFD400;color-scheme:dark}
-:root[data-theme="legend"] body{background-image:radial-gradient(1100px 560px at 88% -8%,rgba(245,184,61,.15),transparent 60%),radial-gradient(900px 600px at 0% 25%,rgba(124,77,255,.24),transparent 60%)}
-:root[data-theme="hacker"] body{background-image:repeating-linear-gradient(0deg,rgba(0,255,65,.05) 0 1px,transparent 1px 3px),radial-gradient(900px 500px at 50% -10%,rgba(0,255,65,.12),transparent 65%)}
-:root[data-theme="hacker"] .card,:root[data-theme="hacker"] .btn,:root[data-theme="hacker"] .hold,:root[data-theme="hacker"] textarea,:root[data-theme="hacker"] input[type=text]{border-radius:4px}
+:root[data-theme="legend"] body{background-image:radial-gradient(1100px 560px at 88% -8%,rgba(245,184,61,.15),transparent 60%),radial-gradient(900px 600px at 0% 25%,rgba(124,77,255,.24),transparent 60%);background-attachment:fixed}
+:root[data-theme="legend"] .card,:root[data-theme="legend"] .plate{border-color:rgba(245,184,61,.38);box-shadow:0 0 22px rgba(124,77,255,.14)}
+:root[data-theme="hacker"] body{background-image:repeating-linear-gradient(0deg,rgba(0,255,65,.05) 0 1px,transparent 1px 3px),radial-gradient(900px 500px at 50% -10%,rgba(0,255,65,.12),transparent 65%);background-attachment:fixed}
+:root[data-theme="hacker"] .card,:root[data-theme="hacker"] .plate{border-color:rgba(0,255,65,.45);box-shadow:0 0 14px rgba(0,255,65,.14)}
+:root[data-theme="hacker"] .card,:root[data-theme="hacker"] .plate,:root[data-theme="hacker"] .btn,:root[data-theme="hacker"] .hold,:root[data-theme="hacker"] textarea,:root[data-theme="hacker"] input[type=text],:root[data-theme="hacker"] select,:root[data-theme="hacker"] .seg{border-radius:4px}
+:root[data-theme="hacker"] .btn.alt{border-color:var(--accent);color:var(--accent)}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{margin:0;min-height:100vh;background:var(--bg);color:var(--ink);font-family:"IBM Plex Sans Arabic","Segoe UI",Tahoma,Arial,sans-serif;line-height:1.8;font-size:17px;padding:env(safe-area-inset-top,0) env(safe-area-inset-right,0) env(safe-area-inset-bottom,0) env(safe-area-inset-left,0);background-image:radial-gradient(900px 480px at 85% -10%,color-mix(in srgb,var(--accent) 14%,transparent),transparent 62%);background-repeat:no-repeat}
@@ -32,8 +36,15 @@ body{margin:0;min-height:100vh;background:var(--bg);color:var(--ink);font-family
 .brand{display:flex;align-items:center;gap:12px;font-weight:700}
 .brand svg{width:34px;height:44px}
 .brand small{display:block;color:var(--muted);font-weight:400;font-size:14px;direction:ltr;text-align:start;letter-spacing:.08em}
-.who{display:flex;align-items:center;gap:10px;color:var(--muted);font-size:14px}
-.who bdi{direction:ltr}
+.tb{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.seg{display:flex;border:1.5px solid var(--line);border-radius:10px;overflow:hidden;height:40px}
+.seg button{font:inherit;font-size:14px;border:0;background:transparent;color:var(--muted);padding:0 12px;cursor:pointer;white-space:nowrap}
+.seg button[aria-pressed="true"]{background:var(--accent);color:var(--on-accent);font-weight:700}
+.theme{height:40px;min-width:44px;padding:0 12px;font-size:19px;line-height:1;border:1.5px solid var(--line);border-radius:10px;background:transparent;color:var(--ink);cursor:pointer}
+.theme:hover{border-color:var(--accent)}
+:root[data-theme="hacker"] .theme{border-radius:4px}
+.who{display:flex;align-items:center;gap:8px;color:var(--muted);font-size:14px}
+.who bdi{direction:ltr;max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .btn{font:inherit;font-weight:700;font-size:16px;border-radius:12px;padding:11px 22px;border:1.5px solid var(--accent);background:var(--accent);color:var(--on-accent);cursor:pointer;transition:transform .15s;text-decoration:none;display:inline-block}
 .btn:hover{transform:translateY(-1px)}
 .btn:disabled{opacity:.55;cursor:not-allowed;transform:none}
@@ -46,9 +57,10 @@ body{margin:0;min-height:100vh;background:var(--bg);color:var(--ink);font-family
 .card p.sub{margin:0 0 14px;color:var(--muted);font-size:15px}
 .note{color:var(--muted);font-size:14px}
 
-/* ---------- status plate: the one bold element ---------- */
+/* status plate */
 .plate{position:relative;overflow:hidden;border-radius:22px;border:1.5px solid var(--line);background:var(--surface);padding:clamp(20px,3.5vw,32px);transition:border-color .4s,background .4s}
 .plate::before{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(560px 240px at 100% 0%,color-mix(in srgb,var(--st) 22%,transparent),transparent 70%)}
+[dir="ltr"] .plate::before{background:radial-gradient(560px 240px at 0% 0%,color-mix(in srgb,var(--st) 22%,transparent),transparent 70%)}
 .plate>*{position:relative}
 .plate[data-on="1"]{--st:var(--ok);border-color:color-mix(in srgb,var(--ok) 50%,var(--line))}
 .plate[data-on="0"]{--st:var(--hot);border-color:var(--hot);background:color-mix(in srgb,var(--hot) 7%,var(--surface))}
@@ -57,11 +69,12 @@ body{margin:0;min-height:100vh;background:var(--bg);color:var(--ink);font-family
 .dot{flex:none;width:20px;height:20px;border-radius:50%;background:var(--st);box-shadow:0 0 0 6px color-mix(in srgb,var(--st) 25%,transparent)}
 .plate[data-on="1"] .dot{animation:ping 2.4s infinite}
 @keyframes ping{70%{box-shadow:0 0 0 14px transparent}100%{box-shadow:0 0 0 0 transparent}}
-.stt{font-size:clamp(30px,6vw,46px);font-weight:700;line-height:1.15}
+.stt{font-size:clamp(28px,5.5vw,44px);font-weight:700;line-height:1.15}
 .meta{color:var(--muted);font-size:14.5px;margin-top:8px}
 .meta bdi{direction:ltr;unicode-bidi:isolate}
 .hold{position:relative;overflow:hidden;width:100%;min-height:68px;border-radius:16px;border:2px solid var(--st);background:transparent;color:var(--ink);font:inherit;font-size:18px;font-weight:700;cursor:pointer;touch-action:none;user-select:none;-webkit-user-select:none}
 .hold i{position:absolute;inset:0;background:var(--st);transform:scaleX(0);transform-origin:right center}
+[dir="ltr"] .hold i{transform-origin:left center}
 .hold span{position:relative}
 .hold.go i{transform:scaleX(1);transition:transform 1.1s linear}
 .hold.go{color:#fff}
@@ -87,21 +100,49 @@ body{margin:0;min-height:100vh;background:var(--bg);color:var(--ink);font-family
 .sw input:checked+i{background:var(--hot)}
 .sw.good input:checked+i{background:var(--ok)}
 .sw input:checked+i::after{transform:translateX(-24px)}
+[dir="ltr"] .sw input:checked+i::after{transform:translateX(24px)}
 .sw input:focus-visible+i{outline:3px solid var(--accent);outline-offset:3px}
 
 /* forms */
-label.f{display:block;font-weight:600;margin:12px 0 4px;font-size:15px}
+label.f{display:block;font-weight:600;margin:14px 0 6px;font-size:15px}
 textarea,input[type=text]{width:100%;font:inherit;font-size:16px;color:var(--ink);background:color-mix(in srgb,var(--bg) 70%,var(--surface));border:1px solid var(--line);border-radius:12px;padding:10px 14px}
 textarea{min-height:92px;resize:vertical}
-textarea:focus,input[type=text]:focus{outline:0;border-color:var(--accent);box-shadow:0 0 0 4px color-mix(in srgb,var(--accent) 18%,transparent)}
+textarea:focus,input[type=text]:focus,select:focus{outline:0;border-color:var(--accent);box-shadow:0 0 0 4px color-mix(in srgb,var(--accent) 18%,transparent)}
 .langs{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .lh{display:flex;justify-content:space-between;align-items:baseline;gap:8px}
 .tag{font-size:12.5px;font-weight:700;color:var(--accent);direction:ltr}
 .cnt{font-size:12px;color:var(--muted);direction:ltr}
 .tools{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-top:14px}
-.tools .note{margin-inline-end:2px}
-select{font:inherit;font-size:14px;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:5px 10px}
+select{font:inherit;font-size:15px;color:var(--ink);background:color-mix(in srgb,var(--bg) 70%,var(--surface));border:1px solid var(--line);border-radius:10px;padding:8px 10px;max-width:100%}
 
+/* date-time picker */
+.dt{display:grid;grid-template-columns:1.1fr 1.6fr .9fr .9fr .9fr;gap:8px}
+.dt label{display:block;font-size:12.5px;color:var(--muted);margin:0 0 3px;font-weight:500}
+.dt select{width:100%}
+.dtinfo{margin:10px 0 0;font-size:14.5px;min-height:1.7em}
+.dtinfo b{direction:ltr;unicode-bidi:isolate}
+.dtinfo.warn{color:var(--warn)}
+
+.pre{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.pc{display:block;text-align:start;font:inherit;border:1.5px solid var(--line);border-radius:14px;background:color-mix(in srgb,var(--bg) 70%,var(--surface));color:var(--ink);padding:10px 14px;cursor:pointer;transition:border-color .15s,transform .15s}
+.pc:hover{border-color:var(--accent);transform:translateY(-1px)}
+.pc b{display:block;font-size:15px}
+.pc span{display:block;color:var(--muted);font-size:13.5px;line-height:1.6;margin-top:2px}
+.pc[aria-pressed="true"]{border-color:var(--accent);background:color-mix(in srgb,var(--accent) 12%,var(--surface));box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 22%,transparent)}
+.pc[aria-pressed="true"] b::before{content:"✓ ";color:var(--accent)}
+details.man{margin-top:14px;border:1px dashed var(--line);border-radius:14px;padding:8px 14px}
+details.man summary{cursor:pointer;font-weight:600;font-size:15px;padding:4px 0}
+details.man[open]{padding-bottom:14px}
+
+.lock{opacity:.45;pointer-events:none;filter:grayscale(.6)}
+.perms{display:grid;grid-template-columns:1fr 1fr;gap:6px 16px;margin:10px 0}
+label.chk{display:flex;gap:8px;align-items:flex-start;font-weight:400;font-size:14px;margin:0;line-height:1.5}
+label.chk input{margin-top:5px}
+.mem{border:1px solid var(--line);border-radius:14px;padding:12px 14px;margin:10px 0}
+.mem>b{display:block;direction:ltr;text-align:start;margin-bottom:4px}
+.cu{display:flex;justify-content:space-between;align-items:center;gap:10px;border-top:1px solid var(--line);padding:10px 0;font-size:14.5px}
+.cu small{color:var(--muted);display:block;direction:ltr;text-align:start}
+.btn.red{background:var(--hot);border-color:var(--hot);color:#fff}
 /* stats */
 .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:12px}
 .stat{border:1px solid var(--line);border-radius:14px;padding:14px;text-align:center}
@@ -120,79 +161,82 @@ select{font:inherit;font-size:14px;color:var(--ink);background:var(--bg);border:
 .lg.pause{border-color:var(--hot);color:var(--hot)}
 .lg.resume{border-color:var(--ok);color:var(--ok)}
 
-/* save bar */
+/* bottom bars */
 .bar{position:fixed;inset-inline:0;bottom:0;z-index:30;background:color-mix(in srgb,var(--surface) 94%,transparent);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-top:1px solid var(--line);padding:12px 3% calc(12px + env(safe-area-inset-bottom,0px))}
 .bar .in{width:min(1020px,100%);margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
-#msg{font-weight:600;min-height:1.6em;display:flex;align-items:center;gap:8px}
-#msg.err{color:var(--hot)}#msg.ok{color:var(--ok)}
-#msg.dirty::before{content:"";width:10px;height:10px;border-radius:50%;background:var(--warn)}
 .bar.deny{border-top:2px solid var(--hot);background:color-mix(in srgb,var(--hot) 10%,var(--surface))}
 .bar.deny span{color:var(--ink);font-size:15px}
 .bar.deny b{color:var(--hot)}
-.center{min-height:70vh;display:grid;place-items:center}
+#msg{font-weight:600;min-height:1.6em;display:flex;align-items:center;gap:8px}
+#msg.err{color:var(--hot)}#msg.ok{color:var(--ok)}
+#msg.dirty::before{content:"";width:10px;height:10px;border-radius:50%;background:var(--warn)}
+.center{min-height:60vh;display:grid;place-items:center}
 .box{max-width:480px;text-align:center}
 
-@media (max-width:760px){.plate-main{grid-template-columns:1fr}.langs{grid-template-columns:1fr}.stats{grid-template-columns:1fr 1fr}}
+@media (max-width:760px){.perms{grid-template-columns:1fr}.pre{grid-template-columns:1fr}.plate-main{grid-template-columns:1fr}.langs{grid-template-columns:1fr}.stats{grid-template-columns:1fr 1fr}.dt{grid-template-columns:1fr 1fr 1fr}}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
 </head>
 <body>
 <div class="wrap">
-  <div id="loading" class="center"><p class="note">جارٍ التحميل…</p></div>
+  <div class="top">
+    <div class="brand">
+      <svg viewBox="135 96 130 204" aria-hidden="true"><path d="M200 135 L255 155 V215 C255 250 230 275 200 292 C170 275 145 250 145 215 V155 Z" fill="var(--surface)" stroke="var(--ink)" stroke-width="7" stroke-linejoin="round"/><path d="M172 182 L200 240 L228 182" fill="none" stroke="var(--accent)" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/><circle cx="200" cy="166" r="7" fill="var(--hot)"/><path d="M168 128 L178 104 L200 120 L222 104 L232 128 Z" fill="var(--accent)" stroke="var(--ink)" stroke-width="5" stroke-linejoin="round"/></svg>
+      <div><span data-i="brand">مركز التحكم</span><small>VYROXX IT SERVICES</small></div>
+    </div>
+    <div class="tb">
+      <div class="seg" id="langSeg" role="group" data-al="lang_aria"><button type="button" data-l="ar">ع</button><button type="button" data-l="en">EN</button><button type="button" data-l="fr">FR</button><button type="button" data-l="es">ES</button></div>
+      <button class="theme" id="theme" type="button"></button>
+      <div class="who" id="whoBox" hidden><bdi id="email"></bdi><button class="btn alt sm" id="out2" type="button" data-i="so2"></button></div>
+    </div>
+  </div>
+
+  <div id="loading" class="center"><p class="note" data-i="loading">جارٍ التحميل…</p></div>
 
   <section id="login" class="center" hidden>
     <div class="box">
-      <svg viewBox="135 96 130 204" width="58" height="74" aria-hidden="true"><path d="M200 135 L255 155 V215 C255 250 230 275 200 292 C170 275 145 250 145 215 V155 Z" fill="var(--surface)" stroke="var(--ink)" stroke-width="7" stroke-linejoin="round"/><path d="M172 182 L200 240 L228 182" fill="none" stroke="var(--accent)" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/><circle cx="200" cy="166" r="7" fill="var(--hot)"/><path d="M168 128 L178 104 L200 120 L222 104 L232 128 Z" fill="var(--accent)" stroke="var(--ink)" stroke-width="5" stroke-linejoin="round"/></svg>
-      <h1 style="margin:14px 0 6px">مركز التحكم</h1>
-      <p class="note">هذه الصفحة خاصة بالمدير الرئيسي فقط. سجّل الدخول بحساب Google المعتمد.</p>
-      <button class="btn" id="gbtn" type="button">تسجيل الدخول بحساب Google</button>
+      <h1 style="margin:0 0 6px" data-i="brand"></h1>
+      <p class="note" data-i="lg_p"></p>
+      <button class="btn" id="gbtn" type="button" data-i="lg_b"></button>
       <p id="lerr" class="note" style="color:var(--hot);min-height:1.6em" role="alert"></p>
     </div>
   </section>
 
   <main id="panel" hidden>
-    <div class="top">
-      <div class="brand">
-        <svg viewBox="135 96 130 204" aria-hidden="true"><path d="M200 135 L255 155 V215 C255 250 230 275 200 292 C170 275 145 250 145 215 V155 Z" fill="var(--surface)" stroke="var(--ink)" stroke-width="7" stroke-linejoin="round"/><path d="M172 182 L200 240 L228 182" fill="none" stroke="var(--accent)" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/><circle cx="200" cy="166" r="7" fill="var(--hot)"/><path d="M168 128 L178 104 L200 120 L222 104 L232 128 Z" fill="var(--accent)" stroke="var(--ink)" stroke-width="5" stroke-linejoin="round"/></svg>
-        <div>مركز التحكم<small>VYROXX IT SERVICES</small></div>
-      </div>
-      <div class="who"><bdi id="email"></bdi><button class="btn alt sm" id="out2" type="button">خروج</button></div>
-    </div>
-
     <section class="plate" id="plate" data-on="1" aria-labelledby="stt">
       <div class="plate-main">
         <div>
           <div class="state"><span class="dot" aria-hidden="true"></span><div class="stt" id="stt" aria-live="polite">…</div></div>
           <div class="meta" id="meta"></div>
         </div>
-        <div>
+        <div data-g="sw">
           <button class="hold" id="hold" type="button" disabled><i></i><span id="holdTxt">…</span></button>
-          <p class="hint" id="holdHint">اضغط مطوّلًا للتأكيد</p>
+          <p class="hint" id="holdHint"></p>
         </div>
       </div>
-      <div class="chips" id="chips" aria-label="حالة أجزاء الموقع"></div>
+      <div class="chips" id="chips" data-al="chips_aria"></div>
     </section>
 
-    <section class="card" aria-labelledby="h-fs">
-      <h2 id="h-fs">عند إيقاف الموقع كليًا</h2>
-      <p class="sub">يرى الزوار شاشة «الموقع متوقف مؤقتًا»، ويُمنع على الخادم أي إرسال جديد حتى لو تجاوزوا الواجهة. أنت ترى الموقع كالمعتاد في هذا المتصفح مع شريط أحمر ينبّهك.</p>
-      <div class="row first"><div><b>إبقاء صفحة الإبلاغ عن المحتوى الخطير مفتوحة</b><span class="d">يستمر استقبال البلاغات أثناء الإيقاف الكلي، إلا إن أوقفتها من الخيار الذي بعده.</span></div><label class="sw good"><input type="checkbox" id="keep" aria-label="إبقاء البلاغات مفتوحة"><i></i></label></div>
+    <section class="card" data-g="sw" aria-labelledby="h-fs">
+      <h2 id="h-fs" data-i="fs_h"></h2>
+      <p class="sub" data-i="fs_s"></p>
+      <div class="row first"><div><b data-i="kp_b"></b><span class="d" data-i="kp_d"></span></div><label class="sw good"><input type="checkbox" id="keep" data-al="kp_b"><i></i></label></div>
     </section>
 
-    <section class="card" aria-labelledby="h-pz">
-      <h2 id="h-pz">إيقاف أجزاء محددة فقط</h2>
-      <p class="sub">يبقى الموقع ظاهرًا، ويُمنع الإرسال في الجزء الذي توقفه.</p>
-      <div class="row first"><div><b>طلبات الخدمة</b><span class="d">يمنع زر «حفظ الطلب» وإنشاء طلبات جديدة. واتساب والبريد يبقيان.</span></div><label class="sw"><input type="checkbox" id="pr" aria-label="إيقاف طلبات الخدمة"><i></i></label></div>
-      <div class="row"><div><b>بلاغات المحتوى الخطير</b><span class="d">يمنع إرسال بلاغات جديدة من صفحة الإبلاغ.</span></div><label class="sw"><input type="checkbox" id="pp" aria-label="إيقاف البلاغات"><i></i></label></div>
-      <div class="row"><div><b>آراء العملاء</b><span class="d">يمنع كتابة آراء جديدة.</span></div><label class="sw"><input type="checkbox" id="pv" aria-label="إيقاف الآراء"><i></i></label></div>
+    <section class="card" data-g="sw" aria-labelledby="h-pz">
+      <h2 id="h-pz" data-i="pz_h"></h2>
+      <p class="sub" data-i="pz_s"></p>
+      <div class="row first"><div><b data-i="pr_b"></b><span class="d" data-i="pr_d"></span></div><label class="sw"><input type="checkbox" id="pr" data-al="pr_b"><i></i></label></div>
+      <div class="row"><div><b data-i="pp_b"></b><span class="d" data-i="pp_d"></span></div><label class="sw"><input type="checkbox" id="pp" data-al="pp_b"><i></i></label></div>
+      <div class="row"><div><b data-i="pv_b"></b><span class="d" data-i="pv_d"></span></div><label class="sw"><input type="checkbox" id="pv" data-al="pv_b"><i></i></label></div>
     </section>
 
-    <section class="card" aria-labelledby="h-ms">
-      <h2 id="h-ms">رسالة شاشة الإيقاف</h2>
-      <p class="sub">اتركها فارغة لتظهر الرسالة الافتراضية المهذبة. تظهر كلٌّ باللغة التي يتصفح بها الزائر.</p>
+    <section class="card" data-g="ct" aria-labelledby="h-ms">
+      <h2 id="h-ms" data-i="ms_h"></h2>
+      <p class="sub" data-i="ms_s"></p>
       <div class="tools" style="margin:0 0 12px">
-        <span class="note">قالب جاهز:</span>
-        <select id="tpl" aria-label="قالب جاهز"><option value="">اختر…</option><option value="maint">صيانة مجدولة</option><option value="tech">عطل تقني</option><option value="away">إجازة قصيرة</option></select>
+        <span class="note" data-i="tp_l"></span>
+        <select id="tpl" data-al="tp_l"><option value="" data-i="tp_c"></option><option value="maint" data-i="tp_m"></option><option value="tech" data-i="tp_t"></option><option value="away" data-i="tp_a"></option></select>
       </div>
       <div class="langs">
         <div><div class="lh"><span class="tag">العربية</span><span class="cnt" data-c="mAr"></span></div><textarea id="mAr" maxlength="600" dir="rtl"></textarea></div>
@@ -200,138 +244,384 @@ select{font:inherit;font-size:14px;color:var(--ink);background:var(--bg);border:
         <div><div class="lh"><span class="tag">Français</span><span class="cnt" data-c="mFr"></span></div><textarea id="mFr" maxlength="600" dir="ltr"></textarea></div>
         <div><div class="lh"><span class="tag">Español</span><span class="cnt" data-c="mEs"></span></div><textarea id="mEs" maxlength="600" dir="ltr"></textarea></div>
       </div>
-      <label class="f" for="until">موعد العودة المتوقع (اختياري)</label>
-      <input type="text" id="until" maxlength="80" placeholder="مثال: اليوم 18:00 / Today 6 PM">
-      <div class="tools"><span class="note">معاينة بلغة:</span>
+
+      <label class="f" data-i="un_l"></label>
+      <div class="dt" role="group" data-al="un_l">
+        <div><label for="uY" data-i="un_y"></label><select id="uY"></select></div>
+        <div><label for="uM" data-i="un_m"></label><select id="uM"></select></div>
+        <div><label for="uD" data-i="un_d"></label><select id="uD"></select></div>
+        <div><label for="uH" data-i="un_h"></label><select id="uH"></select></div>
+        <div><label for="uN" data-i="un_n"></label><select id="uN"></select></div>
+      </div>
+      <div class="tools">
+        <button class="btn alt sm" type="button" data-q="1h" data-i="un_q1"></button>
+        <button class="btn alt sm" type="button" data-q="3h" data-i="un_q3"></button>
+        <button class="btn alt sm" type="button" data-q="tm" data-i="un_qt"></button>
+        <button class="btn alt sm" type="button" data-q="x" data-i="un_x"></button>
+      </div>
+      <p class="dtinfo" id="dtInfo" aria-live="polite"></p>
+
+      <div class="tools"><span class="note" data-i="pv_l"></span>
         <button class="btn alt sm" type="button" data-pv="ar">العربية</button><button class="btn alt sm" type="button" data-pv="en">EN</button><button class="btn alt sm" type="button" data-pv="fr">FR</button><button class="btn alt sm" type="button" data-pv="es">ES</button></div>
     </section>
 
-    <section class="card" aria-labelledby="h-bn">
-      <h2 id="h-bn">شريط إعلان أعلى الموقع</h2>
-      <p class="sub">لتنبيه الزوار بأمر مهم دون إيقاف الموقع (مثل عطلة أو عرض أو صيانة قريبة).</p>
-      <div class="row first"><div><b>إظهار الشريط</b></div><label class="sw good"><input type="checkbox" id="bOn" aria-label="إظهار الشريط"><i></i></label></div>
-      <div class="langs">
-        <div><div class="lh"><span class="tag">العربية</span><span class="cnt" data-c="bAr"></span></div><input type="text" id="bAr" maxlength="300" dir="rtl"></div>
-        <div><div class="lh"><span class="tag">English</span><span class="cnt" data-c="bEn"></span></div><input type="text" id="bEn" maxlength="300" dir="ltr"></div>
-        <div><div class="lh"><span class="tag">Français</span><span class="cnt" data-c="bFr"></span></div><input type="text" id="bFr" maxlength="300" dir="ltr"></div>
-        <div><div class="lh"><span class="tag">Español</span><span class="cnt" data-c="bEs"></span></div><input type="text" id="bEs" maxlength="300" dir="ltr"></div>
-      </div>
-      <div class="tools"><span class="note">معاينة بلغة:</span>
+    <section class="card" data-g="ct" aria-labelledby="h-bn">
+      <h2 id="h-bn" data-i="bn_h"></h2>
+      <p class="sub" data-i="bn_s"></p>
+      <div class="row first"><div><b data-i="bn_o"></b></div><label class="sw good"><input type="checkbox" id="bOn" data-al="bn_o"><i></i></label></div>
+      <label class="f" data-i="bn_pre"></label>
+      <div class="pre" id="bnPre" role="group" data-al="bn_pre"></div>
+      <details class="man" id="bnMan">
+        <summary data-i="bn_cus"></summary>
+        <p class="note" style="margin:8px 0 10px" data-i="bn_cush"></p>
+        <div class="langs">
+          <div><div class="lh"><span class="tag">العربية</span><span class="cnt" data-c="bAr"></span></div><input type="text" id="bAr" maxlength="300" dir="rtl"></div>
+          <div><div class="lh"><span class="tag">English</span><span class="cnt" data-c="bEn"></span></div><input type="text" id="bEn" maxlength="300" dir="ltr"></div>
+          <div><div class="lh"><span class="tag">Français</span><span class="cnt" data-c="bFr"></span></div><input type="text" id="bFr" maxlength="300" dir="ltr"></div>
+          <div><div class="lh"><span class="tag">Español</span><span class="cnt" data-c="bEs"></span></div><input type="text" id="bEs" maxlength="300" dir="ltr"></div>
+        </div>
+      </details>
+      <div class="tools"><span class="note" data-i="pv_l"></span>
         <button class="btn alt sm" type="button" data-bv="ar">العربية</button><button class="btn alt sm" type="button" data-bv="en">EN</button><button class="btn alt sm" type="button" data-bv="fr">FR</button><button class="btn alt sm" type="button" data-bv="es">ES</button></div>
     </section>
 
+    <section class="card" data-g="sw" aria-labelledby="h-sc">
+      <h2 id="h-sc" data-i="sc_h"></h2>
+      <p class="sub" data-i="sc_s"></p>
+      <label class="f" data-i="sc_a"></label><div class="dt" id="schA"></div>
+      <label class="f" data-i="sc_b"></label><div class="dt" id="schB"></div>
+      <div class="tools"><button class="btn alt sm" id="schX" type="button" data-i="un_x"></button></div>
+      <p class="dtinfo" id="schInfo" aria-live="polite"></p>
+    </section>
+
+    <section class="card" data-g="usr" aria-labelledby="h-cu">
+      <h2 id="h-cu" data-i="cu_h"></h2>
+      <p class="sub" data-i="cu_s"></p>
+      <div class="tools" style="margin:0"><input type="text" id="cuQ" dir="ltr" placeholder="name@gmail.com" style="flex:1;min-width:180px"><button class="btn sm" id="cuGo" type="button" data-i="cu_go"></button><button class="btn alt sm" id="cuBan" type="button" data-i="cu_banned"></button></div>
+      <div id="cuRes"></div>
+    </section>
+
+    <section class="card" data-g="own" aria-labelledby="h-st">
+      <h2 id="h-st" data-i="st_h"></h2>
+      <p class="sub" data-i="st_s"></p>
+      <div id="stList"></div>
+      <label class="f" data-i="st_add"></label>
+      <input type="text" id="stEmail" dir="ltr" placeholder="name@gmail.com">
+      <div class="perms" id="stNew"></div>
+      <div class="tools"><button class="btn sm" id="stAddBtn" type="button" data-i="st_btn"></button><span id="stMsg" class="note" role="status"></span></div>
+    </section>
+
     <section class="card" aria-labelledby="h-qs">
-      <div style="display:flex;justify-content:space-between;align-items:center;gap:10px"><h2 id="h-qs">نظرة سريعة</h2><button class="btn alt sm" id="ref" type="button">تحديث</button></div>
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:10px"><h2 id="h-qs" data-i="qs_h"></h2><button class="btn alt sm" id="ref" type="button" data-i="rf"></button></div>
       <div class="stats">
-        <div class="stat" id="sReq"><b>—</b><span>طلبات قيد المعالجة</span></div>
-        <div class="stat" id="sRep"><b>—</b><span>بلاغات جديدة</span></div>
-        <div class="stat" id="sRev"><b>—</b><span>آراء بانتظار المراجعة</span></div>
-        <div class="stat" id="sUsr"><b>—</b><span>عملاء مسجّلون</span></div>
+        <div class="stat" id="sReq"><b>—</b><span data-i="s_req"></span></div>
+        <div class="stat" id="sRep"><b>—</b><span data-i="s_rep"></span></div>
+        <div class="stat" id="sRev"><b>—</b><span data-i="s_rev"></span></div>
+        <div class="stat" id="sUsr"><b>—</b><span data-i="s_usr"></span></div>
       </div>
       <div class="links">
-        <a class="btn" href="account.html">الإدارة المعتادة: الطلبات والعملاء والبلاغات والآراء والموظفون</a>
-        <a class="btn alt" href="/" target="_blank" rel="noopener">فتح الموقع</a>
-        <a class="btn alt" href="/report.html" target="_blank" rel="noopener">صفحة الإبلاغ</a>
-        <a class="btn alt" href="https://console.firebase.google.com/project/vyroxx-it/firestore" target="_blank" rel="noopener noreferrer">قاعدة البيانات (Firebase)</a>
+        <a class="btn" href="account.html" data-i="k_acc"></a>
+        <a class="btn alt" href="/" target="_blank" rel="noopener" data-i="k_site"></a>
+        <a class="btn alt" href="/report.html" target="_blank" rel="noopener" data-i="k_rep"></a>
+        <a class="btn alt" href="https://console.firebase.google.com/project/vyroxx-it/firestore" target="_blank" rel="noopener noreferrer" data-i="k_fb"></a>
         <a class="btn alt" href="https://search.google.com/search-console" target="_blank" rel="noopener noreferrer">Search Console</a>
       </div>
     </section>
 
     <section class="card" aria-labelledby="h-lg">
-      <h2 id="h-lg">سجل التغييرات</h2>
-      <p class="sub">آخر العمليات على مفتاح الموقع. لا يمكن تعديلها أو حذفها.</p>
-      <ul class="log" id="log"><li class="note">لا توجد عمليات بعد.</li></ul>
+      <h2 id="h-lg" data-i="lg_h"></h2>
+      <p class="sub" data-i="lg_s"></p>
+      <ul class="log" id="log"></ul>
     </section>
 
-    <p class="note" style="margin-top:18px">احتفظ برابط هذه الصفحة لنفسك ولا تشاركه. الحماية الفعلية هي تسجيل الدخول بحسابك وقواعد قاعدة البيانات، لا سرّية الرابط وحدها. يُسجَّل خروجك تلقائيًا بعد 20 دقيقة من عدم النشاط.</p>
+    <p class="note" style="margin-top:18px" data-i="fn"></p>
   </main>
 </div>
 
-<div class="bar" id="savebar" hidden><div class="in"><span id="msg" role="status" aria-live="polite"></span><button class="btn" id="save" type="button" disabled>حفظ الإعدادات</button></div></div>
-
-<div class="bar deny" id="denybar" role="alert" hidden><div class="in"><span><b>ليس لديك صلاحية.</b> الحساب <bdi dir="ltr" id="who"></bdi> ليس حساب المدير الرئيسي.</span><button class="btn alt sm" id="out1" type="button">تسجيل الخروج</button></div></div>
+<div class="bar" id="savebar" hidden><div class="in"><span id="msg" role="status" aria-live="polite"></span><button class="btn" id="save" type="button" disabled data-i="sv"></button></div></div>
+<div class="bar deny" id="denybar" role="alert" hidden><div class="in"><span><b data-i="dn_t"></b> <span data-i="dn_a"></span> <bdi dir="ltr" id="who"></bdi> <span data-i="dn_b"></span></span><button class="btn alt sm" id="out1" type="button" data-i="so"></button></div></div>
 
 <script>window.VXSITE_MODE="off";</script>
 <script src="vx-site.js?v=1"></script>
 <script type="module">
 import {initializeApp} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 import {getAuth,GoogleAuthProvider,signInWithPopup,signInWithRedirect,onAuthStateChanged,signOut} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
-import {getFirestore,doc,setDoc,onSnapshot,writeBatch,serverTimestamp,collection,query,where,orderBy,limit,getCountFromServer} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+import {getFirestore,doc,getDoc,getDocs,setDoc,updateDoc,deleteDoc,Timestamp,onSnapshot,writeBatch,serverTimestamp,collection,query,where,orderBy,limit,getCountFromServer} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 const FB={apiKey:"AIzaSyDcRn9c0mtFmGt_fKZh5KKEM6_kbZq6_e0",authDomain:"vyroxx-it.firebaseapp.com",projectId:"vyroxx-it",appId:"1:546399615544:web:5da34c579291fdc0c6c4cd"};
 const ADMIN="vyroxxvx@gmail.com";
 const app=initializeApp(FB),auth=getAuth(app),db=getFirestore(app);
 const $=id=>document.getElementById(id);
 const REF=()=>doc(db,"config","site");
-const TXT=[["mAr","msgAr"],["mEn","msgEn"],["mFr","msgFr"],["mEs","msgEs"],["bAr","bannerAr"],["bEn","bannerEn"],["bFr","bannerFr"],["bEs","bannerEs"],["until","until"]];
+
+/* ============ translations ============ */
+const T={
+ar:{ttl:"مركز التحكم · VYROXX IT",brand:"مركز التحكم",loading:"جارٍ التحميل…",lg_p:"هذه الصفحة خاصة بالمدير الرئيسي ومن منحهم صلاحية الدخول. سجّل الدخول بحساب Google المعتمد.",lg_b:"تسجيل الدخول بحساب Google",lg_e:"تعذّر تسجيل الدخول: ",
+dn_t:"ليس لديك صلاحية.",dn_a:"الحساب",dn_b:"لا يملك صلاحية الدخول إلى مركز التحكم.",so:"تسجيل الخروج",so2:"خروج",lang_aria:"اللغة",theme_aria:"المظهر",th_light:"فاتح",th_dark:"داكن",th_legend:"أسطوري",th_hacker:"هاكر",
+on:"الموقع يعمل",off:"الموقع متوقف",never:"لم يُغيَّر بعد",last:"آخر تغيير: ",h_stop:"اضغط مطوّلًا لإيقاف الموقع",h_res:"اضغط مطوّلًا لاستئناف الموقع",hi_stop:"سيرى الزوار شاشة الصيانة وتُمنع الإرسالات الجديدة.",hi_res:"سيعود الموقع للزوار فورًا.",
+chips_aria:"حالة أجزاء الموقع",c_site:"الموقع",c_req:"الطلبات",c_rep:"البلاغات",c_rev:"الآراء",c_ban:"الشريط",v_run:"يعمل",v_stop:"متوقف",v_open:"مفتوحة",v_paused:"متوقفة",v_shown:"ظاهر",v_hid:"مخفي",
+fs_h:"عند إيقاف الموقع كليًا",fs_s:"يرى الزوار شاشة «الموقع متوقف مؤقتًا»، ويُمنع على الخادم أي إرسال جديد حتى لو تجاوزوا الواجهة. أنت ترى الموقع كالمعتاد في هذا المتصفح مع شريط أحمر ينبّهك.",kp_b:"إبقاء صفحة الإبلاغ عن المحتوى الخطير مفتوحة",kp_d:"يستمر استقبال البلاغات أثناء الإيقاف الكلي، إلا إن أوقفتها من الخيار الذي بعده.",
+pz_h:"إيقاف أجزاء محددة فقط",pz_s:"يبقى الموقع ظاهرًا، ويُمنع الإرسال في الجزء الذي توقفه.",pr_b:"طلبات الخدمة",pr_d:"يمنع زر «حفظ الطلب» وإنشاء طلبات جديدة. واتساب والبريد يبقيان.",pp_b:"بلاغات المحتوى الخطير",pp_d:"يمنع إرسال بلاغات جديدة من صفحة الإبلاغ.",pv_b:"آراء العملاء",pv_d:"يمنع كتابة آراء جديدة.",
+ms_h:"رسالة شاشة الإيقاف",ms_s:"اتركها فارغة لتظهر الرسالة الافتراضية المهذبة. تظهر كلٌّ باللغة التي يتصفح بها الزائر.",tp_l:"قالب جاهز:",tp_c:"اختر…",tp_m:"صيانة مجدولة",tp_t:"عطل تقني",tp_a:"إجازة قصيرة",
+un_l:"موعد العودة المتوقع (اختياري)",un_y:"السنة",un_m:"الشهر",un_d:"اليوم",un_h:"الساعة",un_n:"الدقيقة",un_q1:"بعد ساعة",un_q3:"بعد 3 ساعات",un_qt:"غدًا 9:00",un_x:"مسح",un_show:"سيظهر للزوار: ",un_none:"لا يوجد موعد. لن يُعرض وقت عودة.",un_past:"هذا الوقت مضى، ولن يُعرض للزوار.",un_tz:" (بتوقيت جهازك، ويراه كل زائر بتوقيته)",pv_l:"معاينة بلغة:",
+bn_h:"شريط إعلان أعلى الموقع",bn_s:"لتنبيه الزوار بأمر مهم دون إيقاف الموقع (مثل عطلة أو عرض أو صيانة قريبة).",bn_o:"إظهار الشريط",
+bn_pre:"اختر نصًا جاهزًا (يُطبَّق بكل اللغات دفعة واحدة)",bn_cus:"✏️ كتابة يدوية",bn_cush:"اكتب نص الشريط بنفسك بكل لغة. أي تعديل هنا يلغي اختيار النص الجاهز.",sc_h:"جدولة الإيقاف والاستئناف",sc_s:"حدّد وقتًا يبدأ فيه الإيقاف وآخر يعود فيه الموقع تلقائيًا، دون أن تكون موجودًا. يُنفَّذ في الخادم أيضًا.",sc_a:"يبدأ الإيقاف في",sc_b:"يُستأنف الموقع تلقائيًا في",sc_i1:"يبدأ الإيقاف: ",sc_i2:"يُستأنف: ",sc_none:"لا توجد جدولة.",sc_bad:"وقت الاستئناف يجب أن يكون بعد وقت البدء.",cu_h:"إدارة العملاء",cu_s:"ابحث عن عميل ببريده لحظره أو رفع الحظر عنه.",cu_go:"بحث",cu_banned:"المحظورون",cu_none:"لا توجد نتائج.",cu_ban:"حظر",cu_unban:"رفع الحظر",cu_q:"تأكيد الحظر؟",cu_isb:"محظور",st_h:"الموظفون وصلاحياتهم",st_s:"أضف موظفًا أو عدّل صلاحياته مباشرة. التغييرات فورية.",st_add:"إضافة موظف (بريد Google)",st_btn:"إضافة",st_done:"تمت الإضافة ✔",st_no:"اختر صلاحية واحدة على الأقل وبريدًا صحيحًا.",st_rm:"حذف الموظف",st_rmq:"حذف هذا الموظف؟",qs_h:"نظرة سريعة",rf:"تحديث",s_req:"طلبات قيد المعالجة",s_rep:"بلاغات جديدة",s_rev:"آراء بانتظار المراجعة",s_usr:"عملاء مسجّلون",
+k_acc:"الإدارة المعتادة: الطلبات والعملاء والبلاغات والآراء والموظفون",k_site:"فتح الموقع",k_rep:"صفحة الإبلاغ",k_fb:"قاعدة البيانات (Firebase)",
+lg_h:"سجل التغييرات",lg_s:"آخر العمليات على مفتاح الموقع. لا يمكن تعديلها أو حذفها.",lg_e:"لا توجد عمليات بعد.",a_pause:"إيقاف",a_resume:"استئناف",a_update:"تعديل",
+fn:"احتفظ برابط هذه الصفحة لنفسك ولا تشاركه. الحماية الفعلية هي تسجيل الدخول بحسابك وقواعد قاعدة البيانات، لا سرّية الرابط وحدها. يُسجَّل خروجك تلقائيًا بعد 20 دقيقة من عدم النشاط.",
+sv:"حفظ الإعدادات",m_unsaved:"لديك تغييرات غير محفوظة",m_work:"جارٍ التنفيذ…",m_paused:"تم إيقاف الموقع ✔",m_resumed:"تم استئناف الموقع ✔",m_saved:"تم الحفظ ✔",m_fail:"تعذّر التنفيذ: ",m_rules:" — تأكد من نشر القواعد الجديدة.",m_read:"تعذّرت قراءة الإعدادات: ",m_nop:"ليست لديك صلاحية لهذا التغيير",m_bn:"اكتب نص الشريط بهذه اللغة أولًا"},
+en:{ttl:"Control Center · VYROXX IT",brand:"Control Center",loading:"Loading…",lg_p:"This page is for the main administrator and those granted access. Sign in with the authorized Google account.",lg_b:"Sign in with Google",lg_e:"Sign-in failed: ",
+dn_t:"You don’t have permission.",dn_a:"The account",dn_b:"doesn’t have access to the control center.",so:"Sign out",so2:"Sign out",lang_aria:"Language",theme_aria:"Theme",th_light:"Light",th_dark:"Dark",th_legend:"Legendary",th_hacker:"Hacker",
+on:"Site is live",off:"Site is stopped",never:"Not changed yet",last:"Last change: ",h_stop:"Press and hold to stop the site",h_res:"Press and hold to resume the site",hi_stop:"Visitors will see the maintenance screen and new submissions are blocked.",hi_res:"The site returns to visitors right away.",
+chips_aria:"Site sections status",c_site:"Site",c_req:"Requests",c_rep:"Reports",c_rev:"Reviews",c_ban:"Banner",v_run:"Live",v_stop:"Stopped",v_open:"Open",v_paused:"Paused",v_shown:"Shown",v_hid:"Hidden",
+fs_h:"When the whole site is stopped",fs_s:"Visitors see the “Temporarily offline” screen, and the server blocks any new submission even if they bypass the interface. You still see the site normally in this browser, with a red bar as a reminder.",kp_b:"Keep the serious-content report page open",kp_d:"Reports keep being accepted during a full stop, unless you pause them below.",
+pz_h:"Pause specific parts only",pz_s:"The site stays visible; submissions are blocked in the part you pause.",pr_b:"Service requests",pr_d:"Blocks the “Submit request” button and new requests. WhatsApp and email stay available.",pp_b:"Serious-content reports",pp_d:"Blocks new reports from the report page.",pv_b:"Customer reviews",pv_d:"Blocks new reviews.",
+ms_h:"Stop-screen message",ms_s:"Leave empty to show the polite default message. Each one is shown in the visitor’s language.",tp_l:"Ready template:",tp_c:"Choose…",tp_m:"Scheduled maintenance",tp_t:"Technical issue",tp_a:"Short break",
+un_l:"Expected return time (optional)",un_y:"Year",un_m:"Month",un_d:"Day",un_h:"Hour",un_n:"Minute",un_q1:"In 1 hour",un_q3:"In 3 hours",un_qt:"Tomorrow 9:00",un_x:"Clear",un_show:"Visitors will see: ",un_none:"No time set. No return time will be shown.",un_past:"This time has passed and won’t be shown to visitors.",un_tz:" (in your device’s time zone; each visitor sees it in theirs)",pv_l:"Preview in:",
+bn_h:"Announcement bar",bn_s:"To alert visitors about something important without stopping the site (a holiday, an offer, upcoming maintenance).",bn_o:"Show the bar",
+bn_pre:"Pick a ready text (applied in all languages at once)",bn_cus:"✏️ Write manually",bn_cush:"Write the bar text yourself in each language. Any edit here replaces the ready text.",sc_h:"Scheduled stop and resume",sc_s:"Set a time when the stop begins and another when the site returns automatically, without you being there. Enforced on the server too.",sc_a:"Stop begins at",sc_b:"Site resumes automatically at",sc_i1:"Stop starts: ",sc_i2:"Resumes: ",sc_none:"Nothing scheduled.",sc_bad:"The resume time must be after the start time.",cu_h:"Customer management",cu_s:"Find a customer by email to ban or unban them.",cu_go:"Search",cu_banned:"Banned",cu_none:"No results.",cu_ban:"Ban",cu_unban:"Unban",cu_q:"Confirm ban?",cu_isb:"banned",st_h:"Staff and permissions",st_s:"Add a staff member or edit their permissions right here. Changes are instant.",st_add:"Add staff member (Google email)",st_btn:"Add",st_done:"Added ✔",st_no:"Pick at least one permission and a valid email.",st_rm:"Remove staff member",st_rmq:"Remove this staff member?",qs_h:"Quick overview",rf:"Refresh",s_req:"Requests in progress",s_rep:"New reports",s_rev:"Reviews awaiting moderation",s_usr:"Registered customers",
+k_acc:"Usual admin: requests, customers, reports, reviews, staff",k_site:"Open the site",k_rep:"Report page",k_fb:"Database (Firebase)",
+lg_h:"Change log",lg_s:"Latest actions on the site switch. They cannot be edited or deleted.",lg_e:"No actions yet.",a_pause:"Stop",a_resume:"Resume",a_update:"Update",
+fn:"Keep this page’s link to yourself and don’t share it. Real protection is signing in with your account and the database rules, not the secrecy of the link alone. You are signed out automatically after 20 minutes of inactivity.",
+sv:"Save settings",m_unsaved:"You have unsaved changes",m_work:"Working…",m_paused:"Site stopped ✔",m_resumed:"Site resumed ✔",m_saved:"Saved ✔",m_fail:"Action failed: ",m_rules:" — make sure the new rules are published.",m_read:"Couldn’t read the settings: ",m_nop:"You don’t have permission for this change",m_bn:"Write the banner text in this language first"},
+fr:{ttl:"Centre de contrôle · VYROXX IT",brand:"Centre de contrôle",loading:"Chargement…",lg_p:"Cette page est réservée à l’administrateur principal et aux personnes autorisées. Connectez-vous avec le compte Google autorisé.",lg_b:"Se connecter avec Google",lg_e:"Échec de la connexion : ",
+dn_t:"Vous n’avez pas l’autorisation.",dn_a:"Le compte",dn_b:"n’a pas accès au centre de contrôle.",so:"Se déconnecter",so2:"Quitter",lang_aria:"Langue",theme_aria:"Thème",th_light:"Clair",th_dark:"Sombre",th_legend:"Légendaire",th_hacker:"Hacker",
+on:"Le site est en ligne",off:"Le site est arrêté",never:"Jamais modifié",last:"Dernière modification : ",h_stop:"Maintenez pour arrêter le site",h_res:"Maintenez pour reprendre le site",hi_stop:"Les visiteurs verront l’écran de maintenance et les nouveaux envois seront bloqués.",hi_res:"Le site redevient accessible immédiatement.",
+chips_aria:"État des sections du site",c_site:"Site",c_req:"Demandes",c_rep:"Signalements",c_rev:"Avis",c_ban:"Bandeau",v_run:"En ligne",v_stop:"Arrêté",v_open:"Ouvertes",v_paused:"Suspendues",v_shown:"Affiché",v_hid:"Masqué",
+fs_h:"Lorsque tout le site est arrêté",fs_s:"Les visiteurs voient l’écran « Site temporairement hors ligne » et le serveur bloque tout nouvel envoi, même s’ils contournent l’interface. Vous voyez le site normalement dans ce navigateur, avec une barre rouge en rappel.",kp_b:"Garder la page de signalement de contenu grave ouverte",kp_d:"Les signalements restent acceptés pendant l’arrêt complet, sauf si vous les suspendez plus bas.",
+pz_h:"Suspendre seulement certaines parties",pz_s:"Le site reste visible ; les envois sont bloqués dans la partie suspendue.",pr_b:"Demandes de service",pr_d:"Bloque le bouton d’envoi et les nouvelles demandes. WhatsApp et e-mail restent disponibles.",pp_b:"Signalements de contenu grave",pp_d:"Bloque les nouveaux signalements depuis la page dédiée.",pv_b:"Avis des clients",pv_d:"Bloque les nouveaux avis.",
+ms_h:"Message de l’écran d’arrêt",ms_s:"Laissez vide pour afficher le message par défaut. Chacun s’affiche dans la langue du visiteur.",tp_l:"Modèle prêt :",tp_c:"Choisir…",tp_m:"Maintenance planifiée",tp_t:"Incident technique",tp_a:"Courte pause",
+un_l:"Heure de retour prévue (facultatif)",un_y:"Année",un_m:"Mois",un_d:"Jour",un_h:"Heure",un_n:"Minute",un_q1:"Dans 1 h",un_q3:"Dans 3 h",un_qt:"Demain 9h00",un_x:"Effacer",un_show:"Les visiteurs verront : ",un_none:"Aucune heure définie. Aucune heure de retour affichée.",un_past:"Cette heure est passée et ne sera pas affichée.",un_tz:" (selon le fuseau de votre appareil ; chaque visiteur la voit dans le sien)",pv_l:"Aperçu en :",
+bn_h:"Bandeau d’annonce en haut du site",bn_s:"Pour prévenir les visiteurs sans arrêter le site (congé, offre, maintenance à venir).",bn_o:"Afficher le bandeau",
+bn_pre:"Choisissez un texte prêt (appliqué dans toutes les langues)",bn_cus:"✏️ Écrire manuellement",bn_cush:"Rédigez vous-même le texte du bandeau dans chaque langue. Toute modification ici remplace le texte prêt.",sc_h:"Arrêt et reprise planifiés",sc_s:"Définissez l’heure du début de l’arrêt et celle du retour automatique du site, sans être présent. Appliqué aussi côté serveur.",sc_a:"L’arrêt commence à",sc_b:"Le site reprend automatiquement à",sc_i1:"Début de l’arrêt : ",sc_i2:"Reprise : ",sc_none:"Rien de planifié.",sc_bad:"L’heure de reprise doit être postérieure au début.",cu_h:"Gestion des clients",cu_s:"Recherchez un client par e-mail pour le bannir ou lever le bannissement.",cu_go:"Rechercher",cu_banned:"Bannis",cu_none:"Aucun résultat.",cu_ban:"Bannir",cu_unban:"Lever le ban",cu_q:"Confirmer le bannissement ?",cu_isb:"banni",st_h:"Équipe et permissions",st_s:"Ajoutez un membre ou modifiez ses permissions ici. Les changements sont immédiats.",st_add:"Ajouter un membre (e-mail Google)",st_btn:"Ajouter",st_done:"Ajouté ✔",st_no:"Choisissez au moins une permission et un e-mail valide.",st_rm:"Retirer le membre",st_rmq:"Retirer ce membre ?",qs_h:"Aperçu rapide",rf:"Actualiser",s_req:"Demandes en cours",s_rep:"Nouveaux signalements",s_rev:"Avis en attente",s_usr:"Clients inscrits",
+k_acc:"Gestion habituelle : demandes, clients, signalements, avis, équipe",k_site:"Ouvrir le site",k_rep:"Page de signalement",k_fb:"Base de données (Firebase)",
+lg_h:"Journal des modifications",lg_s:"Dernières actions sur l’interrupteur du site. Elles ne peuvent être ni modifiées ni supprimées.",lg_e:"Aucune action pour l’instant.",a_pause:"Arrêt",a_resume:"Reprise",a_update:"Modification",
+fn:"Gardez le lien de cette page pour vous et ne le partagez pas. La vraie protection est la connexion avec votre compte et les règles de la base de données, pas seulement le secret du lien. Vous êtes déconnecté automatiquement après 20 minutes d’inactivité.",
+sv:"Enregistrer les réglages",m_unsaved:"Modifications non enregistrées",m_work:"En cours…",m_paused:"Site arrêté ✔",m_resumed:"Site rétabli ✔",m_saved:"Enregistré ✔",m_fail:"Échec : ",m_rules:" — vérifiez que les nouvelles règles sont publiées.",m_read:"Lecture des réglages impossible : ",m_nop:"Vous n’avez pas la permission pour ce changement",m_bn:"Rédigez d’abord le texte du bandeau dans cette langue"},
+es:{ttl:"Centro de control · VYROXX IT",brand:"Centro de control",loading:"Cargando…",lg_p:"Esta página es solo para el administrador principal y quienes tengan acceso. Inicia sesión con la cuenta de Google autorizada.",lg_b:"Iniciar sesión con Google",lg_e:"Error al iniciar sesión: ",
+dn_t:"No tienes permiso.",dn_a:"La cuenta",dn_b:"no tiene acceso al centro de control.",so:"Cerrar sesión",so2:"Salir",lang_aria:"Idioma",theme_aria:"Tema",th_light:"Claro",th_dark:"Oscuro",th_legend:"Legendario",th_hacker:"Hacker",
+on:"El sitio está activo",off:"El sitio está detenido",never:"Aún sin cambios",last:"Último cambio: ",h_stop:"Mantén pulsado para detener el sitio",h_res:"Mantén pulsado para reanudar el sitio",hi_stop:"Los visitantes verán la pantalla de mantenimiento y se bloquearán los nuevos envíos.",hi_res:"El sitio volverá a estar disponible de inmediato.",
+chips_aria:"Estado de las secciones del sitio",c_site:"Sitio",c_req:"Solicitudes",c_rep:"Denuncias",c_rev:"Opiniones",c_ban:"Barra",v_run:"Activo",v_stop:"Detenido",v_open:"Abiertas",v_paused:"Pausadas",v_shown:"Visible",v_hid:"Oculta",
+fs_h:"Cuando se detiene todo el sitio",fs_s:"Los visitantes ven la pantalla «Sitio temporalmente fuera de línea» y el servidor bloquea cualquier envío nuevo aunque eludan la interfaz. Tú ves el sitio con normalidad en este navegador, con una barra roja como aviso.",kp_b:"Mantener abierta la página de denuncia de contenido grave",kp_d:"Las denuncias se siguen aceptando durante la parada total, salvo que las pauses más abajo.",
+pz_h:"Pausar solo partes concretas",pz_s:"El sitio sigue visible; se bloquean los envíos en la parte que pauses.",pr_b:"Solicitudes de servicio",pr_d:"Bloquea el botón de enviar y las nuevas solicitudes. WhatsApp y correo siguen disponibles.",pp_b:"Denuncias de contenido grave",pp_d:"Bloquea nuevas denuncias desde la página de denuncias.",pv_b:"Opiniones de clientes",pv_d:"Bloquea nuevas opiniones.",
+ms_h:"Mensaje de la pantalla de parada",ms_s:"Déjalo vacío para mostrar el mensaje predeterminado. Cada uno se muestra en el idioma del visitante.",tp_l:"Plantilla lista:",tp_c:"Elegir…",tp_m:"Mantenimiento programado",tp_t:"Incidencia técnica",tp_a:"Descanso breve",
+un_l:"Hora de regreso prevista (opcional)",un_y:"Año",un_m:"Mes",un_d:"Día",un_h:"Hora",un_n:"Minuto",un_q1:"En 1 hora",un_q3:"En 3 horas",un_qt:"Mañana 9:00",un_x:"Borrar",un_show:"Los visitantes verán: ",un_none:"Sin hora. No se mostrará hora de regreso.",un_past:"Esa hora ya pasó y no se mostrará a los visitantes.",un_tz:" (en la zona horaria de tu dispositivo; cada visitante la ve en la suya)",pv_l:"Vista previa en:",
+bn_h:"Barra de anuncio superior",bn_s:"Para avisar a los visitantes sin detener el sitio (vacaciones, oferta, mantenimiento próximo).",bn_o:"Mostrar la barra",
+bn_pre:"Elige un texto listo (se aplica en todos los idiomas)",bn_cus:"✏️ Escribir manualmente",bn_cush:"Escribe tú mismo el texto de la barra en cada idioma. Cualquier cambio aquí reemplaza el texto listo.",sc_h:"Parada y reanudación programadas",sc_s:"Define cuándo empieza la parada y cuándo vuelve el sitio automáticamente, sin que estés presente. También se aplica en el servidor.",sc_a:"La parada empieza a las",sc_b:"El sitio se reanuda automáticamente a las",sc_i1:"Inicio de la parada: ",sc_i2:"Reanuda: ",sc_none:"Nada programado.",sc_bad:"La hora de reanudación debe ser posterior al inicio.",cu_h:"Gestión de clientes",cu_s:"Busca un cliente por correo para bloquearlo o desbloquearlo.",cu_go:"Buscar",cu_banned:"Bloqueados",cu_none:"Sin resultados.",cu_ban:"Bloquear",cu_unban:"Desbloquear",cu_q:"¿Confirmar bloqueo?",cu_isb:"bloqueado",st_h:"Personal y permisos",st_s:"Añade a un miembro o edita sus permisos aquí. Los cambios son inmediatos.",st_add:"Añadir miembro (correo de Google)",st_btn:"Añadir",st_done:"Añadido ✔",st_no:"Elige al menos un permiso y un correo válido.",st_rm:"Quitar miembro",st_rmq:"¿Quitar a este miembro?",qs_h:"Vista rápida",rf:"Actualizar",s_req:"Solicitudes en curso",s_rep:"Denuncias nuevas",s_rev:"Opiniones pendientes",s_usr:"Clientes registrados",
+k_acc:"Administración habitual: solicitudes, clientes, denuncias, opiniones, personal",k_site:"Abrir el sitio",k_rep:"Página de denuncias",k_fb:"Base de datos (Firebase)",
+lg_h:"Registro de cambios",lg_s:"Últimas acciones sobre el interruptor del sitio. No se pueden editar ni borrar.",lg_e:"Aún no hay acciones.",a_pause:"Parada",a_resume:"Reanudación",a_update:"Cambio",
+fn:"Guarda el enlace de esta página para ti y no lo compartas. La protección real es iniciar sesión con tu cuenta y las reglas de la base de datos, no solo el secreto del enlace. Se cierra tu sesión automáticamente tras 20 minutos de inactividad.",
+sv:"Guardar ajustes",m_unsaved:"Tienes cambios sin guardar",m_work:"Procesando…",m_paused:"Sitio detenido ✔",m_resumed:"Sitio reanudado ✔",m_saved:"Guardado ✔",m_fail:"Error: ",m_rules:" — asegúrate de publicar las nuevas reglas.",m_read:"No se pudieron leer los ajustes: ",m_nop:"No tienes permiso para este cambio",m_bn:"Escribe primero el texto de la barra en este idioma"}
+};
+const SP={
+ar:{control:"مركز التحكم: دخول كامل",ctlSwitch:"مركز التحكم: الإيقاف والجدولة فقط",ctlContent:"مركز التحكم: الرسائل والشريط فقط",all:"كل الصلاحيات (بدون مركز التحكم)",viewRequests:"عرض الطلبات",editRequests:"تغيير حالة الطلبات",editPayment:"تحديد حالة الدفع",viewUsers:"عرض العملاء",banUsers:"حظر العملاء",moderateReviews:"مراجعة الآراء",viewReports:"عرض البلاغات",editReports:"معالجة البلاغات"},
+en:{control:"Control Center: full access",ctlSwitch:"Control Center: stop & schedule only",ctlContent:"Control Center: messages & bar only",all:"All permissions (not Control Center)",viewRequests:"View requests",editRequests:"Change request status",editPayment:"Set payment status",viewUsers:"View customers",banUsers:"Ban customers",moderateReviews:"Moderate reviews",viewReports:"View reports",editReports:"Handle reports"},
+fr:{control:"Centre de contrôle : accès complet",ctlSwitch:"Centre de contrôle : arrêt et planification",ctlContent:"Centre de contrôle : messages et bandeau",all:"Toutes les permissions (hors centre de contrôle)",viewRequests:"Voir les demandes",editRequests:"Modifier le statut",editPayment:"Définir le paiement",viewUsers:"Voir les clients",banUsers:"Bannir des clients",moderateReviews:"Modérer les avis",viewReports:"Voir les signalements",editReports:"Traiter les signalements"},
+es:{control:"Centro de control: acceso completo",ctlSwitch:"Centro de control: parar y programar",ctlContent:"Centro de control: mensajes y barra",all:"Todos los permisos (sin centro de control)",viewRequests:"Ver solicitudes",editRequests:"Cambiar estado",editPayment:"Fijar estado de pago",viewUsers:"Ver clientes",banUsers:"Bloquear clientes",moderateReviews:"Moderar opiniones",viewReports:"Ver denuncias",editReports:"Gestionar denuncias"}
+};
+const PK=Object.keys(SP.ar);
+const LOC={ar:"ar-MA",en:"en-GB",fr:"fr-FR",es:"es-ES"};
 const TPL={
   maint:{ar:"نجري صيانة مجدولة لتحسين الخدمة. سنعود قريبًا، شكرًا لتفهمك.",en:"We’re running scheduled maintenance to improve the service. We’ll be back shortly. Thank you for your patience.",fr:"Nous effectuons une maintenance planifiée pour améliorer le service. Nous revenons très bientôt. Merci de votre patience.",es:"Estamos realizando un mantenimiento programado para mejorar el servicio. Volveremos en breve. Gracias por tu paciencia."},
   tech:{ar:"نعالج عطلًا تقنيًا طارئًا ونعمل على إصلاحه بأسرع وقت. نعتذر عن الإزعاج.",en:"We’re fixing an unexpected technical issue and working to restore the site as fast as possible. Sorry for the inconvenience.",fr:"Nous corrigeons un incident technique imprévu et rétablissons le site au plus vite. Désolé pour la gêne.",es:"Estamos solucionando una incidencia técnica inesperada y restableceremos el sitio lo antes posible. Disculpa las molestias."},
   away:{ar:"نحن في إجازة قصيرة ونعود قريبًا. للحالات العاجلة راسلنا على البريد الإلكتروني.",en:"We’re on a short break and will be back soon. For urgent matters, please email us.",fr:"Nous sommes en courte pause et revenons bientôt. Pour les urgences, écrivez-nous par e-mail.",es:"Estamos en un breve descanso y volvemos pronto. Para asuntos urgentes, escríbenos por correo."}
 };
-let user=null,cur={},dirty=false,busy=false,unsub=null,unsubLog=null,statT=null,idleT=null;
+let L="ar";
+try{const s=localStorage.getItem("vx-lang");if(T[s])L=s;else{const n=String(navigator.language||"ar").slice(0,2).toLowerCase();L=T[n]?n:"ar"}}catch(e){}
+const t=k=>(T[L]&&T[L][k])||T.ar[k]||k;
 
-try{const th=localStorage.getItem("vx-theme");if(th&&/^(light|dark|legend|hacker)$/.test(th))document.documentElement.setAttribute("data-theme",th)}catch(e){}
+const TXT=[["mAr","msgAr"],["mEn","msgEn"],["mFr","msgFr"],["mEs","msgEs"],["bAr","bannerAr"],["bEn","bannerEn"],["bFr","bannerFr"],["bEs","bannerEs"]];
+let user=null,allowed=false,P={},unsubStaff=null,rndT=null,cur={},dirty=false,busy=false,unsub=null,unsubLog=null,statT=null,idleT=null,lastLog=null;
+
+/* ============ helpers ============ */
 function show(id){["loading","login","panel"].forEach(k=>{$(k).hidden=k!==id});$("savebar").hidden=id!=="panel";$("denybar").hidden=true}
-function say(t,kind){const m=$("msg");m.textContent=t||"";m.className=kind||""}
+function say(k,kind,raw){const m=$("msg");m.textContent=raw!=null?raw:(k?t(k):"");m.className=kind||""}
 function own(on){try{on?localStorage.setItem("vx-owner","1"):localStorage.removeItem("vx-owner")}catch(e){}}
 function fmt(ts){return ts&&ts.toDate?ts.toDate().toLocaleString("fr-FR",{dateStyle:"medium",timeStyle:"short"}):""}
 const val=id=>$(id).value.trim();
+
+/* ============ ready-made banner texts ============ */
+const PRE=[{"id": "maint", "t": {"ar": "صيانة قريبة", "en": "Upcoming maintenance", "fr": "Maintenance à venir", "es": "Mantenimiento próximo"}, "m": {"ar": "صيانة مجدولة قريبًا، وقد يتوقف الموقع لفترة قصيرة. نعتذر عن أي إزعاج.", "en": "Scheduled maintenance is coming up; the site may be briefly unavailable. Sorry for any inconvenience.", "fr": "Une maintenance est prévue prochainement ; le site pourrait être brièvement indisponible. Désolé pour la gêne.", "es": "Habrá un mantenimiento programado pronto; el sitio podría no estar disponible por un breve periodo. Disculpa las molestias."}}, {"id": "holiday", "t": {"ar": "عطلة", "en": "Holiday", "fr": "Congé", "es": "Vacaciones"}, "m": {"ar": "نحن في عطلة حاليًا. سنرد على طلباتك فور عودتنا.", "en": "We’re on holiday right now. We’ll reply to your requests as soon as we’re back.", "fr": "Nous sommes actuellement en congé. Nous répondrons à vos demandes dès notre retour.", "es": "Estamos de vacaciones. Responderemos a tus solicitudes en cuanto volvamos."}}, {"id": "hours", "t": {"ar": "تغيّر أوقات العمل", "en": "Changed working hours", "fr": "Horaires modifiés", "es": "Horario modificado"}, "m": {"ar": "تغيّرت أوقات العمل خلال هذه الفترة. تواصل معنا لمعرفة التفاصيل.", "en": "Our working hours have changed for this period. Contact us for details.", "fr": "Nos horaires sont modifiés pour cette période. Contactez-nous pour les détails.", "es": "Nuestro horario ha cambiado durante este periodo. Contáctanos para más detalles."}}, {"id": "busy", "t": {"ar": "ضغط كبير", "en": "High demand", "fr": "Forte demande", "es": "Alta demanda"}, "m": {"ar": "نمرّ بضغط كبير في الطلبات، وقد يتأخر ردنا قليلًا. شكرًا لصبرك.", "en": "We’re handling a lot of requests, so replies may take a little longer. Thank you for your patience.", "fr": "Nous traitons beaucoup de demandes ; nos réponses peuvent prendre un peu plus de temps. Merci de votre patience.", "es": "Tenemos muchas solicitudes y las respuestas pueden tardar un poco más. Gracias por tu paciencia."}}, {"id": "issue", "t": {"ar": "مشكلة تقنية", "en": "Technical issue", "fr": "Incident technique", "es": "Incidencia técnica"}, "m": {"ar": "نعالج مشكلة تقنية قد تؤثر على بعض الأجزاء. نعمل على حلها بأسرع وقت.", "en": "We’re fixing a technical issue that may affect some parts of the site. We’re working on it right away.", "fr": "Nous corrigeons un incident technique pouvant toucher certaines parties du site. Nous y travaillons au plus vite.", "es": "Estamos solucionando una incidencia técnica que puede afectar a algunas partes del sitio. Trabajamos en ello de inmediato."}}, {"id": "back", "t": {"ar": "عدنا للعمل", "en": "We’re back", "fr": "De retour", "es": "Hemos vuelto"}, "m": {"ar": "عدنا للعمل! يسعدنا خدمتك من جديد.", "en": "We’re back! Happy to help you again.", "fr": "Nous sommes de retour ! Heureux de vous aider à nouveau.", "es": "¡Hemos vuelto! Encantados de ayudarte de nuevo."}}, {"id": "service", "t": {"ar": "خدمة جديدة", "en": "New service", "fr": "Nouveau service", "es": "Servicio nuevo"}, "m": {"ar": "خدمة جديدة متاحة الآن! اكتشفها في قسم الخدمات.", "en": "A new service is now available! Discover it in the Services section.", "fr": "Un nouveau service est disponible ! Découvrez-le dans la section Services.", "es": "¡Ya hay un servicio nuevo! Descúbrelo en la sección de Servicios."}}, {"id": "offer", "t": {"ar": "عرض خاص", "en": "Special offer", "fr": "Offre spéciale", "es": "Oferta especial"}, "m": {"ar": "عرض خاص لفترة محدودة. راسلنا لمعرفة التفاصيل.", "en": "Special offer for a limited time. Message us for details.", "fr": "Offre spéciale pour une durée limitée. Écrivez-nous pour les détails.", "es": "Oferta especial por tiempo limitado. Escríbenos para más detalles."}}, {"id": "security", "t": {"ar": "تنبيه أمني", "en": "Security notice", "fr": "Alerte sécurité", "es": "Aviso de seguridad"}, "m": {"ar": "تنبيه أمني: لا تشارك رموز التحقق أو كلمات المرور مع أي أحد، ولن نطلبها منك أبدًا.", "en": "Security notice: never share verification codes or passwords with anyone. We will never ask you for them.", "fr": "Alerte sécurité : ne partagez jamais vos codes de vérification ni vos mots de passe. Nous ne vous les demanderons jamais.", "es": "Aviso de seguridad: nunca compartas códigos de verificación ni contraseñas. Nunca te los pediremos."}}, {"id": "whatsapp", "t": {"ar": "الرد الأسرع", "en": "Faster reply", "fr": "Réponse plus rapide", "es": "Respuesta más rápida"}, "m": {"ar": "للرد الأسرع تواصل معنا عبر واتساب.", "en": "For a faster reply, contact us on WhatsApp.", "fr": "Pour une réponse plus rapide, contactez-nous sur WhatsApp.", "es": "Para una respuesta más rápida, contáctanos por WhatsApp."}}];
+const BN=[["bAr","ar"],["bEn","en"],["bFr","fr"],["bEs","es"]];
+function bnMatch(){return PRE.find(p=>BN.every(x=>val(x[0])===p.m[x[1]]))}
+function bnSync(){
+  const m=bnMatch();
+  document.querySelectorAll("#bnPre .pc").forEach(b=>b.setAttribute("aria-pressed",String(!!m&&b.dataset.id===m.id)));
+}
+function bnBuild(){
+  const box=$("bnPre");box.textContent="";
+  PRE.forEach(p=>{
+    const b=document.createElement("button");b.type="button";b.className="pc";b.dataset.id=p.id;
+    const h=document.createElement("b"),d=document.createElement("span");h.textContent=p.t[L]||p.t.ar;d.textContent=p.m[L]||p.m.ar;
+    b.append(h,d);
+    b.onclick=()=>{BN.forEach(x=>{$(x[0]).value=p.m[x[1]]});$("bOn").checked=true;markDirty()};
+    box.append(b);
+  });
+  bnSync();
+}
+function bnOpen(){const any=BN.some(x=>val(x[0])!=="");$("bnMan").open=any&&!bnMatch()}
+
+/* ============ language + theme ============ */
+function applyLang(){
+  const d=document.documentElement;d.lang=L;d.dir=L==="ar"?"rtl":"ltr";document.title=t("ttl");
+  document.querySelectorAll("[data-i]").forEach(e=>{e.textContent=t(e.dataset.i)});
+  document.querySelectorAll("[data-al]").forEach(e=>e.setAttribute("aria-label",t(e.dataset.al)));
+  document.querySelectorAll("#langSeg button").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.l===L)));
+  buildDate();themeBtn();bnBuild();
+  pkA.build();pkB.build();
+  if(cur&&allowed){render();renderLog();stRender();stNew()}
+}
+function setLang(l){if(!T[l])return;L=l;try{localStorage.setItem("vx-lang",l)}catch(e){}applyLang()}
+document.querySelectorAll("#langSeg button").forEach(b=>b.onclick=()=>setLang(b.dataset.l));
+
+function effTheme(){const a=document.documentElement.getAttribute("data-theme");return a||(matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light")}
+const NEXT={light:"dark",dark:"legend",legend:"hacker",hacker:"light"};
+const ICON={light:"🌙",dark:"🔮",legend:"👾",hacker:"☀️"};   /* icon = the theme you get on the next click */
+function themeBtn(){
+  const m=effTheme(),b=$("theme"),n=NEXT[m]||"dark";
+  b.textContent=ICON[m]||"🌙";b.title=t("th_"+n);b.setAttribute("aria-label",t("theme_aria")+": "+t("th_"+n));
+}
+function setTheme(m){
+  document.documentElement.setAttribute("data-theme",m);
+  try{localStorage.setItem("vx-theme",m)}catch(e){}
+  themeBtn();
+  const mt=document.querySelector('meta[name="theme-color"]');if(mt)mt.content=getComputedStyle(document.body).getPropertyValue("--bg").trim()||"#0C1519";
+}
+$("theme").onclick=()=>setTheme(NEXT[effTheme()]||"dark");
+
+/* ============ expected-return date picker ============ */
+const U={Y:$("uY"),M:$("uM"),D:$("uD"),H:$("uH"),N:$("uN")};
+const p2=n=>n<10?"0"+n:""+n;
+function opts(sel,list,keep){const v=keep!==undefined?keep:sel.value;sel.textContent="";list.forEach(o=>{const e=document.createElement("option");e.value=o[0];e.textContent=o[1];sel.append(e)});sel.value=v;if(sel.value!==v)sel.value=""}
+function daysIn(){const y=+U.Y.value||new Date().getFullYear(),m=+U.M.value||1;return new Date(y,m,0).getDate()}
+function buildDate(){
+  const keep={};Object.keys(U).forEach(k=>keep[k]=U[k].value);
+  const y0=new Date().getFullYear(),ys=[y0,y0+1,y0+2];if(keep.Y&&!ys.includes(+keep.Y))ys.push(+keep.Y);
+  opts(U.Y,[["","—"]].concat(ys.sort().map(v=>[String(v),String(v)])),keep.Y);
+  const mf=new Intl.DateTimeFormat(LOC[L],{month:"long"});
+  const ms=[["","—"]];for(let i=0;i<12;i++)ms.push([String(i+1),mf.format(new Date(2024,i,1))]);
+  opts(U.M,ms,keep.M);
+  buildDays(keep.D);
+  const hs=[["","—"]];for(let i=0;i<24;i++)hs.push([String(i),p2(i)]);opts(U.H,hs,keep.H);
+  const ns=[["","—"]];for(let i=0;i<60;i++)ns.push([String(i),p2(i)]);opts(U.N,ns,keep.N);
+  dtInfo();
+}
+function buildDays(keep){
+  const n=daysIn(),ds=[["","—"]];for(let i=1;i<=n;i++)ds.push([String(i),String(i)]);
+  const k=keep!==undefined?keep:U.D.value;opts(U.D,ds,+k>n?String(n):k);
+}
+function getUntil(){
+  if(Object.keys(U).some(k=>U[k].value===""))return "";
+  const y=+U.Y.value,m=+U.M.value,d=+U.D.value,h=+U.H.value,n=+U.N.value,dt=new Date(y,m-1,d,h,n,0,0);
+  if(dt.getFullYear()!==y||dt.getMonth()!==m-1||dt.getDate()!==d)return "";
+  return dt.toISOString();
+}
+function setUntilDate(dt){
+  if(!dt||isNaN(dt)){Object.keys(U).forEach(k=>U[k].value="");buildDays("");dtInfo();return}
+  const ys=Array.from(U.Y.options).map(o=>o.value);
+  if(!ys.includes(String(dt.getFullYear()))){const o=document.createElement("option");o.value=o.textContent=String(dt.getFullYear());U.Y.append(o)}
+  U.Y.value=String(dt.getFullYear());U.M.value=String(dt.getMonth()+1);buildDays(String(dt.getDate()));
+  U.D.value=String(dt.getDate());U.H.value=String(dt.getHours());U.N.value=String(dt.getMinutes());dtInfo();
+}
+function setUntilISO(s){const ok=/^\d{4}-\d{2}-\d{2}T/.test(s||"");setUntilDate(ok?new Date(s):null)}
+function dtInfo(){
+  const el=$("dtInfo"),iso=getUntil();el.className="dtinfo";
+  if(!iso){el.textContent=t("un_none");return}
+  const d=new Date(iso);
+  if(d.getTime()<=Date.now()){el.className="dtinfo warn";el.textContent=t("un_past");return}
+  el.textContent=t("un_show");
+  const b=document.createElement("b");b.textContent=d.toLocaleString(LOC[L],{dateStyle:"full",timeStyle:"short"});
+  el.append(b,t("un_tz"));
+}
+function defaultDate(){const d=new Date();d.setMinutes(0,0,0);d.setHours(d.getHours()+1);return d}
+Object.keys(U).forEach(k=>U[k].addEventListener("change",()=>{
+  const blank=Object.keys(U).filter(x=>x!==k&&U[x].value==="").length;
+  if(blank===4&&U[k].value!==""){            /* first pick: fill the rest with sensible defaults */
+    const keepVal=U[k].value,d=defaultDate();
+    if(k!=="Y")U.Y.value=String(d.getFullYear());
+    if(k!=="M")U.M.value=String(d.getMonth()+1);
+    buildDays(k==="D"?keepVal:String(d.getDate()));
+    if(k!=="D")U.D.value=String(d.getDate());
+    if(k!=="H")U.H.value=String(d.getHours());
+    if(k!=="N")U.N.value=String(d.getMinutes());
+  }else if(k==="Y"||k==="M"){buildDays()}
+  dtInfo();markDirty();
+}));
+document.querySelectorAll("[data-q]").forEach(b=>b.onclick=()=>{
+  const q=b.dataset.q,d=new Date();
+  if(q==="x"){setUntilDate(null)}
+  else{
+    if(q==="1h")d.setHours(d.getHours()+1);
+    else if(q==="3h")d.setHours(d.getHours()+3);
+    else{d.setDate(d.getDate()+1);d.setHours(9,0,0,0)}
+    d.setSeconds(0,0);setUntilDate(d);
+  }
+  markDirty();
+});
+
+/* ============ state ============ */
 function formState(){
-  const o={keepReports:$("keep").checked,pauseRequests:$("pr").checked,pauseReports:$("pp").checked,pauseReviews:$("pv").checked,bannerOn:$("bOn").checked};
+  const o={keepReports:$("keep").checked,pauseRequests:$("pr").checked,pauseReports:$("pp").checked,pauseReviews:$("pv").checked,bannerOn:$("bOn").checked,until:getUntil(),pauseAt:pkA.get(),resumeAt:pkB.get()};
   TXT.forEach(p=>o[p[1]]=val(p[0]));return o;
 }
+function normUntil(u){if(typeof u==="string"&&/^\d{4}-\d{2}-\d{2}T/.test(u)){const d=new Date(u);return isNaN(d)?"":d.toISOString()}return ""}
 function baseState(){
-  const o={keepReports:cur.keepReports===true,pauseRequests:cur.pauseRequests===true,pauseReports:cur.pauseReports===true,pauseReviews:cur.pauseReviews===true,bannerOn:cur.bannerOn===true};
+  const o={keepReports:cur.keepReports===true,pauseRequests:cur.pauseRequests===true,pauseReports:cur.pauseReports===true,pauseReviews:cur.pauseReviews===true,bannerOn:cur.bannerOn===true,until:normUntil(cur.until),pauseAt:isoOf(cur.pauseAt),resumeAt:isoOf(cur.resumeAt)};
   TXT.forEach(p=>o[p[1]]=(cur[p[1]]||"").trim());return o;
 }
 function markDirty(){
   const a=formState(),b=baseState();
   dirty=Object.keys(a).some(k=>a[k]!==b[k]);
   $("save").disabled=busy||!dirty;
-  if(dirty){say("لديك تغييرات غير محفوظة","dirty")}else if($("msg").className==="dirty"){say("")}
+  const m=$("msg");
+  if(dirty){say("m_unsaved","dirty")}else if(m.className==="dirty"){say("")}
   document.querySelectorAll("[data-c]").forEach(c=>{const e=$(c.dataset.c);c.textContent=e.value.length+"/"+e.maxLength});
+  bnSync();schInfo();
 }
 addEventListener("beforeunload",e=>{if(dirty){e.preventDefault();e.returnValue=""}});
 
-/* ---------- render ---------- */
-function chip(label,s,txt){return '<span class="chip" data-s="'+s+'"><i></i>'+label+': '+txt+'</span>'}
+function chip(label,s,txt){const e=document.createElement("span");e.className="chip";e.dataset.s=s;e.innerHTML="<i></i>";e.append(label+": "+txt);return e}
 function render(){
-  const on=cur.enabled!==false;
+  const on=effOn(cur);
   $("plate").dataset.on=on?"1":"0";
-  $("stt").textContent=on?"الموقع يعمل":"الموقع متوقف";
+  $("stt").textContent=t(on?"on":"off");
   const m=$("meta");m.textContent="";
-  if(cur.updatedBy){m.append("آخر تغيير: "+cur.updatedBy);if(cur.updatedAt){m.append(" · ");const b=document.createElement("bdi");b.textContent=fmt(cur.updatedAt);m.append(b)}}else m.textContent="لم يُغيَّر بعد";
-  $("holdTxt").textContent=on?"اضغط مطوّلًا لإيقاف الموقع":"اضغط مطوّلًا لاستئناف الموقع";
-  $("holdHint").textContent=on?"سيرى الزوار شاشة الصيانة وتُمنع الإرسالات الجديدة.":"سيعود الموقع للزوار فورًا.";
+  if(cur.updatedBy){m.append(t("last")+cur.updatedBy);if(cur.updatedAt){m.append(" · ");const b=document.createElement("bdi");b.textContent=fmt(cur.updatedAt);m.append(b)}}else m.textContent=t("never");
+  $("holdTxt").textContent=t(on?"h_stop":"h_res");
+  $("holdHint").textContent=t(on?"hi_stop":"hi_res");
   $("hold").disabled=busy;
   const rq=!on||cur.pauseRequests===true,rv=!on||cur.pauseReviews===true;
   const rp=cur.pauseReports===true||(!on&&cur.keepReports!==true);
-  $("chips").innerHTML=chip("الموقع",on?"on":"off",on?"يعمل":"متوقف")+chip("الطلبات",rq?"off":"on",rq?"متوقفة":"مفتوحة")+chip("البلاغات",rp?"off":"on",rp?"متوقفة":"مفتوحة")+chip("الآراء",rv?"off":"on",rv?"متوقفة":"مفتوحة")+chip("الشريط",cur.bannerOn===true?"info":"idle",cur.bannerOn===true?"ظاهر":"مخفي");
+  const ch=$("chips");ch.textContent="";
+  ch.append(chip(t("c_site"),on?"on":"off",t(on?"v_run":"v_stop")),chip(t("c_req"),rq?"off":"on",t(rq?"v_paused":"v_open")),chip(t("c_rep"),rp?"off":"on",t(rp?"v_paused":"v_open")),chip(t("c_rev"),rv?"off":"on",t(rv?"v_paused":"v_open")),chip(t("c_ban"),cur.bannerOn===true?"info":"idle",t(cur.bannerOn===true?"v_shown":"v_hid")));
   if(!dirty){
     $("keep").checked=cur.keepReports===true;
     $("pr").checked=cur.pauseRequests===true;$("pp").checked=cur.pauseReports===true;$("pv").checked=cur.pauseReviews===true;$("bOn").checked=cur.bannerOn===true;
     TXT.forEach(p=>{$(p[0]).value=cur[p[1]]||""});
+    setUntilISO(cur.until);
+    bnOpen();
+    pkA.set(isoOf(cur.pauseAt));pkB.set(isoOf(cur.resumeAt));
   }
   markDirty();
 }
-
-/* ---------- live data ---------- */
-function start(){
-  unsub=onSnapshot(REF(),s=>{cur=s.exists()?s.data():{};render();show("panel")},e=>{cur={};render();show("panel");say("تعذّرت قراءة الإعدادات: "+(e.code||e.message),"err")});
-  unsubLog=onSnapshot(query(collection(db,"siteLog"),orderBy("at","desc"),limit(10)),s=>{
-    const ul=$("log");ul.textContent="";
-    if(s.empty){ul.innerHTML='<li class="note">لا توجد عمليات بعد.</li>';return}
-    s.forEach(d=>{
-      const x=d.data(),li=document.createElement("li"),l=document.createElement("span"),g=document.createElement("span"),w=document.createElement("span"),t=document.createElement("bdi");
-      g.className="lg "+(x.action==="pause"||x.action==="resume"?x.action:"");
-      g.textContent={pause:"إيقاف",resume:"استئناف",update:"تعديل"}[x.action]||x.action;
-      w.className="who2";w.textContent=x.by||"";l.append(g,w);t.textContent=fmt(x.at);li.append(l,t);ul.append(li);
-    });
-  },()=>{});
-  counts();statT=setInterval(counts,60000);
+function renderLog(){
+  const ul=$("log");ul.textContent="";
+  if(!lastLog||!lastLog.length){const li=document.createElement("li");li.className="note";li.textContent=t("lg_e");ul.append(li);return}
+  lastLog.forEach(x=>{
+    const li=document.createElement("li"),l=document.createElement("span"),g=document.createElement("span"),w=document.createElement("span"),tm=document.createElement("bdi");
+    g.className="lg "+(x.action==="pause"||x.action==="resume"?x.action:"");
+    g.textContent=t("a_"+x.action);w.className="who2";w.textContent=x.by||"";l.append(g,w);tm.textContent=fmt(x.at);li.append(l,tm);ul.append(li);
+  });
 }
-function stop(){if(unsub)unsub();if(unsubLog)unsubLog();unsub=unsubLog=null;clearInterval(statT);clearTimeout(idleT)}
+
+/* ============ live data ============ */
+function start(){
+  unsub=onSnapshot(REF(),s=>{cur=s.exists()?s.data():{};render();show("panel")},e=>{cur={};render();show("panel");say(null,"err",t("m_read")+(e.code||e.message))});
+  unsubLog=onSnapshot(query(collection(db,"siteLog"),orderBy("at","desc"),limit(10)),s=>{lastLog=[];s.forEach(d=>lastLog.push(d.data()));renderLog()},()=>{});
+  counts();statT=setInterval(counts,60000);rndT=setInterval(()=>{if(!busy)render()},30000);
+  if(P.own)stStart();if(P.usr){cuLast=()=>query(collection(db,"users"),where("banned","==",true))}
+}
+function stop(){if(unsub)unsub();if(unsubLog)unsubLog();unsub=unsubLog=null;if(unsubStaff)unsubStaff();unsubStaff=null;clearInterval(statT);clearInterval(rndT);clearTimeout(idleT)}
 async function counts(){
   const c=async q=>{try{return (await getCountFromServer(q)).data().count}catch(e){return null}};
   const set=(id,n,hot)=>{const e=$(id);e.firstElementChild.textContent=n==null?"—":n;e.classList.toggle("hot",!!hot&&n>0)};
@@ -342,40 +632,41 @@ async function counts(){
 }
 $("ref").onclick=async()=>{$("ref").disabled=true;await counts();$("ref").disabled=false};
 
-/* ---------- writes (full document, plus an audit-log entry, in one atomic batch) ---------- */
+/* ============ writes (full doc + audit entry, one atomic batch) ============ */
 async function commit(action,enabled){
   if(busy||!user)return;
-  busy=true;$("hold").disabled=true;$("save").disabled=true;say("جارٍ التنفيذ…");
+  busy=true;$("hold").disabled=true;$("save").disabled=true;say("m_work");
   try{
-    const f=formState(),data=Object.assign({enabled},f,{updatedAt:serverTimestamp(),updatedBy:user.email});
+    const f=formState(),b0=baseState(),ch={};
+    Object.keys(f).forEach(k=>{if(f[k]!==b0[k])ch[k]=f[k]});
+    if(action==="pause"){ch.pauseAt="";ch.resumeAt=f.resumeAt}
+    if(action==="resume"){ch.pauseAt="";ch.resumeAt=""}
+    if(action!=="resume"&&f.pauseAt&&f.resumeAt&&f.resumeAt<=f.pauseAt){busy=false;say("sc_bad","err");render();return}
+    ["pauseAt","resumeAt"].forEach(k=>{if(k in ch)ch[k]=ch[k]?Timestamp.fromDate(new Date(ch[k])):null});
+    const data=Object.assign({enabled},ch,{updatedAt:serverTimestamp(),updatedBy:user.email});
     const b=writeBatch(db);
-    b.set(REF(),data);
+    b.set(REF(),data,{merge:true});
     b.set(doc(collection(db,"siteLog")),{action,by:user.email,at:serverTimestamp()});
     await b.commit();
-    dirty=false;
-    say(action==="pause"?"تم إيقاف الموقع ✔":action==="resume"?"تم استئناف الموقع ✔":"تم الحفظ ✔","ok");
-  }catch(e){say("تعذّر التنفيذ: "+(e.code||e.message)+" — تأكد من نشر القواعد الجديدة.","err")}
+    dirty=false;say(action==="pause"?"m_paused":action==="resume"?"m_resumed":"m_saved","ok");
+  }catch(e){say(null,"err",t("m_fail")+(e.code||e.message)+t("m_rules"))}
   busy=false;render();
 }
 $("save").onclick=()=>commit("update",cur.enabled!==false);
-document.addEventListener("keydown",e=>{if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==="s"){e.preventDefault();if(!$("save").disabled)$("save").click()}});
+document.addEventListener("keydown",e=>{if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==="s"&&!$("panel").hidden){e.preventDefault();if(!$("save").disabled)$("save").click()}});
 
-/* ---------- inputs ---------- */
+/* ============ inputs ============ */
 document.querySelectorAll("textarea,input[type=text],input[type=checkbox]").forEach(e=>{e.addEventListener("input",markDirty);e.addEventListener("change",markDirty)});
-$("tpl").onchange=()=>{
-  const t=TPL[$("tpl").value];if(!t)return;
-  $("mAr").value=t.ar;$("mEn").value=t.en;$("mFr").value=t.fr;$("mEs").value=t.es;
-  $("tpl").value="";markDirty();
-};
-const form=()=>{const o={};TXT.forEach(p=>o[p[1]]=val(p[0]));o.keepReports=$("keep").checked;return o};
+$("tpl").onchange=()=>{const x=TPL[$("tpl").value];if(!x)return;$("mAr").value=x.ar;$("mEn").value=x.en;$("mFr").value=x.fr;$("mEs").value=x.es;$("tpl").value="";markDirty()};
+const form=()=>{const o={until:getUntil(),keepReports:$("keep").checked};TXT.forEach(p=>o[p[1]]=val(p[0]));return o};
 document.querySelectorAll("[data-pv]").forEach(b=>b.onclick=()=>VXSITE.preview(form(),b.dataset.pv));
-document.querySelectorAll("[data-bv]").forEach(b=>b.onclick=()=>{if(!VXSITE.previewBanner(form(),b.dataset.bv))say("اكتب نص الشريط بهذه اللغة أولًا","err")});
+document.querySelectorAll("[data-bv]").forEach(b=>b.onclick=()=>{if(!VXSITE.previewBanner(form(),b.dataset.bv))say("m_bn","err")});
 
-/* ---------- hold to confirm ---------- */
+/* ============ hold to confirm ============ */
 (function(){
-  const h=$("hold");let t=null,down=false;
-  function begin(){if(down||h.disabled)return;down=true;h.classList.add("go");t=setTimeout(()=>finish(true),1100)}
-  function finish(ok){clearTimeout(t);if(!down)return;down=false;h.classList.remove("go");if(ok){const on=cur.enabled!==false;commit(on?"pause":"resume",!on)}}
+  const h=$("hold");let tm=null,down=false;
+  function begin(){if(down||h.disabled)return;down=true;h.classList.add("go");tm=setTimeout(()=>finish(true),1100)}
+  function finish(ok){clearTimeout(tm);if(!down)return;down=false;h.classList.remove("go");if(ok){const on=effOn(cur);commit(on?"pause":"resume",!on)}}
   h.addEventListener("pointerdown",e=>{e.preventDefault();begin()});
   ["pointerup","pointerleave","pointercancel"].forEach(ev=>h.addEventListener(ev,()=>finish(false)));
   h.addEventListener("keydown",e=>{if((e.key===" "||e.key==="Enter")&&!e.repeat){e.preventDefault();begin()}});
@@ -384,7 +675,7 @@ document.querySelectorAll("[data-bv]").forEach(b=>b.onclick=()=>{if(!VXSITE.prev
   h.addEventListener("contextmenu",e=>e.preventDefault());
 })();
 
-/* ---------- auth ---------- */
+/* ============ auth ============ */
 $("out1").onclick=$("out2").onclick=()=>signOut(auth);
 $("gbtn").onclick=async()=>{
   $("lerr").textContent="";
@@ -392,17 +683,122 @@ $("gbtn").onclick=async()=>{
   try{await signInWithPopup(auth,p)}
   catch(e){
     if(e.code==="auth/popup-blocked"||e.code==="auth/operation-not-supported-in-this-environment"){signInWithRedirect(auth,p)}
-    else if(e.code!=="auth/popup-closed-by-user"&&e.code!=="auth/cancelled-popup-request"){$("lerr").textContent="تعذّر تسجيل الدخول: "+(e.code||e.message)}
+    else if(e.code!=="auth/popup-closed-by-user"&&e.code!=="auth/cancelled-popup-request"){$("lerr").textContent=t("lg_e")+(e.code||e.message)}
   }
 };
 function bumpIdle(){clearTimeout(idleT);idleT=setTimeout(()=>signOut(auth),20*60*1000)}
 ["pointerdown","keydown","touchstart"].forEach(ev=>addEventListener(ev,()=>{if(user)bumpIdle()},{passive:true}));
-onAuthStateChanged(auth,u=>{
-  stop();user=u;
-  if(!u){own(false);show("login");return}
-  if(u.email===ADMIN&&u.emailVerified){own(true);$("email").textContent=u.email;bumpIdle();start()}
-  else{own(false);$("who").textContent=u.email||"";show("login");$("denybar").hidden=false}
+onAuthStateChanged(auth,async u=>{
+  stop();user=u;allowed=false;
+  if(!u){own(false);$("whoBox").hidden=true;show("login");return}
+  let ok=u.email===ADMIN&&u.emailVerified;                 /* the main administrator: everything */
+  P={own:ok,sw:ok,ct:ok,usr:ok,ban:ok};
+  if(!ok&&u.emailVerified){                                /* staff: control / ctlSwitch / ctlContent */
+    try{const s=await getDoc(doc(db,"staff",(u.email||"").toLowerCase()));
+      if(s.exists()){const d=s.data(),full=d.control===true;
+        P={own:false,sw:full||d.ctlSwitch===true,ct:full||d.ctlContent===true,usr:d.all===true||d.viewUsers===true||d.banUsers===true,ban:d.all===true||d.banUsers===true};
+        ok=P.sw||P.ct}}catch(e){}
+  }
+  if(user!==u)return;
+  if(ok){allowed=true;gate();own(true);$("email").textContent=u.email;$("whoBox").hidden=false;bumpIdle();start()}
+  else{own(false);$("whoBox").hidden=true;$("who").textContent=u.email||"";show("login");$("denybar").hidden=false}
 });
+
+/* ============ permissions gate ============ */
+function gate(){document.querySelectorAll("[data-g]").forEach(e=>{const g=e.dataset.g;
+  if(g==="own"||g==="usr"){e.hidden=!P[g];return}
+  e.toggleAttribute("inert",!P[g]);e.classList.toggle("lock",!P[g])})}
+
+/* ============ schedule (start / auto-resume) ============ */
+const isoOf=x=>x&&x.toDate?x.toDate().toISOString():"";
+const effOn=x=>{const n=Date.now(),m=v=>v&&v.toDate?v.toDate().getTime():null,pa=m(x.pauseAt),ra=m(x.resumeAt),af=ra!=null&&n>=ra;return x.enabled===false?af:!(pa!=null&&n>=pa&&!af)};
+function mkDT(box,chg){
+  const S=[0,1,2,3,4].map(()=>{const s=document.createElement("select");box.append(s);return s}),[Y,M,D,H,N]=S;
+  const o=(s,l,k)=>{const v=k!==undefined?k:s.value;s.textContent="";l.forEach(a=>{const e=document.createElement("option");e.value=a[0];e.textContent=a[1];s.append(e)});s.value=v;if(s.value!==v)s.value=""};
+  const rng=(n,f)=>Array.from({length:n},(_,i)=>f(i));
+  function days(k){const n=new Date(+Y.value||new Date().getFullYear(),+M.value||1,0).getDate(),v=k!==undefined?k:D.value;o(D,[["",t("un_d")]].concat(rng(n,i=>[""+(i+1),""+(i+1)])),+v>n?""+n:v)}
+  function build(){
+    const k=S.map(s=>s.value),y0=new Date().getFullYear(),ys=[y0,y0+1,y0+2];if(k[0]&&!ys.includes(+k[0]))ys.push(+k[0]);
+    o(Y,[["",t("un_y")]].concat(ys.sort().map(v=>[""+v,""+v])),k[0]);
+    const mf=new Intl.DateTimeFormat(LOC[L],{month:"long"});
+    o(M,[["",t("un_m")]].concat(rng(12,i=>[""+(i+1),mf.format(new Date(2024,i,1))])),k[1]);
+    days(k[2]);
+    o(H,[["",t("un_h")]].concat(rng(24,i=>[""+i,p2(i)])),k[3]);
+    o(N,[["",t("un_n")]].concat(rng(60,i=>[""+i,p2(i)])),k[4]);
+  }
+  function get(){if(S.some(s=>s.value===""))return "";const m=+M.value,d=new Date(+Y.value,m-1,+D.value,+H.value,+N.value);return d.getMonth()===m-1?d.toISOString():""}
+  function set(v){
+    const d=v?new Date(v):null;
+    if(!d||isNaN(d)){S.forEach(s=>s.value="");days("");return}
+    if(!Array.from(Y.options).some(e=>e.value===""+d.getFullYear())){const e=document.createElement("option");e.value=e.textContent=""+d.getFullYear();Y.append(e)}
+    Y.value=""+d.getFullYear();M.value=""+(d.getMonth()+1);days(""+d.getDate());H.value=""+d.getHours();N.value=""+d.getMinutes();
+  }
+  S.forEach((s,i)=>s.addEventListener("change",()=>{
+    const blank=S.filter((x,j)=>j!==i&&x.value==="").length;
+    if(blank===4&&s.value!==""){const d=defaultDate(),v=[d.getFullYear(),d.getMonth()+1,d.getDate(),d.getHours(),d.getMinutes()];S.forEach((x,j)=>{if(j!==i)x.value=""+v[j]});days()}
+    else if(i<2)days();
+    chg();
+  }));
+  build();return {get,set,build};
+}
+const pkA=mkDT($("schA"),()=>markDirty()),pkB=mkDT($("schB"),()=>markDirty());
+$("schX").onclick=()=>{pkA.set("");pkB.set("");markDirty()};
+function schInfo(){
+  const a=pkA.get(),b=pkB.get(),el=$("schInfo"),f=x=>new Date(x).toLocaleString(LOC[L],{dateStyle:"medium",timeStyle:"short"}),bad=a&&b&&b<=a;
+  el.className="dtinfo"+(bad?" warn":"");
+  el.textContent=!a&&!b?t("sc_none"):(a?t("sc_i1")+f(a):"")+(a&&b?" · ":"")+(b?t("sc_i2")+f(b):"")+(bad?" — "+t("sc_bad"):"");
+}
+
+/* ============ staff manager (main administrator only) ============ */
+const esc=s=>String(s).replace(/[&<>"']/g,ch=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[ch]));
+const permHtml=(m,attr)=>PK.map(k=>'<label class="chk"><input type="checkbox" '+attr+' data-p="'+k+'"'+(m[k]===true?" checked":"")+'><span>'+SP[L][k]+'</span></label>').join("");
+let STF=[];
+function stNew(){const cur={};document.querySelectorAll("#stNew input").forEach(x=>cur[x.dataset.p]=x.checked);$("stNew").innerHTML=permHtml(cur,"")}
+function stRender(){
+  const box=$("stList");box.textContent="";
+  STF.forEach(m=>{
+    const d=document.createElement("div"),b=document.createElement("b"),pm=document.createElement("div"),r=document.createElement("button");
+    d.className="mem";b.textContent=m.id;pm.className="perms";pm.innerHTML=permHtml(m,'data-e="'+esc(m.id)+'"');
+    r.type="button";r.className="btn alt sm";r.dataset.rm=m.id;r.textContent=t("st_rm");d.append(b,pm,r);box.append(d);
+  });
+}
+function stStart(){unsubStaff=onSnapshot(collection(db,"staff"),s=>{STF=[];s.forEach(d=>STF.push(Object.assign({id:d.id},d.data())));STF.sort((a,b)=>a.id<b.id?-1:1);stRender()},()=>{});stNew()}
+const fail=er=>say(null,"err",t("m_fail")+(er.code||er.message));
+$("stList").onchange=async e=>{const i=e.target;if(!P.own||!i.dataset.e)return;try{await updateDoc(doc(db,"staff",i.dataset.e),{[i.dataset.p]:i.checked})}catch(er){fail(er)}};
+$("stList").onclick=async e=>{const b=e.target.closest("[data-rm]");if(!b||!P.own||!confirm(t("st_rmq")))return;try{await deleteDoc(doc(db,"staff",b.dataset.rm))}catch(er){fail(er)}};
+$("stAddBtn").onclick=async()=>{
+  const em=$("stEmail").value.trim().toLowerCase(),data={email:em,addedBy:user.email,addedAt:serverTimestamp()},m=$("stMsg");let any=false;
+  document.querySelectorAll("#stNew input").forEach(x=>{data[x.dataset.p]=x.checked;if(x.checked)any=true});
+  if(!P.own||em===ADMIN||!/^[^\s@\/]+@[^\s@\/]+\.[^\s@\/]+$/.test(em)||!any){m.textContent=t("st_no");return}
+  try{await setDoc(doc(db,"staff",em),data);$("stEmail").value="";m.textContent=t("st_done");document.querySelectorAll("#stNew input").forEach(x=>x.checked=false)}catch(er){m.textContent=t("m_fail")+(er.code||er.message)}
+};
+
+/* ============ customers: search, ban, unban ============ */
+let cuLast=null;
+async function cuReload(){
+  if(!cuLast)return;const box=$("cuRes");box.textContent="…";
+  try{
+    const s=await getDocs(cuLast());box.textContent="";
+    if(s.empty){const n=document.createElement("p");n.className="note";n.textContent=t("cu_none");box.append(n);return}
+    s.forEach(d=>{
+      const x=d.data(),row=document.createElement("div"),info=document.createElement("div"),nm=document.createElement("b"),sm=document.createElement("small"),bn=x.banned===true;
+      row.className="cu";nm.textContent=(x.name||"—")+(bn?" · "+t("cu_isb"):"");sm.textContent=[x.email,x.phone,fmt(x.lastLogin)].filter(Boolean).join(" · ");info.append(nm,sm);row.append(info);
+      if(P.ban){
+        const b=document.createElement("button");b.type="button";b.className="btn sm "+(bn?"alt":"red");b.textContent=t(bn?"cu_unban":"cu_ban");
+        b.onclick=async()=>{if(!bn&&!confirm(t("cu_q")))return;try{await updateDoc(doc(db,"users",d.id),{banned:!bn,bannedAt:serverTimestamp(),bannedBy:user.email});cuReload()}catch(er){fail(er)}};
+        row.append(b);
+      }
+      box.append(row);
+    });
+  }catch(er){box.textContent=t("m_fail")+(er.code||er.message)}
+}
+$("cuGo").onclick=()=>{const q=$("cuQ").value.trim().toLowerCase();if(!q)return;cuLast=()=>query(collection(db,"users"),where("email","==",q));cuReload()};
+$("cuBan").onclick=()=>{cuLast=()=>query(collection(db,"users"),where("banned","==",true));cuReload()};
+$("cuQ").addEventListener("keydown",e=>{if(e.key==="Enter")$("cuGo").click()});
+
+/* ============ init ============ */
+setTheme(effTheme());
+applyLang();
 </script>
 </body>
 </html>

@@ -307,12 +307,12 @@ function renderMine(){
     +'<br><small>'+t.trk+' <span dir="ltr">'+esc(r.code)+'</span> · '+esc(when(r))+'</small><p>'+esc(r.message)+'</p><button type="button" class="btn alt sm" data-pdf="'+esc(r.id)+'">'+esc(t.pdf_btn)+'</button></div>').join("")
     :'<p class="muted">'+t.none+'</p>';
 }
-const PK=["all","viewRequests","editRequests","editPayment","viewUsers","banUsers","moderateReviews","viewReports","editReports"];
+const PK=["all","viewRequests","editRequests","editPayment","viewUsers","banUsers","moderateReviews","viewReports","editReports","control","ctlSwitch","ctlContent"];
 const can=p=>isOwner||perms.all===true||perms[p]===true;
 const seen=r=>r&&r.seconds?r.toDate().toLocaleDateString(LOC[lang]):"";
 function permsHtml(p,attr){
   const t=tt();
-  return PK.map(k=>{const all=p.all===true&&k!=="all";
+  return PK.map(k=>{const all=p.all===true&&k!=="all"&&!["control","ctlSwitch","ctlContent"].includes(k);
     return '<label class="chk"><input type="checkbox" '+attr+' data-perm="'+k+'"'+((all||p[k]===true)?" checked":"")+(all?" disabled":"")+'> '+esc(t["p_"+k])+'</label>'}).join("");
 }
 function renderNewPerms(){
@@ -527,7 +527,7 @@ if(cfg.apiKey.startsWith("PASTE")){
 
   $("auth").onclick=async()=>{
     if(user){await signOut(auth);return}
-    const p=new GoogleAuthProvider();
+    const p=new GoogleAuthProvider();p.setCustomParameters({prompt:"select_account"});
     try{await signInWithPopup(auth,p)}
     catch(e){
       if(e.code==="auth/popup-blocked"||e.code==="auth/operation-not-supported-in-this-environment")signInWithRedirect(auth,p);
@@ -742,6 +742,10 @@ if(cfg.apiKey.startsWith("PASTE")){
   };
 }
 
+Object.assign(T.ar,{p_control:"⚠ مركز التحكم: دخول كامل (حساسة، لا تشملها «كل الصلاحيات»)",p_ctlSwitch:"⚠ مركز التحكم: الإيقاف والاستئناف والجدولة فقط",p_ctlContent:"مركز التحكم: الرسائل وشريط الإعلان فقط"});
+Object.assign(T.en,{p_control:"⚠ Control Center: full access (sensitive, not part of “All permissions”)",p_ctlSwitch:"⚠ Control Center: stop, resume and schedule only",p_ctlContent:"Control Center: messages and announcement bar only"});
+Object.assign(T.fr,{p_control:"⚠ Centre de contrôle : accès complet (sensible, hors « Toutes les permissions »)",p_ctlSwitch:"⚠ Centre de contrôle : arrêt, reprise et planification uniquement",p_ctlContent:"Centre de contrôle : messages et bandeau uniquement"});
+Object.assign(T.es,{p_control:"⚠ Centro de control: acceso completo (sensible, fuera de «Todos los permisos»)",p_ctlSwitch:"⚠ Centro de control: solo detener, reanudar y programar",p_ctlContent:"Centro de control: solo mensajes y barra de anuncio"});
 let sl=null;try{sl=localStorage.getItem("vx-lang")}catch(e){}
 const nl=(navigator.language||"ar").slice(0,2);
 setLang(sl&&T[sl]?sl:"en");

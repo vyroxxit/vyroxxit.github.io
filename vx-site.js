@@ -34,8 +34,11 @@ function cap(s){return s.charAt(0).toUpperCase()+s.slice(1)}
 function isOwner(){try{return localStorage.getItem("vx-owner")==="1"}catch(e){return false}}
 function parse(j){
   var c={enabled:true},f=(j&&j.fields)||{};
-  for(var k in f){var v=f[k];c[k]="booleanValue"in v?v.booleanValue:("stringValue"in v?v.stringValue:null)}
-  c.enabled=c.enabled!==false;return c;
+  for(var k in f){var v=f[k];c[k]="booleanValue"in v?v.booleanValue:("stringValue"in v?v.stringValue:("timestampValue"in v?Date.parse(v.timestampValue):null))}
+  /* effective state, same logic as the database rules */
+  var n=Date.now(),p=c.pauseAt,r=c.resumeAt,after=r!=null&&n>=r;
+  c.enabled=c.enabled===false?after:!(p!=null&&n>=p&&!after);
+  return c;
 }
 function stopAll(c){return c.enabled===false}
 function reportsClosed(c){return c.pauseReports===true||(stopAll(c)&&c.keepReports!==true)}
@@ -45,6 +48,15 @@ function ready(fn){if(document.body)fn();else document.addEventListener("DOMCont
 function css(id,text){if(document.getElementById(id))return;var s=document.createElement("style");s.id=id;s.textContent=text;document.head.appendChild(s)}
 
 /* ---------- full-screen stop / pause screen ---------- */
+var LOC={ar:"ar-MA",en:"en-GB",fr:"fr-FR",es:"es-ES"};
+function untilText(u,l){
+  if(!u)return "";
+  if(/^\d{4}-\d{2}-\d{2}T/.test(u)){
+    var d=new Date(u);if(isNaN(d)||d.getTime()<=Date.now())return "";
+    try{return d.toLocaleString(LOC[l]||"en-GB",{dateStyle:"full",timeStyle:"short"})}catch(e){return d.toLocaleString()}
+  }
+  return u;
+}
 function setInert(on,except){
   var kids=document.body.children;
   for(var i=0;i<kids.length;i++){var k=kids[i];if(k===except||k.id==="vx-banner")continue;if(on)k.setAttribute("inert","");else k.removeAttribute("inert")}
@@ -65,7 +77,7 @@ function screen(opts){
      +'<div style="font-weight:700;letter-spacing:.14em;margin-top:10px;direction:ltr">VYROXX <span style="color:#3CC4C4">IT</span></div>'
      +'<h1 id="vx-st" style="font-size:clamp(26px,6vw,38px);margin:22px 0 10px;line-height:1.3">'+esc(opts.title)+'</h1>'
      +'<p style="color:#9BB1B5;margin:0 0 14px;line-height:1.9;font-size:17px;white-space:pre-wrap">'+esc(opts.text)+'</p>'
-     +(opts.until?'<p style="margin:0 0 14px"><span style="color:#9BB1B5">'+esc(t.u)+':</span> <b>'+esc(opts.until)+'</b></p>':'')
+     +(untilText(opts.until,l)?'<p style="margin:0 0 14px"><span style="color:#9BB1B5">'+esc(t.u)+':</span> <b>'+esc(untilText(opts.until,l))+'</b></p>':'')
      +(opts.contact?'<p style="color:#9BB1B5;font-size:15px;margin:18px 0 0">'+esc(t.c)+' <a href="mailto:vyroxxvx@gmail.com" style="color:#3CC4C4;direction:ltr;unicode-bidi:isolate;display:inline-block">vyroxxvx@gmail.com</a></p>':'')
      +link
      +(opts.preview?'<p style="margin:26px 0 0"><button type="button" id="vx-pvx" style="font:inherit;font-weight:700;cursor:pointer;padding:10px 22px;border-radius:12px;border:0;background:#3CC4C4;color:#0C1519">'+esc(t.pvx)+'</button></p><p style="color:#9BB1B5;font-size:13px;margin:8px 0 0">'+esc(t.pvw)+'</p>':'')
