@@ -806,6 +806,7 @@ if(!window.VX_PORTFOLIO){window.VX_PORTFOLIO=[
     <span dir="ltr">VYROXX IT SERVICES · Your Technology, Our Responsibility</span>
     <span data-i="city">Fez, Morocco</span>
     <a href="portfolio.html" data-i="nav10" style="text-decoration:underline">Portfolio</a>
+    <a href="sentinel.html" style="text-decoration:underline">VYROXX Sentinel</a>
     <a href="report.html" data-i="rp_link" style="text-decoration:underline">Report serious online content</a>
     <span class="flinks" aria-label="Social"><a href="https://wa.me/212646126501" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" title="WhatsApp" style="--c:#1F9D55"><svg class="i" aria-hidden="true"><use href="#i-wa"/></svg></a><a href="https://www.instagram.com/vyroxx_it/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" title="Instagram" style="--c:#C13584"><svg class="i" aria-hidden="true"><use href="#i-ig"/></svg></a><a href="https://www.facebook.com/profile.php?id=61576004765268" target="_blank" rel="noopener noreferrer" aria-label="Facebook" title="Facebook" style="--c:#1877F2"><svg class="i" aria-hidden="true"><use href="#i-fb"/></svg></a><a class="gm" href="mailto:vyroxxvx@gmail.com" aria-label="Gmail" title="Gmail" style="--c:#D9482B"><svg class="i" aria-hidden="true"><use href="#i-ml"/></svg></a></span>
   </footer>
@@ -1346,7 +1347,9 @@ function vxShowcase(l){
     });
     m.appendChild(ul);
     var act=mk("div","sx-act"),a=mk("a","btn sx-go",c.btn[l]);a.href=c.page;act.appendChild(a);
-    var b=mk("a","btn alt",C.lbl.send[l]);b.href="#request";act.appendChild(b);m.appendChild(act);
+    var b=mk("a","btn alt",C.lbl.send[l]);b.href="#request";act.appendChild(b);
+    if(k==="security"){var sn=mk("a","btn alt","🛰️ "+C.lbl.sentinel[l]);sn.href="sentinel.html";act.appendChild(sn)}
+    m.appendChild(act);
     var v=mk("div","sx-vis"),h=mk("div","sx-head");
     h.appendChild(mk("div","sx-orb",c.ic));
     var cn=mk("div","sx-cnt",String(ti.length));cn.appendChild(mk("small",null,C.lbl.services[l]));h.appendChild(cn);v.appendChild(h);

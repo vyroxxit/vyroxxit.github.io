@@ -238,7 +238,8 @@ function drawHero(){
   (c.pts[l]||c.pts.en).forEach(function(p,i){var li=el("li"),ic=el("span","sx-ic"),d=el("div");ic.innerHTML='<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+PTI[i%3]+'</svg>';d.appendChild(el("b",null,p[0]));d.appendChild(el("span",null,p[1]));li.appendChild(ic);li.appendChild(d);ul.appendChild(li)});
   m.appendChild(ul);
   var act=el("div","sx-act"),a=el("a","btn sx-go",L[l].cb);a.href="/#request";act.appendChild(a);
-  var b=el("a","btn alt",L[l].back);b.href="/#services";act.appendChild(b);m.appendChild(act);
+  var b=el("a","btn alt",L[l].back);b.href="/#services";act.appendChild(b);
+  var sn=el("a","btn alt","🛰️ "+C.lbl.sentinel[l]);sn.href="sentinel.html";act.appendChild(sn);m.appendChild(act);
   var n=CAT==="business"?(D.BZ[l]||[]).length:items().length;
   var v=el("div","sx-vis"),hd=el("div","sx-head");hd.appendChild(el("div","sx-orb",c.ic));
   var cn=el("div","sx-cnt",String(n));cn.appendChild(el("small",null,C.lbl.services[l]));hd.appendChild(cn);v.appendChild(hd);

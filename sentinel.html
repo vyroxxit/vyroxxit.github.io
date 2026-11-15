@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>VYROXX Sentinel | File Integrity Monitor</title>
+<meta name="description" content="Detect file tampering instantly. VYROXX Sentinel fingerprints your files with SHA-256 right in your browser, remembers your trusted state and flags every modified, added or removed file. Nothing is uploaded.">
+<link rel="canonical" href="https://vyroxxit.github.io/sentinel.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="VYROXX Sentinel | File Integrity Monitor">
+<meta property="og:description" content="Free in-browser file tamper detection by VYROXX IT. SHA-256, 100% local, nothing uploaded.">
+<meta property="og:url" content="https://vyroxxit.github.io/sentinel.html">
+<meta property="og:image" content="https://vyroxxit.github.io/og-image.jpg">
+<meta name="theme-color" content="#0C1519">
+<link rel="manifest" href="/manifest.json">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" href="/favicon.png" sizes="48x48" type="image/png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;700&display=swap" rel="stylesheet">
+<script>try{var th=localStorage.getItem("vx-theme");if(/^(light|dark|legend|hacker)$/.test(th))document.documentElement.setAttribute("data-theme",th)}catch(e){}</script>
+<script src="vx-site.js?v=1" defer></script>
+<style>
+:root{--bg:#F1F4F3;--surface:#FFFFFF;--ink:#12263A;--muted:#52667A;--line:#D3DDDD;--accent:#0F8B8D;--on-accent:#FFFFFF;--hot:#D9482B}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0C1519;--surface:#142228;--ink:#E6EFEF;--muted:#9BB1B5;--line:#24383E;--accent:#3CC4C4;--on-accent:#0C1519;--hot:#FF7A59;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0C1519;--surface:#142228;--ink:#E6EFEF;--muted:#9BB1B5;--line:#24383E;--accent:#3CC4C4;--on-accent:#0C1519;--hot:#FF7A59;color-scheme:dark}
+:root[data-theme="legend"]{--bg:#0B0716;--surface:#150E26;--ink:#F3E9D2;--muted:#BBAAD8;--line:#3A2A5E;--accent:#F5B83D;--on-accent:#1A1024;--hot:#FF6B94;color-scheme:dark}
+:root[data-theme="hacker"]{--bg:#000;--surface:#04100A;--ink:#B8FFC8;--muted:#4FC26E;--line:#0F5A24;--accent:#00FF41;--on-accent:#00170A;--hot:#FF2E63;color-scheme:dark}
+:root[data-theme="hacker"] .pc,:root[data-theme="hacker"] .btn,:root[data-theme="hacker"] .f,:root[data-theme="hacker"] .st{border-radius:4px}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;min-height:100vh;display:flex;flex-direction:column;background:var(--bg);color:var(--ink);font-family:"IBM Plex Sans Arabic","Segoe UI",Tahoma,Arial,sans-serif;line-height:1.8;font-size:17px;padding:env(safe-area-inset-top,0) env(safe-area-inset-right,0) env(safe-area-inset-bottom,0) env(safe-area-inset-left,0);background-image:radial-gradient(900px 480px at 85% -10%,color-mix(in srgb,var(--accent) 14%,transparent),transparent 62%);background-repeat:no-repeat}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px;border-radius:6px}
+.w{width:100%;max-width:1760px;margin:0 auto;padding-inline:22px}
+.top{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;padding-block:20px}
+.logo{display:inline-flex;align-items:center;gap:10px;text-decoration:none;font-weight:700;letter-spacing:.14em;font-size:19px;direction:ltr}
+.logo b{color:var(--accent)}.logo svg{width:30px;height:38px}
+.tools{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.tools .home{text-decoration:none;color:var(--muted);font-size:15px;padding:0 6px}
+.seg{display:flex;border:1.5px solid var(--line);border-radius:10px;overflow:hidden}
+.seg button{font:inherit;font-size:14px;border:0;background:transparent;color:var(--muted);padding:6px 12px;cursor:pointer}
+.seg button[aria-pressed="true"]{background:var(--accent);color:var(--on-accent);font-weight:700}
+.theme{font:inherit;font-size:18px;line-height:1;border:1.5px solid var(--line);border-radius:10px;background:transparent;color:var(--ink);padding:5px 11px;cursor:pointer}
+.hero{padding:clamp(28px,6vw,64px) 0 26px;max-width:760px}
+.eyebrow{display:inline-block;font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);border:1px solid var(--line);border-radius:99px;padding:2px 14px;background:var(--surface)}
+h1{font-size:clamp(32px,6vw,52px);line-height:1.2;margin:14px 0 12px}
+.hero p{color:var(--muted);font-size:18px;margin:0 0 22px;max-width:40em}
+.btn{display:inline-block;padding:12px 24px;border-radius:12px;background:var(--accent);color:var(--on-accent);font-weight:700;text-decoration:none;border:1.5px solid var(--accent);transition:transform .2s}
+.btn:hover{transform:translateY(-2px)}
+.btn.alt{background:transparent;color:var(--ink);border-color:var(--line)}
+.act{display:flex;gap:12px;flex-wrap:wrap}
+.fl{display:flex;gap:8px;flex-wrap:wrap;margin:26px 0 22px}
+.f{font:inherit;font-size:15px;border:1.5px solid var(--line);background:var(--surface);color:var(--ink);padding:5px 16px;border-radius:99px;cursor:pointer}
+.f[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--on-accent);font-weight:700}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,330px),1fr));gap:20px}
+.pc{display:flex;flex-direction:column;gap:10px;background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:22px;transition:transform .2s,border-color .2s}
+.pc:hover{transform:translateY(-4px);border-color:var(--accent)}
+.meta{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.cat{font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--accent)}
+.bd{font-size:12px;border:1.5px dashed var(--hot);color:var(--hot);border-radius:99px;padding:0 10px}
+.pc h3{margin:0;font-size:21px;line-height:1.35}
+.pc p{margin:0;color:var(--muted);font-size:16px}
+.out{font-size:15px;border-inline-start:3px solid var(--accent);padding-inline-start:12px;color:var(--ink)}
+.out small{display:block;color:var(--muted);font-size:12.5px;letter-spacing:.06em;text-transform:uppercase}
+.tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:auto;padding-top:6px}
+.tags span{font-size:13px;border:1px solid var(--line);border-radius:8px;padding:0 9px;color:var(--muted);direction:ltr}
+.pc .lk{font-weight:700;color:var(--accent);text-decoration:none}
+.empty{color:var(--muted);padding:30px 0}
+.proc{margin:56px 0 0}
+.proc h2{font-size:clamp(24px,4vw,32px);margin:0 0 16px}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.st{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:18px}
+.st i{font-style:normal;display:inline-grid;place-items:center;width:30px;height:30px;border-radius:50%;background:var(--accent);color:var(--on-accent);font-weight:700;font-size:15px}
+.st b{display:block;margin:8px 0 2px}
+.st span{color:var(--muted);font-size:15px;line-height:1.7}
+.cta{margin:56px 0 0;padding:clamp(24px,5vw,40px);border:1px solid var(--line);border-radius:22px;background:var(--surface);display:flex;gap:20px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+.cta h2{margin:0 0 4px;font-size:clamp(22px,4vw,30px)}
+.cta p{margin:0;color:var(--muted)}
+footer{margin-top:auto;padding:28px 0;border-top:1px solid var(--line);color:var(--muted);font-size:14px;text-align:center}
+main{padding-bottom:50px}
+.dh{display:flex;align-items:center;gap:16px;margin:44px 0 18px}
+.dh:first-child{margin-top:8px}
+.di{flex:none;width:58px;height:58px;border-radius:18px;display:grid;place-items:center;font-size:28px;background:color-mix(in srgb,var(--accent) 14%,transparent);border:1px solid color-mix(in srgb,var(--accent) 35%,var(--line))}
+.dh h2{margin:0;font-size:clamp(22px,3.6vw,30px);line-height:1.3}
+.dh p{margin:2px 0 0;color:var(--muted);font-size:16px;max-width:46em}
+.ck{list-style:none;margin:2px 0 0;padding:0;display:grid;gap:7px}
+.ck li{position:relative;padding-inline-start:26px;font-size:15.5px;line-height:1.7}
+.ck li::before{content:"✓";position:absolute;inset-inline-start:0;top:0;color:var(--accent);font-weight:700}
+.bd.live{border-style:solid;border-color:var(--accent);color:var(--accent)}
+.pc p{text-wrap:pretty}
+[dir="rtl"] .cat,[dir="rtl"] .out small,[dir="rtl"] .eyebrow{letter-spacing:0;text-transform:none}
+[dir="rtl"] .cat{font-size:14.5px}
+[dir="rtl"] .out small{font-size:13.5px}
+[dir="rtl"] .pc p{font-size:17px;line-height:1.95;color:color-mix(in srgb,var(--ink) 80%,var(--muted))}
+[dir="rtl"] .ck li{font-size:16.5px;line-height:1.9}
+[dir="rtl"] .pc h3{line-height:1.5}
+@media (max-width:820px){.steps{grid-template-columns:1fr 1fr}}
+@media (max-width:520px){.steps{grid-template-columns:1fr}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+@media (min-width:1241px){
+  .w{padding-inline:clamp(84px,5vw,120px)}
+  .top{padding-block:26px}
+  .hero{max-width:900px;padding-top:clamp(40px,6vh,80px)}
+  h1{font-size:clamp(48px,4.4vw,80px)}
+  .hero p{font-size:clamp(18px,1.3vw,22px)}
+  .grid{grid-template-columns:repeat(auto-fill,minmax(min(100%,360px),1fr));gap:26px}
+  .pc{padding:28px 28px 24px}
+  .steps{gap:24px}
+  .st{padding:26px}
+}
+@media (min-width:1360px){html{zoom:1.1}}
+@media (min-width:1360px){body{min-height:calc(100vh / 1.1)}}
+
+.tp-eyebrow{display:inline-flex;align-items:center;gap:9px;font-size:12.5px;letter-spacing:.16em;font-weight:700;color:var(--accent);border:1px solid color-mix(in srgb,var(--accent) 40%,transparent);background:color-mix(in srgb,var(--accent) 10%,transparent);padding:5px 15px;border-radius:99px;margin-bottom:16px;direction:ltr;font-family:ui-monospace,Menlo,Consolas,monospace}
+
+.snh{display:grid;grid-template-columns:1.15fr 1fr;gap:clamp(24px,4vw,64px);align-items:center;padding:clamp(24px,5vw,64px) 0 34px}
+.snh h1{font-size:clamp(42px,5.6vw,88px);line-height:1.04;margin:12px 0 16px;letter-spacing:-.01em}
+.snh h1 span{background:linear-gradient(90deg,var(--accent),color-mix(in srgb,var(--accent) 35%,var(--ink)));-webkit-background-clip:text;background-clip:text;color:transparent}
+.snh .lead{color:var(--muted);font-size:clamp(17px,1.3vw,21px);line-height:1.9;margin:0 0 22px;max-width:36em}
+.cp{display:flex;flex-wrap:wrap;gap:8px;list-style:none;padding:0;margin:0 0 26px}
+.cp li{font:600 13px ui-monospace,Menlo,Consolas,monospace;border:1px solid color-mix(in srgb,var(--accent) 40%,var(--line));background:color-mix(in srgb,var(--accent) 9%,transparent);border-radius:99px;padding:3px 14px}
+.radar{position:relative;width:min(100%,460px);aspect-ratio:1;margin-inline:auto;border-radius:50%;overflow:hidden;border:1px solid color-mix(in srgb,var(--accent) 50%,var(--line));background:repeating-radial-gradient(circle,transparent 0 12.3%,color-mix(in srgb,var(--accent) 32%,transparent) 12.5% 13%),radial-gradient(circle,color-mix(in srgb,var(--accent) 16%,var(--surface)),var(--surface) 72%);box-shadow:0 0 70px -24px var(--accent)}
+.radar::before{content:"";position:absolute;inset:0;border-radius:50%;background:conic-gradient(from 0deg,transparent 0 292deg,color-mix(in srgb,var(--accent) 60%,transparent) 360deg);animation:sweep 4.5s linear infinite}
+.radar::after{content:"";position:absolute;inset:0;background:linear-gradient(var(--line),var(--line)) center/1px 100% no-repeat,linear-gradient(var(--line),var(--line)) center/100% 1px no-repeat;opacity:.7}
+@keyframes sweep{to{transform:rotate(360deg)}}
+.radar .core{position:absolute;inset:34%;z-index:2;display:grid;place-items:center;border-radius:50%;background:var(--surface);border:1px solid color-mix(in srgb,var(--accent) 55%,var(--line));box-shadow:0 0 30px -6px var(--accent)}
+.radar .core svg{width:46%;height:auto}
+.bl{position:absolute;z-index:2;width:11px;height:11px;border-radius:50%;background:var(--hot);box-shadow:0 0 16px var(--hot);animation:pl 2.6s ease-in-out infinite}
+@keyframes pl{50%{transform:scale(1.7);opacity:.45}}
+.tool{border:1px solid color-mix(in srgb,var(--accent) 35%,var(--line));border-radius:28px;padding:clamp(18px,3vw,38px);background:linear-gradient(160deg,color-mix(in srgb,var(--accent) 7%,var(--surface)),var(--surface) 55%);scroll-margin-top:20px}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:22px}
+.tab{font:inherit;font-weight:700;font-size:16px;border:1.5px solid var(--line);background:var(--surface);color:var(--ink);padding:9px 22px;border-radius:12px;cursor:pointer}
+.tab[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
+.modes{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}
+.mode{font:inherit;font-size:15px;font-weight:600;border:1.5px solid var(--line);background:transparent;color:var(--muted);padding:6px 18px;border-radius:99px;cursor:pointer}
+.mode[aria-pressed="true"]{border-color:var(--accent);color:var(--accent);background:color-mix(in srgb,var(--accent) 12%,transparent)}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:22px;align-items:start}
+label.l{display:block;font-weight:600;font-size:15px;margin:0 0 6px}
+.in{width:100%;font:inherit;font-size:16px;color:var(--ink);background:color-mix(in srgb,var(--bg) 70%,var(--surface));border:1px solid var(--line);border-radius:12px;padding:10px 14px;margin-bottom:14px}
+.in:focus{outline:0;border-color:var(--accent);box-shadow:0 0 0 4px color-mix(in srgb,var(--accent) 18%,transparent)}
+.dz{border:2px dashed color-mix(in srgb,var(--accent) 50%,var(--line));border-radius:20px;padding:28px 18px;text-align:center;background:color-mix(in srgb,var(--accent) 5%,transparent);transition:background .2s,border-color .2s}
+.dz.over{background:color-mix(in srgb,var(--accent) 16%,transparent);border-color:var(--accent)}
+.dz .ic{font-size:40px;line-height:1}
+.dz b{display:block;font-size:19px;margin:8px 0 2px}.dz small{color:var(--muted);display:block;margin-bottom:14px}
+.row{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
+.btn.sm{padding:9px 18px;font-size:15px;border-radius:11px;cursor:pointer;font-family:inherit}
+.btn:disabled{opacity:.45;cursor:not-allowed;transform:none}
+.rd{margin:14px 0 0;font-weight:600;min-height:1.7em;color:var(--accent)}
+.term{background:#04090b;color:#8dffc0;font:13px/1.65 ui-monospace,Menlo,Consolas,monospace;border-radius:16px;padding:14px 16px;height:218px;overflow:hidden;direction:ltr;text-align:left;white-space:pre;border:1px solid #12342b}
+.term i{font-style:normal;color:#4d8f72}
+.bar{height:10px;border-radius:99px;background:color-mix(in srgb,var(--ink) 12%,transparent);margin:14px 0 6px;overflow:hidden}
+.bar>div{height:100%;width:0;background:linear-gradient(90deg,var(--accent),color-mix(in srgb,var(--accent) 40%,var(--hot)));transition:width .15s}
+.pg{display:flex;justify-content:space-between;gap:10px;font-size:14px;color:var(--muted);direction:ltr}
+.res{margin-top:28px}
+.vd{--vc:var(--accent);display:flex;gap:26px;align-items:center;flex-wrap:wrap;border:1px solid color-mix(in srgb,var(--vc) 55%,var(--line));border-radius:22px;padding:22px 26px;background:linear-gradient(135deg,color-mix(in srgb,var(--vc) 14%,var(--surface)),var(--surface) 60%)}
+.vd.alert{--vc:#E8A317}.vd.critical{--vc:var(--hot)}
+.ring{--p:100;position:relative;flex:none;width:128px;height:128px;border-radius:50%;display:grid;place-items:center;background:conic-gradient(var(--vc) calc(var(--p)*1%),color-mix(in srgb,var(--ink) 12%,transparent) 0)}
+.ring::before{content:"";position:absolute;inset:11px;border-radius:50%;background:var(--surface)}
+.ring b{position:relative;font-size:36px;line-height:1}.ring small{position:relative;display:block;font-size:11.5px;color:var(--muted);text-align:center;margin-top:2px}
+.vd h2{margin:0 0 4px;font-size:clamp(24px,3.2vw,38px);color:var(--vc);letter-spacing:.02em}.vd p{margin:0;color:var(--muted);max-width:40em}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:12px;margin:18px 0}
+.sc{border:1px solid var(--line);border-radius:16px;padding:14px 16px;background:var(--surface)}
+.sc b{display:block;font-size:30px;line-height:1.2}.sc span{color:var(--muted);font-size:14px}
+.sc.hot b{color:var(--hot)}
+.tb{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:6px 0 14px}
+.fc{font:inherit;font-size:14.5px;border:1.5px solid var(--line);background:var(--surface);color:var(--ink);padding:4px 14px;border-radius:99px;cursor:pointer}
+.fc[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--on-accent);font-weight:700}
+.tb .in{margin:0;flex:1;min-width:160px;max-width:300px;padding:6px 12px}
+.sp{flex:1}
+.rows{display:grid;gap:10px}
+details.rw{border:1px solid var(--line);border-radius:14px;background:var(--surface)}
+details.rw summary{list-style:none;display:flex;gap:12px;align-items:center;padding:12px 14px;cursor:pointer;flex-wrap:wrap}
+details.rw summary::-webkit-details-marker{display:none}
+.bd{flex:none;font:700 11.5px ui-monospace,Menlo,Consolas,monospace;letter-spacing:.06em;padding:2px 10px;border-radius:7px;border:1.5px solid}
+.bd.mod{color:#E8A317;border-color:#E8A317}.bd.add{color:var(--accent);border-color:var(--accent)}.bd.del{color:var(--hot);border-color:var(--hot)}
+.pth{flex:1;min-width:140px;direction:ltr;text-align:left;font:14.5px ui-monospace,Menlo,Consolas,monospace;word-break:break-all}
+.fg{font-size:12.5px;border-radius:99px;padding:0 10px;background:color-mix(in srgb,var(--hot) 14%,transparent);color:var(--hot);border:1px solid color-mix(in srgb,var(--hot) 40%,transparent)}
+.dt{padding:4px 16px 16px;display:grid;grid-template-columns:1fr 1fr;gap:14px;font-size:14px;color:var(--muted)}
+.dt code{display:block;direction:ltr;text-align:left;word-break:break-all;color:var(--ink);font:12.5px ui-monospace,Menlo,Consolas,monospace;margin-top:3px}
+.hv{display:flex;gap:10px;align-items:center;border:1px solid var(--line);border-radius:12px;padding:8px 12px;margin-top:8px;background:var(--surface)}
+.hv span{flex:none;font:700 12px ui-monospace,Menlo,Consolas,monospace;color:var(--accent);width:64px;direction:ltr}
+.hv code{flex:1;direction:ltr;text-align:left;word-break:break-all;font:12.5px ui-monospace,Menlo,Consolas,monospace}
+.ok{margin-top:14px;padding:12px 16px;border-radius:12px;font-weight:700;border:1.5px solid}
+.ok.y{color:#1E9E6A;border-color:#1E9E6A;background:color-mix(in srgb,#1E9E6A 10%,transparent)}.ok.n{color:var(--hot);border-color:var(--hot);background:color-mix(in srgb,var(--hot) 10%,transparent)}
+.how{margin-top:52px}.how h2,.lim h2{font-size:clamp(24px,3vw,34px);margin:0 0 16px}
+.st3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.s3{border:1px solid var(--line);border-radius:20px;padding:24px;background:var(--surface)}
+.s3 i{font-style:normal;display:grid;place-items:center;width:38px;height:38px;border-radius:50%;background:var(--accent);color:var(--on-accent);font-weight:700;margin-bottom:10px}
+.s3 b{display:block;font-size:19px;margin-bottom:4px}.s3 span{color:var(--muted)}
+.lim{margin-top:30px;border:1px solid var(--line);border-radius:20px;padding:24px 28px;background:var(--surface)}
+.lim ul{margin:0;padding:0;list-style:none;display:grid;gap:10px}
+.lim li{position:relative;padding-inline-start:26px;color:var(--muted);line-height:1.8}.lim li::before{content:"!";position:absolute;inset-inline-start:0;top:0;color:var(--accent);font-weight:800}
+[dir="rtl"] .tp-eyebrow,[dir="rtl"] .bd,[dir="rtl"] .cp li{letter-spacing:0;text-transform:none}
+[dir="rtl"] .snh .lead{line-height:2}
+.hid{display:none!important}
+@media (max-width:900px){.snh,.two{grid-template-columns:1fr}.st3{grid-template-columns:1fr}.dt{grid-template-columns:1fr}.radar{max-width:340px}}
+@media (prefers-reduced-motion:reduce){.radar::before,.bl{animation:none}}
+@media print{header,.snh,.tabs,.modes,#ctl,#scanbox,.how,.lim,.cta,footer,.tb,#basedone{display:none!important}html{zoom:1!important}body{background:#fff!important;color:#000!important}.tool{border:0;background:none;padding:0}details.rw{break-inside:avoid}details.rw>.dt{display:grid!important}}
+</style>
+</head>
+<body>
+<header class="w top">
+  <a class="logo" href="/" aria-label="VYROXX IT">
+    <svg viewBox="135 96 130 204" aria-hidden="true"><path d="M200 135 L255 155 V215 C255 250 230 275 200 292 C170 275 145 250 145 215 V155 Z" fill="var(--surface)" stroke="var(--ink)" stroke-width="8" stroke-linejoin="round"/><path d="M172 182 L200 240 L228 182" fill="none" stroke="var(--accent)" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/><circle cx="200" cy="166" r="7" fill="var(--hot)"/><path d="M168 128 L178 104 L200 120 L222 104 L232 128 Z" fill="var(--accent)" stroke="var(--ink)" stroke-width="5" stroke-linejoin="round"/></svg>
+    <span>VYROXX <b>IT</b></span>
+  </a>
+  <div class="tools">
+    <a class="home" href="/" id="home">Home</a>
+    <div class="seg" id="seg" role="group" aria-label="Language"><button type="button" data-l="en">EN</button><button type="button" data-l="ar">ع</button><button type="button" data-l="fr">FR</button><button type="button" data-l="es">ES</button></div>
+    <button class="theme" id="theme" type="button" aria-label="Theme"></button>
+  </div>
+</header>
+<main class="w">
+  <section class="snh">
+    <div>
+      <span class="tp-eyebrow" data-i="eb">FILE INTEGRITY MONITOR</span>
+      <h1><span>VYROXX</span> Sentinel</h1>
+      <p class="lead" data-i="lead"></p>
+      <ul class="cp"><li data-i="c1"></li><li data-i="c2"></li><li data-i="c3"></li><li data-i="c4"></li></ul>
+      <div class="act"><a class="btn" href="#tool" data-i="go"></a><a class="btn alt" href="/#request" data-i="aud"></a></div>
+    </div>
+    <div class="radar" aria-hidden="true">
+      <span class="bl" style="top:22%;inset-inline-start:63%"></span><span class="bl" style="top:64%;inset-inline-start:24%;animation-delay:.9s"></span><span class="bl" style="top:72%;inset-inline-start:70%;animation-delay:1.7s"></span>
+      <div class="core"><svg viewBox="135 96 130 204"><path d="M200 135 L255 155 V215 C255 250 230 275 200 292 C170 275 145 250 145 215 V155 Z" fill="var(--surface)" stroke="var(--ink)" stroke-width="8" stroke-linejoin="round"/><path d="M172 182 L200 240 L228 182" fill="none" stroke="var(--accent)" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/><circle cx="200" cy="166" r="7" fill="var(--hot)"/><path d="M168 128 L178 104 L200 120 L222 104 L232 128 Z" fill="var(--accent)" stroke="var(--ink)" stroke-width="5" stroke-linejoin="round"/></svg></div>
+    </div>
+  </section>
+
+  <section class="tool" id="tool">
+    <div class="tabs"><button class="tab" type="button" data-tab="mon" data-i="tab1"></button><button class="tab" type="button" data-tab="chk" data-i="tab2"></button></div>
+
+    <div id="paneMon">
+      <div class="modes"><button class="mode" type="button" data-mode="base" data-i="m1"></button><button class="mode" type="button" data-mode="verify" data-i="m2"></button></div>
+      <div class="two">
+        <div id="ctl">
+          <div id="boxBase"><label class="l" for="bn" data-i="bn_l"></label><input class="in" id="bn" type="text" maxlength="60" data-ph="bn_ph" autocomplete="off"></div>
+          <div id="boxVerify" class="hid"><label class="l" for="bs" data-i="bs_l"></label><select class="in" id="bs"></select>
+            <div class="row" style="justify-content:flex-start;margin:-4px 0 14px"><button class="btn alt sm" id="imp" type="button" data-i="imp"></button><button class="btn alt sm" id="delb" type="button" data-i="del"></button><input type="file" id="impf" accept=".json,application/json" class="hid"></div></div>
+          <div class="dz" id="dz">
+            <div class="ic" aria-hidden="true">🛰️</div><b data-i="dz_t"></b><small data-i="dz_s"></small>
+            <div class="row"><button class="btn sm" id="pf" type="button" data-i="pf"></button><button class="btn alt sm" id="pfl" type="button" data-i="pfl"></button></div>
+            <input type="file" id="fdir" webkitdirectory multiple class="hid"><input type="file" id="ffiles" multiple class="hid">
+          </div>
+          <p class="rd" id="rd" aria-live="polite"></p>
+          <div class="row" style="justify-content:flex-start"><button class="btn" id="go2" type="button" disabled data-i="start"></button><button class="btn alt sm hid" id="stop" type="button" data-i="stop"></button></div>
+        </div>
+        <div id="scanbox">
+          <div class="term" id="term" aria-live="off"></div>
+          <div class="bar"><div id="pb"></div></div>
+          <div class="pg"><span id="pn">0 / 0</span><span id="pz"></span></div>
+        </div>
+      </div>
+
+      <div id="basedone" class="res hid">
+        <div class="vd"><div class="ring"><div><b>✓</b></div></div><div><h2 data-i="done_b"></h2><p data-i="done_d"></p><p id="bsum" style="margin-top:8px;font-weight:600;color:var(--ink)"></p><div class="row" style="justify-content:flex-start;margin-top:14px"><button class="btn sm" id="expb" type="button" data-i="exp_b"></button><button class="btn alt sm" id="nowv" type="button" data-i="nowv"></button></div></div></div>
+      </div>
+
+      <div id="res" class="res hid">
+        <div class="vd" id="vd"><div class="ring" id="ring"><div><b id="sco">100</b><small data-i="sc"></small></div></div><div><h2 id="vt"></h2><p id="vp"></p></div></div>
+        <div class="stats" id="stats"></div>
+        <div class="tb" id="tbar"></div>
+        <div class="rows" id="rows"></div>
+      </div>
+    </div>
+
+    <div id="paneChk" class="hid">
+      <div class="two">
+        <div><h2 style="margin:0 0 6px;font-size:26px" data-i="ck_h"></h2><p style="color:var(--muted);margin:0 0 16px" data-i="ck_d"></p>
+          <div class="dz" id="dz2"><div class="ic" aria-hidden="true">🔐</div><b data-i="ck_drop"></b><div class="row" style="margin-top:12px"><button class="btn sm" id="ckp" type="button" data-i="pfl"></button></div><input type="file" id="ckf" class="hid"></div>
+          <label class="l" for="ckx" style="margin-top:16px" data-i="ck_exp"></label><input class="in" id="ckx" type="text" data-ph="ck_ph" autocomplete="off" spellcheck="false" style="direction:ltr;text-align:left">
+        </div>
+        <div id="ckout"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="how">
+    <h2 data-i="how_h"></h2>
+    <div class="st3"><div class="s3"><i>1</i><b data-i="h1t"></b><span data-i="h1d"></span></div><div class="s3"><i>2</i><b data-i="h2t"></b><span data-i="h2d"></span></div><div class="s3"><i>3</i><b data-i="h3t"></b><span data-i="h3d"></span></div></div>
+    <div class="lim"><h2 data-i="lim_h"></h2><ul><li data-i="lim1"></li><li data-i="lim2"></li><li data-i="lim3"></li><li data-i="lim4"></li></ul></div>
+  </section>
+
+  <section class="cta"><div><h2 data-i="cta_h"></h2><p data-i="cta_p"></p></div><a class="btn" href="/#request" data-i="cta_b"></a></section>
+</main>
+<footer><div class="w" id="ft"></div></footer>
+<noscript><p class="w">Please enable JavaScript to use VYROXX Sentinel.</p></noscript>
+
+<script src="sentinel-core.js"></script>
+<script>
+(function(){
+"use strict";
+var U={
+en:{title:"VYROXX Sentinel | File Integrity Monitor",desc:"Detect file tampering instantly. VYROXX Sentinel fingerprints your files with SHA-256 right in your browser, remembers your trusted state and flags every modified, added or removed file. Nothing is uploaded.",home:"Home",eb:"FILE INTEGRITY MONITOR",
+lead:"Know the moment a file changes. Sentinel fingerprints every file with SHA-256, remembers your trusted state and exposes any modification, injection or deletion in seconds, entirely on your device.",
+c1:"SHA-256 fingerprints",c2:"100% local",c3:"Nothing uploaded",c4:"Tamper detection",go:"Launch Sentinel",aud:"Request a security audit",
+tab1:"Integrity monitor",tab2:"Checksum verifier",m1:"1 · Create baseline",m2:"2 · Verify integrity",bn_l:"Baseline name",bn_ph:"e.g. my-website",bs_l:"Trusted baseline",imp:"Import baseline",del:"Delete",nob:"No baseline saved yet. Create one first or import a file.",
+dz_t:"Drop a folder or files here",dz_s:"or choose below",pf:"Choose folder",pfl:"Choose files",ready:"files ready",start:"Start scan",stop:"Stop",
+done_b:"Baseline saved",done_d:"Your trusted state was recorded in this browser. Keep an exported copy somewhere safe.",exp_b:"Export baseline",nowv:"Now verify",files:"files",
+sc:"Integrity score",v_clean:"ALL CLEAR",v_clean_d:"Every file matches your trusted baseline. No tampering detected.",v_alert:"CHANGES DETECTED",v_alert_d:"Some files differ from the baseline. Review them below.",v_crit:"TAMPERING SUSPECTED",v_crit_d:"High-risk changes found. Investigate immediately.",
+st_mod:"Modified",st_add:"Added",st_del:"Removed",st_ok:"Unchanged",st_risk:"High risk",f_all:"All",search:"Search path…",none:"Nothing in this view.",more:"more not shown. Export the report to see all.",
+t_mod:"MODIFIED",t_add:"ADDED",t_del:"REMOVED",fl_exec:"Executable / script",fl_hidden:"Hidden file",fl_double:"Disguised double extension",fl_stealth:"Content changed but timestamp did not",old:"Before",new:"Now",
+ex_json:"Export JSON",ex_csv:"Export CSV",ex_print:"Print report",
+ck_h:"Checksum verifier",ck_d:"Check that a download is exactly what its publisher released: drop the file and compare its fingerprint.",ck_drop:"Drop a file here",ck_exp:"Expected checksum (optional)",ck_ph:"Paste the SHA-256 / SHA-1 / SHA-384 / SHA-512 published by the vendor",ck_ok:"MATCH: the file is identical to the published one.",ck_bad:"MISMATCH: the file differs from the published checksum. Do not trust it.",ck_big:"File is too large for in-browser hashing (limit 256 MB).",copy:"Copy",copied:"Copied",
+how_h:"How Sentinel works",h1t:"Baseline",h1d:"Scan a clean, trusted copy. Sentinel stores a SHA-256 fingerprint of every file.",h2t:"Verify",h2d:"Scan again later. Any change in content changes the fingerprint.",h3t:"Investigate",h3d:"See what changed, which changes are risky, and export a report.",
+lim_h:"Good to know",lim1:"Your files never leave your device. All hashing happens in your browser.",lim2:"Take the baseline from a known-clean state. Sentinel cannot tell whether a file was already infected before.",lim3:"It detects changes. It is not an antivirus, and it tells you what changed, not who or why.",lim4:"Files over 256 MB are skipped, and very large folders depend on what your browser allows.",
+cta_h:"Need a professional security review?",cta_p:"We audit websites, servers and companies, always with written authorization. We reply within 6 hours.",cta_b:"Request a security audit",
+ft:"VYROXX IT SERVICES · Your Technology, Our Responsibility",th:"Theme",e_bad:"This is not a valid Sentinel baseline file.",e_api:"Your browser does not support secure hashing. Use a modern browser over HTTPS.",e_name:"Enter a baseline name first.",e_pick:"Choose a baseline first.",e_save:"Could not save in browser storage. Export the baseline instead.",cdel:"Delete this baseline?",cancelled:"Scan stopped.",sum:"files hashed"},
+ar:{title:"VYROXX Sentinel | مراقب سلامة الملفات",desc:"اكشف التلاعب بالملفات فورًا. تأخذ VYROXX Sentinel بصمة SHA-256 لملفاتك داخل متصفحك، وتحفظ حالتك الموثوقة، وتنبّهك إلى كل ملف عُدِّل أو أُضيف أو حُذف. لا يُرفع أي شيء.",home:"الرئيسية",eb:"مراقب سلامة الملفات",
+lead:"اعرف في اللحظة التي يتغير فيها أي ملف. تأخذ Sentinel بصمة SHA-256 لكل ملف، وتتذكر حالتك الموثوقة، وتكشف أي تعديل أو حقن أو حذف خلال ثوانٍ، وكل ذلك على جهازك أنت.",
+c1:"بصمات SHA-256",c2:"محلي 100%",c3:"لا يُرفع شيء",c4:"كشف التلاعب",go:"شغّل Sentinel",aud:"اطلب فحصًا أمنيًا",
+tab1:"مراقب السلامة",tab2:"فاحص البصمات",m1:"1 · إنشاء خط أساس",m2:"2 · التحقق من السلامة",bn_l:"اسم خط الأساس",bn_ph:"مثال: موقعي",bs_l:"خط الأساس الموثوق",imp:"استيراد خط أساس",del:"حذف",nob:"لا يوجد خط أساس محفوظ. أنشئ واحدًا أولًا أو استورد ملفًا.",
+dz_t:"أفلت مجلدًا أو ملفات هنا",dz_s:"أو اختر من الأسفل",pf:"اختيار مجلد",pfl:"اختيار ملفات",ready:"ملف جاهز",start:"ابدأ الفحص",stop:"إيقاف",
+done_b:"تم حفظ خط الأساس",done_d:"سُجّلت حالتك الموثوقة في هذا المتصفح. احتفظ بنسخة مُصدَّرة في مكان آمن.",exp_b:"تصدير خط الأساس",nowv:"تحقق الآن",files:"ملف",
+sc:"درجة السلامة",v_clean:"كل شيء سليم",v_clean_d:"كل الملفات تطابق خط الأساس الموثوق. لم يُكتشف أي تلاعب.",v_alert:"تم رصد تغييرات",v_alert_d:"بعض الملفات تختلف عن خط الأساس. راجعها بالأسفل.",v_crit:"اشتباه بتلاعب",v_crit_d:"وُجدت تغييرات عالية الخطورة. حقّق فورًا.",
+st_mod:"معدَّلة",st_add:"مضافة",st_del:"محذوفة",st_ok:"دون تغيير",st_risk:"عالية الخطورة",f_all:"الكل",search:"ابحث في المسار…",none:"لا شيء في هذا العرض.",more:"عنصر آخر غير معروض. صدّر التقرير لرؤية الكل.",
+t_mod:"معدَّل",t_add:"مضاف",t_del:"محذوف",fl_exec:"ملف تنفيذي / سكربت",fl_hidden:"ملف مخفي",fl_double:"امتداد مزدوج مُنتحَل",fl_stealth:"تغيّر المحتوى دون تغيّر وقت التعديل",old:"قبل",new:"الآن",
+ex_json:"تصدير JSON",ex_csv:"تصدير CSV",ex_print:"طباعة التقرير",
+ck_h:"فاحص البصمات",ck_d:"تأكد أن ما حمّلته هو بالضبط ما نشره صاحبه: أفلت الملف وقارن بصمته.",ck_drop:"أفلت ملفًا هنا",ck_exp:"البصمة المتوقعة (اختياري)",ck_ph:"الصق بصمة SHA-256 أو SHA-1 أو SHA-384 أو SHA-512 المنشورة من الجهة المطوّرة",ck_ok:"مطابق: الملف مطابق تمامًا للمنشور.",ck_bad:"غير مطابق: الملف يختلف عن البصمة المنشورة. لا تثق به.",ck_big:"الملف أكبر من أن يُحسب في المتصفح (الحد 256 ميغابايت).",copy:"نسخ",copied:"تم النسخ",
+how_h:"كيف تعمل Sentinel",h1t:"خط الأساس",h1d:"افحص نسخة نظيفة وموثوقة. تحفظ Sentinel بصمة SHA-256 لكل ملف.",h2t:"التحقق",h2d:"افحص مجددًا لاحقًا. أي تغيير في المحتوى يغيّر البصمة.",h3t:"التحقيق",h3d:"اعرف ما تغيّر، وأي التغييرات خطير، وصدّر تقريرًا.",
+lim_h:"من المهم أن تعرف",lim1:"ملفاتك لا تغادر جهازك أبدًا. كل الحساب يتم داخل متصفحك.",lim2:"خذ خط الأساس من حالة نظيفة معروفة. لا تستطيع Sentinel معرفة إن كان الملف مصابًا قبل ذلك.",lim3:"هي تكشف التغييرات وليست مضاد فيروسات، وتخبرك بما تغيّر لا بمن فعل ولا بالسبب.",lim4:"تُتجاوز الملفات الأكبر من 256 ميغابايت، والمجلدات الضخمة جدًا تتبع حدود متصفحك.",
+cta_h:"تحتاج مراجعة أمنية احترافية؟",cta_p:"نفحص المواقع والخوادم والشركات، دائمًا بتفويض كتابي. نرد خلال 6 ساعات.",cta_b:"اطلب فحصًا أمنيًا",
+ft:"VYROXX IT SERVICES · تقنيتك، مسؤوليتنا",th:"المظهر",e_bad:"هذا ليس ملف خط أساس صالحًا لـ Sentinel.",e_api:"متصفحك لا يدعم الحساب الآمن للبصمات. استعمل متصفحًا حديثًا عبر HTTPS.",e_name:"اكتب اسم خط الأساس أولًا.",e_pick:"اختر خط أساس أولًا.",e_save:"تعذّر الحفظ في تخزين المتصفح. صدّر خط الأساس بدلًا من ذلك.",cdel:"حذف خط الأساس هذا؟",cancelled:"أُوقف الفحص.",sum:"ملف حُسبت بصمته"},
+fr:{title:"VYROXX Sentinel | Moniteur d’intégrité des fichiers",desc:"Détectez instantanément toute altération de fichiers. VYROXX Sentinel calcule l’empreinte SHA-256 de vos fichiers dans votre navigateur, mémorise votre état de confiance et signale chaque fichier modifié, ajouté ou supprimé. Rien n’est envoyé.",home:"Accueil",eb:"MONITEUR D’INTÉGRITÉ DES FICHIERS",
+lead:"Sachez à la seconde où un fichier change. Sentinel calcule l’empreinte SHA-256 de chaque fichier, mémorise votre état de confiance et révèle toute modification, injection ou suppression en quelques secondes, entièrement sur votre appareil.",
+c1:"Empreintes SHA-256",c2:"100 % local",c3:"Rien n’est envoyé",c4:"Détection d’altération",go:"Lancer Sentinel",aud:"Demander un audit de sécurité",
+tab1:"Moniteur d’intégrité",tab2:"Vérificateur d’empreinte",m1:"1 · Créer une référence",m2:"2 · Vérifier l’intégrité",bn_l:"Nom de la référence",bn_ph:"ex. mon-site",bs_l:"Référence de confiance",imp:"Importer une référence",del:"Supprimer",nob:"Aucune référence enregistrée. Créez-en une ou importez un fichier.",
+dz_t:"Déposez un dossier ou des fichiers ici",dz_s:"ou choisissez ci-dessous",pf:"Choisir un dossier",pfl:"Choisir des fichiers",ready:"fichiers prêts",start:"Lancer l’analyse",stop:"Arrêter",
+done_b:"Référence enregistrée",done_d:"Votre état de confiance est enregistré dans ce navigateur. Gardez une copie exportée en lieu sûr.",exp_b:"Exporter la référence",nowv:"Vérifier maintenant",files:"fichiers",
+sc:"Score d’intégrité",v_clean:"TOUT EST SAIN",v_clean_d:"Chaque fichier correspond à votre référence. Aucune altération détectée.",v_alert:"CHANGEMENTS DÉTECTÉS",v_alert_d:"Certains fichiers diffèrent de la référence. Examinez-les ci-dessous.",v_crit:"ALTÉRATION SUSPECTÉE",v_crit_d:"Changements à haut risque détectés. Enquêtez immédiatement.",
+st_mod:"Modifiés",st_add:"Ajoutés",st_del:"Supprimés",st_ok:"Inchangés",st_risk:"Haut risque",f_all:"Tous",search:"Rechercher un chemin…",none:"Rien dans cette vue.",more:"autres non affichés. Exportez le rapport pour tout voir.",
+t_mod:"MODIFIÉ",t_add:"AJOUTÉ",t_del:"SUPPRIMÉ",fl_exec:"Exécutable / script",fl_hidden:"Fichier caché",fl_double:"Double extension trompeuse",fl_stealth:"Contenu modifié mais date inchangée",old:"Avant",new:"Maintenant",
+ex_json:"Exporter JSON",ex_csv:"Exporter CSV",ex_print:"Imprimer le rapport",
+ck_h:"Vérificateur d’empreinte",ck_d:"Vérifiez qu’un téléchargement est exactement ce que son éditeur a publié : déposez le fichier et comparez son empreinte.",ck_drop:"Déposez un fichier ici",ck_exp:"Empreinte attendue (facultatif)",ck_ph:"Collez le SHA-256 / SHA-1 / SHA-384 / SHA-512 publié par l’éditeur",ck_ok:"CORRESPOND : le fichier est identique à celui publié.",ck_bad:"NE CORRESPOND PAS : le fichier diffère de l’empreinte publiée. Ne lui faites pas confiance.",ck_big:"Fichier trop volumineux pour le calcul dans le navigateur (limite 256 Mo).",copy:"Copier",copied:"Copié",
+how_h:"Comment fonctionne Sentinel",h1t:"Référence",h1d:"Analysez une copie saine et fiable. Sentinel enregistre l’empreinte SHA-256 de chaque fichier.",h2t:"Vérifier",h2d:"Analysez à nouveau plus tard. Tout changement de contenu modifie l’empreinte.",h3t:"Enquêter",h3d:"Voyez ce qui a changé, quels changements sont risqués, et exportez un rapport.",
+lim_h:"Bon à savoir",lim1:"Vos fichiers ne quittent jamais votre appareil. Tout le calcul se fait dans votre navigateur.",lim2:"Créez la référence à partir d’un état sain connu. Sentinel ne peut pas savoir si un fichier était déjà infecté.",lim3:"Elle détecte les changements. Ce n’est pas un antivirus, et elle dit ce qui a changé, pas qui ni pourquoi.",lim4:"Les fichiers de plus de 256 Mo sont ignorés, et les très gros dossiers dépendent des limites de votre navigateur.",
+cta_h:"Besoin d’un audit de sécurité professionnel ?",cta_p:"Nous auditons sites, serveurs et entreprises, toujours avec autorisation écrite. Réponse sous 6 heures.",cta_b:"Demander un audit de sécurité",
+ft:"VYROXX IT SERVICES · Votre technologie, notre responsabilité",th:"Thème",e_bad:"Ce n’est pas un fichier de référence Sentinel valide.",e_api:"Votre navigateur ne prend pas en charge le hachage sécurisé. Utilisez un navigateur récent en HTTPS.",e_name:"Saisissez d’abord un nom de référence.",e_pick:"Choisissez d’abord une référence.",e_save:"Enregistrement impossible dans le stockage du navigateur. Exportez la référence.",cdel:"Supprimer cette référence ?",cancelled:"Analyse arrêtée.",sum:"fichiers hachés"},
+es:{title:"VYROXX Sentinel | Monitor de integridad de archivos",desc:"Detecta al instante la manipulación de archivos. VYROXX Sentinel calcula la huella SHA-256 de tus archivos en el navegador, recuerda tu estado de confianza y marca cada archivo modificado, añadido o eliminado. No se sube nada.",home:"Inicio",eb:"MONITOR DE INTEGRIDAD DE ARCHIVOS",
+lead:"Entérate en el momento en que un archivo cambia. Sentinel calcula la huella SHA-256 de cada archivo, recuerda tu estado de confianza y revela cualquier modificación, inyección o eliminación en segundos, todo en tu dispositivo.",
+c1:"Huellas SHA-256",c2:"100 % local",c3:"No se sube nada",c4:"Detección de manipulación",go:"Iniciar Sentinel",aud:"Solicitar una auditoría de seguridad",
+tab1:"Monitor de integridad",tab2:"Verificador de huellas",m1:"1 · Crear línea base",m2:"2 · Verificar integridad",bn_l:"Nombre de la línea base",bn_ph:"p. ej. mi-sitio",bs_l:"Línea base de confianza",imp:"Importar línea base",del:"Eliminar",nob:"Aún no hay línea base guardada. Crea una o importa un archivo.",
+dz_t:"Suelta una carpeta o archivos aquí",dz_s:"o elige abajo",pf:"Elegir carpeta",pfl:"Elegir archivos",ready:"archivos listos",start:"Iniciar análisis",stop:"Detener",
+done_b:"Línea base guardada",done_d:"Tu estado de confianza se registró en este navegador. Guarda una copia exportada en un lugar seguro.",exp_b:"Exportar línea base",nowv:"Verificar ahora",files:"archivos",
+sc:"Puntuación de integridad",v_clean:"TODO EN ORDEN",v_clean_d:"Todos los archivos coinciden con tu línea base. No se detectó manipulación.",v_alert:"CAMBIOS DETECTADOS",v_alert_d:"Algunos archivos difieren de la línea base. Revísalos abajo.",v_crit:"SOSPECHA DE MANIPULACIÓN",v_crit_d:"Se encontraron cambios de alto riesgo. Investiga de inmediato.",
+st_mod:"Modificados",st_add:"Añadidos",st_del:"Eliminados",st_ok:"Sin cambios",st_risk:"Alto riesgo",f_all:"Todos",search:"Buscar ruta…",none:"Nada en esta vista.",more:"más sin mostrar. Exporta el informe para verlos todos.",
+t_mod:"MODIFICADO",t_add:"AÑADIDO",t_del:"ELIMINADO",fl_exec:"Ejecutable / script",fl_hidden:"Archivo oculto",fl_double:"Doble extensión engañosa",fl_stealth:"Contenido cambiado pero fecha sin cambios",old:"Antes",new:"Ahora",
+ex_json:"Exportar JSON",ex_csv:"Exportar CSV",ex_print:"Imprimir informe",
+ck_h:"Verificador de huellas",ck_d:"Comprueba que una descarga es exactamente lo que publicó su autor: suelta el archivo y compara su huella.",ck_drop:"Suelta un archivo aquí",ck_exp:"Huella esperada (opcional)",ck_ph:"Pega el SHA-256 / SHA-1 / SHA-384 / SHA-512 publicado por el proveedor",ck_ok:"COINCIDE: el archivo es idéntico al publicado.",ck_bad:"NO COINCIDE: el archivo difiere de la huella publicada. No confíes en él.",ck_big:"Archivo demasiado grande para calcular en el navegador (límite 256 MB).",copy:"Copiar",copied:"Copiado",
+how_h:"Cómo funciona Sentinel",h1t:"Línea base",h1d:"Analiza una copia limpia y de confianza. Sentinel guarda la huella SHA-256 de cada archivo.",h2t:"Verificar",h2d:"Analiza de nuevo más tarde. Cualquier cambio de contenido cambia la huella.",h3t:"Investigar",h3d:"Mira qué cambió, qué cambios son arriesgados y exporta un informe.",
+lim_h:"Conviene saber",lim1:"Tus archivos nunca salen de tu dispositivo. Todo el cálculo ocurre en tu navegador.",lim2:"Crea la línea base desde un estado limpio conocido. Sentinel no puede saber si un archivo ya estaba infectado.",lim3:"Detecta cambios. No es un antivirus, y te dice qué cambió, no quién ni por qué.",lim4:"Los archivos de más de 256 MB se omiten, y las carpetas enormes dependen de los límites de tu navegador.",
+cta_h:"¿Necesitas una revisión de seguridad profesional?",cta_p:"Auditamos sitios web, servidores y empresas, siempre con autorización escrita. Respondemos en menos de 6 horas.",cta_b:"Solicitar una auditoría de seguridad",
+ft:"VYROXX IT SERVICES · Tu tecnología, nuestra responsabilidad",th:"Tema",e_bad:"Este no es un archivo de línea base de Sentinel válido.",e_api:"Tu navegador no admite el hash seguro. Usa un navegador moderno con HTTPS.",e_name:"Escribe primero un nombre de línea base.",e_pick:"Elige primero una línea base.",e_save:"No se pudo guardar en el almacenamiento del navegador. Exporta la línea base.",cdel:"¿Eliminar esta línea base?",cancelled:"Análisis detenido.",sum:"archivos procesados"}
+};
+var LOC={ar:"ar-MA",en:"en-GB",fr:"fr-FR",es:"es-ES"},THEMES=["light","dark","legend","hacker"],ICON={light:"🌙",dark:"🔮",legend:"👾",hacker:"☀️"};
+var KEY="vx-sentinel-v1",MAXROWS=500;
+var lang="en",mode="base",tab="mon",pending=null,busy=false,stopFlag=false,lastRes=null,lastBase=null,filter="all",q="",ckHashes=null;
+function $(i){return document.getElementById(i)}
+function t(k){return (U[lang]&&U[lang][k])||U.en[k]||k}
+function el(tag,cls,txt){var e=document.createElement(tag);if(cls)e.className=cls;if(txt!=null)e.textContent=txt;return e}
+function get(k){try{return localStorage.getItem(k)}catch(e){return null}}
+function put(k,v){try{localStorage.setItem(k,v)}catch(e){}}
+function loadAll(){try{return JSON.parse(get(KEY)||"{}")||{}}catch(e){return {}}}
+function saveAll(o){try{localStorage.setItem(KEY,JSON.stringify(o));return true}catch(e){return false}}
+function say(m){$("rd").textContent=m||""}
+function dl(name,mime,text){var a=document.createElement("a");a.href=URL.createObjectURL(new Blob([text],{type:mime}));a.download=name;document.body.appendChild(a);a.click();setTimeout(function(){URL.revokeObjectURL(a.href);a.remove()},600)}
+function fdate(ms){return ms?new Date(ms).toLocaleString(LOC[lang]):"—"}
+
+/* ---------- terminal ---------- */
+var buf=[],dirty=false;
+function stamp(){var d=new Date();return ("0"+d.getHours()).slice(-2)+":"+("0"+d.getMinutes()).slice(-2)+":"+("0"+d.getSeconds()).slice(-2)}
+function flush(){dirty=false;$("term").textContent=buf.join("\n")}
+function log(line){buf.push("["+stamp()+"] "+line);if(buf.length>9)buf.shift();if(!dirty){dirty=true;requestAnimationFrame(flush)}}
+
+/* ---------- collecting files ---------- */
+function fromInput(list){return VXS.stripRoot([].map.call(list,function(f){return {p:f.webkitRelativePath||f.name,f:f}}))}
+async function walk(entry,path,out){
+  if(entry.isFile){var f=await new Promise(function(r){entry.file(r,function(){r(null)})});if(f)out.push({p:path+entry.name,f:f})}
+  else if(entry.isDirectory){
+    var rd=entry.createReader(),all=[];
+    for(;;){var b=await new Promise(function(r){rd.readEntries(r,function(){r([])})});if(!b.length)break;all=all.concat([].slice.call(b))}
+    for(var i=0;i<all.length;i++)await walk(all[i],path+entry.name+"/",out);
+  }
+}
+async function fromDrop(dt){
+  var out=[],items=dt.items,ents=[];
+  if(items&&items.length&&items[0].webkitGetAsEntry){
+    for(var i=0;i<items.length;i++){var e=items[i].webkitGetAsEntry();if(e)ents.push(e)}
+    for(var j=0;j<ents.length;j++)await walk(ents[j],"",out);
+  }else for(var k=0;k<dt.files.length;k++)out.push({p:dt.files[k].name,f:dt.files[k]});
+  return VXS.stripRoot(out);
+}
+function setPending(items){
+  pending=items&&items.length?items:null;
+  var n=pending?pending.length:0,s=0;if(pending)pending.forEach(function(i){s+=i.f.size});
+  say(n?(n+" "+t("ready")+" · "+VXS.fmtSize(s)):"");
+  $("go2").disabled=!n||busy;
+}
+
+/* ---------- modes / tabs ---------- */
+function setMode(m){
+  mode=m;
+  [].forEach.call(document.querySelectorAll(".mode"),function(b){b.setAttribute("aria-pressed",String(b.getAttribute("data-mode")===m))});
+  $("boxBase").classList.toggle("hid",m!=="base");$("boxVerify").classList.toggle("hid",m!=="verify");
+  $("res").classList.add("hid");$("basedone").classList.add("hid");
+}
+function setTab(x){
+  tab=x;
+  [].forEach.call(document.querySelectorAll(".tab"),function(b){b.setAttribute("aria-pressed",String(b.getAttribute("data-tab")===x))});
+  $("paneMon").classList.toggle("hid",x!=="mon");$("paneChk").classList.toggle("hid",x!=="chk");
+}
+function renderBases(){
+  var s=$("bs"),all=loadAll(),names=Object.keys(all),cur=s.value;s.textContent="";
+  if(!names.length){var o=el("option",null,t("nob"));o.value="";s.appendChild(o)}
+  names.forEach(function(n){var b=all[n],o=el("option",null,n+" · "+(b.count||0)+" "+t("files")+" · "+new Date(b.created||0).toLocaleDateString(LOC[lang]));o.value=n;s.appendChild(o)});
+  if(names.indexOf(cur)>-1)s.value=cur;
+}
+
+/* ---------- scanning ---------- */
+function prog(n,total,p,rec,size){
+  $("pb").style.width=(n/total*100).toFixed(1)+"%";$("pn").textContent=n+" / "+total;$("pz").textContent=VXS.fmtSize(size);
+  log((rec[3]===1?"SKIP  ":rec[3]===2?"ERROR ":"SHA256 ")+(rec[0]?rec[0].slice(0,14)+"… ":"")+p);
+}
+async function start(){
+  if(busy||!pending)return;
+  if(!(window.crypto&&crypto.subtle)){say(t("e_api"));return}
+  var name,base=null;
+  if(mode==="base"){name=$("bn").value.trim();if(!name){say(t("e_name"));$("bn").focus();return}}
+  else{
+    name=$("bs").value;var all=loadAll();
+    if(!name||!all[name]){say(t("e_pick"));return}
+    try{base=VXS.unpack(all[name])}catch(e){say(t("e_bad"));return}
+  }
+  busy=true;stopFlag=false;$("go2").disabled=true;$("stop").classList.remove("hid");
+  $("res").classList.add("hid");$("basedone").classList.add("hid");buf=[];log("VYROXX SENTINEL · "+(mode==="base"?"BASELINE":"VERIFY")+" · "+pending.length+" files");
+  try{
+    var map=await VXS.scan(pending,{cancel:function(){return stopFlag},onProgress:prog});
+    if(mode==="base")finishBase(name,map);else finishVerify(base,map);
+  }catch(e){log(t("cancelled"));say(t("cancelled"))}
+  busy=false;$("stop").classList.add("hid");$("go2").disabled=!pending;flush();
+}
+function finishBase(name,map){
+  var all=loadAll(),pk=VXS.pack(name,map);all[name]=pk;
+  if(!saveAll(all))say(t("e_save"));
+  lastBase=pk;renderBases();$("bs").value=name;
+  $("bsum").textContent=map.size+" "+t("sum")+" · "+VXS.fmtSize(pk.size);
+  $("basedone").classList.remove("hid");log("BASELINE SAVED · "+name);
+  $("basedone").scrollIntoView({behavior:"smooth",block:"nearest"});
+}
+function finishVerify(base,map){
+  lastRes=VXS.compare(base.map,map);lastRes.base=base.name;lastRes.when=Date.now();
+  log("DONE · "+lastRes.verdict.toUpperCase()+" · score "+lastRes.score);
+  filter="all";q="";renderResult();
+  $("res").scrollIntoView({behavior:"smooth",block:"nearest"});
+}
+
+/* ---------- results ---------- */
+function renderResult(){
+  var r=lastRes;if(!r)return;
+  $("res").classList.remove("hid");
+  var vk={clean:"v_clean",alert:"v_alert",critical:"v_crit"}[r.verdict];
+  $("vd").className="vd "+r.verdict;$("ring").style.setProperty("--p",r.score);$("sco").textContent=r.score;
+  $("vt").textContent=t(vk);$("vp").textContent=t(vk+"_d");
+  var st=r.st,sg=$("stats");sg.textContent="";
+  [["st_mod",st.mod],["st_add",st.add],["st_del",st.del],["st_ok",st.ok],["st_risk",st.risk+st.stealth*0]].forEach(function(x){
+    var c=el("div","sc"+(x[0]==="st_risk"&&x[1]?" hot":"")),b=el("b",null,String(x[1]));c.appendChild(b);c.appendChild(el("span",null,t(x[0])));sg.appendChild(c);
+  });
+  var tb=$("tbar");tb.textContent="";
+  [["all","f_all",r.rows.length],["mod","st_mod",st.mod],["add","st_add",st.add],["del","st_del",st.del],["risk","st_risk",st.risk]].forEach(function(f){
+    var b=el("button","fc",t(f[1])+" · "+f[2]);b.type="button";b.setAttribute("aria-pressed",String(filter===f[0]));
+    b.onclick=function(){filter=f[0];renderResult()};tb.appendChild(b);
+  });
+  var si=el("input","in");si.type="search";si.placeholder=t("search");si.value=q;si.setAttribute("aria-label",t("search"));
+  si.oninput=function(){q=si.value;drawRows()};tb.appendChild(si);tb.appendChild(el("span","sp"));
+  [["ex_json",function(){dl("sentinel-report.json","application/json",JSON.stringify({tool:"VYROXX Sentinel",baseline:r.base,generated:new Date(r.when).toISOString(),verdict:r.verdict,score:r.score,stats:r.st,total:r.total,changes:r.rows},null,1))}],
+   ["ex_csv",function(){dl("sentinel-report.csv","text/csv",VXS.toCSV(r.rows))}],
+   ["ex_print",function(){window.print()}]].forEach(function(x){var b=el("button","btn alt sm",t(x[0]));b.type="button";b.onclick=x[1];tb.appendChild(b)});
+  drawRows();
+}
+function col(label,rec){
+  var d=el("div");d.appendChild(el("b",null,label));var c=el("code",null,rec&&rec[0]?rec[0]:"—");d.appendChild(c);
+  if(rec)d.appendChild(el("span",null,VXS.fmtSize(rec[1])+" · "+fdate(rec[2])));return d;
+}
+function drawRows(){
+  var r=lastRes,box=$("rows");box.textContent="";if(!r)return;
+  var ql=q.trim().toLowerCase(),list=r.rows.filter(function(x){
+    if(filter==="risk"&&!x.f.length)return false;if(filter!=="all"&&filter!=="risk"&&x.t!==filter)return false;
+    return !ql||x.p.toLowerCase().indexOf(ql)>-1;
+  });
+  if(!list.length){box.appendChild(el("p",null,t("none")));box.lastChild.style.color="var(--muted)";return}
+  list.slice(0,MAXROWS).forEach(function(x){
+    var d=el("details","rw"),s=el("summary");
+    s.appendChild(el("span","bd "+x.t,t("t_"+x.t)));s.appendChild(el("span","pth",x.p));
+    x.f.forEach(function(f){s.appendChild(el("span","fg",t("fl_"+f)))});d.appendChild(s);
+    var b=el("div","dt");b.appendChild(col(t("old"),x.a));b.appendChild(col(t("new"),x.b));d.appendChild(b);box.appendChild(d);
+  });
+  if(list.length>MAXROWS){var m=el("p",null,"+"+(list.length-MAXROWS)+" "+t("more"));m.style.color="var(--muted)";box.appendChild(m)}
+}
+
+/* ---------- checksum verifier ---------- */
+async function hashOne(f){
+  var out=$("ckout");out.textContent="…";
+  if(f.size>268435456){out.textContent=t("ck_big");return}
+  if(!(window.crypto&&crypto.subtle)){out.textContent=t("e_api");return}
+  var buf=await f.arrayBuffer();ckHashes={};
+  for(var a of ["SHA-1","SHA-256","SHA-384","SHA-512"])ckHashes[a]=await VXS.digest(buf,a);
+  ckHashes._name=f.name+" · "+VXS.fmtSize(f.size);renderCk();
+}
+function renderCk(){
+  var out=$("ckout");out.textContent="";if(!ckHashes)return;
+  var h=el("b",null,ckHashes._name);h.style.cssText="display:block;direction:ltr;text-align:start;word-break:break-all";out.appendChild(h);
+  ["SHA-1","SHA-256","SHA-384","SHA-512"].forEach(function(a){
+    var row=el("div","hv"),lab=el("span",null,a),c=el("code",null,ckHashes[a]),b=el("button","btn alt sm",t("copy"));b.type="button";
+    b.onclick=function(){try{navigator.clipboard.writeText(ckHashes[a]);b.textContent=t("copied");setTimeout(function(){b.textContent=t("copy")},1200)}catch(e){}};
+    row.appendChild(lab);row.appendChild(c);row.appendChild(b);out.appendChild(row);
+  });
+  var ex=$("ckx").value.replace(/[^0-9a-f]/gi,"").toLowerCase();
+  if(ex.length){var ok=["SHA-1","SHA-256","SHA-384","SHA-512"].some(function(a){return ckHashes[a]===ex});out.appendChild(el("div","ok "+(ok?"y":"n"),t(ok?"ck_ok":"ck_bad")))}
+}
+
+/* ---------- language / theme ---------- */
+function setLang(l,save){
+  if(!U[l])l="en";lang=l;var d=document.documentElement;d.lang=l;d.dir=l==="ar"?"rtl":"ltr";document.title=t("title");
+  var md=document.querySelector('meta[name="description"]');if(md)md.content=t("desc");
+  [].forEach.call(document.querySelectorAll("[data-i]"),function(e){e.textContent=t(e.getAttribute("data-i"))});
+  [].forEach.call(document.querySelectorAll("[data-ph]"),function(e){e.placeholder=t(e.getAttribute("data-ph"))});
+  $("ft").textContent=t("ft");$("theme").setAttribute("aria-label",t("th"));
+  [].forEach.call(document.querySelectorAll("#seg button"),function(b){b.setAttribute("aria-pressed",String(b.getAttribute("data-l")===l))});
+  renderBases();setPending(pending);if(lastRes)renderResult();renderCk();
+  if(save)put("vx-lang",l);
+}
+function curTheme(){var a=document.documentElement.getAttribute("data-theme");if(THEMES.indexOf(a)>-1)return a;return matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"}
+function setTheme(m){document.documentElement.setAttribute("data-theme",m);$("theme").textContent=ICON[m];put("vx-theme",m)}
+
+/* ---------- wiring ---------- */
+[].forEach.call(document.querySelectorAll("#seg button"),function(b){b.onclick=function(){setLang(b.getAttribute("data-l"),true)}});
+$("theme").onclick=function(){setTheme(THEMES[(THEMES.indexOf(curTheme())+1)%4])};
+[].forEach.call(document.querySelectorAll(".tab"),function(b){b.onclick=function(){setTab(b.getAttribute("data-tab"))}});
+[].forEach.call(document.querySelectorAll(".mode"),function(b){b.onclick=function(){if(!busy)setMode(b.getAttribute("data-mode"))}});
+$("pf").onclick=function(){$("fdir").click()};$("pfl").onclick=function(){$("ffiles").click()};
+$("fdir").onchange=function(){setPending(fromInput(this.files));this.value=""};
+$("ffiles").onchange=function(){setPending(fromInput(this.files));this.value=""};
+function dnd(box,onfiles){
+  ["dragenter","dragover"].forEach(function(ev){box.addEventListener(ev,function(e){e.preventDefault();box.classList.add("over")})});
+  ["dragleave","drop"].forEach(function(ev){box.addEventListener(ev,function(e){e.preventDefault();box.classList.remove("over")})});
+  box.addEventListener("drop",function(e){onfiles(e.dataTransfer)});
+}
+dnd($("dz"),async function(dt){if(!busy)setPending(await fromDrop(dt))});
+dnd($("dz2"),function(dt){if(dt.files&&dt.files[0])hashOne(dt.files[0])});
+$("ckp").onclick=function(){$("ckf").click()};$("ckf").onchange=function(){if(this.files[0])hashOne(this.files[0]);this.value=""};
+$("ckx").oninput=renderCk;
+$("go2").onclick=start;$("stop").onclick=function(){stopFlag=true};
+$("expb").onclick=function(){if(lastBase)dl("sentinel-baseline-"+lastBase.name.replace(/[^\w.-]+/g,"_")+".json","application/json",JSON.stringify(lastBase))};
+$("nowv").onclick=function(){setMode("verify");$("ctl").scrollIntoView({behavior:"smooth",block:"nearest"})};
+$("imp").onclick=function(){$("impf").click()};
+$("impf").onchange=function(){
+  var f=this.files[0];this.value="";if(!f)return;
+  f.text().then(function(txt){
+    var obj=JSON.parse(txt),u=VXS.unpack(obj),all=loadAll();obj.name=u.name;all[u.name]=obj;
+    if(!saveAll(all))say(t("e_save"));renderBases();$("bs").value=u.name;
+  }).catch(function(){say(t("e_bad"))});
+};
+$("delb").onclick=function(){var n=$("bs").value;if(!n||!confirm(t("cdel")))return;var all=loadAll();delete all[n];saveAll(all);renderBases()};
+
+var sl=get("vx-lang");setLang(U[sl]?sl:"en",false);
+$("theme").textContent=ICON[curTheme()];setMode("base");setTab("mon");
+})();
+
+</script>
+</body>
+</html>
