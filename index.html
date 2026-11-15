@@ -457,9 +457,44 @@ html[dir=rtl] .rv-stars{justify-content:flex-end}
 [dir="rtl"] .pf-c p{font-size:17px;line-height:1.95;color:color-mix(in srgb,var(--ink) 80%,var(--muted))}
 [dir="rtl"] .pf-k li{font-size:16.5px;line-height:1.9}
 [dir="rtl"] .pf-c h3{line-height:1.5}
+.sx{--c:var(--accent);--on:var(--on-accent);position:relative;overflow:hidden;border:1px solid var(--line);border-radius:26px;padding:clamp(26px,3.4vw,50px);margin-bottom:28px;background:radial-gradient(700px 320px at 100% 0%,color-mix(in srgb,var(--c) 16%,transparent),transparent 70%),linear-gradient(135deg,color-mix(in srgb,var(--c) 7%,var(--surface)),var(--surface) 58%)}
+[dir="ltr"] .sx{background:radial-gradient(700px 320px at 0% 0%,color-mix(in srgb,var(--c) 16%,transparent),transparent 70%),linear-gradient(135deg,color-mix(in srgb,var(--c) 7%,var(--surface)),var(--surface) 58%)}
+.sx::before{content:"";position:absolute;inset-inline-start:0;top:0;bottom:0;width:6px;background:linear-gradient(180deg,var(--c),color-mix(in srgb,var(--c) 25%,transparent))}
+.sx-wm{position:absolute;inset-inline-end:-14px;bottom:-46px;font-size:clamp(190px,22vw,340px);line-height:1;opacity:.07;pointer-events:none;user-select:none}
+.sx-grid{position:relative;display:grid;grid-template-columns:1.1fr 1fr;gap:clamp(28px,4vw,60px);align-items:center}
+.sx.flip .sx-main{order:2}
+.sx .tp-eyebrow{color:var(--c);border-color:color-mix(in srgb,var(--c) 40%,transparent);background:color-mix(in srgb,var(--c) 10%,transparent)}
+.sx h3.sx-t{font-size:clamp(28px,3.2vw,46px);line-height:1.2;margin:4px 0 14px}
+.sx-p{color:var(--muted);font-size:clamp(16.5px,1.15vw,19px);line-height:1.85;margin:0 0 6px;max-width:40em}
+.sx-pts{list-style:none;margin:22px 0 28px;padding:0;display:grid;gap:15px}
+.sx-pts li{display:flex;gap:14px;align-items:flex-start}
+.sx-ic{flex:none;width:44px;height:44px;border-radius:13px;display:inline-flex;align-items:center;justify-content:center;color:var(--c);background:color-mix(in srgb,var(--c) 12%,transparent);border:1px solid color-mix(in srgb,var(--c) 30%,var(--line))}
+.sx-pts b{display:block;margin-bottom:1px}
+.sx-pts span:not(.sx-ic){color:var(--muted);font-size:15px;line-height:1.7}
+.sx-act{display:flex;gap:12px;flex-wrap:wrap}
+.sx .btn.sx-go{background:var(--c);border-color:var(--c);color:var(--on);font-size:17px;padding:14px 30px}
+.sx .btn.sx-go::after{content:" →"}
+[dir="rtl"] .sx .btn.sx-go::after{content:" ←"}
+.sx-vis{display:grid;gap:16px}
+.sx-head{display:flex;align-items:center;gap:18px}
+.sx-orb{flex:none;width:96px;height:96px;border-radius:28px;display:grid;place-items:center;font-size:48px;background:linear-gradient(145deg,color-mix(in srgb,var(--c) 38%,var(--surface)),color-mix(in srgb,var(--c) 8%,var(--surface)));box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--c) 45%,transparent),0 18px 40px -16px color-mix(in srgb,var(--c) 70%,transparent);animation:sxf 6s ease-in-out infinite}
+@keyframes sxf{50%{transform:translateY(-6px)}}
+.sx-cnt{font-weight:700;font-size:clamp(22px,2vw,30px);line-height:1.2}
+.sx-cnt small{display:block;color:var(--muted);font-weight:500;font-size:14.5px}
+.sx-tiles{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.sx-tile{display:flex;gap:10px;align-items:center;padding:12px 14px;border:1px solid var(--line);border-radius:14px;background:var(--surface);font-size:14.5px;line-height:1.45;transition:transform .25s,border-color .25s}
+.sx-tile:hover{transform:translateY(-3px);border-color:color-mix(in srgb,var(--c) 55%,var(--line))}
+.sx-tile i{font-style:normal;font-size:20px;flex:none}
+.sx-tile.more{justify-content:center;color:var(--c);font-weight:700;border-style:dashed}
+[dir="rtl"] .sx .tp-eyebrow{letter-spacing:0;text-transform:none}
+[dir="rtl"] .sx-p{font-size:clamp(17px,1.2vw,19.5px);line-height:1.95}
+@media (max-width:900px){.sx-grid{grid-template-columns:1fr}.sx.flip .sx-main{order:0}.sx{padding:26px 22px}}
+@media (max-width:560px){.sx-tiles{grid-template-columns:1fr}.sx-act .btn{width:100%;text-align:center}}
+@media (prefers-reduced-motion:reduce){.sx-orb{animation:none}}
 </style>
 <script src="vx-site.js?v=1" defer></script>
 <script src="portfolio-data.js"></script>
+<script src="services-cats.js"></script>
 <script>/* fallback copy: used ONLY if portfolio-data.js fails to load. Edit portfolio-data.js, not this. */
 if(!window.VX_PORTFOLIO){window.VX_PORTFOLIO=[
 /* ---------------- IT Support & Maintenance ---------------- */
@@ -570,26 +605,12 @@ if(!window.VX_PORTFOLIO){window.VX_PORTFOLIO=[
       <div><small data-i="f5">Response time</small><span data-i="f5v">Within 6 hours at most</span></div>
     </div>
 
-    <section id="services">
+    <section id="services" class="sx-sec">
       <h2 data-i="s_h">Our services</h2>
       <p class="sub" data-i="s_sub">Technical support, digital protection and web &amp; app development, all in one place.</p>
-      <div class="grp">
-        <h3 class="grp-h"><span class="grp-ic" aria-hidden="true">🛠️</span><span data-i="g1">IT Support &amp; Maintenance</span></h3>
-        <p class="grp-d" data-i="g1d">Repair, setup and tuning for your PC, phone, games and network, on-site in Morocco or remotely from anywhere in the world.</p>
-        <div class="cards" id="cards"></div>
-      </div>
-      <div class="grp sec">
-        <h3 class="grp-h"><span class="grp-ic" aria-hidden="true">🚀</span><span data-i="g3">Web &amp; App Development</span></h3>
-        <p class="grp-d" data-i="g3d">We design and build professional websites, web apps and mobile apps for you or your business, or improve what you already have, from idea to launch.</p>
-        <div class="cards" id="cards3"></div>
-        <p class="note" data-i="g3n">Describe your idea or project in the request form and we’ll reply with a clear plan and quote before we start. Prices start from the amounts shown and depend on the scope of work.</p>
-      </div>
-      <div class="grp sec">
-        <h3 class="grp-h"><span class="grp-ic" aria-hidden="true">🛡️</span><span data-i="g2">Cybersecurity</span></h3>
-        <p class="grp-d" data-i="g2d">Protect your accounts, data and digital identity, from securing accounts to authorized penetration testing and security audits.</p>
-        <div class="cards" id="cards2"></div>
-      </div>
+      <div id="sxList"></div>
       <p class="note" data-i="note">We only help you recover your own accounts if you lost access, and we only activate software with genuine licenses.</p>
+      <div hidden aria-hidden="true"><div id="cards"></div><div id="cards2"></div><div id="cards3"></div></div>
     </section>
 
     <section id="portfolio" class="pf">
@@ -601,23 +622,6 @@ if(!window.VX_PORTFOLIO){window.VX_PORTFOLIO=[
         <div><h3 data-i="pf_ctah">Want to see more?</h3><p data-i="pf_ctap">Browse every project by category: web, cybersecurity, IT support and business.</p></div>
         <a class="btn pf-btn" href="portfolio.html" data-i="pf_all">View the full portfolio</a>
       </div>
-    </section>
-
-    <section id="business" class="biz">
-      <span class="tp-eyebrow" data-i="b_eb">BUSINESS SOLUTIONS</span>
-      <h2 data-i="b_h">Business &amp; Enterprise Services</h2>
-      <p class="sub" data-i="b_sub">Security and IT solutions tailored to companies and shops in Morocco and abroad: we find weaknesses before attackers do, secure your network, train your team and take care of your technical support and digital needs.</p>
-      <div class="sla"><span class="sla-ic" aria-hidden="true">⏱️</span><div><b data-i="sla_t">We reply to every request within 6 hours at most</b><small data-i="sla_d">This commitment covers both individual and business requests.</small></div></div>
-      <div class="cards" id="bizcards"></div>
-      <div class="consent"><span class="sla-ic" aria-hidden="true">🤝</span><div><b data-i="b_ct">Our commitment to consent and privacy</b><p data-i="b_consent">We never run a penetration test or scan without the full, explicit consent of the beneficiary and within a scope agreed in advance. The goal is to make sure its services, websites and networks are well protected. We do not test any system we have no permission to test, and the results stay confidential between us and the beneficiary.</p></div></div>
-      <h3 class="biz-steps-h" data-i="bs_h">How we work with companies</h3>
-      <div class="steps">
-        <div class="step"><span class="num">1</span><h3 data-i="bs1t">Contact &amp; scoping</h3><p data-i="bs1d">You tell us what you want protected and we agree on the scope of work.</p></div>
-        <div class="step"><span class="num">2</span><h3 data-i="bs2t">Formal consent</h3><p data-i="bs2d">We get your written approval before any scan or test.</p></div>
-        <div class="step"><span class="num">3</span><h3 data-i="bs3t">Testing &amp; analysis</h3><p data-i="bs3d">We run the checks with advanced tools and analyze the results carefully.</p></div>
-        <div class="step"><span class="num">4</span><h3 data-i="bs4t">Report &amp; recommendations</h3><p data-i="bs4d">We deliver a report of the findings with suggested remediation steps.</p></div>
-      </div>
-      <div class="biz-cta"><a class="btn" href="#request" data-i="b_cta">Request a quote for your company</a><p class="note" data-i="b_note">Prices are set after agreeing on the scope and amount of work.</p></div>
     </section>
 
     <section id="report">
@@ -1315,9 +1319,48 @@ function vxPortfolio(l){
     g.appendChild(c);
   });
 }
-(function(){var _s=setLang;setLang=function(l){_s(l);try{vxPortfolio(l)}catch(e){}}})();
+
+function vxShowcase(l){
+  var C=window.VX_CATS,box=document.getElementById("sxList");if(!C||!box)return;
+  var ON={support:"var(--on-accent)",web:"#fff",security:"#fff",business:"#1B1300"};
+  var PTI=['<path d="M13 2L4 14h7l-1 8 9-12h-7z"/>','<path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M9 12l2 2 4-4"/>','<circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3.5 3 14.5 0 18M12 3c-3 3.5-3 14.5 0 18"/>'];
+  function mk(tag,cls,txt){var e=document.createElement(tag);if(cls)e.className=cls;if(txt!=null)e.textContent=txt;return e}
+  function tiles(k){
+    if(k==="business")return (BZ[l]||[]).map(function(c){return [c[0],c[2]]});
+    var out=[];SV[l].forEach(function(s,i){var sec=SEC.indexOf(i)>-1,dev=DEV.indexOf(i)>-1;
+      if((k==="security"&&sec)||(k==="web"&&dev)||(k==="support"&&!sec&&!dev))out.push([IC[i],s[0]])});
+    return out;
+  }
+  box.textContent="";
+  C.order.forEach(function(k,n){
+    var c=C[k],ti=tiles(k),sec=mk("article","sx"+(n%2?" flip":""));
+    sec.id=k==="business"?"business":"svc-"+k;sec.style.setProperty("--c",c.c);sec.style.setProperty("--on",ON[k]);
+    sec.appendChild(mk("div","sx-wm",c.ic)).setAttribute("aria-hidden","true");
+    var g=mk("div","sx-grid"),m=mk("div","sx-main");
+    m.appendChild(mk("span","tp-eyebrow",c.eb[l]));m.appendChild(mk("h3","sx-t",c.t[l]));m.appendChild(mk("p","sx-p",c.p[l]));
+    var ul=mk("ul","sx-pts");
+    (c.pts[l]||c.pts.en).forEach(function(p,i){
+      var li=mk("li"),ic=mk("span","sx-ic"),d=mk("div");
+      ic.innerHTML='<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+PTI[i%3]+'</svg>';
+      d.appendChild(mk("b",null,p[0]));d.appendChild(mk("span",null,p[1]));li.appendChild(ic);li.appendChild(d);ul.appendChild(li);
+    });
+    m.appendChild(ul);
+    var act=mk("div","sx-act"),a=mk("a","btn sx-go",c.btn[l]);a.href=c.page;act.appendChild(a);
+    var b=mk("a","btn alt",C.lbl.send[l]);b.href="#request";act.appendChild(b);m.appendChild(act);
+    var v=mk("div","sx-vis"),h=mk("div","sx-head");
+    h.appendChild(mk("div","sx-orb",c.ic));
+    var cn=mk("div","sx-cnt",String(ti.length));cn.appendChild(mk("small",null,C.lbl.services[l]));h.appendChild(cn);v.appendChild(h);
+    var tl=mk("div","sx-tiles");
+    ti.slice(0,6).forEach(function(x){var t=mk("div","sx-tile");t.appendChild(mk("i",null,x[0]));t.appendChild(mk("span",null,x[1]));tl.appendChild(t)});
+    if(ti.length>6){var mo=mk("div","sx-tile more","+"+(ti.length-6)+" "+C.lbl.more[l]);tl.appendChild(mo)}
+    v.appendChild(tl);
+    g.appendChild(m);g.appendChild(v);sec.appendChild(g);box.appendChild(sec);
+  });
+}
+(function(){var _s=setLang;setLang=function(l){_s(l);try{vxPortfolio(l)}catch(e){}try{vxShowcase(l)}catch(e){}}})();
 var nl=(navigator.language||"en").slice(0,2),sl=load("vx-lang");
 setLang(sl&&T[sl]?sl:"en");
+try{var qs=new URLSearchParams(location.search).get("s");if(qs!==null&&/^\d+$/.test(qs))sel.selectedIndex=Math.min(+qs,sel.options.length-1)}catch(e){}
 </script>
 <script>
 (function(){
