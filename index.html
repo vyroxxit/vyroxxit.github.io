@@ -1475,6 +1475,8 @@ setLang(lang);
 [dir=rtl] #vxbS svg{transform:scaleX(-1)}
 #vxbK{padding:0 12px 10px;background:var(--surface);text-align:center;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
 @media(prefers-reduced-motion:reduce){#vxb *{animation:none!important;transition:none!important}}
+/* scale the whole UI like 110% browser zoom on large screens */
+@media (min-width:1360px){html{zoom:1.1}}
 </style>
 <script>
 (function(){
