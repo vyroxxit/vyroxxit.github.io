@@ -5,7 +5,7 @@ lbl:{
  services:{en:"services",ar:"خدمة",fr:"services",es:"servicios"},
  send:{en:"Send your problem",ar:"أرسل مشكلتك",fr:"Envoyer votre problème",es:"Envía tu problema"},
  more:{en:"and more",ar:"والمزيد",fr:"et plus encore",es:"y más"},
- sentinel:{en:"Try our free tool: VYROXX Sentinel",ar:"جرّب أداتنا المجانية: VYROXX Sentinel",fr:"Essayez notre outil gratuit : VYROXX Sentinel",es:"Prueba nuestra herramienta gratuita: VYROXX Sentinel"}
+ arsenal:{en:"Free tools: VYROXX Arsenal",ar:"أدوات مجانية: ترسانة VYROXX",fr:"Outils gratuits : VYROXX Arsenal",es:"Herramientas gratuitas: VYROXX Arsenal"}
 },
 support:{ic:"🛠️",page:"services-support.html",c:"var(--accent)",
  eb:{en:"IT SUPPORT",ar:"الدعم التقني",fr:"SUPPORT IT",es:"SOPORTE TI"},

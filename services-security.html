@@ -239,7 +239,7 @@ function drawHero(){
   m.appendChild(ul);
   var act=el("div","sx-act"),a=el("a","btn sx-go",L[l].cb);a.href="/#request";act.appendChild(a);
   var b=el("a","btn alt",L[l].back);b.href="/#services";act.appendChild(b);
-  var sn=el("a","btn alt","🛰️ "+C.lbl.sentinel[l]);sn.href="sentinel.html";act.appendChild(sn);m.appendChild(act);
+  var sn=el("a","btn alt","🛡️ "+C.lbl.arsenal[l]);sn.href="arsenal.html";act.appendChild(sn);m.appendChild(act);
   var n=CAT==="business"?(D.BZ[l]||[]).length:items().length;
   var v=el("div","sx-vis"),hd=el("div","sx-head");hd.appendChild(el("div","sx-orb",c.ic));
   var cn=el("div","sx-cnt",String(n));cn.appendChild(el("small",null,C.lbl.services[l]));hd.appendChild(cn);v.appendChild(hd);

@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>VYROXX NETGUARD | Who is on your network? Scanner & dashboard</title>
+<meta name="description" content="A local scanner for your home or office network lists every device and its exposed ports, with an analysis dashboard that exposes the intruder and suggests fixes. Runs on your device and sends nothing.">
+<link rel="canonical" href="https://vyroxxit.github.io/netguard.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="VYROXX NETGUARD | Who is on your network? Scanner & dashboard">
+<meta property="og:description" content="A local scanner for your home or office network lists every device and its exposed ports, with an analysis dashboard that exposes the intruder and suggests fixes. Runs on your device and sends nothing.">
+<meta property="og:url" content="https://vyroxxit.github.io/netguard.html">
+<meta property="og:image" content="https://vyroxxit.github.io/og-image.jpg">
+<meta name="theme-color" content="#0C1519">
+<link rel="manifest" href="/manifest.json">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" href="/favicon.png" sizes="48x48" type="image/png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;700&display=swap" rel="stylesheet">
+<script>try{var th=localStorage.getItem("vx-theme");if(/^(light|dark|legend|hacker)$/.test(th))document.documentElement.setAttribute("data-theme",th)}catch(e){}</script>
+<script src="vx-site.js?v=1" defer></script>
+<link rel="stylesheet" href="arsenal.css?v=1">
+<style>
+.dv{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:14px}
+.dc{display:grid;gap:7px;border:1px solid var(--line);border-radius:18px;padding:16px 18px;background:var(--surface);position:relative}
+.dc.un{border-color:var(--hot);background:color-mix(in srgb,var(--hot) 7%,var(--surface))}
+.dc.tr{border-color:color-mix(in srgb,#1E9E6A 45%,var(--line))}
+.dc .h{display:flex;gap:10px;align-items:center}.dc .ic{font-size:28px}
+.dc .ip{font:700 17px ui-monospace,Menlo,Consolas,monospace;direction:ltr}
+.dc .m{font:13px ui-monospace,Menlo,Consolas,monospace;color:var(--muted);direction:ltr;text-align:start}
+.dc .sm{color:var(--muted);font-size:14px}
+.pt{display:flex;gap:6px;flex-wrap:wrap}.pt span{font:700 12.5px ui-monospace,Menlo,Consolas,monospace;border-radius:8px;padding:1px 9px;border:1.5px solid;direction:ltr}
+.pt .high{color:var(--hot)}.pt .medium{color:#E8A317}.pt .low{color:var(--c)}.pt .info{color:var(--muted)}
+.al{border:1.5px solid;border-radius:18px;padding:16px 20px;margin:16px 0;line-height:1.8}
+.al.bad{border-color:var(--hot);background:color-mix(in srgb,var(--hot) 8%,transparent)}.al.good{border-color:#1E9E6A;background:color-mix(in srgb,#1E9E6A 9%,transparent)}
+.al b{display:block;font-size:19px}
+.tbr{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:18px 0 14px}
+.fc{font:inherit;font-size:14.5px;border:1.5px solid var(--line);background:var(--surface);color:var(--ink);padding:4px 14px;border-radius:99px;cursor:pointer}
+.fc[aria-pressed="true"]{background:var(--c);border-color:var(--c);color:var(--on);font-weight:700}
+.tbr .in{flex:1;min-width:150px;max-width:280px;padding:6px 12px}.sp{flex:1}
+.vl{display:grid;gap:10px;margin-top:12px}
+.hd2{font-size:clamp(22px,2.8vw,32px);margin:34px 0 8px}.hd2 b{color:var(--c)}
+.cl{display:grid;gap:8px;margin-top:10px}
+#cmd{min-height:0}
+.dropping{outline:3px dashed var(--c);outline-offset:-6px}
+@media print{.tbr,#s1,#s2,.cl,#stp{display:none!important}}
+</style>
+</head>
+<body style="--c:#FF6B2C;--on:#1B0A00">
+<header class="w top">
+  <a class="logo" href="/" aria-label="VYROXX IT"><svg viewBox="135 96 130 204" aria-hidden="true"><path d="M200 135 L255 155 V215 C255 250 230 275 200 292 C170 275 145 250 145 215 V155 Z" fill="var(--surface)" stroke="var(--ink)" stroke-width="8" stroke-linejoin="round"/><path d="M172 182 L200 240 L228 182" fill="none" stroke="var(--accent)" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/><circle cx="200" cy="166" r="7" fill="var(--hot)"/><path d="M168 128 L178 104 L200 120 L222 104 L232 128 Z" fill="var(--accent)" stroke="var(--ink)" stroke-width="5" stroke-linejoin="round"/></svg><span>VYROXX <b>IT</b></span></a>
+  <div class="tools"><a class="home" href="arsenal.html" data-t="Arsenal">Arsenal</a><a class="home" href="/" data-t="Home">Home</a>
+    <div class="seg" id="seg" role="group" aria-label="Language"><button type="button" data-l="en">EN</button><button type="button" data-l="ar">ع</button><button type="button" data-l="fr">FR</button><button type="button" data-l="es">ES</button></div>
+    <button class="theme" id="theme" type="button" aria-label="Theme"></button>
+  </div>
+</header>
+<main class="w">
+  <section class="hero2">
+    <span class="tp-eyebrow" data-t="NETWORK RADAR"></span>
+    <h1><span data-t="Who is"></span> <em data-t="on your network?"></em></h1>
+    <p class="lead" data-t="A lightweight scanner that runs on your device, lists every device on your home or office network and its exposed ports, plus an analysis dashboard that reveals the intruder."></p>
+    <div class="note2"><b data-t="Why doesn’t the page scan your network directly?"></b><br><span data-t="Browsers block web pages from scanning the local network to protect you. So we use a small scanner (netguard.py) that you run on your device, then load its result here for analysis."></span></div>
+  </section>
+
+  <section class="cd" id="s1">
+    <h2><b data-t="Step 1:"></b> <span data-t="run the scanner"></span></h2>
+    <p data-t="Scan only your own network or one you are authorized to test."></p>
+    <div class="tabs" id="ost"><button class="tab" type="button" data-os="0">Windows</button><button class="tab" type="button" data-os="1">macOS / Linux</button><button class="tab" type="button" data-os="2">Android (Termux)</button></div>
+    <pre class="o" id="cmd"></pre>
+    <div class="row" style="margin-top:12px"><button class="btn alt sm" id="cc" type="button" data-t="Copy"></button><a class="btn p" href="netguard.py" download data-t="Download netguard.py"></a></div>
+    <p style="color:var(--muted);margin:14px 0 4px" data-t="The scanner only scans private networks (192.168.x.x, 10.x.x.x, 172.16–31.x.x) and asks for your confirmation before it starts."></p>
+    <p style="color:var(--muted);margin:0 0 4px" id="termux" data-t="On Android use the Termux app. MAC addresses may not appear without extra permissions."></p>
+    <p style="color:var(--muted);margin:0" data-t="When the scan ends, netguard-report.json is created. Upload it in the next step."></p>
+  </section>
+
+  <section class="cd" id="s2">
+    <h2><b data-t="Step 2:"></b> <span data-t="load the report"></span></h2>
+    <p data-t="Choose the report file or paste its content."></p>
+    <div class="row"><label class="btn p" for="fi" data-t="Choose report file (JSON)"></label><input id="fi" type="file" accept=".json,application/json" hidden><button class="btn alt" id="dm" type="button" data-t="Show a demo example"></button></div>
+    <textarea class="in mono" id="tx" style="margin:14px 0" data-ph="Paste the report content here" spellcheck="false"></textarea>
+    <div class="row"><button class="btn" id="an" type="button" data-t="Analyze"></button><span style="color:var(--muted);font-size:14px" data-t="Or drop the report file anywhere on this card"></span></div>
+  </section>
+
+  <section id="res" class="hid">
+    <h2 class="hd2"><b data-t="Scan"></b> <span data-t="result"></span></h2>
+    <div class="score" id="sc"></div>
+    <div class="st" id="st"></div>
+    <p style="color:var(--muted);margin:0 0 6px" data-t="Tap “This is my device” on your own devices; whatever remains unknown deserves attention."></p>
+    <div id="al"></div><div id="ch"></div>
+    <h2 class="hd2"><b data-t="Connected"></b> <span data-t="devices"></span></h2>
+    <div class="tbr" id="tb"></div>
+    <div class="dv" id="dev"></div>
+    <h2 class="hd2"><b data-t="Vulnerabilities"></b> <span data-t="and recommendations"></span></h2>
+    <div class="vl" id="vl"></div>
+  </section>
+
+  <section class="cd" id="stp"><h2 class="hd2" style="margin-top:0"><b data-t="What to do if you find"></b> <span data-t="an intruder?"></span></h2><ol id="stl" style="margin:10px 0 0;padding-inline-start:24px;line-height:2"></ol></section>
+  <section class="cd"><h2 class="hd2" style="margin-top:0"><b data-t="Router"></b> <span data-t="hardening checklist"></span></h2><p data-t="Tick what you’ve actually done to see your network’s protection level."></p><div class="cl" id="cl"></div><div class="score" id="cs"></div></section>
+</main>
+<section class="cta"><div><h2 data-t="Need a professional security review?"></h2><p data-t="We audit websites, servers and companies, always with written authorization. We reply within 6 hours."></p></div><a class="btn" href="/#request" data-t="Request a security audit"></a></section><footer><div class="w" id="ft"></div></footer>
+<div class="ts" id="ts" role="status"><span></span></div>
+<noscript><p class="w">Please enable JavaScript to use this page.</p></noscript>
+<script src="arsenal-ui.js"></script>
+<script>
+(function(){
+"use strict";
+var T=VXA.T,esc=VXA.esc;function $(i){return document.getElementById(i)}
+VXA.add({"__desc": ["ماسح محلي لشبكتك المنزلية أو المكتبية يسرد كل جهاز ومنافذه المكشوفة، مع لوحة تحليل تكشف المتطفل وتقترح الإصلاح. يعمل على جهازك ولا يُرسل شيئًا.", "A local scanner for your home or office network lists every device and its exposed ports, with an analysis dashboard that exposes the intruder and suggests fixes. Runs on your device and sends nothing.", "Un scanner local pour votre réseau maison ou bureau liste chaque appareil et ses ports exposés, avec un tableau de bord qui démasque l’intrus et propose des correctifs. S’exécute sur votre appareil, rien n’est envoyé.", "Un escáner local para tu red doméstica u oficina lista cada dispositivo y sus puertos expuestos, con un panel que descubre al intruso y sugiere correcciones. Funciona en tu dispositivo y no envía nada."], "Show a demo example": ["عرض مثال تجريبي", "Show a demo example", "Voir un exemple de démo", "Ver ejemplo de demostración"], "No open ports": ["لا توجد منافذ مفتوحة", "No open ports", "Aucun port ouvert", "Sin puertos abiertos"], "Network health": ["سلامة الشبكة", "Network health", "Santé du réseau", "Salud de la red"], "A lightweight scanner that runs on your device, lists every device on your home or office network and its exposed ports, plus an analysis dashboard that reveals the intruder.": ["ماسح خفيف يعمل على جهازك يرصد كل الأجهزة المتصلة بشبكة منزلك أو مكتبك وما فيها من منافذ مكشوفة، ولوحة تحليل تكشف لك المتطفل.", "A lightweight scanner that runs on your device, lists every device on your home or office network and its exposed ports, plus an analysis dashboard that reveals the intruder.", "Un scanner léger qui s’exécute sur votre appareil, liste chaque appareil de votre réseau maison ou bureau et ses ports exposés, avec un tableau de bord qui révèle l’intrus.", "Un escáner ligero que se ejecuta en tu dispositivo, lista cada equipo de tu red doméstica o de oficina y sus puertos expuestos, con un panel que revela al intruso."], "Search devices…": ["ابحث في الأجهزة…", "Search devices…", "Rechercher des appareils…", "Buscar dispositivos…"], "Phone / tablet": ["هاتف / لوحي", "Phone / tablet", "Téléphone / tablette", "Teléfono / tableta"], "All": ["الكل", "All", "Tous", "Todos"], "Demo data is never saved.": ["بيانات العرض التجريبي لا تُحفظ أبدًا.", "Demo data is never saved.", "Les données de démo ne sont jamais enregistrées.", "Los datos de demostración nunca se guardan."], "Smart device (IoT)": ["جهاز ذكي (IoT)", "Smart device (IoT)", "Appareil connecté (IoT)", "Dispositivo inteligente (IoT)"], "Step 1:": ["الخطوة 1:", "Step 1:", "Étape 1 :", "Paso 1:"], "New device": ["جهاز جديد", "New device", "Nouvel appareil", "Dispositivo nuevo"], "Vulnerabilities": ["الثغرات", "Vulnerabilities", "Failles", "Vulnerabilidades"], "run the scanner": ["شغّل الماسح", "run the scanner", "lancez le scanner", "ejecuta el escáner"], "Medium": ["متوسط", "Medium", "Moyen", "Medio"], "Trusted": ["موثوق", "Trusted", "Fiable", "De confianza"], "Printer": ["طابعة", "Printer", "Imprimante", "Impresora"], "Camera / DVR": ["كاميرا / مسجّل", "Camera / DVR", "Caméra / enregistreur", "Cámara / DVR"], "Tap “This is my device” on your own devices; whatever remains unknown deserves attention.": ["اضغط «هذا جهازي» على أجهزتك، وما يتبقى غير معروف يستحق الانتباه.", "Tap “This is my device” on your own devices; whatever remains unknown deserves attention.", "Appuyez sur « C’est mon appareil » pour les vôtres ; ce qui reste inconnu mérite attention.", "Pulsa «Es mi dispositivo» en los tuyos; lo que quede desconocido merece atención."], "Paste the report content here": ["الصق محتوى التقرير هنا", "Paste the report content here", "Collez le contenu du rapport ici", "Pega aquí el contenido del informe"], "Paste the report first": ["الصق التقرير أولاً", "Paste the report first", "Collez d’abord le rapport", "Pega primero el informe"], "All devices are trusted": ["كل الأجهزة موثوقة", "All devices are trusted", "Tous les appareils sont fiables", "Todos los dispositivos son de confianza"], "Tick what you’ve actually done to see your network’s protection level.": ["حدد ما طبّقته فعلاً لتعرف مستوى حماية شبكتك.", "Tick what you’ve actually done to see your network’s protection level.", "Cochez ce que vous avez réellement fait pour connaître le niveau de protection.", "Marca lo que ya has hecho para conocer el nivel de protección de tu red."], "No changes since the last scan ✓": ["لا تغييرات منذ آخر فحص ✓", "No changes since the last scan ✓", "Aucun changement depuis le dernier scan ✓", "Sin cambios desde el último análisis ✓"], "This is my device": ["هذا جهازي", "This is my device", "C’est mon appareil", "Es mi dispositivo"], "Connected": ["الأجهزة", "Connected", "Appareils", "Dispositivos"], "Unknown type": ["نوع غير معروف", "Unknown type", "Type inconnu", "Tipo desconocido"], "Why doesn’t the page scan your network directly?": ["لماذا لا تفحص الصفحة شبكتك مباشرة؟", "Why doesn’t the page scan your network directly?", "Pourquoi la page ne scanne-t-elle pas directement votre réseau ?", "¿Por qué la página no escanea tu red directamente?"], "This device": ["هذا الجهاز", "This device", "Cet appareil", "Este dispositivo"], "Export report": ["تصدير التقرير", "Export report", "Exporter le rapport", "Exportar informe"], "Network": ["الشبكة", "Network", "Réseau", "Red"], "Computer": ["حاسوب", "Computer", "Ordinateur", "Ordenador"], "What to do if you find": ["ماذا تفعل إذا وجدت", "What to do if you find", "Que faire si vous trouvez", "Qué hacer si encuentras"], "devices": ["المتصلة", "devices", "connectés", "conectados"], "result": ["الفحص", "result", "du scan", "del análisis"], "Devices with risky ports": ["أجهزة بمنافذ خطرة", "Devices with risky ports", "Appareils à ports risqués", "Equipos con puertos riesgosos"], "Changes since the last scan": ["التغييرات منذ آخر فحص", "Changes since the last scan", "Changements depuis le dernier scan", "Cambios desde el último análisis"], "__title": ["VYROXX NETGUARD | من يتصل بشبكتك؟ ماسح ولوحة تحليل", "VYROXX NETGUARD | Who is on your network? Scanner & dashboard", "VYROXX NETGUARD | Qui est sur votre réseau ? Scanner et tableau de bord", "VYROXX NETGUARD | ¿Quién está en tu red? Escáner y panel"], "Low": ["منخفض", "Low", "Faible", "Bajo"], "Alert: unknown devices": ["تنبيه: أجهزة غير معروفة", "Alert: unknown devices", "Alerte : appareils inconnus", "Alerta: dispositivos desconocidos"], "Router": ["الراوتر", "Router", "Routeur", "Router"], "Who is": ["من الذي", "Who is", "Qui est", "¿Quién está"], "No longer connected": ["لم يعد متصلًا", "No longer connected", "N’est plus connecté", "Ya no está conectado"], "When the scan ends, netguard-report.json is created. Upload it in the next step.": ["بعد انتهاء الفحص يُنشأ ملف netguard-report.json، ارفعه في الخطوة التالية.", "When the scan ends, netguard-report.json is created. Upload it in the next step.", "À la fin du scan, netguard-report.json est créé. Chargez-le à l’étape suivante.", "Al terminar se crea netguard-report.json. Súbelo en el siguiente paso."], "load the report": ["حمّل التقرير", "load the report", "chargez le rapport", "carga el informe"], "Choose the report file or paste its content.": ["اختر ملف التقرير أو الصق محتواه.", "Choose the report file or paste its content.", "Choisissez le fichier du rapport ou collez son contenu.", "Elige el archivo del informe o pega su contenido."], "Info": ["معلومة", "Info", "Info", "Info"], "Scan only your own network or one you are authorized to test.": ["افحص شبكتك الخاصة أو شبكة تملك إذناً بفحصها فقط.", "Scan only your own network or one you are authorized to test.", "Ne scannez que votre propre réseau ou un réseau que vous êtes autorisé à tester.", "Escanea solo tu propia red o una que tengas autorización para probar."], "Risk level": ["مستوى الخطر", "Risk level", "Niveau de risque", "Nivel de riesgo"], "High": ["عالٍ", "High", "Élevé", "Alto"], "an intruder?": ["متطفلاً؟", "an intruder?", "un intrus ?", "un intruso?"], "Risky": ["خطرة", "Risky", "À risque", "De riesgo"], "On Android use the Termux app. MAC addresses may not appear without extra permissions.": ["على الأندرويد استخدم تطبيق Termux. قد لا تظهر عناوين MAC دون صلاحيات إضافية.", "On Android use the Termux app. MAC addresses may not appear without extra permissions.", "Sur Android, utilisez l’appli Termux. Les adresses MAC peuvent ne pas apparaître sans autorisations supplémentaires.", "En Android usa la app Termux. Puede que no aparezcan las direcciones MAC sin permisos adicionales."], "The scanner only scans private networks (192.168.x.x, 10.x.x.x, 172.16–31.x.x) and asks for your confirmation before it starts.": ["الماسح يفحص الشبكات الخاصة فقط (192.168.x.x و10.x.x.x و172.16–31.x.x) ويطلب تأكيدك قبل أن يبدأ.", "The scanner only scans private networks (192.168.x.x, 10.x.x.x, 172.16–31.x.x) and asks for your confirmation before it starts.", "Le scanner ne scanne que les réseaux privés (192.168.x.x, 10.x.x.x, 172.16–31.x.x) et demande votre confirmation avant de démarrer.", "El escáner solo analiza redes privadas (192.168.x.x, 10.x.x.x, 172.16–31.x.x) y pide tu confirmación antes de empezar."], "Download netguard.py": ["تحميل netguard.py", "Download netguard.py", "Télécharger netguard.py", "Descargar netguard.py"], "and recommendations": ["والتوصيات", "and recommendations", "et recommandations", "y recomendaciones"], "NETWORK RADAR": ["رادار الشبكة", "NETWORK RADAR", "RADAR RÉSEAU", "RADAR DE RED"], "Or drop the report file anywhere on this card": ["أو أفلت ملف التقرير في أي مكان على هذه البطاقة", "Or drop the report file anywhere on this card", "Ou déposez le fichier de rapport n’importe où sur cette carte", "O suelta el archivo del informe en cualquier parte de esta tarjeta"], "Invalid file": ["ملف غير صالح", "Invalid file", "Fichier invalide", "Archivo no válido"], "First scan of this network saved. Next time, changes will appear here.": ["حُفظ أول فحص لهذه الشبكة. في المرة القادمة ستظهر التغييرات هنا.", "First scan of this network saved. Next time, changes will appear here.", "Premier scan de ce réseau enregistré. La prochaine fois, les changements apparaîtront ici.", "Primer análisis de esta red guardado. La próxima vez los cambios aparecerán aquí."], "Step 2:": ["الخطوة 2:", "Step 2:", "Étape 2 :", "Paso 2:"], "on your network?": ["يتصل بشبكتك؟", "on your network?", "sur votre réseau ?", "en tu red?"], "Analyze": ["حلّل", "Analyze", "Analyser", "Analizar"], "Print": ["طباعة", "Print", "Imprimer", "Imprimir"], "hardening checklist": ["تحصين الراوتر", "hardening checklist", "durcissement du routeur", "refuerzo del router"], "Unknown": ["غير معروف", "Unknown", "Inconnu", "Desconocido"], "Private MAC address (usually a modern phone)": ["عنوان MAC خاص (هاتف حديث غالباً)", "Private MAC address (usually a modern phone)", "Adresse MAC privée (souvent un téléphone récent)", "Dirección MAC privada (normalmente un móvil moderno)"], "Ports were not checked in this report.": ["لم تُفحص المنافذ في هذا التقرير.", "Ports were not checked in this report.", "Les ports n’ont pas été vérifiés dans ce rapport.", "Los puertos no se comprobaron en este informe."], "Remove trust": ["إلغاء الثقة", "Remove trust", "Retirer la confiance", "Quitar confianza"], "No risky open ports found ✓": ["لم تُكتشف منافذ خطرة مفتوحة ✓", "No risky open ports found ✓", "Aucun port risqué ouvert ✓", "No se encontraron puertos riesgosos ✓"], "Browsers block web pages from scanning the local network to protect you. So we use a small scanner (netguard.py) that you run on your device, then load its result here for analysis.": ["المتصفحات تمنع صفحات الويب من فحص الشبكة المحلية لحمايتك. لذلك نستخدم ماسحاً صغيراً (netguard.py) تشغّله على جهازك، ثم تحمّل نتيجته هنا للتحليل.", "Browsers block web pages from scanning the local network to protect you. So we use a small scanner (netguard.py) that you run on your device, then load its result here for analysis.", "Les navigateurs empêchent les pages web de scanner le réseau local pour vous protéger. On utilise donc un petit scanner (netguard.py) à lancer sur votre appareil, puis on charge son résultat ici.", "Los navegadores impiden que las páginas web escaneen la red local para protegerte. Por eso usamos un pequeño escáner (netguard.py) que ejecutas en tu dispositivo y cuyo resultado cargas aquí."], "You haven’t confirmed these devices are yours. If you don’t recognize them, they may be intruders.": ["هذه الأجهزة لم تؤكد أنها لك. إن لم تعرفها فقد تكون متطفلة.", "You haven’t confirmed these devices are yours. If you don’t recognize them, they may be intruders.", "Vous n’avez pas confirmé que ces appareils sont à vous. S’ils vous sont inconnus, ce sont peut-être des intrus.", "No has confirmado que estos dispositivos sean tuyos. Si no los reconoces, podrían ser intrusos."], "Choose report file (JSON)": ["اختر ملف التقرير (JSON)", "Choose report file (JSON)", "Choisir le fichier rapport (JSON)", "Elegir archivo de informe (JSON)"], "Scan": ["نتيجة", "Scan", "Résultat", "Resultado"], "Scan time": ["وقت الفحص", "Scan time", "Heure du scan", "Hora del análisis"], "Connected devices": ["أجهزة متصلة", "Connected devices", "Appareils connectés", "Dispositivos conectados"], "Change the Wi-Fi password to a new strong one (WPA2 or WPA3).": ["غيّر كلمة مرور الواي فاي إلى كلمة قوية جديدة (WPA2 أو WPA3).", "Change the Wi-Fi password to a new strong one (WPA2 or WPA3).", "Changez le mot de passe Wi-Fi pour un nouveau mot de passe fort (WPA2 ou WPA3).", "Cambia la contraseña del Wi-Fi por una nueva y fuerte (WPA2 o WPA3)."], "Change the router admin password.": ["غيّر كلمة مرور لوحة تحكم الراوتر.", "Change the router admin password.", "Changez le mot de passe d’administration du routeur.", "Cambia la contraseña de administración del router."], "Disable WPS, UPnP and remote administration.": ["عطّل WPS وUPnP والإدارة عن بعد.", "Disable WPS, UPnP and remote administration.", "Désactivez WPS, UPnP et l’administration à distance.", "Desactiva WPS, UPnP y la administración remota."], "Restart the router and update its firmware.": ["أعد تشغيل الراوتر وحدّث برمجيته.", "Restart the router and update its firmware.", "Redémarrez le routeur et mettez à jour son firmware.", "Reinicia el router y actualiza su firmware."], "Scan again and make sure the unknown device is gone.": ["أعد الفحص وتأكد أن الجهاز المجهول اختفى.", "Scan again and make sure the unknown device is gone.", "Relancez le scan et vérifiez que l’appareil inconnu a disparu.", "Vuelve a escanear y comprueba que el dispositivo desconocido desapareció."], "I use WPA2 or WPA3 encryption (not WEP or an open network)": ["أستخدم تشفير WPA2 أو WPA3 (وليس WEP أو شبكة مفتوحة)", "I use WPA2 or WPA3 encryption (not WEP or an open network)", "J’utilise le chiffrement WPA2 ou WPA3 (pas WEP ni réseau ouvert)", "Uso cifrado WPA2 o WPA3 (no WEP ni red abierta)"], "My Wi-Fi password is long (12+ characters) and not shared widely": ["كلمة مرور الواي فاي طويلة (12+ حرفاً) وغير مشتركة", "My Wi-Fi password is long (12+ characters) and not shared widely", "Mon mot de passe Wi-Fi est long (12+ caractères) et peu partagé", "Mi contraseña Wi-Fi es larga (12+ caracteres) y poco compartida"], "I changed the router’s default admin password": ["غيّرت كلمة مرور لوحة الراوتر الافتراضية", "I changed the router’s default admin password", "J’ai changé le mot de passe admin par défaut du routeur", "Cambié la contraseña de administración predeterminada del router"], "I keep the router firmware updated": ["أحدّث برمجية الراوتر باستمرار", "I keep the router firmware updated", "Je mets à jour le firmware du routeur", "Mantengo actualizado el firmware del router"], "I disabled WPS": ["عطّلت WPS", "I disabled WPS", "J’ai désactivé WPS", "Desactivé WPS"], "I disabled UPnP and remote administration": ["عطّلت UPnP والإدارة عن بعد", "I disabled UPnP and remote administration", "J’ai désactivé UPnP et l’administration à distance", "Desactivé UPnP y la administración remota"], "I use a guest network for visitors and IoT devices": ["أستخدم شبكة ضيوف للزوار وأجهزة إنترنت الأشياء", "I use a guest network for visitors and IoT devices", "J’utilise un réseau invité pour les visiteurs et objets connectés", "Uso una red de invitados para visitas y dispositivos IoT"], "I review the list of connected devices regularly": ["أراجع قائمة الأجهزة المتصلة دورياً", "I review the list of connected devices regularly", "Je consulte régulièrement la liste des appareils connectés", "Reviso periódicamente la lista de dispositivos conectados"], "Excellent protection": ["حماية ممتازة", "Excellent protection", "Protection excellente", "Protección excelente"], "Good protection": ["حماية جيدة", "Good protection", "Bonne protection", "Buena protección"], "Fair protection": ["حماية متوسطة", "Fair protection", "Protection moyenne", "Protección media"], "Weak protection": ["حماية ضعيفة", "Weak protection", "Protection faible", "Protección débil"], "A camera stream (RTSP) may be exposed. Change the camera password and update its firmware.": ["بث كاميرا (RTSP) قد يكون مكشوفاً. غيّر كلمة مرور الكاميرا وحدّث برمجيتها.", "A camera stream (RTSP) may be exposed. Change the camera password and update its firmware.", "Un flux caméra (RTSP) peut être exposé. Changez le mot de passe de la caméra et mettez à jour son firmware.", "Una transmisión de cámara (RTSP) puede estar expuesta. Cambia la contraseña de la cámara y actualiza su firmware."], "Remote Desktop (RDP) is a common attack target. Enable NLA and a strong password, or close it.": ["سطح المكتب البعيد (RDP) هدف شائع للاختراق. فعّل NLA وكلمة مرور قوية أو أغلقه.", "Remote Desktop (RDP) is a common attack target. Enable NLA and a strong password, or close it.", "Le Bureau à distance (RDP) est une cible courante. Activez NLA et un mot de passe fort, ou fermez-le.", "Escritorio remoto (RDP) es un objetivo común. Activa NLA y una contraseña fuerte, o ciérralo."], "A DVR or camera device. Change the default password and update the firmware.": ["جهاز DVR أو كاميرا. غيّر كلمة المرور الافتراضية وحدّث البرمجية.", "A DVR or camera device. Change the default password and update the firmware.", "Un DVR ou une caméra. Changez le mot de passe par défaut et mettez à jour le firmware.", "Un DVR o cámara. Cambia la contraseña predeterminada y actualiza el firmware."], "FTP sends data and passwords unencrypted. Disable it or replace it with SFTP.": ["FTP ينقل البيانات وكلمات المرور دون تشفير. عطّله أو استبدله بـ SFTP.", "FTP sends data and passwords unencrypted. Disable it or replace it with SFTP.", "FTP transmet données et mots de passe en clair. Désactivez-le ou remplacez-le par SFTP.", "FTP envía datos y contraseñas sin cifrar. Desactívalo o sustitúyelo por SFTP."], "MQTT without authentication may allow control of home devices. Enable authentication.": ["MQTT دون مصادقة قد يسمح بالتحكم بأجهزة المنزل. فعّل المصادقة.", "MQTT without authentication may allow control of home devices. Enable authentication.", "MQTT sans authentification peut permettre de contrôler vos appareils. Activez l’authentification.", "MQTT sin autenticación puede permitir controlar dispositivos del hogar. Activa la autenticación."], "VNC often has weak encryption. Close it or tunnel it through a VPN.": ["VNC غالباً ضعيف التشفير. أغلقه أو استخدم نفق VPN.", "VNC often has weak encryption. Close it or tunnel it through a VPN.", "VNC a souvent un chiffrement faible. Fermez-le ou passez par un VPN.", "VNC suele tener cifrado débil. Ciérralo o usa un túnel VPN."], "NetBIOS leaks information about your device. Disable it if you don’t need it.": ["NetBIOS يكشف معلومات عن جهازك. عطّله إن لم تحتجه.", "NetBIOS leaks information about your device. Disable it if you don’t need it.", "NetBIOS révèle des informations sur votre appareil. Désactivez-le si inutile.", "NetBIOS revela información de tu equipo. Desactívalo si no lo necesitas."], "A network printer. Make sure it isn’t exposed to the internet.": ["طابعة شبكية. تأكد أنها غير مكشوفة للإنترنت.", "A network printer. Make sure it isn’t exposed to the internet.", "Une imprimante réseau. Vérifiez qu’elle n’est pas exposée à Internet.", "Una impresora de red. Asegúrate de que no esté expuesta a internet."], "SSH is acceptable if protected by keys or a strong password.": ["SSH مقبول إن كان محمياً بمفاتيح أو كلمة مرور قوية.", "SSH is acceptable if protected by keys or a strong password.", "SSH est acceptable s’il est protégé par clés ou mot de passe fort.", "SSH es aceptable si está protegido con claves o una contraseña fuerte."], "Telnet is outdated, unencrypted and a favorite attack target. Close it immediately.": ["Telnet قديم وغير مشفّر وهدف مفضل للاختراق. أغلقه فوراً.", "Telnet is outdated, unencrypted and a favorite attack target. Close it immediately.", "Telnet est obsolète, non chiffré et une cible favorite. Fermez-le immédiatement.", "Telnet es obsoleto, sin cifrado y objetivo favorito de ataques. Ciérralo de inmediato."], "SMB is targeted by ransomware and worms. Keep it updated and never expose it outside the network.": ["SMB مستهدف بالفدية والديدان. حدّثه ولا تعرضه خارج الشبكة.", "SMB is targeted by ransomware and worms. Keep it updated and never expose it outside the network.", "SMB est visé par les rançongiciels et vers. Mettez-le à jour et ne l’exposez pas hors du réseau.", "SMB es objetivo de ransomware y gusanos. Mantenlo actualizado y no lo expongas fuera de la red."], "A MySQL database is exposed on the network. Restrict it to the device itself.": ["قاعدة بيانات MySQL مكشوفة في الشبكة. قيّدها بالجهاز نفسه فقط.", "A MySQL database is exposed on the network. Restrict it to the device itself.", "Une base MySQL est exposée sur le réseau. Limitez-la à l’appareil lui-même.", "Una base de datos MySQL está expuesta en la red. Restríngela al propio equipo."]});
+var REC={"21": "FTP sends data and passwords unencrypted. Disable it or replace it with SFTP.", "22": "SSH is acceptable if protected by keys or a strong password.", "23": "Telnet is outdated, unencrypted and a favorite attack target. Close it immediately.", "139": "NetBIOS leaks information about your device. Disable it if you don’t need it.", "445": "SMB is targeted by ransomware and worms. Keep it updated and never expose it outside the network.", "554": "A camera stream (RTSP) may be exposed. Change the camera password and update its firmware.", "8554": "A camera stream (RTSP) may be exposed. Change the camera password and update its firmware.", "1883": "MQTT without authentication may allow control of home devices. Enable authentication.", "3306": "A MySQL database is exposed on the network. Restrict it to the device itself.", "3389": "Remote Desktop (RDP) is a common attack target. Enable NLA and a strong password, or close it.", "5900": "VNC often has weak encryption. Close it or tunnel it through a VPN.", "37777": "A DVR or camera device. Change the default password and update the firmware.", "9100": "A network printer. Make sure it isn’t exposed to the internet."},STEPS=["Change the Wi-Fi password to a new strong one (WPA2 or WPA3).", "Change the router admin password.", "Disable WPS, UPnP and remote administration.", "Restart the router and update its firmware.", "Scan again and make sure the unknown device is gone."],CHK=["I use WPA2 or WPA3 encryption (not WEP or an open network)", "My Wi-Fi password is long (12+ characters) and not shared widely", "I changed the router’s default admin password", "I keep the router firmware updated", "I disabled WPS", "I disabled UPnP and remote administration", "I use a guest network for visitors and IoT devices", "I review the list of connected devices regularly"],LV=["Excellent protection", "Good protection", "Fair protection", "Weak protection"],CMD=["python netguard.py\n\n# optional: choose the network yourself\npython netguard.py --subnet 192.168.1.0/24\n\n# optional: list devices only (faster, quieter)\npython netguard.py --no-ports", "python3 netguard.py\n\n# optional: choose the network yourself\npython3 netguard.py --subnet 192.168.1.0/24\n\n# optional: list devices only (faster, quieter)\npython3 netguard.py --no-ports", "pkg install python -y\npython netguard.py\n\n# optional: devices only\npython netguard.py --no-ports"],DEMO={"tool": "VYROXX NETGUARD", "version": "1.1", "time": "DEMO", "subnet": "192.168.1.0/24", "local_ip": "192.168.1.20", "gateway": "192.168.1.1", "hosts": [{"ip": "192.168.1.1", "mac": "50:C7:BF:11:22:33", "vendor": "TP-Link", "hostname": "router.lan", "private_mac": false, "gateway": true, "self": false, "ports": [{"port": 53, "service": "DNS", "risk": "info"}, {"port": 80, "service": "HTTP", "risk": "info"}], "risk": "info"}, {"ip": "192.168.1.20", "mac": "A4:34:D9:AA:BB:CC", "vendor": "", "hostname": "my-pc", "private_mac": false, "gateway": false, "self": true, "ports": [{"port": 445, "service": "SMB", "risk": "medium"}], "risk": "medium"}, {"ip": "192.168.1.23", "mac": "3E:5A:1F:90:44:12", "vendor": "", "hostname": "", "private_mac": true, "gateway": false, "self": false, "ports": [], "risk": "info"}, {"ip": "192.168.1.31", "mac": "30:AE:A4:55:66:77", "vendor": "Espressif (IoT)", "hostname": "", "private_mac": false, "gateway": false, "self": false, "ports": [{"port": 80, "service": "HTTP", "risk": "info"}, {"port": 1883, "service": "MQTT", "risk": "medium"}], "risk": "medium"}, {"ip": "192.168.1.45", "mac": "B8:27:EB:12:34:56", "vendor": "Raspberry Pi", "hostname": "", "private_mac": false, "gateway": false, "self": false, "ports": [{"port": 22, "service": "SSH", "risk": "low"}, {"port": 23, "service": "Telnet", "risk": "high"}], "risk": "high"}, {"ip": "192.168.1.60", "mac": "3C:07:54:98:76:54", "vendor": "Apple", "hostname": "iphone", "private_mac": false, "gateway": false, "self": false, "ports": [], "risk": "info"}]};
+var RL={high:"High",medium:"Medium",low:"Low",info:"Info"},COL={high:"var(--hot)",medium:"#E8A317",low:"#1E9E6A"};
+function ld(k){try{return JSON.parse(localStorage.getItem(k)||"null")}catch(e){return null}}
+function sv(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}
+var TR=ld("vx_trust")||{},R=null,M=null,PREV=null,filter="all",q="",osi=0,ck=CHK.map(function(){return 0});
+
+/* ---------- pure analysis (no DOM) ---------- */
+function key(h){return h.mac||h.ip}
+function dtype(h){
+  var ps=(h.ports||[]).map(function(p){return p.port}),v=(h.vendor||"").toLowerCase();
+  if(h.gateway)return ["Router","📶"];
+  if(ps.some(function(p){return p===554||p===8554||p===37777}))return ["Camera / DVR","📷"];
+  if(ps.indexOf(9100)>-1)return ["Printer","🖨️"];
+  if(/espressif|iot/.test(v))return ["Smart device (IoT)","💡"];
+  if(/raspberry/.test(v)||ps.some(function(p){return p===445||p===139||p===3389||p===5900}))return ["Computer","💻"];
+  if(/apple|samsung|huawei|google|amazon/.test(v)||h.private_mac)return ["Phone / tablet","📱"];
+  return ["Unknown type","❔"];
+}
+function analyze(R,TR,prev){
+  var H=R.hosts||[],trusted=function(h){return !!TR[key(h)]};
+  var un=H.filter(function(h){return !h.gateway&&!h.self&&!trusted(h)});
+  var rk=H.filter(function(h){return (h.ports||[]).some(function(p){return p.risk==="high"||p.risk==="medium"})});
+  var hi=0,md=0;H.forEach(function(h){(h.ports||[]).forEach(function(p){if(p.risk==="high")hi++;else if(p.risk==="medium")md++})});
+  var pts=un.length*12+hi*20+md*8,m={H:H,un:un,rk:rk,hi:hi,md:md,pts:pts,health:Math.max(0,100-pts),lvl:pts>=50?"high":pts>=20?"medium":"low",added:[],gone:[],first:!prev};
+  if(prev){
+    var pk={},ck={};prev.list.forEach(function(x){pk[x.k]=1});H.forEach(function(h){ck[key(h)]=1});
+    m.added=H.filter(function(h){return !pk[key(h)]});m.gone=prev.list.filter(function(x){return !ck[x.k]});
+  }
+  return m;
+}
+function addedHas(h){return M.added.some(function(x){return key(x)===key(h)})}
+
+/* ---------- rendering ---------- */
+function tile(n,l,hot){return '<div><b'+(hot?' style="color:var(--hot)"':"")+">"+n+"</b><small>"+esc(T(l))+"</small></div>"}
+function render(){
+  if(!R||!M)return;
+  $("res").classList.remove("hid");
+  var col=M.health>=80?"#1E9E6A":M.health>=50?"#E8A317":"var(--hot)";
+  $("sc").innerHTML='<div class="ring" style="--p:'+M.health+";--vc:"+col+'"><b>'+M.health+'</b></div><div style="flex:1;min-width:220px"><div style="font-weight:800;font-size:22px;color:'+col+'">'+esc(T("Network health"))+" · "+esc(T("Risk level"))+": "+esc(T(RL[M.lvl]))+'</div><div class="mono" style="color:var(--muted);margin-top:6px">'+esc(T("Network"))+": "+esc(R.subnet||"")+" · "+esc(T("Scan time"))+": "+esc(R.time||"")+"</div>"+(R.ports_checked===false?'<div style="color:var(--muted);margin-top:4px">'+esc(T("Ports were not checked in this report."))+"</div>":"")+"</div>";
+  $("st").innerHTML=tile(M.H.length,"Connected devices")+tile(M.H.length-M.un.length,"Trusted")+tile(M.un.length,"Unknown",M.un.length>0)+tile(M.rk.length,"Devices with risky ports",M.rk.length>0)+tile(esc(T(RL[M.lvl])),"Risk level");
+  $("al").innerHTML=M.un.length?'<div class="al bad"><b>🚨 '+esc(T("Alert: unknown devices"))+" ("+M.un.length+")</b>"+esc(T("You haven’t confirmed these devices are yours. If you don’t recognize them, they may be intruders."))+"</div>":'<div class="al good"><b>✅ '+esc(T("All devices are trusted"))+"</b></div>";
+  var c="";
+  if(R.time==="DEMO")c='<div class="fd">'+esc(T("Demo data is never saved."))+"</div>";
+  else if(M.first)c='<div class="fd">'+esc(T("First scan of this network saved. Next time, changes will appear here."))+"</div>";
+  else if(!M.added.length&&!M.gone.length)c='<div class="fd ok">'+esc(T("No changes since the last scan ✓"))+"</div>";
+  else c=M.added.map(function(h){return '<div class="fd hi">🆕 '+esc(T("New device"))+": <b class=\"mono\">"+esc(h.ip)+"</b> "+esc(h.vendor||h.hostname||h.mac||"")+"</div>"}).join("")+M.gone.map(function(x){return '<div class="fd wn">⏏ '+esc(T("No longer connected"))+": <b class=\"mono\">"+esc(x.ip||x.k)+"</b> "+esc(x.n||"")+"</div>"}).join("");
+  $("ch").innerHTML='<h3 style="margin:16px 0 4px">'+esc(T("Changes since the last scan"))+"</h3>"+c;
+  toolbar();devs();vulns();
+}
+function toolbar(){
+  var tb=$("tb");tb.textContent="";
+  [["all","All",M.H.length],["un","Unknown",M.un.length],["risk","Risky",M.rk.length]].forEach(function(f){
+    var b=document.createElement("button");b.type="button";b.className="fc";b.textContent=T(f[1])+" · "+f[2];b.setAttribute("aria-pressed",String(filter===f[0]));
+    b.onclick=function(){filter=f[0];toolbar();devs()};tb.appendChild(b);
+  });
+  var i=document.createElement("input");i.className="in";i.type="search";i.placeholder=T("Search devices…");i.value=q;i.oninput=function(){q=i.value;devs()};tb.appendChild(i);
+  var sp=document.createElement("span");sp.className="sp";tb.appendChild(sp);
+  var ex=document.createElement("button");ex.type="button";ex.className="btn alt sm";ex.textContent=T("Export report");ex.onclick=exportJson;tb.appendChild(ex);
+  var pr=document.createElement("button");pr.type="button";pr.className="btn alt sm";pr.textContent=T("Print");pr.onclick=function(){window.print()};tb.appendChild(pr);
+}
+function devs(){
+  var box=$("dev"),ql=q.trim().toLowerCase();box.textContent="";
+  M.H.filter(function(h){
+    var un=M.un.indexOf(h)>-1;
+    if(filter==="un"&&!un)return false;if(filter==="risk"&&M.rk.indexOf(h)<0)return false;
+    return !ql||[h.ip,h.mac,h.vendor,h.hostname].join(" ").toLowerCase().indexOf(ql)>-1;
+  }).forEach(function(h){
+    var un=M.un.indexOf(h)>-1,tt=dtype(h),d=document.createElement("div");d.className="dc "+(un?"un":"tr");
+    var tags=[];
+    if(h.gateway)tags.push(["b",T("Router")]);if(h.self)tags.push(["b",T("This device")]);
+    tags.push(un?["r",T("Unknown")]:["g",T("Trusted")]);if(addedHas(h)&&R.time!=="DEMO")tags.push(["y",T("New device")]);
+    d.innerHTML='<div class="h"><span class="ic">'+tt[1]+'</span><div><div class="ip">'+esc(h.ip)+'</div><div class="sm">'+esc(T(tt[0]))+(h.vendor||h.hostname?" · "+esc(h.vendor||h.hostname):"")+"</div></div></div>"
+     +'<div>'+tags.map(function(t){return '<span class="bd '+t[0]+'" style="margin-inline-end:6px">'+esc(t[1])+"</span>"}).join("")+"</div>"
+     +'<div class="m">'+esc(h.mac||"—")+"</div>"+(h.private_mac?'<div class="sm">'+esc(T("Private MAC address (usually a modern phone)"))+"</div>":"")
+     +'<div class="pt">'+((h.ports||[]).length?h.ports.map(function(p){return '<span class="'+p.risk+'" style="border-color:currentColor">'+p.port+" "+esc(p.service)+"</span>"}).join(""):'<span class="info">'+esc(T("No open ports"))+"</span>")+"</div>";
+    if(!h.gateway&&!h.self){
+      var b=document.createElement("button");b.type="button";b.className="btn sm "+(un?"p":"alt");b.textContent=un?T("This is my device"):T("Remove trust");
+      b.onclick=function(){var k=key(h);if(TR[k])delete TR[k];else TR[k]=1;sv("vx_trust",TR);M=analyze(R,TR,PREV);render()};d.appendChild(b);
+    }
+    box.appendChild(d);
+  });
+}
+function vulns(){
+  var o="";
+  M.H.forEach(function(h){(h.ports||[]).forEach(function(p){
+    if(p.risk==="info"&&!REC[p.port])return;
+    o+='<div class="fd '+(p.risk==="high"?"hi":p.risk==="medium"?"wn":"")+'"><b class="mono">'+esc(h.ip)+":"+p.port+" "+esc(p.service)+'</b> <span class="bd" style="color:'+(COL[p.risk]||"var(--muted)")+'">'+esc(T(RL[p.risk]))+"</span><br>"+esc(REC[p.port]?T(REC[p.port]):"")+"</div>";
+  })});
+  $("vl").innerHTML=o||'<div class="fd ok">'+esc(T("No risky open ports found ✓"))+"</div>";
+}
+function exportJson(){
+  var out={tool:"VYROXX NETGUARD dashboard",generated:new Date().toISOString(),subnet:R.subnet,scan_time:R.time,health:M.health,level:M.lvl,unknown:M.un.map(function(h){return h.ip}),risky:M.rk.map(function(h){return h.ip}),new_since_last:M.added.map(function(h){return h.ip}),hosts:M.H};
+  var a=document.createElement("a");a.href=URL.createObjectURL(new Blob([JSON.stringify(out,null,1)],{type:"application/json"}));a.download="netguard-analysis.json";document.body.appendChild(a);a.click();setTimeout(function(){URL.revokeObjectURL(a.href);a.remove()},600);
+}
+
+/* ---------- loading a report ---------- */
+function load(txt){
+  var j;try{j=JSON.parse(txt);if(!j||!Array.isArray(j.hosts))throw 0;j.hosts.forEach(function(h){if(typeof h.ip!=="string")throw 0;h.ports=Array.isArray(h.ports)?h.ports:[]})}catch(e){VXA.toast(T("Invalid file"));return}
+  R=j;var demo=R.time==="DEMO",pk="vx-ng-prev:"+(R.subnet||"");
+  PREV=demo?null:ld(pk);M=analyze(R,TR,PREV);
+  if(demo)M.first=false;
+  else sv(pk,{t:R.time,list:R.hosts.map(function(h){return {k:key(h),ip:h.ip,n:h.vendor||h.hostname||""}})});
+  filter="all";q="";render();$("res").scrollIntoView({behavior:"smooth"});
+}
+$("fi").onchange=async function(e){var f=e.target.files[0];if(f)load(await f.text());this.value=""};
+$("an").onclick=function(){var v=$("tx").value.trim();v?load(v):VXA.toast(T("Paste the report first"))};
+$("dm").onclick=function(){load(JSON.stringify(DEMO))};
+var s2=$("s2");["dragover","dragenter"].forEach(function(ev){s2.addEventListener(ev,function(e){e.preventDefault();s2.classList.add("dropping")})});
+["dragleave","drop"].forEach(function(ev){s2.addEventListener(ev,function(e){e.preventDefault();s2.classList.remove("dropping")})});
+s2.addEventListener("drop",async function(e){var f=e.dataTransfer&&e.dataTransfer.files[0];if(f)load(await f.text())});
+
+/* ---------- step 1 ---------- */
+function stp(){
+  [].forEach.call(document.querySelectorAll("#ost .tab"),function(b){b.setAttribute("aria-pressed",String(+b.getAttribute("data-os")===osi))});
+  $("cmd").textContent=CMD[osi];$("termux").classList.toggle("hid",osi!==2);
+}
+$("ost").onclick=function(e){var b=e.target.closest(".tab");if(b){osi=+b.getAttribute("data-os");stp()}};
+$("cc").onclick=function(){VXA.copy(CMD[osi].split("\n\n")[0])};
+
+/* ---------- intruder steps + router checklist ---------- */
+function lists(){
+  $("stl").innerHTML=STEPS.map(function(s){return "<li>"+esc(T(s))+"</li>"}).join("");
+  $("cl").innerHTML=CHK.map(function(c,i){return '<div class="qi'+(ck[i]?" on":"")+'" data-q="'+i+'" role="checkbox" aria-checked="'+!!ck[i]+'" tabindex="0"><span>'+(ck[i]?"✅":"⬜")+"</span><span>"+esc(T(c))+"</span></div>"}).join("");
+  var n=ck.filter(Boolean).length,p=Math.round(n/CHK.length*100),lv=p>=85?[0,"#1E9E6A"]:p>=60?[1,"#9be22e"]:p>=35?[2,"#E8A317"]:[3,"#ff4d5e"];
+  $("cs").innerHTML='<div class="ring" style="--p:'+p+";--vc:"+lv[1]+'"><b>'+p+'%</b></div><div style="font-weight:800;font-size:22px;color:'+lv[1]+'">'+esc(T(LV[lv[0]]))+"</div>";
+}
+$("cl").onclick=function(e){var q=e.target.closest("[data-q]");if(q){ck[+q.getAttribute("data-q")]^=1;lists()}};
+$("cl").onkeydown=function(e){if(e.key===" "||e.key==="Enter"){var q=e.target.closest("[data-q]");if(q){e.preventDefault();var i=+q.getAttribute("data-q");ck[i]^=1;lists();document.querySelectorAll("#cl [data-q]")[i].focus()}}};
+
+VXA.onLang(function(){stp();lists();if(R&&M)render()});
+VXA.start();
+})();
+</script>
+</body>
+</html>

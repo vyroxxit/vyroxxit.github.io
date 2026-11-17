@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>VYROXX SHIELD | Free Password, Hash & Phishing Tools</title>
+<meta name="description" content="Six free security tools that run in your browser: password analyzer and generator, hashes, phishing link checker, encoder/decoder and a personal security score. No data is sent.">
+<link rel="canonical" href="https://vyroxxit.github.io/shield.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="VYROXX SHIELD | Free Password, Hash & Phishing Tools">
+<meta property="og:description" content="Six free security tools that run in your browser: password analyzer and generator, hashes, phishing link checker, encoder/decoder and a personal security score. No data is sent.">
+<meta property="og:url" content="https://vyroxxit.github.io/shield.html">
+<meta property="og:image" content="https://vyroxxit.github.io/og-image.jpg">
+<meta name="theme-color" content="#0C1519">
+<link rel="manifest" href="/manifest.json">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" href="/favicon.png" sizes="48x48" type="image/png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;700&display=swap" rel="stylesheet">
+<script>try{var th=localStorage.getItem("vx-theme");if(/^(light|dark|legend|hacker)$/.test(th))document.documentElement.setAttribute("data-theme",th)}catch(e){}</script>
+<script src="vx-site.js?v=1" defer></script>
+<link rel="stylesheet" href="arsenal.css?v=1">
+<style></style>
+</head>
+<body style="--c:#8B5CF6;--on:#fff">
+<header class="w top">
+  <a class="logo" href="/" aria-label="VYROXX IT"><svg viewBox="135 96 130 204" aria-hidden="true"><path d="M200 135 L255 155 V215 C255 250 230 275 200 292 C170 275 145 250 145 215 V155 Z" fill="var(--surface)" stroke="var(--ink)" stroke-width="8" stroke-linejoin="round"/><path d="M172 182 L200 240 L228 182" fill="none" stroke="var(--accent)" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/><circle cx="200" cy="166" r="7" fill="var(--hot)"/><path d="M168 128 L178 104 L200 120 L222 104 L232 128 Z" fill="var(--accent)" stroke="var(--ink)" stroke-width="5" stroke-linejoin="round"/></svg><span>VYROXX <b>IT</b></span></a>
+  <div class="tools"><a class="home" href="arsenal.html" data-t="Arsenal">Arsenal</a><a class="home" href="/" data-t="Home">Home</a>
+    <div class="seg" id="seg" role="group" aria-label="Language"><button type="button" data-l="en">EN</button><button type="button" data-l="ar">ع</button><button type="button" data-l="fr">FR</button><button type="button" data-l="es">ES</button></div>
+    <button class="theme" id="theme" type="button" aria-label="Theme"></button>
+  </div>
+</header>
+<main class="w">
+  <section class="hero2">
+    <span class="tp-eyebrow" data-t="DIGITAL ARMOR"></span>
+    <h1><span data-t="Your"></span> <em data-t="digital shield"></em></h1>
+    <p class="lead" data-t="Six professional tools to protect your accounts, files and links. Everything runs in your browser and no data is sent to any server."></p>
+    <div class="note2" data-t="🔒 Security tools that run only on your device"></div>
+  </section>
+  <div class="tabs" id="tabs" role="tablist">
+    <button class="tab" type="button" data-tab="p1">🔑 <span data-t="Password analyzer"></span></button>
+    <button class="tab" type="button" data-tab="p2">🎲 <span data-t="Password generator"></span></button>
+    <button class="tab" type="button" data-tab="p3">#️⃣ <span data-t="Hashes & files"></span></button>
+    <button class="tab" type="button" data-tab="p4">🎣 <span data-t="Link checker"></span></button>
+    <button class="tab" type="button" data-tab="p5">🔓 <span data-t="Encode & decode"></span></button>
+    <button class="tab" type="button" data-tab="p6">✅ <span data-t="Your security score"></span></button>
+  </div>
+
+  <section class="pane" id="p1"><p class="sub" data-t="Type a password to see its strength and how long an attacker would need to crack it. It is never sent anywhere."></p>
+    <div class="row"><input class="in" id="pw" type="password" data-ph="Type the password here" autocomplete="off" spellcheck="false"><button class="btn" id="sh" type="button" data-t="Show"></button><button class="btn p" id="lk" type="button" data-t="Check if leaked"></button></div>
+    <div class="meter"><i id="mb"></i></div><div id="ml" style="font-weight:800"></div>
+    <div class="kv" id="kv"></div><ul class="cks" id="ck"></ul><div id="lr"></div>
+    <p class="sub" style="margin:14px 0 0;font-size:14px" data-t="Only the first 5 characters of the password’s SHA-1 hash are sent (k-anonymity). The password itself never leaves your device."></p></section>
+
+  <section class="pane" id="p2"><p class="sub" data-t="Generate strong random passwords with a secure cryptographic generator in your browser."></p>
+    <div class="row"><label for="gn" style="min-width:110px"><span data-t="Length:"></span> <b id="gv" class="mono">20</b></label><input id="gn" type="range" min="8" max="64" value="20" style="flex:1"></div>
+    <div class="gl"><label class="chk"><input type="checkbox" id="gu" checked><span data-t="Uppercase letters"></span></label><label class="chk"><input type="checkbox" id="gl" checked><span data-t="Lowercase letters"></span></label><label class="chk"><input type="checkbox" id="gd" checked><span data-t="Numbers"></span></label><label class="chk"><input type="checkbox" id="gs" checked><span data-t="Symbols"></span></label><label class="chk"><input type="checkbox" id="ga"><span data-t="Exclude look-alike characters"></span></label></div>
+    <div class="row"><button class="btn p" id="gg" type="button" data-t="Generate new"></button><button class="btn alt sm" id="gc" type="button" data-t="Copy all"></button></div><div id="go"></div></section>
+
+  <section class="pane" id="p3"><p class="sub" data-t="Compute the SHA hash of any text or file and compare it with the official one to be sure the file hasn’t changed."></p>
+    <textarea class="in" id="hi" data-ph="Type some text..." spellcheck="false"></textarea>
+    <div class="row" style="margin:12px 0"><label class="btn" for="hf" data-t="Choose a file"></label><input id="hf" type="file" hidden><span id="hn" class="mono" style="color:var(--muted)"></span><span style="color:var(--muted);font-size:14px" data-t="Drop a file anywhere here, or choose one"></span></div>
+    <input id="hc" type="text" class="in mono" data-ph="Paste the expected hash to compare" spellcheck="false"><div id="hr"></div></section>
+
+  <section class="pane" id="p4"><p class="sub" data-t="Paste a suspicious link to analyze it for phishing signs. The analysis is heuristic and no substitute for caution."></p>
+    <div class="row"><input class="in mono" id="ui" type="text" placeholder="https://..." spellcheck="false"><button class="btn p" id="ub" type="button" data-t="Check link"></button></div>
+    <div id="ur"></div>
+    <p class="sub" style="margin:14px 0 0;font-size:14px" data-t="Link checking never opens the site. It only reads the text of the link."></p></section>
+
+  <section class="pane" id="p5"><p class="sub" data-t="Encode and decode Base64, URL and Hex, and decode JWT tokens to inspect their content."></p>
+    <textarea class="in mono" id="di" data-ph="Paste text or token here" spellcheck="false"></textarea>
+    <div class="ops" id="ops"><button class="btn alt sm" type="button" data-o="be" data-t="Base64 encode"></button><button class="btn alt sm" type="button" data-o="bd" data-t="Base64 decode"></button><button class="btn alt sm" type="button" data-o="ue" data-t="URL encode"></button><button class="btn alt sm" type="button" data-o="ud" data-t="URL decode"></button><button class="btn alt sm" type="button" data-o="he" data-t="Hex encode"></button><button class="btn alt sm" type="button" data-o="hd" data-t="Hex decode"></button><button class="btn sm p" type="button" data-o="jw" data-t="Decode JWT"></button></div>
+    <pre class="o" id="do"></pre><button class="btn alt sm" id="dc" type="button" style="margin-top:10px" data-t="Copy result"></button></section>
+
+  <section class="pane" id="p6"><p class="sub" data-t="Answer the statements honestly to learn your digital security level and what you’re missing."></p><div id="qs"></div><div class="score" id="sc"></div></section>
+</main>
+<section class="cta"><div><h2 data-t="Need a professional security review?"></h2><p data-t="We audit websites, servers and companies, always with written authorization. We reply within 6 hours."></p></div><a class="btn" href="/#request" data-t="Request a security audit"></a></section><footer><div class="w" id="ft"></div></footer>
+<div class="ts" id="ts" role="status"><span></span></div>
+<noscript><p class="w">Please enable JavaScript to use this page.</p></noscript>
+<script src="arsenal-ui.js"></script>
+<script>
+(function(){
+"use strict";
+var T=VXA.T,esc=VXA.esc;function $(i){return document.getElementById(i)}
+VXA.add({"Answer the statements honestly to learn your digital security level and what you’re missing.": ["أجب بصدق عن العبارات التالية لتعرف مستوى أمانك الرقمي وأهم ما ينقصك.", "Answer the statements honestly to learn your digital security level and what you’re missing.", "Répondez honnêtement aux affirmations pour connaître votre niveau de sécurité et vos lacunes.", "Responde con sinceridad para conocer tu nivel de seguridad digital y qué te falta."], "Invalid link": ["رابط غير صالح", "Invalid link", "Lien invalide", "Enlace no válido"], "Check link": ["افحص الرابط", "Check link", "Vérifier le lien", "Verificar enlace"], "Type a password to see its strength and how long an attacker would need to crack it. It is never sent anywhere.": ["اكتب كلمة مرور لتعرف قوتها وكم يحتاج المخترق لكسرها. لا تُرسل إلى أي مكان.", "Type a password to see its strength and how long an attacker would need to crack it. It is never sent anywhere.", "Saisissez un mot de passe pour connaître sa force et le temps nécessaire pour le casser. Il n’est envoyé nulle part.", "Escribe una contraseña para ver su fortaleza y cuánto tardaría un atacante en descifrarla. No se envía a ningún sitio."], "Match ✓ the file is intact": ["مطابقة ✓ الملف سليم", "Match ✓ the file is intact", "Correspond ✓ le fichier est intact", "Coincide ✓ el archivo está intacto"], "URL encode": ["ترميز URL", "URL encode", "Encoder URL", "Codificar URL"], "Suspicious, be careful": ["مشبوه، توخَّ الحذر", "Suspicious, be careful", "Suspect, soyez prudent", "Sospechoso, ten cuidado"], "Invalid input": ["مدخل غير صالح", "Invalid input", "Entrée invalide", "Entrada no válida"], "bits": ["بت", "bits", "bits", "bits"], "Does not use HTTPS": ["لا يستخدم HTTPS", "Does not use HTTPS", "N’utilise pas HTTPS", "No usa HTTPS"], "Lowercase letters": ["أحرف صغيرة", "Lowercase letters", "Minuscules", "Minúsculas"], "Hex encode": ["ترميز Hex", "Hex encode", "Encoder Hex", "Codificar Hex"], "Good protection": ["حماية جيدة", "Good protection", "Bonne protection", "Buena protección"], "Show": ["إظهار", "Show", "Afficher", "Mostrar"], "Payload": ["الحمولة", "Payload", "Charge utile", "Carga"], "Very long link": ["رابط طويل جداً", "Very long link", "Lien très long", "Enlace muy largo"], "Link checker": ["فاحص الروابط", "Link checker", "Vérificateur de liens", "Verificador de enlaces"], "Copy": ["نسخ", "Copy", "Copier", "Copiar"], "minutes": ["دقيقة", "minutes", "minutes", "minutos"], "Many subdomains": ["عدد كبير من النطاقات الفرعية", "Many subdomains", "Nombreux sous-domaines", "Muchos subdominios"], "Likely safe": ["يبدو آمناً على الأرجح", "Likely safe", "Probablement sûr", "Probablemente seguro"], "Risk score": ["درجة الخطورة", "Risk score", "Score de risque", "Nivel de riesgo"], "Uppercase letters": ["أحرف كبيرة", "Uppercase letters", "Majuscules", "Mayúsculas"], "Your security score is": ["مستوى أمانك هو", "Your security score is", "Votre score de sécurité est", "Tu nivel de seguridad es"], "Instantly": ["فوراً", "Instantly", "Instantané", "Al instante"], "Very weak": ["ضعيفة جداً", "Very weak", "Très faible", "Muy débil"], "Shortened link hiding the real destination": ["رابط مختصر يخفي الوجهة الحقيقية", "Shortened link hiding the real destination", "Lien raccourci masquant la vraie destination", "Enlace acortado que oculta el destino real"], "Base64 encode": ["ترميز Base64", "Base64 encode", "Encoder Base64", "Codificar Base64"], "Enter a password first": ["اكتب كلمة مرور أولًا", "Enter a password first", "Saisissez d’abord un mot de passe", "Escribe primero una contraseña"], "Password analyzer": ["محلل كلمات المرور", "Password analyzer", "Analyseur de mots de passe", "Analizador de contraseñas"], "Uses an IP address instead of a domain name": ["الرابط يستخدم عنوان IP بدل اسم نطاق", "Uses an IP address instead of a domain name", "Utilise une adresse IP au lieu d’un nom de domaine", "Usa una dirección IP en lugar de un dominio"], "Numbers": ["أرقام", "Numbers", "Chiffres", "Números"], "Decode JWT": ["فك JWT", "Decode JWT", "Décoder JWT", "Decodificar JWT"], "Warning: the “none” algorithm is insecure": ["تحذير: خوارزمية none غير آمنة", "Warning: the “none” algorithm is insecure", "Attention : l’algorithme « none » n’est pas sûr", "Aviso: el algoritmo «none» no es seguro"], "Paste a suspicious link to analyze it for phishing signs. The analysis is heuristic and no substitute for caution.": ["الصق رابطاً مشبوهاً لتحليله بحثاً عن علامات التصيّد. التحليل استدلالي ولا يغني عن الحذر.", "Paste a suspicious link to analyze it for phishing signs. The analysis is heuristic and no substitute for caution.", "Collez un lien suspect pour y détecter des signes d’hameçonnage. L’analyse est heuristique et ne remplace pas la prudence.", "Pega un enlace sospechoso para analizar señales de phishing. El análisis es heurístico y no sustituye a la precaución."], "🔒 Security tools that run only on your device": ["🔒 أدوات أمان تعمل داخل جهازك فقط", "🔒 Security tools that run only on your device", "🔒 Outils de sécurité qui fonctionnent uniquement sur votre appareil", "🔒 Herramientas de seguridad que funcionan solo en tu dispositivo"], "Areas to improve": ["نقاط تحتاج تحسيناً", "Areas to improve", "Points à améliorer", "Puntos a mejorar"], "years": ["سنة", "years", "ans", "años"], "Contains @ to hide the real destination": ["يحتوي على الرمز @ لإخفاء الوجهة", "Contains @ to hide the real destination", "Contient @ pour masquer la vraie destination", "Contiene @ para ocultar el destino real"], "Not found in known breaches ✓": ["لم تُوجد في أي تسريب معروف ✓", "Not found in known breaches ✓", "Absent des fuites connues ✓", "No aparece en filtraciones conocidas ✓"], "times": ["مرة", "times", "fois", "veces"], "Length:": ["الطول:", "Length:", "Longueur :", "Longitud:"], "Header": ["الترويسة", "Header", "En-tête", "Cabecera"], "Copy all": ["نسخ الكل", "Copy all", "Tout copier", "Copiar todo"], "Could not reach the leak database.": ["تعذّر الوصول إلى قاعدة بيانات التسريبات.", "Could not reach the leak database.", "Impossible de joindre la base de fuites.", "No se pudo acceder a la base de filtraciones."], "No obvious suspicious signs": ["لا توجد علامات مشبوهة واضحة", "No obvious suspicious signs", "Aucun signe suspect évident", "Sin señales sospechosas evidentes"], "No obvious repeats or sequences": ["بلا تكرار أو تسلسل واضح", "No obvious repeats or sequences", "Pas de répétitions ou séquences évidentes", "Sin repeticiones ni secuencias obvias"], "Fair": ["متوسطة", "Fair", "Moyenne", "Media"], "Copy result": ["نسخ النتيجة", "Copy result", "Copier le résultat", "Copiar resultado"], "centuries": ["قرن", "centuries", "siècles", "siglos"], "Six professional tools to protect your accounts, files and links. Everything runs in your browser and no data is sent to any server.": ["ست أدوات احترافية لحماية حساباتك وملفاتك وروابطك. كل شيء يعمل في متصفحك ولا يُرسل أي بيان إلى أي خادم.", "Six professional tools to protect your accounts, files and links. Everything runs in your browser and no data is sent to any server.", "Six outils professionnels pour protéger vos comptes, fichiers et liens. Tout s’exécute dans votre navigateur, sans envoyer de données à un serveur.", "Seis herramientas profesionales para proteger tus cuentas, archivos y enlaces. Todo funciona en tu navegador y no se envían datos a ningún servidor."], "12+ characters": ["12 حرفاً أو أكثر", "12+ characters", "12 caractères ou plus", "12 caracteres o más"], "Exclude look-alike characters": ["استبعاد الأحرف المتشابهة", "Exclude look-alike characters", "Exclure les caractères ambigus", "Excluir caracteres parecidos"], "__title": ["VYROXX SHIELD | أدوات مجانية لكلمات المرور والبصمات والتصيّد", "VYROXX SHIELD | Free Password, Hash & Phishing Tools", "VYROXX SHIELD | Outils gratuits mots de passe, empreintes et hameçonnage", "VYROXX SHIELD | Herramientas gratuitas de contraseñas, hashes y phishing"], "More than a million years": ["أكثر من مليون سنة", "More than a million years", "Plus d’un million d’années", "Más de un millón de años"], "Expired": ["منتهي الصلاحية", "Expired", "Expiré", "Caducado"], "Excellent protection": ["حماية ممتازة", "Excellent protection", "Protection excellente", "Protección excelente"], "Estimated time to crack": ["الوقت المقدّر للكسر", "Estimated time to crack", "Temps estimé pour casser", "Tiempo estimado para descifrar"], "Impersonates a known brand": ["ينتحل علامة معروفة", "Impersonates a known brand", "Usurpe une marque connue", "Suplanta una marca conocida"], "Fair protection": ["حماية متوسطة", "Fair protection", "Protection moyenne", "Protección media"], "Entropy": ["الإنتروبيا", "Entropy", "Entropie", "Entropía"], "Unusual port": ["منفذ غير معتاد", "Unusual port", "Port inhabituel", "Puerto inusual"], "DIGITAL ARMOR": ["الدرع الرقمي", "DIGITAL ARMOR", "ARMURE NUMÉRIQUE", "ARMADURA DIGITAL"], "Hashes & files": ["البصمات والملفات", "Hashes & files", "Empreintes et fichiers", "Hashes y archivos"], "Weak protection": ["حماية ضعيفة", "Weak protection", "Protection faible", "Protección débil"], "Paste the expected hash to compare": ["ألصق البصمة المتوقعة للمقارنة", "Paste the expected hash to compare", "Collez l’empreinte attendue à comparer", "Pega el hash esperado para comparar"], "Excellent": ["ممتازة", "Excellent", "Excellente", "Excelente"], "Paste text or token here": ["ألصق النص أو الرمز هنا", "Paste text or token here", "Collez le texte ou le jeton ici", "Pega el texto o token aquí"], "Encode & decode": ["الترميز وفك الشيفرة", "Encode & decode", "Encodage et décodage", "Codificar y decodificar"], "Generate new": ["توليد جديد", "Generate new", "Générer", "Generar nuevas"], "Tool": ["أداة", "Tool", "Outil", "Herramienta"], "Base64 decode": ["فك Base64", "Base64 decode", "Décoder Base64", "Decodificar Base64"], "days": ["يوم", "days", "jours", "días"], "seconds": ["ثانية", "seconds", "secondes", "segundos"], "__desc": ["ست أدوات أمان مجانية تعمل في متصفحك: محلل ومولّد كلمات المرور، والبصمات، وفاحص روابط التصيّد، والترميز، وتقييم أمانك. لا يُرسل أي بيان.", "Six free security tools that run in your browser: password analyzer and generator, hashes, phishing link checker, encoder/decoder and a personal security score. No data is sent.", "Six outils de sécurité gratuits dans votre navigateur : analyseur et générateur de mots de passe, empreintes, liens d’hameçonnage, encodage et score de sécurité. Aucune donnée envoyée.", "Seis herramientas de seguridad gratuitas en tu navegador: analizador y generador de contraseñas, hashes, enlaces de phishing, codificación y puntuación de seguridad. No se envían datos."], "Compute the SHA hash of any text or file and compare it with the official one to be sure the file hasn’t changed.": ["احسب بصمة SHA لأي نص أو ملف، وقارنها بالبصمة الرسمية للتأكد أن الملف لم يتغيّر.", "Compute the SHA hash of any text or file and compare it with the official one to be sure the file hasn’t changed.", "Calculez l’empreinte SHA d’un texte ou fichier et comparez-la à l’officielle pour vérifier qu’il n’a pas été modifié.", "Calcula el hash SHA de cualquier texto o archivo y compáralo con el oficial para comprobar que no ha cambiado."], "Strong": ["قوية", "Strong", "Forte", "Fuerte"], "Hex decode": ["فك Hex", "Hex decode", "Décoder Hex", "Decodificar Hex"], "hours": ["ساعة", "hours", "heures", "horas"], "Type the password here": ["اكتب كلمة المرور هنا", "Type the password here", "Saisissez le mot de passe ici", "Escribe la contraseña aquí"], "Punycode domain that may imitate look-alike characters": ["نطاق مشفّر (Punycode) قد يتنكر بأحرف مشابهة", "Punycode domain that may imitate look-alike characters", "Domaine Punycode pouvant imiter des caractères similaires", "Dominio Punycode que puede imitar caracteres parecidos"], "Link checking never opens the site. It only reads the text of the link.": ["فحص الرابط لا يفتح الموقع أبدًا. هو يقرأ نص الرابط فقط.", "Link checking never opens the site. It only reads the text of the link.", "La vérification n’ouvre jamais le site. Elle lit seulement le texte du lien.", "La verificación nunca abre el sitio. Solo lee el texto del enlace."], "digital shield": ["الرقمي", "digital shield", "bouclier numérique", "escudo digital"], "Password generator": ["مولّد كلمات المرور", "Password generator", "Générateur de mots de passe", "Generador de contraseñas"], "Symbols": ["رموز", "Symbols", "Symboles", "Símbolos"], "Length": ["الطول", "Length", "Longueur", "Longitud"], "Encode and decode Base64, URL and Hex, and decode JWT tokens to inspect their content.": ["ترميز وفك ترميز Base64 وURL وHex، وفك شيفرة JWT لمعرفة محتواه.", "Encode and decode Base64, URL and Hex, and decode JWT tokens to inspect their content.", "Encodez et décodez Base64, URL et Hex, et décodez les JWT pour voir leur contenu.", "Codifica y decodifica Base64, URL y Hex, y decodifica JWT para ver su contenido."], "Drop a file anywhere here, or choose one": ["أفلت ملفًا هنا في أي مكان، أو اختر واحدًا", "Drop a file anywhere here, or choose one", "Déposez un fichier ici, ou choisissez-en un", "Suelta un archivo aquí, o elige uno"], "Generate strong random passwords with a secure cryptographic generator in your browser.": ["ولّد كلمات مرور عشوائية قوية بمولّد آمن مشفّر داخل متصفحك.", "Generate strong random passwords with a secure cryptographic generator in your browser.", "Générez des mots de passe aléatoires robustes avec un générateur cryptographique sécurisé dans votre navigateur.", "Genera contraseñas aleatorias fuertes con un generador criptográfico seguro en tu navegador."], "Choose a file": ["اختر ملفاً", "Choose a file", "Choisir un fichier", "Elegir un archivo"], "Many hyphens in the domain name": ["شرطات كثيرة في اسم النطاق", "Many hyphens in the domain name", "Nombreux tirets dans le nom de domaine", "Muchos guiones en el dominio"], "Sensitive words in the link (login, verify, account...)": ["كلمات حساسة في الرابط (دخول، تحقق، حساب...)", "Sensitive words in the link (login, verify, account...)", "Mots sensibles dans le lien (connexion, vérifier, compte...)", "Palabras sensibles en el enlace (acceso, verificar, cuenta...)"], "Type some text...": ["اكتب نصاً...", "Type some text...", "Saisissez du texte...", "Escribe un texto..."], "Safe-to-share version (defanged)": ["نسخة آمنة للمشاركة (معطّلة الرابط)", "Safe-to-share version (defanged)", "Version à partager sans risque (neutralisée)", "Versión segura para compartir (neutralizada)"], "Weak": ["ضعيفة", "Weak", "Faible", "Débil"], "Valid until": ["صالح حتى", "Valid until", "Valide jusqu’au", "Válido hasta"], "Domain extension common in scams": ["امتداد نطاق شائع في الاحتيال", "Domain extension common in scams", "Extension de domaine courante dans les arnaques", "Extensión de dominio común en fraudes"], "Brand name imitated with look-alike characters (0, 1, rn)": ["اسم علامة مُقلَّد بأحرف مشابهة (0 و1 وrn)", "Brand name imitated with look-alike characters (0, 1, rn)", "Nom de marque imité avec des caractères ressemblants (0, 1, rn)", "Marca imitada con caracteres parecidos (0, 1, rn)"], "Not a common password": ["ليست كلمة شائعة", "Not a common password", "Pas un mot de passe courant", "No es una contraseña común"], "Your security score": ["تقييم أمانك", "Your security score", "Votre score de sécurité", "Tu nivel de seguridad"], "URL decode": ["فك URL", "URL decode", "Décoder URL", "Decodificar URL"], "No match ✗ the file may have been altered": ["غير مطابقة ✗ قد يكون الملف معدّلاً", "No match ✗ the file may have been altered", "Ne correspond pas ✗ le fichier a peut-être été modifié", "No coincide ✗ el archivo pudo ser modificado"], "Check if leaked": ["تحقق من التسريب", "Check if leaked", "Vérifier les fuites", "Comprobar filtraciones"], "Found in known data breaches. Never use it.": ["وُجدت في تسريبات بيانات معروفة. لا تستعملها أبدًا.", "Found in known data breaches. Never use it.", "Trouvé dans des fuites de données connues. Ne l’utilisez jamais.", "Encontrada en filtraciones de datos conocidas. No la uses nunca."], "Your": ["درعك", "Your", "Votre", "Tu"], "Dangerous, don’t open it": ["خطير، لا تفتحه", "Dangerous, don’t open it", "Dangereux, ne l’ouvrez pas", "Peligroso, no lo abras"], "Only the first 5 characters of the password’s SHA-1 hash are sent (k-anonymity). The password itself never leaves your device.": ["يُرسل فقط أول 5 أحرف من بصمة SHA-1 لكلمة المرور (إخفاء الهوية بطريقة k). كلمة المرور نفسها لا تغادر جهازك أبدًا.", "Only the first 5 characters of the password’s SHA-1 hash are sent (k-anonymity). The password itself never leaves your device.", "Seuls les 5 premiers caractères de l’empreinte SHA-1 sont envoyés (k-anonymat). Le mot de passe lui-même ne quitte jamais votre appareil.", "Solo se envían los 5 primeros caracteres del hash SHA-1 (k-anonimato). La contraseña en sí nunca sale de tu dispositivo."], "I enable two-factor authentication (2FA) on my important accounts": ["أفعّل التحقق بخطوتين (2FA) على حساباتي المهمة", "I enable two-factor authentication (2FA) on my important accounts", "J’active la double authentification (2FA) sur mes comptes importants", "Activo la verificación en dos pasos (2FA) en mis cuentas importantes"], "I use a different password for every account": ["أستخدم كلمة مرور مختلفة لكل حساب", "I use a different password for every account", "J’utilise un mot de passe différent pour chaque compte", "Uso una contraseña distinta en cada cuenta"], "I use a password manager": ["أستخدم مدير كلمات مرور", "I use a password manager", "J’utilise un gestionnaire de mots de passe", "Uso un gestor de contraseñas"], "I update my system and apps regularly": ["أحدّث نظامي وتطبيقاتي بانتظام", "I update my system and apps regularly", "Je mets à jour mon système et mes applis régulièrement", "Actualizo mi sistema y mis apps con regularidad"], "I keep backups of my important files": ["أحتفظ بنسخ احتياطية لملفاتي المهمة", "I keep backups of my important files", "Je sauvegarde mes fichiers importants", "Hago copias de seguridad de mis archivos importantes"], "I check links before clicking them": ["أتحقق من الروابط قبل الضغط عليها", "I check links before clicking them", "Je vérifie les liens avant de cliquer", "Compruebo los enlaces antes de hacer clic"], "I avoid unsafe public networks or use a VPN": ["أتجنب الشبكات العامة غير الآمنة أو أستخدم VPN", "I avoid unsafe public networks or use a VPN", "J’évite les réseaux publics peu sûrs ou j’utilise un VPN", "Evito las redes públicas inseguras o uso una VPN"], "I lock my phone and computer with a code or biometrics": ["أقفل هاتفي وحاسوبي برمز أو بصمة", "I lock my phone and computer with a code or biometrics", "Je verrouille mon téléphone et mon ordinateur par code ou biométrie", "Bloqueo mi móvil y ordenador con código o biometría"], "I review app permissions on my device": ["أراجع صلاحيات التطبيقات على جهازي", "I review app permissions on my device", "Je vérifie les autorisations des applis sur mon appareil", "Reviso los permisos de las apps en mi dispositivo"], "I never share verification codes with anyone": ["لا أشارك رموز التحقق مع أي شخص", "I never share verification codes with anyone", "Je ne partage jamais mes codes de vérification", "Nunca comparto códigos de verificación con nadie"]});
+var QS=["I enable two-factor authentication (2FA) on my important accounts", "I use a different password for every account", "I use a password manager", "I update my system and apps regularly", "I keep backups of my important files", "I check links before clicking them", "I avoid unsafe public networks or use a VPN", "I lock my phone and computer with a code or biometrics", "I review app permissions on my device", "I never share verification codes with anyone"];
+/* ---------- tabs ---------- */
+function tab(id){
+  [].forEach.call(document.querySelectorAll(".tab"),function(b){b.setAttribute("aria-pressed",String(b.getAttribute("data-tab")===id))});
+  [].forEach.call(document.querySelectorAll(".pane"),function(p){p.classList.toggle("on",p.id===id)});
+}
+$("tabs").onclick=function(e){var b=e.target.closest(".tab");if(b)tab(b.getAttribute("data-tab"))};
+function hex(b){return [].map.call(new Uint8Array(b),function(x){return ("0"+x.toString(16)).slice(-2)}).join("")}
+
+/* ---------- 1 password analyzer ---------- */
+var CM="password,123456,12345678,qwerty,abc123,111111,123123,admin,letmein,welcome,iloveyou,monkey,dragon,000000,azerty,passw0rd,p@ssw0rd,football,master,sunshine,princess,login,motdepasse,654321,qwerty123,1q2w3e,0987654321,123456789,1234567890,superman,hello,freedom,whatever,trustno1,batman,shadow,michael,jesus,ninja,mustang,access,flower,starwars".split(",");
+var SQ=["abcdefghijklmnopqrstuvwxyz","0123456789","qwertyuiop","asdfghjkl","zxcvbnm","azertyuiop"];
+function hasSeq(p){var l=p.toLowerCase();for(var k=0;k<SQ.length;k++){var s=SQ[k];for(var i=0;i+3<=s.length;i++){var q=s.slice(i,i+3);if(l.indexOf(q)>-1||l.indexOf(q.split("").reverse().join(""))>-1)return true}}return false}
+function dur(s){
+  if(s<1)return T("Instantly");if(s<60)return Math.round(s)+" "+T("seconds");if(s<3600)return Math.round(s/60)+" "+T("minutes");
+  if(s<86400)return Math.round(s/3600)+" "+T("hours");if(s<31536000)return Math.round(s/86400)+" "+T("days");
+  var y=s/31536000;if(y<100)return Math.round(y)+" "+T("years");if(y<1e6)return Math.round(y/100).toLocaleString("en")+" "+T("centuries");return T("More than a million years");
+}
+var COL=["#ff4d5e","#ff8a3d","#ffb020","#9be22e","#2ee59d"],LB=["Very weak","Weak","Fair","Strong","Excellent"];
+function analyze(p){
+  var L=p.length,u=/[A-Z]/.test(p),lo=/[a-z]/.test(p),dg=/\d/.test(p),sy=/[^A-Za-z0-9]/.test(p),pl=p.toLowerCase();
+  var common=CM.some(function(c){return pl===c||(c.length>=6&&pl.indexOf(c)===0)}),rep=/(.)\1{2,}/.test(p),sq=hasSeq(p);
+  var pool=(lo?26:0)+(u?26:0)+(dg?10:0)+(sy?33:0),bits=L*Math.log2(pool||1);
+  if(rep)bits*=.8;if(sq)bits*=.85;if(common)bits=Math.min(bits,12);
+  var sec=Math.pow(2,bits)/2/1e10,sc=bits<28?0:bits<36?1:bits<60?2:bits<80?3:4;
+  return {L:L,u:u,lo:lo,dg:dg,sy:sy,common:common,rep:rep,sq:sq,bits:bits,sec:sec,sc:sc};
+}
+function an(){
+  var p=$("pw").value;$("lr").textContent="";
+  if(!p){$("mb").style.width="0";$("ml").textContent="";$("kv").textContent="";$("ck").textContent="";return}
+  var a=analyze(p);
+  $("mb").style.width=(a.sc+1)*20+"%";$("mb").style.background=COL[a.sc];$("ml").textContent=T(LB[a.sc]);$("ml").style.color=COL[a.sc];
+  $("kv").innerHTML='<div><b class="mono">'+a.L+'</b><small>'+esc(T("Length"))+'</small></div><div><b class="mono">'+Math.round(a.bits)+" "+esc(T("bits"))+'</b><small>'+esc(T("Entropy"))+'</small></div><div><b>'+esc(dur(a.sec))+'</b><small>'+esc(T("Estimated time to crack"))+'</small></div>';
+  var c=[["12+ characters",a.L>=12],["Uppercase letters",a.u],["Lowercase letters",a.lo],["Numbers",a.dg],["Symbols",a.sy],["Not a common password",!a.common],["No obvious repeats or sequences",!a.rep&&!a.sq]];
+  $("ck").innerHTML=c.map(function(x){return '<li><span class="'+(x[1]?"y":"n")+'">'+(x[1]?"✓":"✗")+"</span>"+esc(T(x[0]))+"</li>"}).join("");
+}
+$("pw").oninput=an;$("sh").onclick=function(){var p=$("pw");p.type=p.type==="password"?"text":"password"};
+$("lk").onclick=async function(){
+  var p=$("pw").value,o=$("lr");if(!p){VXA.toast(T("Enter a password first"));return}
+  o.textContent="…";
+  try{
+    var h=hex(await crypto.subtle.digest("SHA-1",new TextEncoder().encode(p))).toUpperCase(),pre=h.slice(0,5),suf=h.slice(5);
+    var r=await fetch("https://api.pwnedpasswords.com/range/"+pre);if(!r.ok)throw new Error("net");
+    var n=0;(await r.text()).split("\n").forEach(function(l){var s=l.trim().split(":");if(s[0]===suf)n=Math.max(n,+s[1]||0)});
+    o.innerHTML=n>0?'<div class="fd hi"><b>'+esc(T("Found in known data breaches. Never use it."))+"</b> ("+n.toLocaleString("en")+" "+esc(T("times"))+")</div>":'<div class="fd ok">'+esc(T("Not found in known breaches ✓"))+"</div>";
+  }catch(e){o.innerHTML='<div class="fd wn">'+esc(T("Could not reach the leak database."))+"</div>"}
+};
+
+/* ---------- 2 generator ---------- */
+function rnd(n){var m=Math.floor(4294967296/n)*n,x;do{x=crypto.getRandomValues(new Uint32Array(1))[0]}while(x>=m);return x%n}
+var GL=[];
+function gen1(){
+  var L=+$("gn").value,am=$("ga").checked,f=function(s){return am?s.replace(/[O0oIl1|]/g,""):s},sets=[];
+  if($("gu").checked)sets.push(f("ABCDEFGHIJKLMNOPQRSTUVWXYZ"));if($("gl").checked)sets.push(f("abcdefghijklmnopqrstuvwxyz"));
+  if($("gd").checked)sets.push(f("0123456789"));if($("gs").checked)sets.push("!@#$%^&*()-_=+[]{};:,.?");
+  if(!sets.length)sets.push("abcdefghijklmnopqrstuvwxyz");
+  var all=sets.join(""),r=sets.map(function(s){return s[rnd(s.length)]});
+  while(r.length<L)r.push(all[rnd(all.length)]);
+  for(var i=r.length-1;i>0;i--){var j=rnd(i+1),t=r[i];r[i]=r[j];r[j]=t}
+  return {p:r.slice(0,L).join(""),pool:all.length};
+}
+function gen(){
+  $("gv").textContent=$("gn").value;var box=$("go");box.textContent="";GL=[];
+  for(var i=0;i<5;i++){
+    var g=gen1(),bits=g.p.length*Math.log2(g.pool),sc=bits<36?0:bits<60?2:bits<80?3:4;GL.push(g.p);
+    var row=document.createElement("div");row.className="out";
+    var c=document.createElement("code");c.textContent=g.p;
+    var bar=document.createElement("span");bar.className="bar";var bi=document.createElement("i");bi.style.width=((sc+1)*20)+"%";bi.style.background=COL[sc];bar.appendChild(bi);
+    var b=document.createElement("button");b.type="button";b.className="btn alt sm";b.textContent=T("Copy");b.setAttribute("data-c",i);
+    row.appendChild(c);row.appendChild(bar);row.appendChild(b);box.appendChild(row);
+  }
+}
+$("gg").onclick=gen;$("gn").oninput=gen;["gu","gl","gd","gs","ga"].forEach(function(i){$(i).onchange=gen});
+$("go").onclick=function(e){var b=e.target.closest("[data-c]");if(b)VXA.copy(GL[+b.getAttribute("data-c")])};
+$("gc").onclick=function(){if(GL.length)VXA.copy(GL.join("\n"))};
+
+/* ---------- 3 hashes ---------- */
+var HA=["SHA-1","SHA-256","SHA-384","SHA-512"],HL=[];
+async function hs(buf){HL=[];for(var i=0;i<HA.length;i++)HL.push([HA[i],hex(await crypto.subtle.digest(HA[i],buf))]);rh()}
+function rh(){
+  var o=$("hr");if(!HL.length){o.textContent="";return}
+  var x=$("hc").value.trim().toLowerCase().replace(/[\s:]/g,""),h="";
+  HL.forEach(function(a){h+='<div class="hr'+(x&&a[1]===x?" m":"")+'"><b>'+a[0]+"</b><code>"+a[1]+"</code></div>"});
+  if(x){var ok=HL.some(function(a){return a[1]===x});h='<div class="fd '+(ok?"ok":"hi")+'" style="font-weight:800">'+esc(T(ok?"Match ✓ the file is intact":"No match ✗ the file may have been altered"))+"</div>"+h}
+  o.innerHTML=h;
+}
+async function hashFile(f){$("hn").textContent=f.name+" ("+(f.size/1024).toFixed(1)+" KB)";$("hi").value="";await hs(await f.arrayBuffer())}
+$("hi").oninput=function(){$("hn").textContent="";var v=$("hi").value;if(v)hs(new TextEncoder().encode(v));else{HL=[];rh()}};
+$("hf").onchange=function(e){var f=e.target.files[0];if(f)hashFile(f)};$("hc").oninput=rh;
+var p3=$("p3");["dragover","dragenter"].forEach(function(ev){p3.addEventListener(ev,function(e){e.preventDefault()})});
+p3.addEventListener("drop",function(e){e.preventDefault();var f=e.dataTransfer&&e.dataTransfer.files[0];if(f)hashFile(f)});
+
+/* ---------- 4 link checker ---------- */
+var BRN="paypal,google,facebook,instagram,apple,microsoft,amazon,netflix,whatsapp,binance,tiktok,youtube".split(","),BAD="xyz,top,tk,ml,ga,cf,gq,click,zip,work,support,buzz,rest,country".split(","),KW="login,signin,verify,secure,account,update,bank,wallet,password,confirm,billing,suspend,recover".split(","),SHT="bit.ly,tinyurl.com,t.co,goo.gl,is.gd,cutt.ly,ow.ly,rebrand.ly".split(",");
+function scan(){
+  var raw=$("ui").value.trim(),out=$("ur");if(!raw){out.textContent="";return}
+  var u;try{u=new URL(/^[a-z]+:\/\//i.test(raw)?raw:"http://"+raw)}catch(e){out.innerHTML='<div class="fd hi">'+esc(T("Invalid link"))+"</div>";return}
+  var f=[],sc=0,add=function(t,p,l){f.push([t,l||(p>=25?"hi":"")]);sc+=p};
+  var h=u.hostname.toLowerCase(),lab=h.split("."),path=(u.pathname+u.search).toLowerCase();
+  if(u.protocol!=="https:")add("Does not use HTTPS",15);
+  if(/^\d{1,3}(\.\d{1,3}){3}$/.test(h))add("Uses an IP address instead of a domain name",30);
+  if(raw.indexOf("@")>-1)add("Contains @ to hide the real destination",25);
+  if(raw.length>75)add("Very long link",10);
+  if(lab.length>4)add("Many subdomains",15);
+  if(h.indexOf("xn--")>-1)add("Punycode domain that may imitate look-alike characters",25);
+  if(BAD.indexOf(lab[lab.length-1])>-1)add("Domain extension common in scams",15);
+  var k=KW.filter(function(w){return (h+path).indexOf(w)>-1});if(k.length)add("Sensitive words in the link (login, verify, account...)",Math.min(25,10*k.length));
+  if((h.match(/-/g)||[]).length>2)add("Many hyphens in the domain name",10);
+  if(u.port&&["80","443"].indexOf(u.port)<0)add("Unusual port",10);
+  if(SHT.indexOf(h)>-1)add("Shortened link hiding the real destination",15);
+  var base=lab.slice(-2).join("."),leet=h.replace(/0/g,"o").replace(/1/g,"l").replace(/3/g,"e").replace(/5/g,"s").replace(/rn/g,"m");
+  var imp=BRN.some(function(b){return h.indexOf(b)>-1&&["com","net","org"].map(function(t){return b+"."+t}).indexOf(base)<0&&base.indexOf(b+".")!==0});
+  if(imp)add("Impersonates a known brand",30);
+  else if(BRN.some(function(b){return leet!==h&&leet.indexOf(b)>-1&&h.indexOf(b)<0}))add("Brand name imitated with look-alike characters (0, 1, rn)",30);
+  sc=Math.min(100,sc);
+  var lv=sc>=50?["Dangerous, don’t open it","var(--hot)"]:sc>=20?["Suspicious, be careful","#E8A317"]:["Likely safe","#1E9E6A"];
+  if(!f.length)f.push(["No obvious suspicious signs","ok"]);
+  var safe=raw.replace(/^https?/i,function(m){return m.toLowerCase()==="https"?"hxxps":"hxxp"}).replace(/\./g,"[.]");
+  out.innerHTML='<div style="margin:16px 0"><span class="bd" style="color:'+lv[1]+'">'+esc(T(lv[0]))+'</span> <b class="mono" style="margin-inline-start:10px">'+esc(T("Risk score"))+": "+sc+"/100</b></div>"
+    +'<div class="hr"><b>host</b><code>'+esc(h)+"</code></div>"
+    +f.map(function(x){return '<div class="fd '+x[1]+'">'+esc(T(x[0]))+"</div>"}).join("")
+    +'<div class="hr" style="margin-top:14px"><b>safe</b><code>'+esc(safe)+'</code><button class="btn alt sm" type="button" id="cs">'+esc(T("Copy"))+'</button></div><div style="color:var(--muted);font-size:13.5px;margin-top:4px">'+esc(T("Safe-to-share version (defanged)"))+"</div>";
+  var b=$("cs");if(b)b.onclick=function(){VXA.copy(safe)};
+}
+$("ub").onclick=scan;$("ui").onkeydown=function(e){if(e.key==="Enter")scan()};
+
+/* ---------- 5 encode / decode ---------- */
+function u8(s){return new TextEncoder().encode(s)}function s8(b){return new TextDecoder().decode(b)}
+function b64e(s){var r="";u8(s).forEach(function(c){r+=String.fromCharCode(c)});return btoa(r)}
+function b64d(s){s=s.replace(/\s/g,"").replace(/-/g,"+").replace(/_/g,"/");while(s.length%4)s+="=";return s8(Uint8Array.from(atob(s),function(c){return c.charCodeAt(0)}))}
+var OP={be:b64e,bd:b64d,ue:encodeURIComponent,ud:decodeURIComponent,
+ he:function(s){return [].map.call(u8(s),function(x){return ("0"+x.toString(16)).slice(-2)}).join(" ")},
+ hd:function(s){return s8(Uint8Array.from(s.replace(/0x|\s/g,"").match(/../g)||[],function(h){return parseInt(h,16)}))},
+ jw:function(s){
+  var p=s.trim().split(".");if(p.length<2)throw 0;var h=JSON.parse(b64d(p[0])),d=JSON.parse(b64d(p[1]));
+  var o=T("Header")+":\n"+JSON.stringify(h,null,2)+"\n\n"+T("Payload")+":\n"+JSON.stringify(d,null,2);
+  if(d.exp){var e=new Date(d.exp*1000);o+="\n\n"+(e<new Date()?"⚠ "+T("Expired"):"✓ "+T("Valid until"))+": "+e.toISOString()}
+  if(String(h.alg).toLowerCase()==="none")o+="\n\n⚠ "+T("Warning: the “none” algorithm is insecure");return o}};
+$("ops").onclick=function(e){var b=e.target.closest("[data-o]");if(!b)return;try{$("do").textContent=OP[b.getAttribute("data-o")]($("di").value)}catch(x){$("do").textContent="✗ "+T("Invalid input")}};
+$("dc").onclick=function(){var t=$("do").textContent;if(t)VXA.copy(t)};
+
+/* ---------- 6 personal security score ---------- */
+var ck=QS.map(function(){return 0});
+function qs(){
+  $("qs").innerHTML=QS.map(function(q,i){return '<div class="qi'+(ck[i]?" on":"")+'" data-q="'+i+'" role="checkbox" aria-checked="'+!!ck[i]+'" tabindex="0"><span>'+(ck[i]?"✅":"⬜")+"</span><span>"+esc(T(q))+"</span></div>"}).join("");
+  var n=ck.filter(Boolean).length,p=n*10,lv=p>=90?["Excellent protection","#1E9E6A"]:p>=70?["Good protection","#9be22e"]:p>=40?["Fair protection","#E8A317"]:["Weak protection","#ff4d5e"];
+  var miss=QS.filter(function(q,i){return !ck[i]});
+  $("sc").innerHTML='<div class="ring" style="--p:'+p+";--vc:"+lv[1]+'"><b>'+p+'%</b></div><div style="flex:1;min-width:220px"><div style="font-weight:800;font-size:22px;color:'+lv[1]+'">'+esc(T(lv[0]))+"</div>"+(miss.length?"<b>"+esc(T("Areas to improve"))+':</b><ul style="margin:6px 0 0;padding-inline-start:20px">'+miss.slice(0,4).map(function(m){return "<li>"+esc(T(m))+"</li>"}).join("")+"</ul>":"")+"</div>";
+}
+$("qs").onclick=function(e){var q=e.target.closest("[data-q]");if(q){ck[+q.getAttribute("data-q")]^=1;qs()}};
+$("qs").onkeydown=function(e){if(e.key===" "||e.key==="Enter"){var q=e.target.closest("[data-q]");if(q){e.preventDefault();var i=+q.getAttribute("data-q");ck[i]^=1;qs();document.querySelectorAll("[data-q]")[i].focus()}}};
+
+VXA.onLang(function(){an();gen();rh();if($("ui").value)scan();qs()});
+tab("p1");VXA.start();
+})();
+</script>
+</body>
+</html>

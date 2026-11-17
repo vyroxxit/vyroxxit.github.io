@@ -491,10 +491,22 @@ html[dir=rtl] .rv-stars{justify-content:flex-end}
 @media (max-width:900px){.sx-grid{grid-template-columns:1fr}.sx.flip .sx-main{order:0}.sx{padding:26px 22px}}
 @media (max-width:560px){.sx-tiles{grid-template-columns:1fr}.sx-act .btn{width:100%;text-align:center}}
 @media (prefers-reduced-motion:reduce){.sx-orb{animation:none}}
+.arx-box{position:relative;overflow:hidden;border:1px solid color-mix(in srgb,var(--accent) 42%,var(--line));border-radius:36px;padding:clamp(26px,4.4vw,70px) clamp(20px,3.4vw,64px);background:radial-gradient(620px 340px at 0% 0%,color-mix(in srgb,#FF6B2C 16%,transparent),transparent 70%),radial-gradient(620px 340px at 100% 0%,color-mix(in srgb,#8B5CF6 18%,transparent),transparent 70%),radial-gradient(700px 360px at 50% 110%,color-mix(in srgb,var(--accent) 16%,transparent),transparent 70%),var(--surface)}
+.arx-box::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(90deg,transparent 0 59px,color-mix(in srgb,var(--accent) 7%,transparent) 59px 60px),repeating-linear-gradient(0deg,transparent 0 59px,color-mix(in srgb,var(--accent) 7%,transparent) 59px 60px);pointer-events:none;-webkit-mask-image:radial-gradient(ellipse at center,#000 30%,transparent 75%);mask-image:radial-gradient(ellipse at center,#000 30%,transparent 75%)}
+.arx-box>*{position:relative}
+.arx-head{text-align:center;max-width:860px;margin:0 auto clamp(26px,3.4vw,48px)}
+.arx-head h2{font-size:clamp(40px,6.2vw,92px);line-height:1.02;margin:12px 0 14px;letter-spacing:.02em;background:linear-gradient(90deg,#FF6B2C,var(--accent) 50%,#8B5CF6);-webkit-background-clip:text;background-clip:text;color:transparent}
+.arx-sub{color:var(--muted);font-size:clamp(17px,1.4vw,22px);line-height:1.9;margin:0}
+.arx-cta{display:flex;justify-content:center;margin-top:clamp(26px,3.4vw,46px)}
+.arx-btn{font-size:clamp(18px,1.5vw,23px);padding:18px 46px;border-radius:18px;font-weight:700;box-shadow:0 20px 50px -22px var(--accent)}
+.arx-btn::after{content:" →"}[dir="rtl"] .arx-btn::after{content:" ←"}
+[dir="rtl"] .arx-head h2{letter-spacing:0}
 </style>
 <script src="vx-site.js?v=1" defer></script>
 <script src="portfolio-data.js"></script>
 <script src="services-cats.js"></script>
+<script src="arsenal-data.js"></script>
+<link rel="stylesheet" href="arsenal-cards.css?v=1">
 <script>/* fallback copy: used ONLY if portfolio-data.js fails to load. Edit portfolio-data.js, not this. */
 if(!window.VX_PORTFOLIO){window.VX_PORTFOLIO=[
 /* ---------------- IT Support & Maintenance ---------------- */
@@ -611,6 +623,18 @@ if(!window.VX_PORTFOLIO){window.VX_PORTFOLIO=[
       <div id="sxList"></div>
       <p class="note" data-i="note">We only help you recover your own accounts if you lost access, and we only activate software with genuine licenses.</p>
       <div hidden aria-hidden="true"><div id="cards"></div><div id="cards2"></div><div id="cards3"></div></div>
+    </section>
+
+    <section id="arsenal" class="arx-sec">
+      <div class="arx-box">
+        <div class="arx-head">
+          <span class="tp-eyebrow" id="axEb"></span>
+          <h2 id="axT"></h2>
+          <p class="arx-sub" id="axS"></p>
+        </div>
+        <div class="ax-grid" id="axGrid"></div>
+        <div class="arx-cta"><a class="btn arx-btn" href="arsenal.html" id="axBtn"></a></div>
+      </div>
     </section>
 
     <section id="portfolio" class="pf">
@@ -806,7 +830,7 @@ if(!window.VX_PORTFOLIO){window.VX_PORTFOLIO=[
     <span dir="ltr">VYROXX IT SERVICES · Your Technology, Our Responsibility</span>
     <span data-i="city">Fez, Morocco</span>
     <a href="portfolio.html" data-i="nav10" style="text-decoration:underline">Portfolio</a>
-    <a href="sentinel.html" style="text-decoration:underline">VYROXX Sentinel</a>
+    <a href="arsenal.html" style="text-decoration:underline">VYROXX Arsenal</a>
     <a href="report.html" data-i="rp_link" style="text-decoration:underline">Report serious online content</a>
     <span class="flinks" aria-label="Social"><a href="https://wa.me/212646126501" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" title="WhatsApp" style="--c:#1F9D55"><svg class="i" aria-hidden="true"><use href="#i-wa"/></svg></a><a href="https://www.instagram.com/vyroxx_it/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" title="Instagram" style="--c:#C13584"><svg class="i" aria-hidden="true"><use href="#i-ig"/></svg></a><a href="https://www.facebook.com/profile.php?id=61576004765268" target="_blank" rel="noopener noreferrer" aria-label="Facebook" title="Facebook" style="--c:#1877F2"><svg class="i" aria-hidden="true"><use href="#i-fb"/></svg></a><a class="gm" href="mailto:vyroxxvx@gmail.com" aria-label="Gmail" title="Gmail" style="--c:#D9482B"><svg class="i" aria-hidden="true"><use href="#i-ml"/></svg></a></span>
   </footer>
@@ -1348,7 +1372,7 @@ function vxShowcase(l){
     m.appendChild(ul);
     var act=mk("div","sx-act"),a=mk("a","btn sx-go",c.btn[l]);a.href=c.page;act.appendChild(a);
     var b=mk("a","btn alt",C.lbl.send[l]);b.href="#request";act.appendChild(b);
-    if(k==="security"){var sn=mk("a","btn alt","🛰️ "+C.lbl.sentinel[l]);sn.href="sentinel.html";act.appendChild(sn)}
+    if(k==="security"){var sn=mk("a","btn alt","🛡️ "+C.lbl.arsenal[l]);sn.href="arsenal.html";act.appendChild(sn)}
     m.appendChild(act);
     var v=mk("div","sx-vis"),h=mk("div","sx-head");
     h.appendChild(mk("div","sx-orb",c.ic));
@@ -1360,7 +1384,23 @@ function vxShowcase(l){
     g.appendChild(m);g.appendChild(v);sec.appendChild(g);box.appendChild(sec);
   });
 }
-(function(){var _s=setLang;setLang=function(l){_s(l);try{vxPortfolio(l)}catch(e){}try{vxShowcase(l)}catch(e){}}})();
+
+function vxArsenal(l){
+  var A=window.VX_ARSENAL,g=document.getElementById("axGrid");if(!A||!g)return;
+  var H=A.hub;function pk(o){return o?(o[l]||o.en):""}
+  function mk(tag,cls,txt){var e=document.createElement(tag);if(cls)e.className=cls;if(txt!=null)e.textContent=txt;return e}
+  document.getElementById("axEb").textContent=pk(H.eb);document.getElementById("axT").textContent=H.t[l]||H.t.en;
+  document.getElementById("axS").textContent=pk(H.hs);document.getElementById("axBtn").textContent=pk(H.btn);
+  g.textContent="";
+  A.tools.forEach(function(t){
+    var a=mk("a","ax");a.href=t.page;a.style.setProperty("--c",t.c);a.style.setProperty("--on",t.on);
+    var top=mk("div","ax-top");top.appendChild(mk("div","ax-orb",t.ic));top.appendChild(mk("span","ax-ep",pk(t.ep)));a.appendChild(top);
+    a.appendChild(mk("h3","ax-name",t.name));a.appendChild(mk("p","ax-role",pk(t.role)));a.appendChild(mk("p","ax-d",pk(t.d)));
+    var ul=mk("ul","ax-k");(t.k[l]||t.k.en).slice(0,3).forEach(function(x){ul.appendChild(mk("li",null,x))});a.appendChild(ul);
+    a.appendChild(mk("span","ax-go",pk(H.launch)+" "+t.name.replace("VYROXX ","")));g.appendChild(a);
+  });
+}
+(function(){var _s=setLang;setLang=function(l){_s(l);try{vxPortfolio(l)}catch(e){}try{vxShowcase(l)}catch(e){}try{vxArsenal(l)}catch(e){}}})();
 var nl=(navigator.language||"en").slice(0,2),sl=load("vx-lang");
 setLang(sl&&T[sl]?sl:"en");
 try{var qs=new URLSearchParams(location.search).get("s");if(qs!==null&&/^\d+$/.test(qs))sel.selectedIndex=Math.min(+qs,sel.options.length-1)}catch(e){}
