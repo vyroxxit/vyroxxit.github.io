@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-VYROXX NETGUARD scanner v1.1
+VYROXX NETGUARD scanner v1.2
 Inventory of devices on YOUR local network + check of risky open ports.
 Defensive use only: scan networks you own or are authorized to test.
 Safety: this tool REFUSES to scan anything that is not a private network
@@ -9,12 +9,16 @@ Needs only Python 3.7+ (no extra packages). Works on Windows, macOS, Linux, Andr
 
   python netguard.py                 # auto-detect your /24 network
   python netguard.py --subnet 192.168.1.0/24 --out report.json
+  python netguard.py --out ~/Downloads/netguard-report.json   # save where you can find it
+
+The report file is created ONLY when the scan finishes (30-90 seconds). Its full
+path is printed at the end, and the folder opens automatically.
 Then open the VYROXX NETGUARD dashboard and load the JSON report.
 """
-import argparse, errno, ipaddress, json, platform, re, socket, subprocess, sys, time
+import argparse, errno, ipaddress, json, os, platform, re, socket, subprocess, sys, time
 from concurrent.futures import ThreadPoolExecutor
 
-VERSION = "1.1"
+VERSION = "1.2"
 # port: (service, risk)
 PORTS = {21: ("FTP", "high"), 22: ("SSH", "low"), 23: ("Telnet", "high"), 53: ("DNS", "info"),
          80: ("HTTP", "info"), 139: ("NetBIOS", "medium"), 443: ("HTTPS", "info"), 445: ("SMB", "medium"),
@@ -122,18 +126,52 @@ def scan_ports(ip, timeout):
     return [{"port": p, "service": PORTS[p][0], "risk": PORTS[p][1]} for p, ok in zip(PORTS, res) if ok]
 
 
+def resolve_out(path):
+    """absolute path of the report; a folder means <folder>/netguard-report.json"""
+    path = os.path.abspath(os.path.expandvars(os.path.expanduser(path)))
+    if os.path.isdir(path) or path.endswith(("/", "\\")):
+        path = os.path.join(path, "netguard-report.json")
+    return path
+
+
+def save_report(report, path):
+    """write the report; if that folder is not writable, fall back to the home folder"""
+    for p in (path, os.path.join(os.path.expanduser("~"), "netguard-report.json")):
+        try:
+            os.makedirs(os.path.dirname(p), exist_ok=True)
+            with open(p, "w", encoding="utf-8") as f:
+                json.dump(report, f, ensure_ascii=False, indent=2)
+            return p
+        except OSError as e:
+            print(f"Could not write {p}: {e}")
+    sys.exit("Could not save the report anywhere. Run again with --out pointing to a writable folder.")
+
+
+def open_folder(path):
+    try:
+        if WIN:
+            os.startfile(path)  # type: ignore[attr-defined]
+        elif MAC:
+            subprocess.Popen(["open", path])
+        elif os.environ.get("DISPLAY") or os.environ.get("WAYLAND_DISPLAY"):
+            subprocess.Popen(["xdg-open", path], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+    except Exception:
+        pass
+
+
 def main():
     ap = argparse.ArgumentParser(description="VYROXX NETGUARD scanner")
     ap.add_argument("--subnet", help="e.g. 192.168.1.0/24 (default: auto-detect /24)")
-    ap.add_argument("--out", default="netguard-report.json")
+    ap.add_argument("--out", default="netguard-report.json", help="where to save the report (file or folder)")
+    ap.add_argument("--no-open", action="store_true", help="do not open the report folder when finished")
     ap.add_argument("--timeout", type=float, default=0.6, help="port timeout in seconds")
     ap.add_argument("--yes", action="store_true", help="skip the authorization prompt")
     ap.add_argument("--no-ports", action="store_true", help="only list devices, skip the port checks (faster, quieter)")
     a = ap.parse_args()
 
     print(f"VYROXX NETGUARD v{VERSION}\nScan ONLY networks you own or are authorized to test.")
-    if not a.yes and input("Continue? [y/N] ").strip().lower() != "y":
-        sys.exit("Cancelled.")
+    if not a.yes and input("Type y and press Enter to continue [y/N]: ").strip().lower() not in ("y", "yes"):
+        sys.exit("Cancelled. No report was created.")
     me = local_ip()
     if not a.subnet:
         if not me:
@@ -150,9 +188,16 @@ def main():
         sys.exit("Subnet too large (max /22).")
     hosts_ip = [str(h) for h in net.hosts()]
     print(f"Your IP: {me}  |  Network: {net}  |  Discovering {len(hosts_ip)} addresses...")
+    print("This takes about 30-90 seconds. The report is created at the very end, please wait.")
     t0 = time.time()
+    live = []
     with ThreadPoolExecutor(64) as ex:
-        live = [ip for ip, ok in zip(hosts_ip, ex.map(alive, hosts_ip)) if ok]
+        for n, (ip, ok) in enumerate(zip(hosts_ip, ex.map(alive, hosts_ip)), 1):
+            if ok:
+                live.append(ip)
+            if n % 16 == 0 or n == len(hosts_ip):
+                print(f"\r  checked {n}/{len(hosts_ip)} addresses, {len(live)} devices found", end="", flush=True)
+    print()
     arp = arp_table()
     live = sorted(set(live) | {ip for ip in arp if ip in hosts_ip}, key=lambda x: tuple(map(int, x.split("."))))
     print(f"Found {len(live)} devices. Checking names and open ports...")
@@ -173,17 +218,27 @@ def main():
               "time": time.strftime("%Y-%m-%d %H:%M:%S"), "duration": duration,
               "os": platform.system(), "python": platform.python_version(),
               "ports_checked": not a.no_ports, "subnet": str(net), "local_ip": me, "gateway": gw, "hosts": out}
-    with open(a.out, "w", encoding="utf-8") as f:
-        json.dump(report, f, ensure_ascii=False, indent=2)
+    out_path = save_report(report, resolve_out(a.out))
     print(f"\n{'IP':<16}{'MAC':<19}{'VENDOR/NAME':<28}OPEN PORTS")
     for h in out:
         tag = "[router] " if h["gateway"] else "[this PC] " if h["self"] else ""
         print(f"{h['ip']:<16}{h['mac'] or '-':<19}{(tag + (h['vendor'] or h['hostname'] or ''))[:27]:<28}"
               f"{', '.join(str(p['port']) for p in h['ports']) or '-'}")
     risky = sum(1 for h in out for p in h["ports"] if p["risk"] in ("high", "medium"))
-    print(f"\nDone in {duration}s. {len(out)} devices, {risky} risky open ports. Report saved to: {a.out}")
-    print("Open the VYROXX NETGUARD dashboard and load this file.")
+    print(f"\nDone in {duration}s. {len(out)} devices, {risky} risky open ports.")
+    print("=" * 64)
+    print("REPORT SAVED TO:")
+    print(f"  {out_path}")
+    print("=" * 64)
+    print("Open the VYROXX NETGUARD dashboard (vyroxxit.github.io/netguard.html) and load this file.")
+    if not a.no_open:
+        open_folder(os.path.dirname(out_path))
+    if WIN and len(sys.argv) == 1:
+        input("\nPress Enter to close this window...")
 
 
 if __name__ == "__main__":
-    main()
+    try:
+        main()
+    except KeyboardInterrupt:
+        sys.exit("\nStopped. No report was created.")
