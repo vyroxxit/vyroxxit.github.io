@@ -129,7 +129,7 @@ def scan_ports(ip, timeout):
 def resolve_out(path):
     """absolute path of the report; a folder means <folder>/netguard-report.json"""
     path = os.path.abspath(os.path.expandvars(os.path.expanduser(path)))
-    if os.path.isdir(path) or path.endswith(("/", "\\")):
+    if os.path.isdir(path) or path.endswith(("/", "\\")) or not os.path.splitext(path)[1]:
         path = os.path.join(path, "netguard-report.json")
     return path
 
