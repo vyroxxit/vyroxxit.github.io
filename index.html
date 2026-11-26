@@ -51,12 +51,12 @@
 :root[data-theme="legend"]{--bg:#0B0716;--surface:#150E26;--ink:#F3E9D2;--muted:#BBAAD8;--line:#3A2A5E;--accent:#F5B83D;--on-accent:#1A1024;--hot:#FF6B94;color-scheme:dark}
 :root[data-theme="legend"] body{background:radial-gradient(1100px 560px at 88% -8%,rgba(245,184,61,.15),transparent 60%),radial-gradient(900px 600px at 0% 25%,rgba(124,77,255,.24),transparent 60%),var(--bg);background-attachment:fixed}
 :root[data-theme="legend"] .hero h1,:root[data-theme="legend"] h2{background:linear-gradient(90deg,#FFE29A,#F5B83D 45%,#E58BFF);-webkit-background-clip:text;background-clip:text;color:transparent}
-:root[data-theme="legend"] .card,:root[data-theme="legend"] .step,:root[data-theme="legend"] .formbox,:root[data-theme="legend"] .loyal,:root[data-theme="legend"] .plist,:root[data-theme="legend"] .faq details,:root[data-theme="legend"] .panel,:root[data-theme="legend"] .support,:root[data-theme="legend"] .track{border-color:rgba(245,184,61,.38);box-shadow:0 0 22px rgba(124,77,255,.14)}
+:root[data-theme="legend"] .card,:root[data-theme="legend"] .step,:root[data-theme="legend"] .formbox,:root[data-theme="legend"] .rqx,:root[data-theme="legend"] .loyal,:root[data-theme="legend"] .plist,:root[data-theme="legend"] .faq details,:root[data-theme="legend"] .panel,:root[data-theme="legend"] .support,:root[data-theme="legend"] .track{border-color:rgba(245,184,61,.38);box-shadow:0 0 22px rgba(124,77,255,.14)}
 :root[data-theme="legend"] .btn:not(.alt){box-shadow:0 0 18px rgba(245,184,61,.38)}
 :root[data-theme="hacker"]{--bg:#000;--surface:#04100A;--ink:#B8FFC8;--muted:#4FC26E;--line:#0F5A24;--accent:#00FF41;--on-accent:#00170A;--hot:#FF2E63;color-scheme:dark}
 :root[data-theme="hacker"] body{background:repeating-linear-gradient(0deg,rgba(0,255,65,.05) 0 1px,transparent 1px 3px),radial-gradient(900px 500px at 50% -10%,rgba(0,255,65,.12),transparent 65%),#000;background-attachment:fixed}
 :root[data-theme="hacker"] .hero h1,:root[data-theme="hacker"] h2{color:var(--accent);text-shadow:0 0 10px rgba(0,255,65,.6)}
-:root[data-theme="hacker"] .card,:root[data-theme="hacker"] .step,:root[data-theme="hacker"] .formbox,:root[data-theme="hacker"] .loyal,:root[data-theme="hacker"] .plist,:root[data-theme="hacker"] .faq details,:root[data-theme="hacker"] .panel,:root[data-theme="hacker"] .support,:root[data-theme="hacker"] .track{border-color:rgba(0,255,65,.45);border-radius:4px;box-shadow:0 0 14px rgba(0,255,65,.14),inset 0 0 18px rgba(0,255,65,.04)}
+:root[data-theme="hacker"] .card,:root[data-theme="hacker"] .step,:root[data-theme="hacker"] .formbox,:root[data-theme="hacker"] .rqx,:root[data-theme="hacker"] .loyal,:root[data-theme="hacker"] .plist,:root[data-theme="hacker"] .faq details,:root[data-theme="hacker"] .panel,:root[data-theme="hacker"] .support,:root[data-theme="hacker"] .track{border-color:rgba(0,255,65,.45);border-radius:4px;box-shadow:0 0 14px rgba(0,255,65,.14),inset 0 0 18px rgba(0,255,65,.04)}
 :root[data-theme="hacker"] .btn{border-radius:4px}
 :root[data-theme="hacker"] .btn:not(.alt){box-shadow:0 0 16px rgba(0,255,65,.5)}
 :root[data-theme="hacker"] .btn.alt{border-color:var(--accent);color:var(--accent)}
@@ -392,6 +392,21 @@ html[dir=rtl] .rv-stars{justify-content:flex-end}
 .appbox h3{margin:0 0 6px}
 .appbox p{margin:0}
 .ap-actions{display:flex;flex-wrap:wrap;gap:12px}
+.rqx{position:relative;isolation:isolate;display:grid;grid-template-columns:1.15fr 1fr;gap:clamp(24px,4vw,56px);align-items:center;padding:clamp(26px,4vw,56px);border-radius:24px;border:1px solid var(--line);background:linear-gradient(135deg,color-mix(in srgb,var(--accent) 13%,var(--surface)),var(--surface) 60%);overflow:hidden}
+.rqx::before{content:"";position:absolute;z-index:-1;width:520px;height:520px;inset-inline-end:-140px;top:-180px;border-radius:50%;background:radial-gradient(circle,color-mix(in srgb,var(--accent) 38%,transparent),transparent 68%);animation:rqf 9s ease-in-out infinite alternate}
+.rqx::after{content:"";position:absolute;z-index:-1;inset:0;background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:44px 44px;opacity:.35;-webkit-mask-image:linear-gradient(120deg,transparent 30%,#000);mask-image:linear-gradient(120deg,transparent 30%,#000)}
+@keyframes rqf{to{transform:translate(-40px,50px) scale(1.15)}}
+@keyframes rqp{0%{box-shadow:0 0 0 0 #2fd27a}70%{box-shadow:0 0 0 9px transparent}}
+.rqx h2{margin:12px 0 10px}.rqx .sub{margin-bottom:20px}
+.rqx-live{display:inline-flex;gap:9px;align-items:center;font-size:14px;color:var(--muted);border:1px solid var(--line);border-radius:99px;padding:3px 14px;background:color-mix(in srgb,var(--bg) 60%,transparent)}
+.rqx-live i{width:9px;height:9px;border-radius:50%;background:#2fd27a;animation:rqp 2s infinite}
+.rqx-f{list-style:none;margin:0;padding:0;display:grid;gap:10px;font-weight:500}
+.rqx-r{background:color-mix(in srgb,var(--bg) 70%,transparent);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border:1px solid var(--line);border-radius:18px;padding:clamp(18px,2.4vw,30px);box-shadow:0 24px 60px -28px var(--accent)}
+.rqx-r select{margin-bottom:18px}.rqx-r .send{display:block}
+.rqx-r .btn{display:block;width:100%;text-align:center;padding:15px 26px;font-size:18px;box-sizing:border-box}
+.rqx-alt{margin:16px 0 0;text-align:center;color:var(--muted);font-size:14px}.rqx-alt a{color:var(--accent);font-weight:700;margin:0 8px}
+@media(max-width:820px){.rqx{grid-template-columns:1fr}}
+@media(prefers-reduced-motion:reduce){.rqx::before,.rqx-live i{animation:none}}
 .rpt-box{background:var(--surface);border:1px solid var(--line);border-inline-start:4px solid var(--hot,#D9482B);border-radius:14px;padding:26px 28px}
 .rpt-chips{display:flex;flex-wrap:wrap;gap:10px;margin:0 0 22px;padding:0;list-style:none}
 .rpt-chips li{border:1px solid color-mix(in srgb,var(--hot,#D9482B) 35%,var(--line));background:color-mix(in srgb,var(--hot,#D9482B) 8%,transparent);border-radius:999px;padding:6px 16px;font-size:15px}
@@ -565,7 +580,7 @@ if(!window.VX_PORTFOLIO){window.VX_PORTFOLIO=[
     <a class="logo" href="#top">VYROXX <b>IT</b></a>
     <nav><a href="#services" data-i="nav1">Services</a><a href="#portfolio" data-i="nav10">Portfolio</a><a href="#business" data-i="nav7">Business</a><a href="#reviews" data-i="nav8">Reviews</a><a href="#report" data-i="nav9">Report</a><a href="#prices-s" data-i="nav6">Pricing</a><a href="#about" data-i="nav5">About us</a><a href="#contact" data-i="nav3">Contact</a></nav>
     <div class="tools"><a class="acc" href="account.html" data-i="nav4">My account</a><div class="seg" role="group" aria-label="Language"><button type="button" data-lang="en">EN</button><button type="button" data-lang="ar">ع</button><button type="button" data-lang="fr">FR</button><button type="button" data-lang="es">ES</button></div><button class="theme" id="theme" type="button" aria-label="Theme"></button></div>
-    <a class="btn hcta" href="#request" data-i="nav2">Send your problem</a>
+    <a class="btn hcta" href="request.html" data-i="nav2">Send your problem</a>
   </header>
 
   <main id="top">
@@ -574,7 +589,7 @@ if(!window.VX_PORTFOLIO){window.VX_PORTFOLIO=[
         <h1 data-i="h1">Your Technology, Our Responsibility</h1>
         <p data-i="hp">Professional IT solutions: technical support, cybersecurity, web and app development, gaming and Linux. Describe your problem or idea and we’ll take care of the rest, on site or remotely, around the clock.</p>
         <div class="cta">
-          <a class="btn" href="#request" data-i="cta1">Send your problem now</a>
+          <a class="btn" href="request.html" data-i="cta1">Send your problem now</a>
           <a class="btn alt" href="#services" data-i="cta2">Browse services</a>
         </div>
       </div>
@@ -736,7 +751,7 @@ if(!window.VX_PORTFOLIO){window.VX_PORTFOLIO=[
           <h2 data-i="tp_ct_h">Want these measures applied to your devices and accounts?</h2>
           <p data-i="tp_ct_p">We apply them with you step by step, on site in Morocco or remotely from anywhere.</p>
         </div>
-        <a class="btn" href="#request" data-i="tp_ct_b">Request a security consultation</a>
+        <a class="btn" href="request.html" data-i="tp_ct_b">Request a security consultation</a>
       </div>
     </section>
 
@@ -775,32 +790,18 @@ if(!window.VX_PORTFOLIO){window.VX_PORTFOLIO=[
       </div>
     </section>
     <section id="request">
-      <div class="formbox">
-        <div>
+      <div class="rqx">
+        <div class="rqx-l">
+          <span class="rqx-live"><i></i><span data-i="rq_live">Online now · reply in under 6 hours</span></span>
           <h2 data-i="r_h">Send your problem</h2>
           <p class="sub" data-i="r_sub">Describe your problem or project in detail and choose how to send it. We’ll reply as soon as possible.</p>
+          <ul class="rqx-f"><li data-i="rq_f1">⚡ Reply within 6 hours</li><li data-i="rq_f2">🛡️ Your data stays confidential</li><li data-i="rq_f3">🌍 On-site in Morocco · remote worldwide</li></ul>
         </div>
-        <div>
-          <label for="name" data-i="l1">Name</label>
-          <input id="name" autocomplete="name">
-          <label for="contactInfo" data-i="l2">Phone / WhatsApp number</label>
-          <input id="contactInfo" type="tel" dir="ltr" autocomplete="tel" inputmode="tel" placeholder="+212...">
-          <label for="guestEmail" data-i="l_em">Email (to follow your request)</label>
-          <input id="guestEmail" type="email" dir="ltr" autocomplete="email" inputmode="email" placeholder="name@example.com">
-          <label for="service" data-i="l3">Service type</label>
+        <div class="rqx-r">
+          <label for="service" data-i="rq_pick">Pick your service</label>
           <select id="service"></select>
-          <label for="msg" data-i="l4">Problem or project description</label>
-          <textarea id="msg" placeholder="مثال: الحاسوب بطيء جدًا ويظهر خطأ عند تشغيل اللعبة…"></textarea>
-          <input class="hp" id="hpWeb" name="website" type="text" tabindex="-1" autocomplete="off" aria-hidden="true">
-          <p class="note" id="offerNote"></p>
-          <p class="err" id="err" role="alert"></p>
-          <p class="okmsg" id="okMsg" role="status"></p>
-          <div class="send">
-            <button class="btn" type="button" id="save" data-i="sv_btn">Submit request</button>
-            <button class="btn alt" type="button" id="wa" data-i="wa">Send via WhatsApp</button>
-            <button class="btn alt" type="button" id="mail" data-i="mail">Send by email</button>
-            <button class="btn alt" type="button" id="pdfBtn" data-i="pdf_btn" hidden>Download PDF</button>
-          </div>
+          <div class="send"><a class="btn" id="rqGo" href="request.html" data-i="rq_go">Start my request →</a></div>
+          <p class="rqx-alt"><span data-i="rq_or">Or contact us directly:</span><a href="https://wa.me/212646126501" target="_blank" rel="noopener noreferrer">WhatsApp</a><a href="mailto:vyroxxvx@gmail.com">Email</a></p>
         </div>
       </div>
     </section>
@@ -1015,7 +1016,6 @@ function setLang(l){
   root.lang=l;root.dir=l==="ar"?"rtl":"ltr";
   document.title=t.t;var mdm=document.querySelector('meta[name="description"]');if(mdm&&t.md)mdm.setAttribute("content",t.md);
   document.querySelectorAll("[data-i]").forEach(function(e){e.textContent=t[e.getAttribute("data-i")]});
-  document.getElementById("msg").placeholder=t.ph;
   var idx=Math.max(sel.selectedIndex,0);
   cards.innerHTML="";document.getElementById("cards2").innerHTML="";document.getElementById("cards3").innerHTML="";sel.innerHTML="";
   var n1=0,n2=0;
@@ -1029,9 +1029,8 @@ function setLang(l){
   sel.selectedIndex=idx;
   var pr=document.getElementById("prices");pr.innerHTML="";
   SV[l].forEach(function(s,k){var d=document.createElement("div");d.className="prow";d.innerHTML='<span class="pi">'+IC[k]+'</span><b>'+s[0]+'</b><strong dir="ltr">$'+PR[k]+'<small>≈ '+Math.ceil(PR[k]*RATE/10)*10+' DH</small></strong>';pr.appendChild(d)});
-  var mo=document.createElement("a");mo.className="prow more";mo.href="#request";mo.innerHTML='<span class="pi">✉️</span><b>'+t.p_oth+'</b><span>'+t.p_oth_b+'</span>';pr.appendChild(mo);
+  var mo=document.createElement("a");mo.className="prow more";mo.href="request.html";mo.innerHTML='<span class="pi">✉️</span><b>'+t.p_oth+'</b><span>'+t.p_oth_b+'</span>';pr.appendChild(mo);
   document.querySelectorAll("[data-lang]").forEach(function(b){b.setAttribute("aria-pressed",String(b.getAttribute("data-lang")===l))});
-  document.getElementById("err").textContent="";
   store("vx-lang",l);
 }
 Object.assign(T.ar,{l2:"رقم الهاتف / WhatsApp",l_em:"البريد الإلكتروني (لمتابعة طلبك)",sv_btn:"إرسال الطلب",sv_bad:"اكتب بريدًا إلكترونيًا صحيحًا.",sv_ing:"جارٍ الإرسال…",sv_wait:"يرجى الانتظار قليلًا قبل إرسال طلب آخر.",ap_h:"حمّل تطبيق VYROXX IT",ap_p:"ثبّت تطبيقنا على هاتفك أو حاسوبك للوصول السريع إلى خدماتنا وتتبّع طلبك والدعم.",ap_and:"تحميل لأندرويد",ap_win:"تحميل لويندوز",ap_note:"أندرويد: إن طُلب منك، اسمح بالتثبيت من المتصفح. ويندوز: فكّ الضغط ثم شغّل الملف install.ps1 (ويندوز 10 أو أحدث).",pdf_btn:"تحميل PDF",pdf_wait:"جارٍ التحضير…",pdf_fail:"تعذّر إنشاء ملف PDF. تحقق من الاتصال وحاول مجددًا.",sv_ok:"✔ وصل طلبك. رقم التتبّع: ",sv_fail:"تعذّر الإرسال، حاول مرة أخرى. ",
@@ -1098,7 +1097,12 @@ function renderBiz(l){
   });
 }
 Object.assign(T.ar,{c_go:"اطلب الخدمة"});Object.assign(T.en,{c_go:"Request this"});Object.assign(T.fr,{c_go:"Demander ce service"});Object.assign(T.es,{c_go:"Solicitar servicio"});
-document.addEventListener("click",function(e){var b=e.target.closest&&e.target.closest(".cgo");if(!b)return;sel.selectedIndex=+b.getAttribute("data-k");var r=document.getElementById("request");if(r)r.scrollIntoView({behavior:"smooth"})});
+Object.assign(T.ar,{rq_live:"متصلون الآن · نرد خلال أقل من 6 ساعات",rq_f1:"⚡ رد خلال 6 ساعات كحد أقصى",rq_f2:"🛡️ سرّية تامة لبياناتك",rq_f3:"🌍 حضوريًا في المغرب وعن بُعد حول العالم",rq_pick:"اختر خدمتك",rq_go:"ابدأ طلبي ←",rq_or:"أو تواصل معنا مباشرة:"});
+Object.assign(T.en,{rq_live:"Online now · reply in under 6 hours",rq_f1:"⚡ Reply within 6 hours",rq_f2:"🛡️ Your data stays confidential",rq_f3:"🌍 On-site in Morocco · remote worldwide",rq_pick:"Pick your service",rq_go:"Start my request →",rq_or:"Or contact us directly:"});
+Object.assign(T.fr,{rq_live:"En ligne · réponse en moins de 6 h",rq_f1:"⚡ Réponse sous 6 heures",rq_f2:"🛡️ Vos données restent confidentielles",rq_f3:"🌍 Sur place au Maroc · à distance partout",rq_pick:"Choisissez votre service",rq_go:"Commencer ma demande →",rq_or:"Ou contactez-nous directement :"});
+Object.assign(T.es,{rq_live:"En línea · respuesta en menos de 6 h",rq_f1:"⚡ Respuesta en 6 horas",rq_f2:"🛡️ Tus datos son confidenciales",rq_f3:"🌍 Presencial en Marruecos · remoto en todo el mundo",rq_pick:"Elige tu servicio",rq_go:"Empezar mi solicitud →",rq_or:"O contáctanos directamente:"});
+(function(){var g=document.getElementById("rqGo"),dirty=false;function u(){g.href="request.html"+((dirty||sel.selectedIndex>0)?"?s="+sel.selectedIndex:"")}sel.addEventListener("change",function(){dirty=true;u()});g.addEventListener("click",u);u()})();
+document.addEventListener("click",function(e){var b=e.target.closest&&e.target.closest(".cgo");if(!b)return;location.href="request.html?s="+(+b.getAttribute("data-k"))});
 document.addEventListener("pointermove",function(e){var c=e.target.closest&&e.target.closest(".cards .card");if(!c)return;var r=c.getBoundingClientRect();c.style.setProperty("--mx",(e.clientX-r.left)+"px");c.style.setProperty("--my",(e.clientY-r.top)+"px")});
 Object.assign(T.ar,{"nav8": "آراء العملاء", "rv_h": "آراء العملاء", "rv_sub": "تقييمات حقيقية من عملاء استفادوا من خدماتنا داخل المغرب وخارجه.", "rv_empty": "لا توجد آراء منشورة بعد. إن استفدتَ من خدماتنا فكن أول من يشاركنا رأيه.", "rv_add": "اكتب رأيك", "rv_how": "التقييم متاح فقط برقم تتبّع طلب اكتملت معالجته. تُنشر الآراء بعد مراجعتها ودون تعديل نصها.", "rv_code": "رقم تتبّع طلبك", "rv_rate": "تقييمك", "rv_name": "اسمك الأول", "rv_show": "أوافق على نشر اسمي الأول مع رأيي (وإلا يظهر الرأي باسم «عميل»).", "rv_place": "أين تلقيت الخدمة؟", "rv_p1": "في المغرب (حضورياً)", "rv_p2": "عن بُعد", "rv_text": "رأيك", "rv_agree": "أوافق على نشر رأيي علناً في هذا الموقع وفق سياسة الخصوصية.", "rv_send": "إرسال الرأي", "rv_ok": "✔ شكراً لك! وصل رأيك وسيظهر بعد المراجعة.", "rv_e_code": "اكتب رقم تتبّع صحيحاً بالشكل VX-XXXXXX.", "rv_e_star": "اختر عدد النجوم.", "rv_e_short": "اكتب رأيك في 10 أحرف على الأقل.", "rv_e_agree": "يجب الموافقة على نشر الرأي.", "rv_e_nd": "لا يوجد طلب مكتمل بهذا الرقم. يمكنك التقييم بعد اكتمال معالجة طلبك.", "rv_e_dup": "تعذّر الإرسال. ربما سبق أن قيّمتَ هذا الطلب.", "rv_e_fail": "تعذّر الإرسال، حاول مرة أخرى.", "rv_anon": "عميل", "rv_cnt": "رأي"});
 Object.assign(T.en,{"nav8": "Reviews", "rv_h": "Customer reviews", "rv_sub": "Real feedback from customers who used our services in Morocco and abroad.", "rv_empty": "No reviews published yet. If you used our services, be the first to share your opinion.", "rv_add": "Write a review", "rv_how": "Reviews are only possible with the tracking number of a completed request. They are published after moderation, without editing their text.", "rv_code": "Your request tracking number", "rv_rate": "Your rating", "rv_name": "Your first name", "rv_show": "I agree to publish my first name with my review (otherwise it appears as “Customer”).", "rv_place": "Where did you get the service?", "rv_p1": "In Morocco (on site)", "rv_p2": "Remotely", "rv_text": "Your review", "rv_agree": "I agree to my review being published publicly on this site under the privacy policy.", "rv_send": "Submit review", "rv_ok": "✔ Thank you! Your review was received and will appear after moderation.", "rv_e_code": "Enter a valid tracking number like VX-XXXXXX.", "rv_e_star": "Choose a star rating.", "rv_e_short": "Write at least 10 characters.", "rv_e_agree": "You must agree to the publication of your review.", "rv_e_nd": "No completed request found with this number. You can review once your request is completed.", "rv_e_dup": "Could not send. You may have already reviewed this request.", "rv_e_fail": "Could not send, please try again.", "rv_anon": "Customer", "rv_cnt": "reviews"});
@@ -1152,13 +1156,7 @@ document.getElementById("rvSend").onclick=async function(){
   b.disabled=false;
 };
 loadReviews();
-function refreshOffer(){
-  var t=T[lang],u=window.vxUser,em=document.getElementById("guestEmail"),n=document.getElementById("offerNote");
-  if(u){em.value=u.email||"";em.readOnly=true;n.textContent=t.off_u}
-  else{if(em.readOnly){em.readOnly=false;em.value=""}n.textContent=t.off_g}
-}
-window.vxOnAuth=refreshOffer;
-var _setLang=setLang;setLang=function(l){_setLang(l);refreshOffer();renderBiz(l);renderReviews()};
+var _setLang=setLang;setLang=function(l){_setLang(l);renderBiz(l);renderReviews()};
 Object.assign(T.ar,{tk_h:"🔎 تتبّع طلبك أو بلاغك",tk_sub:"اكتب رقم التتبّع (VX- للطلبات أو RP- للبلاغات) لمعرفة حالته.",tk_btn:"تتبّع",tk_bad:"اكتب رقم تتبّع صحيحًا يبدأ بـ VX- (للطلبات) أو RP- (للبلاغات)",tk_ing:"جارٍ البحث…",tk_nf:"لم نجد طلبًا أو بلاغًا بهذا الرقم، تأكد من كتابته.",tk_fail:"تعذّر البحث، حاول مرة أخرى. ",tk_srv:"الخدمة",tk_st:"حالة الطلب",tk_pay:"الدفع",tk_dt:"تاريخ الطلب",tk_progress:"قيد المعالجة",tk_done:"تم الحل",tk_paid:"تم الدفع",tk_unpaid:"لم يتم الدفع"});
 Object.assign(T.en,{tk_h:"🔎 Track your request or report",tk_sub:"Enter your tracking number (VX- for requests, RP- for reports) to see its status.",tk_btn:"Track",tk_bad:"Enter a valid tracking number starting with VX- (requests) or RP- (reports)",tk_ing:"Searching…",tk_nf:"No request or report found with this number, please check it.",tk_fail:"Could not search, please try again. ",tk_srv:"Service",tk_st:"Request status",tk_pay:"Payment",tk_dt:"Request date",tk_progress:"In progress",tk_done:"Solved",tk_paid:"Paid",tk_unpaid:"Not paid"});
 Object.assign(T.fr,{tk_h:"🔎 Suivre votre demande ou signalement",tk_sub:"Saisissez votre numéro de suivi (VX- pour les demandes, RP- pour les signalements) pour voir son statut.",tk_btn:"Suivre",tk_bad:"Saisissez un numéro de suivi valide commençant par VX- (demandes) ou RP- (signalements)",tk_ing:"Recherche…",tk_nf:"Aucune demande ni aucun signalement trouvé avec ce numéro, vérifiez-le.",tk_fail:"Recherche impossible, réessayez. ",tk_srv:"Service",tk_st:"État de la demande",tk_pay:"Paiement",tk_dt:"Date de la demande",tk_progress:"En cours",tk_done:"Résolue",tk_paid:"Payé",tk_unpaid:"Non payé"});
@@ -1218,28 +1216,7 @@ document.getElementById("tkBtn").onclick=async function(){
   b.disabled=false;
 };
 document.getElementById("tkCode").onkeydown=function(ev){if(ev.key==="Enter"){ev.preventDefault();document.getElementById("tkBtn").click()}};
-var VX_T0=Date.now();
 function pdfRun(btn,d){var t=T[lang],lab=btn.textContent;btn.disabled=true;btn.textContent=t.pdf_wait;Promise.resolve().then(function(){return window.vxPdf(d,lang)}).catch(function(){alert(t.pdf_fail)}).then(function(){btn.disabled=false;btn.textContent=lab})}
-document.getElementById("pdfBtn").onclick=function(){if(window.vxLast)pdfRun(this,window.vxLast)};
-document.getElementById("save").onclick=async function(){
-  var t=T[lang],e=document.getElementById("err"),ok=document.getElementById("okMsg"),b=this;
-  ok.textContent="";
-  if(document.getElementById("hpWeb").value){e.textContent="";ok.textContent=t.sv_ok+"VX-"+Math.random().toString(36).slice(2,8).toUpperCase();return}
-  var now=Date.now(),hist=[];
-  try{hist=JSON.parse(localStorage.getItem("vx-sent")||"[]").filter(function(z){return now-z<3600000})}catch(er){}
-  if(now-VX_T0<5000||(hist.length&&now-hist[hist.length-1]<60000)||hist.length>=5){e.textContent=t.sv_wait;return}
-  var m=document.getElementById("msg").value.trim();
-  if(!m){e.textContent=t.err;return}
-  var em=document.getElementById("guestEmail").value.trim();
-  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em)){e.textContent=t.sv_bad;return}
-  if(!window.vxSave){e.textContent=t.sv_fail;return}
-  e.textContent="";b.disabled=true;ok.textContent=t.sv_ing;document.getElementById("pdfBtn").hidden=true;
-  try{
-    var code=await window.vxSave({name:document.getElementById("name").value.trim(),phone:document.getElementById("contactInfo").value.trim(),email:em,service:(SV.ar[Math.max(sel.selectedIndex,0)]?SV.ar[Math.max(sel.selectedIndex,0)][0]:T.ar.b_opt),message:m});
-    ok.textContent=t.sv_ok+code;window.vxLast={code:code,service:sel.options[Math.max(sel.selectedIndex,0)].text,name:document.getElementById("name").value.trim(),phone:document.getElementById("contactInfo").value.trim(),email:em,message:m,createdAt:Date.now(),status:"progress",paid:false,full:true};document.getElementById("pdfBtn").hidden=false;document.getElementById("msg").value="";try{hist.push(Date.now());localStorage.setItem("vx-sent",JSON.stringify(hist))}catch(er){}
-  }catch(x){ok.textContent="";e.textContent=t.sv_fail+"("+(x.code||"error")+")"}
-  b.disabled=false;
-};
 var themeBtn=document.getElementById("theme");
 var vxRain=(function(){
   var cv,cx,raf,cols,dr,run=false;
@@ -1276,29 +1253,6 @@ function setTheme(m){
 }
 themeBtn.onclick=function(){var c=root.getAttribute("data-theme");setTheme(c==="light"?"dark":(c==="dark"?"legend":(c==="legend"?"hacker":"light")))};
 document.querySelectorAll("[data-lang]").forEach(function(b){b.onclick=function(){setLang(b.getAttribute("data-lang"))}});
-function build(){
-  var t=T[lang],n=document.getElementById("name").value.trim(),
-      c=document.getElementById("contactInfo").value.trim(),
-      m=document.getElementById("msg").value.trim(),
-      e=document.getElementById("err");
-  if(!m){e.textContent=t.err;return null}
-  e.textContent="";
-  return t.nm+": "+(n||"-")+"\n"+t.ct+": "+(c||"-")+"\n"+(document.getElementById("guestEmail").value.trim()?"Email: "+document.getElementById("guestEmail").value.trim()+"\n":"")+t.sv+": "+sel.value+"\n\n"+t.pb+":\n"+m;
-}
-document.getElementById("wa").onclick=function(){
-  var t=build();if(!t)return;
-  window.open("https://wa.me/212646126501?text="+encodeURIComponent(T[lang].hi+"\n\n"+t),"_blank","noopener");
-};
-document.getElementById("mail").onclick=function(){
-  var t=build();if(!t)return;
-  var to="vyroxxvx@gmail.com",su=encodeURIComponent(T[lang].subj+sel.value),bd=encodeURIComponent(t);
-  if(/Android|iPhone|iPad|iPod/i.test(navigator.userAgent)){
-    location.href="mailto:"+to+"?subject="+su+"&body="+bd;
-  }else{
-    var w=window.open("https://mail.google.com/mail/?view=cm&fs=1&to="+to+"&su="+su+"&body="+bd,"_blank");
-    if(!w)location.href="mailto:"+to+"?subject="+su+"&body="+bd;
-  }
-};
 var sysDark=window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches;
 setTheme(load("vx-theme")||(sysDark?"dark":"light"));
 if(window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches){var sv=document.querySelector(".emblem");if(sv&&sv.pauseAnimations)sv.pauseAnimations()}
@@ -1371,7 +1325,7 @@ function vxShowcase(l){
     });
     m.appendChild(ul);
     var act=mk("div","sx-act"),a=mk("a","btn sx-go",c.btn[l]);a.href=c.page;act.appendChild(a);
-    var b=mk("a","btn alt",C.lbl.send[l]);b.href="#request";act.appendChild(b);
+    var b=mk("a","btn alt",C.lbl.send[l]);b.href="request.html";act.appendChild(b);
     if(k==="security"){var sn=mk("a","btn alt","🛡️ "+C.lbl.arsenal[l]);sn.href="arsenal.html";act.appendChild(sn)}
     m.appendChild(act);
     var v=mk("div","sx-vis"),h=mk("div","sx-head");
@@ -1608,7 +1562,7 @@ case"rp":return[u.rp,[{t:u.rb,h:"report.html"},{t:"E-Blagh (DGSN)",h:"https://ww
 case"loy":return[t.lo_h+"\n"+t.lo_p,[]];case"about":return[t.a_p,[]];
 case"ty":return[u.ty,[]];case"hi":return[u.hi,[]];
 default:return[u.nf,cA()]}}
-function go(r){if(r>-1)sel.selectedIndex=r;$("request").scrollIntoView({behavior:"smooth"});$("vxb").classList.remove("o")}
+function go(r){$("vxb").classList.remove("o");location.href="request.html"+(r>-1?"?s="+r:"")}
 function say(x,c,a){var m=$("vxbM");m.appendChild(E("div","vm"+(c||""),x));
 if(a&&a.length){var d=E("div","vc");a.forEach(function(o){var e;if(o.h){e=E("a","p",o.t);e.href=o.h;if(o.h.indexOf("http")==0){e.target="_blank";e.rel="noopener"}}else{e=E("button","p",o.t);e.type="button";e.onclick=function(){go(o.r)}}d.appendChild(e)});m.appendChild(d)}
 m.scrollTop=m.scrollHeight}

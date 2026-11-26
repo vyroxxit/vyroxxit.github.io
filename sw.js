@@ -1,5 +1,5 @@
-const V = "vx-v15";
-const ASSETS = ["/", "/index.html", "/legal.html", "/legal.js", "/report.html", "/portfolio.html", "/sentinel.html", "/arsenal.html", "/shield.html", "/netguard.html", "/netguard.py", "/webguard.html", "/webguard.py", "/triage.html", "/triage.py", "/vulntrack.html", "/vulnscan.py", "/arsenal-dash.css", "/arsenal.css", "/arsenal-cards.css", "/arsenal-ui.js", "/arsenal-data.js", "/sentinel-core.js", "/services-support.html", "/services-web.html", "/services-security.html", "/services-business.html", "/services-cats.js", "/services-data.js", "/portfolio-data.js", "/vx-doc.js", "/vx-rp-doc.js", "/vx-site.js", "/manifest.json", "/favicon-192.png", "/favicon-512.png"];
+const V = "vx-v17";
+const ASSETS = ["/", "/index.html", "/legal.html", "/legal.js", "/report.html", "/request.html", "/portfolio.html", "/sentinel.html", "/arsenal.html", "/shield.html", "/netguard.html", "/netguard.py", "/webguard.html", "/webguard.py", "/triage.html", "/triage.py", "/vulntrack.html", "/vulnscan.py", "/arsenal-dash.css", "/arsenal.css", "/arsenal-cards.css", "/arsenal-ui.js", "/arsenal-data.js", "/sentinel-core.js", "/services-support.html", "/services-web.html", "/services-security.html", "/services-business.html", "/services-cats.js", "/services-data.js", "/portfolio-data.js", "/vx-doc.js", "/vx-rp-doc.js", "/vx-site.js", "/manifest.json", "/favicon-192.png", "/favicon-512.png"];
 
 self.addEventListener("install", (e) => {
   e.waitUntil(
