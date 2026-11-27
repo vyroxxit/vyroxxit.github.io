@@ -91,6 +91,19 @@ textarea{min-height:110px;resize:vertical}
 details.cust{margin-top:8px}
 details.cust summary{cursor:pointer;color:var(--accent);font-weight:500}
 .offer{margin:10px 0 0;padding:10px 14px;border-radius:10px;border:1.5px dashed var(--accent)}
+.rqa{position:relative;isolation:isolate;overflow:hidden;background:linear-gradient(135deg,color-mix(in srgb,var(--accent) 13%,var(--surface)),var(--surface) 62%)}
+.rqa::before{content:"";position:absolute;z-index:-1;width:360px;height:360px;inset-inline-end:-120px;top:-150px;border-radius:50%;background:radial-gradient(circle,color-mix(in srgb,var(--accent) 36%,transparent),transparent 68%);animation:rqf 9s ease-in-out infinite alternate}
+.rqa::after{content:"";position:absolute;z-index:-1;inset:0;background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:40px 40px;opacity:.3;-webkit-mask-image:linear-gradient(160deg,transparent 35%,#000);mask-image:linear-gradient(160deg,transparent 35%,#000)}
+@keyframes rqf{to{transform:translate(-30px,40px) scale(1.15)}}
+@keyframes rqp{0%{box-shadow:0 0 0 0 #2fd27a}70%{box-shadow:0 0 0 9px transparent}}
+.rqa-live{display:inline-flex;align-items:center;gap:9px;font-size:13.5px;color:var(--muted);border:1px solid var(--line);border-radius:99px;padding:2px 14px;background:color-mix(in srgb,var(--bg) 60%,transparent)}
+.rqa-live i{width:9px;height:9px;border-radius:50%;background:#2fd27a;animation:rqp 2s infinite}
+.rqa h2{font-size:26px;margin:12px 0 6px;line-height:1.6}
+.rqa-f{list-style:none;margin:14px 0 18px;padding:0;display:grid;gap:8px;font-weight:500}
+.rqa-box{background:color-mix(in srgb,var(--bg) 70%,transparent);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border:1px solid var(--line);border-radius:14px;padding:18px;box-shadow:0 20px 50px -28px var(--accent)}
+.rqa-go{display:block;text-align:center;text-decoration:none;padding:14px 22px;font-size:18px;border-radius:12px;box-sizing:border-box}
+.rqa-alt{margin:12px 0 0;text-align:center;font-size:14px}.rqa-alt a{color:var(--accent);font-weight:700;margin:0 6px}
+@media(prefers-reduced-motion:reduce){.rqa::before,.rqa-live i{animation:none}}
 dialog{border:1px solid var(--line);border-radius:16px;background:var(--surface);color:var(--ink);width:min(420px,calc(100vw - 32px));padding:20px}
 dialog::backdrop{background:rgba(0,0,0,.55)}
 @media (min-width:1241px){.wrap{max-width:1280px}}
@@ -135,12 +148,16 @@ dialog::backdrop{background:rgba(0,0,0,.55)}
           <label for="phone" data-i="l_phone">رقم الهاتف / WhatsApp</label><input id="phone" dir="ltr" placeholder="+212..." autocomplete="tel">
         </div>
       </div>
-      <div class="card">
+      <div class="card rqa">
+        <span class="rqa-live"><i></i><span data-i="rq_live"></span></span>
         <h2 data-i="new_h">طلب جديد</h2>
-        <label for="service" data-i="l_srv">نوع الخدمة</label><select id="service"></select>
-        <label for="message" data-i="l_msg">وصف المشكلة</label><textarea id="message"></textarea>
-        <p class="msg" id="msg" role="status"></p>
-        <button class="btn" id="send" type="button" data-i="send">إرسال الطلب</button>
+        <p class="muted" data-i="rq_sub"></p>
+        <ul class="rqa-f"><li data-i="rq_f1"></li><li data-i="rq_f2"></li><li data-i="rq_f3"></li></ul>
+        <div class="rqa-box">
+          <label for="service" data-i="l_srv">نوع الخدمة</label><select id="service"></select>
+          <a class="btn rqa-go" id="rqGo" href="request.html" data-i="rq_go"></a>
+          <p class="rqa-alt muted"><span data-i="rq_or"></span> <a href="https://wa.me/212646126501" target="_blank" rel="noopener noreferrer">WhatsApp</a><a href="mailto:vyroxxvx@gmail.com">Email</a></p>
+        </div>
       </div>
     </div>
     <div class="card"><h2 data-i="mine_h">طلباتي السابقة</h2><div id="mine"><p class="muted">جارٍ التحميل…</p></div></div>
@@ -245,6 +262,10 @@ Object.assign(T.en,{b_first:"First order (symbolic price)",b_free:"Free service"
  sub_reg:"Registered",sub_guest:"Not registered",none_g:"No unregistered customers.",u_reqs:"Requests",done_c:"completed",p_editPayment:"Set payment status",pay_t:"Payment status",st_t:"Request status",
  g_p3:"🎁 Registering gives you: your first order at a symbolic price and a free service after every 5 completed orders. Ordering without an account is possible, but without these offers.",
  off_first:"🎉 Welcome offer: your first order is at a symbolic price.",off_free:"🎁 You have a free service ready: your next request will be free."});
+Object.assign(T.ar,{rq_live:"متصلون الآن · نرد خلال أقل من 6 ساعات",rq_sub:"صف مشكلتك بالتفصيل في صفحة الطلب المخصصة. بيانات حسابك تُملأ تلقائيًا ويُحتسب طلبك ضمن نقاط الولاء.",rq_f1:"⚡ رد خلال 6 ساعات كحد أقصى",rq_f2:"🛡️ سرّية تامة لبياناتك",rq_f3:"🌍 حضوريًا في المغرب وعن بُعد حول العالم",rq_go:"ابدأ طلبي ←",rq_or:"أو تواصل معنا مباشرة:"});
+Object.assign(T.en,{rq_live:"Online now · reply in under 6 hours",rq_sub:"Describe your problem in detail on the dedicated request page. Your account details are filled in automatically and your order counts toward loyalty.",rq_f1:"⚡ Reply within 6 hours",rq_f2:"🛡️ Your data stays confidential",rq_f3:"🌍 On-site in Morocco · remote worldwide",rq_go:"Start my request →",rq_or:"Or contact us directly:"});
+Object.assign(T.fr,{rq_live:"En ligne · réponse en moins de 6 h",rq_sub:"Décrivez votre problème en détail sur la page dédiée. Vos informations sont remplies automatiquement et votre demande compte pour la fidélité.",rq_f1:"⚡ Réponse sous 6 heures",rq_f2:"🛡️ Vos données restent confidentielles",rq_f3:"🌍 Sur place au Maroc · à distance partout",rq_go:"Commencer ma demande →",rq_or:"Ou contactez-nous directement :"});
+Object.assign(T.es,{rq_live:"En línea · respuesta en menos de 6 h",rq_sub:"Describe tu problema en detalle en la página dedicada. Tus datos se rellenan automáticamente y tu solicitud suma para la fidelidad.",rq_f1:"⚡ Respuesta en 6 horas",rq_f2:"🛡️ Tus datos son confidenciales",rq_f3:"🌍 Presencial en Marruecos · remoto en todo el mundo",rq_go:"Empezar mi solicitud →",rq_or:"O contáctanos directamente:"});
 Object.assign(T.fr,{b_first:"1re commande (prix symbolique)",b_free:"Service gratuit",paid:"Payé",unpaid:"Non payé",del:"Supprimer la demande",del_q:"Supprimer définitivement cette demande ? Action irréversible.",
  sub_reg:"Inscrits",sub_guest:"Non inscrits",none_g:"Aucun client non inscrit.",u_reqs:"Demandes",done_c:"terminées",p_editPayment:"Définir l’état du paiement",pay_t:"État du paiement",st_t:"État de la demande",
  g_p3:"🎁 L’inscription vous donne : votre première commande à prix symbolique et un service gratuit toutes les 5 commandes terminées. Commander sans compte est possible, mais sans ces offres.",
@@ -567,24 +588,9 @@ if(cfg.apiKey.startsWith("PASTE")){
     renderMine();
   }
 
-  $("send").onclick=async()=>{
-    const m=$("message").value.trim(),out=$("msg"),t=tt();
-    if(!m){out.textContent=t.e_empty;return}
-    $("send").disabled=true;out.textContent=t.sending;
-    try{
-      const code="VX-"+Math.random().toString(36).slice(2,8).toUpperCase();
-      const own=(await getDocs(query(collection(db,"requests"),where("uid","==",user.uid)))).docs.map(d=>d.data());
-      const dn=own.filter(r=>r.status==="done").length,us=own.filter(r=>r.free===true).length,flags={};
-      if(!own.length)flags.first=true;else if(Math.floor(dn/EVERY)>us)flags.free=true;
-      await addDoc(collection(db,"requests"),{uid:user.uid,email:user.email,name:$("name").value.trim(),phone:$("phone").value.trim(),
-        service:$("service").value,message:m,status:"progress",code:code,guest:false,paid:false,createdAt:serverTimestamp(),...flags});
-      await setDoc(doc(db,"users",user.uid),{name:$("name").value.trim(),phone:$("phone").value.trim(),email:user.email},{merge:true});
-      try{await setDoc(doc(db,"tracking",code),{service:$("service").value,status:"progress",paid:false,createdAt:serverTimestamp()})}catch(e){}
-      $("message").value="";out.textContent=t.sent+code;
-      await loadMine();
-    }catch(e){out.textContent=t.fail+"("+(e.code||"error")+")"}
-    $("send").disabled=false;
-  };
+  {const g=$("rqGo"),sv=$("service");let dirty=false;
+    const u=()=>{g.href="request.html"+((dirty||sv.selectedIndex>0)?"?svc="+encodeURIComponent(sv.value):"")};
+    sv.addEventListener("change",()=>{dirty=true;u()});g.addEventListener("click",u);u()}
 
   $("revList").onclick=async e=>{
     const b=e.target.closest("[data-rv]");if(!b||!can("moderateReviews"))return;

@@ -251,7 +251,7 @@ function buildSum(){var d=$("sum");d.textContent="";
 function go(n){S=n;[].forEach.call(document.querySelectorAll(".pan:not([style])"),function(p,i){p.classList.toggle("on",i===n)});
   $("back").hidden=n===0;$("next").hidden=n===3;$("save").hidden=n!==3;$("err").textContent="";if(n===3)buildSum();drawRail();if(n===1){var a=document.querySelector('.tile[aria-pressed="true"]');if(a)a.scrollIntoView({block:"nearest"})}$("request").scrollIntoView({behavior:"smooth",block:"start"})}
 function refresh(){var u=window.vxUser,em=$("guestEmail");
-  if(u){em.value=u.email||"";em.readOnly=true;if(!$("name").value)$("name").value=u.displayName||"";$("offerNote").textContent=tr("offu")}
+  if(u){em.value=u.email||"";em.readOnly=true;if(!$("name").value)$("name").value=u.displayName||"";if(window.vxPhone&&!$("contactInfo").value)$("contactInfo").value=window.vxPhone;$("offerNote").textContent=tr("offu")}
   else{if(em.readOnly){em.readOnly=false;em.value=""}$("offerNote").textContent=tr("offg")}
   $("acc").hidden=!!u}
 window.vxOnAuth=refresh;
@@ -313,16 +313,16 @@ $("cp").onclick=function(){var b=this;try{navigator.clipboard.writeText($("code"
 $("pdfBtn").onclick=function(){if(window.vxLast&&SVI>=0)window.vxLast.service=nameOf(SVI);if(window.vxPdf&&window.vxLast)window.vxPdf(window.vxLast,lang)};
 $("again").onclick=function(){$("msg").value="";$("cnt").textContent="0";$("c1").checked=$("c2").checked=false;SVI=-1;Q="";$("q").value="";drawSvc();$("done").hidden=true;$("f").hidden=false;$("rail").hidden=false;T0=Date.now();go(0)};
 var sl=get("vx-lang");setLang(U[sl]?sl:"en",false);
-try{var qs=new URLSearchParams(location.search).get("s");if(/^\d+$/.test(qs||"")){SVI=Math.min(+qs,SV?SV.en.length:0);drawSvc()}}catch(e){}
+try{var qp=new URLSearchParams(location.search),qs=qp.get("s"),qv=qp.get("svc");if(SV&&qv){var ix=SV.ar.findIndex(function(x){return x[0]===qv});SVI=ix>-1?ix:SV.en.length;drawSvc()}else if(/^\d+$/.test(qs||"")){SVI=Math.min(+qs,SV?SV.en.length:0);drawSvc()}}catch(e){}
 })();
 </script>
 <script type="module">
 import {initializeApp} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 import {getAuth,onAuthStateChanged} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
-import {getFirestore,doc,setDoc,collection,addDoc,getDocs,query,where,serverTimestamp} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+import {getFirestore,doc,setDoc,collection,addDoc,getDocs,getDoc,query,where,serverTimestamp} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 try{
   const app=initializeApp({apiKey:"AIzaSyDcRn9c0mtFmGt_fKZh5KKEM6_kbZq6_e0",authDomain:"vyroxx-it.firebaseapp.com",projectId:"vyroxx-it",appId:"1:546399615544:web:5da34c579291fdc0c6c4cd"}),auth=getAuth(app),db=getFirestore(app),EVERY=5;
-  onAuthStateChanged(auth,u=>{window.vxUser=u||null;if(window.vxOnAuth)window.vxOnAuth()});
+  onAuthStateChanged(auth,async u=>{window.vxUser=u||null;window.vxPhone="";if(u){try{const p=await getDoc(doc(db,"users",u.uid));if(p.exists())window.vxPhone=p.data().phone||""}catch(e){}}if(window.vxOnAuth)window.vxOnAuth()});
   window.vxSave=async d=>{
     const u=auth.currentUser,code="VX-"+Math.random().toString(36).slice(2,8).toUpperCase();
     const base={name:d.name,phone:d.phone,service:d.service,message:d.message,status:"progress",paid:false,code:code,source:"site",createdAt:serverTimestamp()};
