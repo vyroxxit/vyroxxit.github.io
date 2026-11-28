@@ -41,7 +41,7 @@ a{color:inherit}
 .seg{display:flex;border:1.5px solid var(--line);border-radius:10px;overflow:hidden}
 .seg button{font:inherit;font-size:14px;border:0;background:transparent;color:var(--muted);padding:6px 12px;cursor:pointer}
 .seg button[aria-pressed="true"]{background:var(--accent);color:var(--on-accent);font-weight:700}
-.theme{font:inherit;font-size:18px;line-height:1;border:1.5px solid var(--line);border-radius:10px;background:transparent;color:var(--ink);padding:5px 11px;cursor:pointer}
+.theme{font:inherit;font-size:18px;line-height:1;border:1.5px solid var(--line);border-radius:10px;background:transparent;color:var(--ink);padding:5px 11px;cursor:pointer}.theme{align-self:stretch;display:grid;place-items:center;min-width:2.5em;padding:0}
 .hero{padding:clamp(28px,6vw,64px) 0 26px;max-width:760px}
 .eyebrow{display:inline-block;font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);border:1px solid var(--line);border-radius:99px;padding:2px 14px;background:var(--surface)}
 h1{font-size:clamp(32px,6vw,52px);line-height:1.2;margin:14px 0 12px}
@@ -196,7 +196,7 @@ main{padding-bottom:50px}
   <div id="body"></div>
   <h2 class="hd" id="othH"></h2>
   <div class="others" id="others"></div>
-  <section class="cta"><div><h2 id="ch"></h2><p id="cp"></p></div><a class="btn" href="/#request" id="cb"></a></section>
+  <section class="cta"><div><h2 id="ch"></h2><p id="cp"></p></div><a class="btn" href="/request.html" id="cb"></a></section>
 </main>
 <footer><div class="w" id="ft"></div></footer>
 <noscript><p class="w">Please enable JavaScript to view this page.</p></noscript>
@@ -237,7 +237,7 @@ function drawHero(){
   var ul=el("ul","sx-pts");
   (c.pts[l]||c.pts.en).forEach(function(p,i){var li=el("li"),ic=el("span","sx-ic"),d=el("div");ic.innerHTML='<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+PTI[i%3]+'</svg>';d.appendChild(el("b",null,p[0]));d.appendChild(el("span",null,p[1]));li.appendChild(ic);li.appendChild(d);ul.appendChild(li)});
   m.appendChild(ul);
-  var act=el("div","sx-act"),a=el("a","btn sx-go",L[l].cb);a.href="/#request";act.appendChild(a);
+  var act=el("div","sx-act"),a=el("a","btn sx-go",L[l].cb);a.href="/request.html";act.appendChild(a);
   var b=el("a","btn alt",L[l].back);b.href="/#services";act.appendChild(b);
   var sn=el("a","btn alt","🛡️ "+C.lbl.arsenal[l]);sn.href="arsenal.html";act.appendChild(sn);m.appendChild(act);
   var n=CAT==="business"?(D.BZ[l]||[]).length:items().length;
@@ -271,7 +271,7 @@ function drawBody(){
     var top=el("div","sv-top");top.appendChild(el("span","sv-i",s.ic));top.appendChild(el("h3",null,s.t));d.appendChild(top);
     var ul=el("ul");s.b.forEach(function(x){ul.appendChild(el("li",null,x))});d.appendChild(ul);
     var f=el("div","sv-f"),pr=el("div","sv-pr","$"+s.pr);pr.appendChild(el("small",null,L[l].from+" ≈ "+Math.ceil(s.pr*D.RATE/10)*10+" DH"));f.appendChild(pr);
-    var a=el("a","sv-go",L[l].req);a.href="/?s="+s.k+"#request";f.appendChild(a);d.appendChild(f);grid.appendChild(d);
+    var a=el("a","sv-go",L[l].req);a.href="/request.html?s="+s.k;f.appendChild(a);d.appendChild(f);grid.appendChild(d);
   });
   b.appendChild(grid);
   if(CAT==="web"||CAT==="security"){var n=el("p",null,tx(CAT==="web"?"g3n":"note"));n.style.cssText="color:var(--muted);margin:18px 0 0";b.appendChild(n)}

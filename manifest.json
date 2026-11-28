@@ -31,7 +31,7 @@
     {
       "name": "Send your problem",
       "short_name": "Request",
-      "url": "/#request",
+      "url": "/request.html",
       "icons": [
         {
           "src": "/favicon-192.png",
