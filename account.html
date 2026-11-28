@@ -92,9 +92,9 @@ details.cust{margin-top:8px}
 details.cust summary{cursor:pointer;color:var(--accent);font-weight:500}
 .offer{margin:10px 0 0;padding:10px 14px;border-radius:10px;border:1.5px dashed var(--accent)}
 .rqa{position:relative;isolation:isolate;overflow:hidden;background:linear-gradient(135deg,color-mix(in srgb,var(--accent) 13%,var(--surface)),var(--surface) 62%)}
-.rqa::before{content:"";position:absolute;z-index:-1;width:360px;height:360px;inset-inline-end:-120px;top:-150px;border-radius:50%;background:radial-gradient(circle,color-mix(in srgb,var(--accent) 36%,transparent),transparent 68%);animation:rqf 9s ease-in-out infinite alternate}
+.rqa::before{content:"";position:absolute;z-index:-1;width:360px;height:360px;inset-inline-start:-120px;top:-150px;border-radius:50%;background:radial-gradient(circle,color-mix(in srgb,var(--accent) 36%,transparent),transparent 68%);animation:rqf 9s ease-in-out infinite alternate}
 .rqa::after{content:"";position:absolute;z-index:-1;inset:0;background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:40px 40px;opacity:.3;-webkit-mask-image:linear-gradient(160deg,transparent 35%,#000);mask-image:linear-gradient(160deg,transparent 35%,#000)}
-@keyframes rqf{to{transform:translate(-30px,40px) scale(1.15)}}
+@keyframes rqf{to{transform:translate(30px,40px) scale(1.15)}}
 @keyframes rqp{0%{box-shadow:0 0 0 0 #2fd27a}70%{box-shadow:0 0 0 9px transparent}}
 .rqa-live{display:inline-flex;align-items:center;gap:9px;font-size:13.5px;color:var(--muted);border:1px solid var(--line);border-radius:99px;padding:2px 14px;background:color-mix(in srgb,var(--bg) 60%,transparent)}
 .rqa-live i{width:9px;height:9px;border-radius:50%;background:#2fd27a;animation:rqp 2s infinite}
@@ -103,6 +103,10 @@ details.cust summary{cursor:pointer;color:var(--accent);font-weight:500}
 .rqa-box{background:color-mix(in srgb,var(--bg) 70%,transparent);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border:1px solid var(--line);border-radius:14px;padding:18px;box-shadow:0 20px 50px -28px var(--accent)}
 .rqa-go{display:block;text-align:center;text-decoration:none;padding:14px 22px;font-size:18px;border-radius:12px;box-sizing:border-box}
 .rqa-alt{margin:12px 0 0;text-align:center;font-size:14px}.rqa-alt a{color:var(--accent);font-weight:700;margin:0 6px}
+@keyframes rqfr{to{transform:translate(-30px,40px) scale(1.15)}}
+[dir="rtl"] .rqa{background:linear-gradient(225deg,color-mix(in srgb,var(--accent) 13%,var(--surface)),var(--surface) 62%)}
+[dir="rtl"] .rqa::after{-webkit-mask-image:linear-gradient(200deg,transparent 35%,#000);mask-image:linear-gradient(200deg,transparent 35%,#000)}
+[dir="rtl"] .rqa::before{animation-name:rqfr}
 @media(prefers-reduced-motion:reduce){.rqa::before,.rqa-live i{animation:none}}
 dialog{border:1px solid var(--line);border-radius:16px;background:var(--surface);color:var(--ink);width:min(420px,calc(100vw - 32px));padding:20px}
 dialog::backdrop{background:rgba(0,0,0,.55)}

@@ -83,9 +83,9 @@ footer{margin-top:auto;padding:26px 0;color:var(--muted);font-size:14px;text-ali
 [hidden]{display:none!important}
 body{position:relative;overflow-x:hidden}
 .bg{position:fixed;inset:0;z-index:-1;pointer-events:none;overflow:hidden}
-.bg::before{content:"";position:absolute;inset:-20%;background:radial-gradient(40% 35% at 80% 10%,color-mix(in srgb,var(--accent) 26%,transparent),transparent 70%),radial-gradient(35% 30% at 10% 40%,color-mix(in srgb,var(--hot) 16%,transparent),transparent 70%),radial-gradient(45% 35% at 60% 100%,color-mix(in srgb,var(--accent) 14%,transparent),transparent 70%);animation:drift 18s ease-in-out infinite alternate}
+.bg::before{content:"";position:absolute;inset:-20%;background:radial-gradient(40% 35% at 20% 10%,color-mix(in srgb,var(--accent) 26%,transparent),transparent 70%),radial-gradient(35% 30% at 90% 40%,color-mix(in srgb,var(--hot) 16%,transparent),transparent 70%),radial-gradient(45% 35% at 40% 100%,color-mix(in srgb,var(--accent) 14%,transparent),transparent 70%);animation:drift 18s ease-in-out infinite alternate}
 .bg::after{content:"";position:absolute;inset:0;background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:60px 60px;opacity:.4;-webkit-mask-image:radial-gradient(ellipse at 50% 0,#000 10%,transparent 70%);mask-image:radial-gradient(ellipse at 50% 0,#000 10%,transparent 70%)}
-@keyframes drift{to{transform:translate3d(-4%,3%,0) scale(1.12)}}
+@keyframes drift{to{transform:translate3d(4%,3%,0) scale(1.12)}}
 @keyframes flt{50%{transform:translateY(-8px)}}
 @keyframes in{from{opacity:0;transform:translateY(14px)}}
 @keyframes pls{70%{box-shadow:0 0 0 9px transparent}}
@@ -127,6 +127,10 @@ input:focus,textarea:focus{box-shadow:0 0 0 4px color-mix(in srgb,var(--accent) 
 .code{box-shadow:0 0 40px -8px var(--accent);background:color-mix(in srgb,var(--accent) 10%,transparent)}
 .contact{text-align:center;color:var(--muted);margin:0 0 56px}.contact a{color:var(--accent);font-weight:700}
 @media(max-width:700px){.row{grid-template-columns:1fr}.rail li span{display:none}.sum .r{grid-template-columns:1fr;gap:2px}.nav .btn{flex:1;padding-inline:16px}}
+@keyframes driftr{to{transform:translate3d(-4%,3%,0) scale(1.12)}}
+[dir="rtl"] .bg::before{background:radial-gradient(40% 35% at 80% 10%,color-mix(in srgb,var(--accent) 26%,transparent),transparent 70%),radial-gradient(35% 30% at 10% 40%,color-mix(in srgb,var(--hot) 16%,transparent),transparent 70%),radial-gradient(45% 35% at 60% 100%,color-mix(in srgb,var(--accent) 14%,transparent),transparent 70%);animation-name:driftr}
+[dir="rtl"] h1{background:linear-gradient(260deg,var(--ink) 20%,var(--accent) 75%,var(--hot));-webkit-background-clip:text;background-clip:text}
+[dir="rtl"] .rail::after{background:linear-gradient(270deg,var(--accent),var(--hot))}
 @media(prefers-reduced-motion:reduce){.bg::before,.emb,.live i,.pan.on{animation:none}.chk circle,.chk path{animation:none;stroke-dashoffset:0}}
 </style>
 </head>
